@@ -14,6 +14,7 @@ import Verification from './src/organisms/Authen/Verification';
 import Dashboard from './src/organisms/Landing/Dashboard';
 import Home from './src/organisms/Landing/Home';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
+import forgotPassword from './src/organisms/Authen/forgotPassword';
 
 const Stack = createStackNavigator();
 
@@ -68,6 +69,11 @@ const Auth = () => {
             fontWeight: 'bold', //Set Header text style
           },
         }}
+      />
+      <Stack.Screen
+        name="forgotPassword"
+        component={forgotPassword}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
