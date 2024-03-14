@@ -25,7 +25,9 @@ const Signin = ({ navigation }) => {
                     source={require('../../../assets/images/ic_user.png')}
                     style={styles.logoimg}
                 />
+            <View>
                 <Text style={{ fontSize: 20 }}>Signin Here</Text>
+                </View>
             </View>
             <View style={{marginLeft:-15}}>
             <View style={styles.SectionStyle}>
