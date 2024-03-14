@@ -12,7 +12,8 @@ const Verification = ({ navigation }) => {
             </TouchableOpacity>
         </View>
     )
-}
+};
+
 export default Verification;
 
 
