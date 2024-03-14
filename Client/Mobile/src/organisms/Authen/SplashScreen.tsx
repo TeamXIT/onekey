@@ -1,4 +1,7 @@
 import React from "react";
+import { Text } from "react-native";
+
+const SplashScreen = ( ) => {
 import { useEffect, useState } from "react";
 import { Text,View } from "react-native"
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -19,5 +22,6 @@ const SplashScreen = ({navigation}) => {
     </View>
     );
 }
+
 
 export default SplashScreen;
