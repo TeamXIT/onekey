@@ -8,7 +8,9 @@ const primaryColor = "#952323";
 const secondaryColor = "#F2E8C6";
 const fieldColor = '#A63120';
 const textColor = useColorScheme() === 'light' ? darkText : lightText;
-
+const switchcolor1='#767577';
+const switchcolor2='#f4f3f4';
+const switchcolor3="#3e3e3e";
 const styles = StyleSheet.create({
     appColor: {
         color: primaryColor
@@ -94,5 +96,21 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         fontSize: 16,
     },
+    s_r_view:{ 
+        flexDirection: 'row',
+        marginLeft: 10, 
+        marginRight: 10 
+    },
+    s_r_view1:{ flex: 1, 
+        flexDirection: 'row', 
+        justifyContent: 'flex-start', 
+        alignItems: 'center' 
+    },
+    s_f_view:{ 
+        flex: 1, 
+        flexDirection: 'row', 
+        justifyContent: 'flex-end', 
+        alignItems: 'center' 
+    }
 });
-export { styles };
+export { styles,switchcolor1,switchcolor2, switchcolor3 };

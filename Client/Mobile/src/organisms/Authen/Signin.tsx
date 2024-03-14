@@ -1,5 +1,5 @@
 import { Text,View, TextInput,Keyboard, Image, Switch, TouchableOpacity, Alert} from "react-native"
-import { styles } from "../../styles/styles";
+import { styles, switchcolor1, switchcolor2, switchcolor3 } from "../../styles/styles";
 import { useState } from "react";
 
 const Signin = ({navigation}) => {
@@ -35,7 +35,6 @@ const Signin = ({navigation}) => {
                                 }
                                 placeholder="Enter Username" //dummy@abc.com
                                 placeholderTextColor="#8b9cb5"
-                                autoCapitalize="none"
                                 returnKeyType="next"
                             />
         </View>
@@ -53,13 +52,13 @@ const Signin = ({navigation}) => {
                                 returnKeyType="next"
                             />
         </View>
-        <View style={{ flexDirection: 'row', marginLeft: 10, marginRight: 10 }}>
-                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                <Switch trackColor={{false: '#767577', true: styles.appColor.color}} thumbColor={isRemember ? styles.appColor.color : '#f4f3f4'}
-                                    ios_backgroundColor="#3e3e3e" onValueChange={setIsRemember} value={isRemember}/>
+        <View style={styles.s_r_view}>
+                            <View style={styles.s_r_view1}>
+                                <Switch trackColor={{false: switchcolor1, true: styles.appColor.color}} thumbColor={isRemember ? styles.appColor.color : switchcolor2}
+                                    ios_backgroundColor={switchcolor3} onValueChange={setIsRemember} value={isRemember}/>
                                 <Text style={styles.headerTextStyle}>Remember</Text>
                             </View>
-                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
+                            <View style={styles.s_f_view}>
                                 <Text
                                     style={styles.headerTextStyle}
                                     onPress={() => Alert.alert('Forgot Password')}>
