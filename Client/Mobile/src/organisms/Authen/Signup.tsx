@@ -34,9 +34,7 @@ const Signup=({navigation}) =>{
     }
     navigation.navigate('Verification')
   }
-    
-  
-    return (
+  return (
       <SafeAreaView>
         <ScrollView>
         <View style={{backgroundColor:"#F2E8C6",flex:1}}>
