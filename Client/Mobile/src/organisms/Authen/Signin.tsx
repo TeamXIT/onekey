@@ -22,7 +22,7 @@ const Signin = ({ navigation }) => {
         <View style={styles.mainContainer}>
             <View style={{ alignItems: 'center' }}>
                 <Image
-                    source={require('../../../assets/images/test_logo.png')}
+                    source={require('../../../assets/images/ic_user.png')}
                     style={styles.logoimg}
                 />
                 <Text style={{ fontSize: 20 }}>Signin Here</Text>
