@@ -40,7 +40,7 @@ const Signup=({navigation}) =>{
       <SafeAreaView>
         <ScrollView>
         <View style={{backgroundColor:"#F2E8C6",flex:1}}>
-           <Image source={require('../../../assets/images/logo.jpg')} style={styles.image}/>
+           <Image source={require('../../../assets/images/person.png')} style={styles.image}/>
             <TextInput placeholder=" Username" style={styles.input} onChange={(UserName)=>{setUsername(UserName)}}/>
             <TextInput placeholder=" Email" style={styles.input} onChange={(email)=>{setEmail(email)}}/>
             <TextInput placeholder=" Password"  secureTextEntry={true} style={styles.input} onChange={(password)=>{setPassword(password)}}/>
