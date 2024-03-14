@@ -40,6 +40,7 @@ const Auth = () => {
           },
         }}
       />
+      
       <Stack.Screen
         name="verification"
         component={Verification}

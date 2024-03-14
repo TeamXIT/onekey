@@ -48,7 +48,6 @@ const UserTypeSelection = ({navigation}) => {
                         <Text style={styles.BackTextStyle}>Back </Text>
                     </View>
                 </TouchableOpacity>
-
                 <TouchableOpacity onPress={handlenextpress}>
                     <View style={styles.touchableContent}>
                         <Text style={styles.TextStyle}> Next</Text>

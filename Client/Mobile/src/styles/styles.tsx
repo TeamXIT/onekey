@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     appTransparent: {
         color: transparent
     },
+    
     appInputBg: {
         color: fieldColor
     },
@@ -134,6 +135,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
     },
+    
     
 });
 export { styles };
