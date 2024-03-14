@@ -20,7 +20,7 @@ const Stack = createStackNavigator();
 const Auth = () => {
   // Stack Navigator for Login and Sign up Screen
   return (
-    <Stack.Navigator initialRouteName="signIn">
+    <Stack.Navigator initialRouteName="typeselection">
       <Stack.Screen
         name="signin"
         component={Signin}
@@ -93,7 +93,7 @@ const Landing = () => {
 function App(): React.JSX.Element {
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="splashScreen">
+    <Stack.Navigator initialRouteName="Auth">
       {/* SplashScreen which will come once for 5 Seconds */}
       <Stack.Screen
         name="splashScreen"

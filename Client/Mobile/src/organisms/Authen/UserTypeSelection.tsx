@@ -1,19 +1,38 @@
+//usertypeselection.tsx
 import React from "react";
 import { Image, Text, View, TouchableOpacity, Alert } from "react-native";
 import { styles } from "../../styles/styles";
+import CustomCardComponent from "../../Molecules/CustomCardComponet";
+import { CardOptions } from "../../helpers/Models/CardOptions";
 
-const UserTypeSelection = ({navigation}) => {
-    const handleCardPress = () => {
-       
-        console.log('Card pressed!');
-    };
+const UserTypeSelection = ({ navigation }) => {
+
+    function handleCardPress(value: CardOptions): void {
+        console.log("Selected option is: ", value);
+
+        switch (value) {
+            case CardOptions.BPO:
+                break;
+            case CardOptions.Agent:
+               break;
+            case CardOptions.Seller:
+                break;
+            case CardOptions.Lawyer:
+              break;
+            default:
+                console.log("Unknown option selected");
+                break;
+        }
+    }
+
     const handlenextpress = () => {
         navigation.navigate('Landing')
         console.log('next pressed!');
     };
+    
     const handlebackpress = () => {
-         Alert.alert('back');
-        //console.log('back pressed!');
+        Alert.alert('back');
+
     };
 
     return (
@@ -22,34 +41,38 @@ const UserTypeSelection = ({navigation}) => {
                 <Image source={require('../../../asserts/Images/ic_user.png')} />
             </View>
             <View style={styles.US_cardsContainer1}>
-                <TouchableOpacity style={[styles.cards,styles.enhancedCard]} onPress={handleCardPress} activeOpacity={0.7}>
-                    <Image source={require('../../../asserts/Images/ic_bpo5.png')} style={styles.cardIcon} />
-                    <Text style={styles.cardText}>BPO</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.cards,styles.enhancedCard]} onPress={handleCardPress} activeOpacity={0.7}>
-                    <Image source={require('../../../asserts/Images/ic_user.png')} style={styles.cardIcon} />
-                    <Text style={styles.cardText}>Agent</Text>
-                </TouchableOpacity>
+                <CustomCardComponent
+                    onPress={() => handleCardPress(CardOptions.BPO)}
+                    imageSource={require('../../../asserts/Images/ic_bpo5.png')}
+                    labelText="BPO"
+                />
+                <CustomCardComponent
+                    onPress={() => handleCardPress(CardOptions.Agent)}
+                    imageSource={require('../../../asserts/Images/ic_user.png')}
+                    labelText="Agent"
+                />
             </View>
             <View style={styles.cardsContainer2}>
-                <TouchableOpacity style={[styles.cards,styles.enhancedCard]} onPress={handleCardPress} activeOpacity={0.7}>
-                    <Image source={require('../../../asserts/Images/ic_seller.png')} style={styles.cardIcon} />
-                    <Text style={styles.cardText}>Seller</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.cards,styles.enhancedCard]} onPress={handleCardPress} activeOpacity={0.7}>
-                    <Image source={require('../../../asserts/Images/ic_lawyer.png')} style={styles.cardIcon} />
-                    <Text style={styles.cardText}>Lawyer</Text>
-                </TouchableOpacity>
+                <CustomCardComponent
+                    onPress={() => handleCardPress(CardOptions.Seller)}
+                    imageSource={require('../../../asserts/Images/ic_seller.png')}
+                    labelText="Seller"
+                />
+                <CustomCardComponent
+                     onPress={() => handleCardPress(CardOptions.Lawyer)}
+                    imageSource={require('../../../asserts/Images/ic_lawyer.png')}
+                    labelText="Lawyer"
+                />
             </View>
             <View style={styles.buttonContainer}>
                 <TouchableOpacity onPress={handlebackpress}>
-                    <View style={[styles.touchableContent, { marginRight: 100, marginLeft: 0, backgroundColor: '#F2E8C6' }]}>
+                    <View style={styles.BacktouchableContent}>
                         <Image source={require('../../../asserts/Images/ic_leftarrow.png')} style={styles.arrowIcon} />
                         <Text style={styles.BackTextStyle}>Back </Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={handlenextpress}>
-                    <View style={styles.touchableContent}>
+                    <View style={styles.NexttouchableContent}>
                         <Text style={styles.TextStyle}> Next</Text>
                         <Image source={require('../../../asserts/Images/ic_rightarrow.png')} style={styles.arrowIcon} />
                     </View>

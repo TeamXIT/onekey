@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     appTransparent: {
         color: transparent
     },
-    
+
     appInputBg: {
         color: fieldColor
     },
@@ -96,18 +96,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 20,
         alignSelf: 'center',
-        
-
     },
-
     arrowIcon: {
         width: 30,
         height: 25,
-
-
     },
-
-    touchableContent: {
+    NexttouchableContent: {
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft:100,
@@ -116,12 +110,21 @@ const styles = StyleSheet.create({
         borderColor:"#a73121",
         backgroundColor: '#952323',
         padding:10
-
+    },
+    BacktouchableContent:{
+        marginRight: 100, 
+        marginLeft: 0, 
+        backgroundColor: '#F2E8C6',
+        padding:10,
+        borderWidth:2,
+        borderRadius:5,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between', 
-        padding:120// Optional: Adjust the spacing between buttons
+        padding:120
     },
     enhancedCard: {
         backgroundColor: '#952323',

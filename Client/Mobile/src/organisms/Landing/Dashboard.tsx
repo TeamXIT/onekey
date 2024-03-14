@@ -1,42 +1,42 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Profile from '../Landing/Profile';
-import Tab1 from '../Landing/Tab1';
-import Tab2 from '../Landing/Tab2';
+import Home from './Home';
+import BPOContacts from './BPOContacts';
+import FeedBacks from './FeedBack';
 
 const Tab = createBottomTabNavigator();
 
 const Dashboard = () => {
     return (
         <Tab.Navigator
-            initialRouteName="Profile"
+            initialRouteName="Home"
             screenOptions={{
                 tabBarActiveTintColor: "#DF2519",
             }}>
             <Tab.Screen
-                name="Profile"
-                component={Profile}
+                name="Home"
+                component={Home}
                 options={{
                     headerShown: true,
-                    tabBarLabel: 'Profile',
+                    tabBarLabel: 'Home',
                     
                 }}
             />
             <Tab.Screen
-                name="Tab1"
-                component={Tab1}
+                name="FeedBacks"
+                component={FeedBacks}
                 options={{
                     headerShown: true,
-                    tabBarLabel: 'Tab1',
+                    tabBarLabel: 'FeedBacks',
                     
                 }}
             />
             <Tab.Screen
-                name="Tab2"
-                component={Tab2}
+                name="BPOContacts"
+                component={BPOContacts}
                 options={{
                     headerShown: true,
-                    tabBarLabel: 'Tab2',
+                    tabBarLabel: 'BPOContacts',
                     
                 }}
             />

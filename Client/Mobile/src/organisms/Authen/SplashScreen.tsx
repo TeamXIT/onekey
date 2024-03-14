@@ -1,22 +1,10 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { Text,View } from "react-native"
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { styles } from "../../styles/styles";
-const SplashScreen = ({navigation}) => {
-    const [animating, setAnimating] = useState(true);
+import { Text } from "react-native";
 
-    useEffect(() => {
-        setTimeout(() => {
-          AsyncStorage.getItem('userId').then((value) => {
-            navigation.replace(value === null ? 'Auth' : 'Landing');
-          });
-        }, 3000);
-      }, []);
+const SplashScreen = ( ) => {
+  
     return(
-    <View style={styles.S_background}>
-
-    </View>
+   <Text>SplashScreen</Text>
     );
 }
 
