@@ -58,7 +58,7 @@ const Signin = ({ navigation }) => {
                 <View style={styles.s_f_view}>
                     <Text
                         style={styles.headerTextStyle}
-                        onPress={() => Alert.alert('Forgot Password')}>
+                        onPress={() => navigation.navigate('forgotPassword')}>
                         Forgot Password
                     </Text>
                 </View>
