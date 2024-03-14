@@ -24,6 +24,13 @@ const styles = StyleSheet.create({
     appInputBg: {
         color: fieldColor
     },
+    appSwitchFalse:{
+        color:switchcolor1
+    },
+    appSwitchTumbFalse:{
+        color:switchcolor2
+    },
+
     global: {
         backgroundColor: componentColor,
         color: textColor,
@@ -47,7 +54,7 @@ const styles = StyleSheet.create({
     inputStyle: {
         flex: 1,
         color: textColor,
-        paddingLeft: 15,
+        paddingLeft: 10,
         paddingRight: 15,
         borderWidth: 1,
         borderRadius: 30,
@@ -56,8 +63,8 @@ const styles = StyleSheet.create({
     },
     SectionStyle: {
         flexDirection: 'row',
+        width:'97%',
         height: 65,
-        marginTop: 20,
         margin: 10,
     },
     headerTextStyle: {
@@ -113,4 +120,4 @@ const styles = StyleSheet.create({
         alignItems: 'center' 
     }
 });
-export { styles,switchcolor1,switchcolor2, switchcolor3 };
+export { styles };
