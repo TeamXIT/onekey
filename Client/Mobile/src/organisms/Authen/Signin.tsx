@@ -7,16 +7,30 @@ const Signin = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isRemember, setIsRemember] = useState(false);
+    const [usernameError, setUsernameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
     const handleSubmitPress = () => {
-        if (!username) {
-            return Alert.alert('Invalid', 'Enter User Name');
-
+        let hasError = false;
+        if (!username.trim() && !password.trim()) {
+            setUsernameError('Please provide username.');
+            setPasswordError('Please provide password.');
         }
-        if (!password) {
-            return Alert.alert('Invalid', 'Enter Password')
-
+        else if (!username.trim()) {
+            setUsernameError('Please provide username.');
+            setPasswordError('');
+            hasError = true;
+        } else if (!password.trim()) {
+            setUsernameError('');
+            setPasswordError('Please provide password.');
+            hasError = true;
+        } else if (username.trim().length <= 8) {
+            setUsernameError('username must be atleast 8 charecters')
+        } else if (password.trim().length <= 8) {
+            setPasswordError('password must be atleast 8 charecters')
         }
-        navigation.navigate('Landing');
+        else {
+            navigation.navigate('Landing');
+        }
     }
     return (
         <View style={styles.mainContainer}>
@@ -25,34 +39,41 @@ const Signin = ({ navigation }) => {
                     source={require('../../../assets/images/ic_user.png')}
                     style={styles.logoimg}
                 />
-            <View>
-                <Text style={{ fontSize: 20 }}>Signin Here</Text>
+                <View>
+                    <Text style={{ fontSize: 20 }}>Signin Here</Text>
                 </View>
             </View>
-            <View style={{marginLeft:-15}}>
-            <View style={styles.SectionStyle}>
-                <TeamXTextInput
-                    value={username}
-                    onChangeText={setUsername}
-                    placeholder="Enter Username"
-                    keyboardType="email-address"
-                    returnKeyType="next"
-                />
-            </View>
-            <View style={styles.SectionStyle}>
-                <TeamXTextInput
-                    value={password}
-                    onChangeText={setPassword}
-                    placeholder="Enter Password"
-                    secureTextEntry={true}
-                    returnKeyType="done"
-                />
-            </View>
+            <View style={{ marginLeft: -15 }}>
+                <View>
+                    <TeamXTextInput
+                        value={username}
+                        onChangeText={setUsername}
+                        placeholder="Enter Username"
+                        keyboardType="email-address"
+                        returnKeyType="next"
+                        maxLength={32}
+
+                    />
+                    {usernameError ? <Text style={{ color: 'red', marginLeft: 30 }}>{usernameError}</Text> : null}
+
+                </View>
+                <View >
+                    <TeamXTextInput
+                        value={password}
+                        onChangeText={setPassword}
+                        placeholder="Enter Password"
+                        secureTextEntry={true}
+                        returnKeyType="done"
+                        maxLength={32}
+
+                    />
+                    {passwordError ? <Text style={{ color: 'red', marginLeft: 30 }}>{passwordError}</Text> : null}
+                </View>
             </View>
             <View style={styles.s_r_view}>
                 <View style={styles.s_r_view1}>
-                    <Switch trackColor={{ false: styles.appSwitchFalse.color, true: styles.appColor.color }} thumbColor={isRemember ? styles.appColor.color :styles.appSwitchTumbFalse.color}
-                         onValueChange={setIsRemember} value={isRemember} />
+                    <Switch trackColor={{ false: styles.appSwitchFalse.color, true: styles.appColor.color }} thumbColor={isRemember ? styles.appColor.color : styles.appSwitchTumbFalse.color}
+                        onValueChange={setIsRemember} value={isRemember} />
                     <Text style={styles.headerTextStyle}>Remember</Text>
                 </View>
                 <View style={styles.s_f_view}>
