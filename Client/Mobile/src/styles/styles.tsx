@@ -47,10 +47,11 @@ const styles = StyleSheet.create({
         height:150,
         width:150,
         marginTop:60,
+        marginLeft:'33%',
         borderRadius:80
        },
        text:{
-        fontSize:20,
+        fontSize:notmalSize,
       },
      button:{
         backgroundColor:'#952323',
@@ -131,7 +132,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
     },
-
     US_cardsContainer1: {
         flexDirection: 'row',
         justifyContent: 'space-around',
@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
         marginTop: 50,
         width: '100%',
     },
-   
     cardText: {
         color: '#F2E8C6',
         fontSize: 18,
@@ -229,24 +228,29 @@ const styles = StyleSheet.create({
     },
     inputStyle: {
         flex: 1,
+        height:50,
         color: textColor,
-        paddingLeft: 10,
+        paddingLeft: 20,
         paddingRight: 15,
         borderWidth: 1,
         borderRadius: 30,
         borderColor: primaryColor,
-        fontSize: 20,
+        fontSize: notmalSize,
     },
     SectionStyle: {
         flexDirection: 'row',
         width:'97%',
         height: 65,
+        marginBottom:0,
         margin: 10,
     },
     headerTextStyle: {
         color: textColor,
-        fontWeight: 'bold',
-        fontSize: 15,
+        fontWeight:'500',
+        fontSize: notmalSize,
+    },
+    screenHeader:{ 
+        fontSize: 20 
     },
     logoimg: {
         width: '70%',
@@ -294,6 +298,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row', 
         justifyContent: 'flex-end', 
         alignItems: 'center' 
+    },
+    siup_o_view:{
+        backgroundColor:"#F2E8C6",
+        padding:15,
+        paddingLeft:20,
+        paddingRight:20
     }
 });
 export { styles };

@@ -2,6 +2,7 @@ import { Text, View, Image, Switch, TouchableOpacity, Alert } from "react-native
 import { styles } from "../../styles/styles";
 import TeamXTextInput from "../../molecules/TeamXTextInput";
 import { useState } from "react";
+import ButtonComponent from "../../atoms/buttonComponent";
 
 const Signin = ({ navigation }) => {
     const [username, setUsername] = useState('');
@@ -26,7 +27,7 @@ const Signin = ({ navigation }) => {
                     style={styles.logoimg}
                 />
             <View>
-                <Text style={{ fontSize: 20 }}>Signin Here</Text>
+                <Text style={styles.screenHeader}>Signin</Text>
                 </View>
             </View>
             <View style={{marginLeft:-15}}>
@@ -63,20 +64,11 @@ const Signin = ({ navigation }) => {
                     </Text>
                 </View>
             </View>
-            <View style={{ alignItems: "center" }}>
-                <TouchableOpacity
-                    style={styles.buttonStyle}
-                    activeOpacity={0.5}
-                    onPress={handleSubmitPress}>
-                    <Text style={styles.buttonTextStyle}>SIGNIN</Text>
-                </TouchableOpacity>
-            </View>
+            <ButtonComponent onPress={handleSubmitPress} text="SIGNIN" />
 
-            <Text
-                style={styles.pressableTextStyle}
-                onPress={() => navigation.navigate('signup')}>
-                Don't have an account ? SIGNUP HERE
-            </Text>
+            <View  style={{flexDirection:'row',justifyContent:'center',marginTop:30,marginBottom:100}}>
+              <Text style={styles.text}>Don't have an account?  </Text><TouchableOpacity><Text style={[styles.text,{fontWeight:'bold'}]} onPress={()=>navigation.navigate('signup')}>SIGNUP</Text></TouchableOpacity> 
+            </View>
         </View>
     );
 }
