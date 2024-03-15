@@ -1,6 +1,6 @@
 import { Text, View, Image, Switch, TouchableOpacity, Alert } from "react-native"
 import { styles } from "../../styles/styles";
-import TextField from "../../molecules/textfield";
+import TextField from "../../Molecules/textfield";
 import { useState } from "react";
 
 const Signin = ({ navigation }) => {
@@ -74,7 +74,7 @@ const Signin = ({ navigation }) => {
 
             <Text
                 style={styles.pressableTextStyle}
-                onPress={() => navigation.navigate('RegisterScreen')}>
+                onPress={() => navigation.navigate('signup')}>
                 Don't have an account ? SIGNUP HERE
             </Text>
         </View>

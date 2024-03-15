@@ -31,7 +31,7 @@ const UserTypeSelection = ({ navigation }) => {
     };
     
     const handlebackpress = () => {
-        Alert.alert('back');
+        navigation.goBack();
 
     };
 
