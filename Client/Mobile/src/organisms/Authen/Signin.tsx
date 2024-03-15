@@ -54,7 +54,7 @@ const Signin = ({ navigation }) => {
                         maxLength={32}
 
                     />
-                    {usernameError ? <Text style={{ color: 'red', marginLeft: 30 }}>{usernameError}</Text> : null}
+                    {usernameError ? <Text style={styles.error}>{usernameError}</Text> : null}
 
                 </View>
                 <View >
@@ -67,7 +67,7 @@ const Signin = ({ navigation }) => {
                         maxLength={32}
 
                     />
-                    {passwordError ? <Text style={{ color: 'red', marginLeft: 30 }}>{passwordError}</Text> : null}
+                    {passwordError ? <Text style={styles.error}>{passwordError}</Text> : null}
                 </View>
             </View>
             <View style={styles.s_r_view}>

@@ -81,7 +81,7 @@ const Signup = ({ navigation }) => {
             placeholder="Username"
             maxLength={32}
           />
-          {usernameError ? <Text style={{ color: 'red',marginLeft:30}}>{usernameError}</Text> : null}
+          {usernameError ? <Text style={styles.error}>{usernameError}</Text> : null}
 
           <TeamXTextInput
             value={email}
@@ -91,7 +91,7 @@ const Signup = ({ navigation }) => {
             maxLength={32}
 
           />
-          {emailError ? <Text style={{ color: 'red',marginLeft:30}}>{emailError}</Text> : null}
+          {emailError ? <Text style={styles.error}>{emailError}</Text> : null}
 
           <TeamXTextInput
             value={password}
@@ -101,7 +101,7 @@ const Signup = ({ navigation }) => {
             maxLength={32}
 
           />
-          {passwordError ? <Text style={{ color: 'red',marginLeft:30}}>{passwordError}</Text> : null}
+          {passwordError ? <Text style={styles.error}>{passwordError}</Text> : null}
 
           <TeamXTextInput
             value={confirmPassword}
@@ -111,7 +111,7 @@ const Signup = ({ navigation }) => {
             maxLength={32}
 
           />
-          {confirmPasswordError ? <Text style={{ color: 'red',marginLeft:30}}>{confirmPasswordError}</Text> : null}
+          {confirmPasswordError ? <Text style={styles.error}>{confirmPasswordError}</Text> : null}
 
           <TouchableOpacity style={styles.button} onPress={handleSubmitPress} >
             <Text style={styles.buttonText}>SIGN UP</Text>

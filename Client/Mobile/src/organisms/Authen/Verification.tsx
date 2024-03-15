@@ -37,7 +37,7 @@ const Verification = ({ navigation }) => {
                 secureTextEntry={true}
                 
             />
-        {otpError ? <Text style={{ color: 'red',marginLeft:30}}>{otpError}</Text> : null}
+        {otpError ? <Text style={styles.error}>{otpError}</Text> : null}
 
             <TouchableOpacity style={styles.V_button} onPress={handleSubmitPress}>
                 <Text style={styles.V_buttonText}>Verify</Text>
