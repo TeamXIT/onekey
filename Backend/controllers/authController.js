@@ -38,7 +38,7 @@ const selectRole = async (req,res)=>{
     try{
         const {
             username,
-            role
+            role_id
         }=req.body;
         const user = await User.findOne({
             where: {username}
@@ -46,9 +46,9 @@ const selectRole = async (req,res)=>{
         if(!user){
             return res.status(404).json({error:'User not found'});
         }
-        const assignedRole = await User.update({role:role},{where:{username:username}});
+        const assignedRole = await User.update({role_id:role_id},{where:{username:username}});
         let _secret=process.env.JWT_SECRET || 'rajasekhar-secret-key';
-        const token = jwt.sign({username,role},_secret,{expiresIn:'1h'});
+        const token = jwt.sign({username,role_id},_secret,{expiresIn:'1h'});
         return res.status(200).json({message:'User role selected successfully',token});
     }catch(error){
         return res.status(500).json({error:error.message});

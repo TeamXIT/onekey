@@ -1,5 +1,6 @@
 const sequelize = require('../config/db');
 const DataTypes = require('sequelize'); 
+const Role = require('./roleModel');
 const User = sequelize.define("Users",{
     user_id:{
         type:DataTypes.INTEGER,
@@ -28,11 +29,20 @@ const User = sequelize.define("Users",{
             notEmpty:true
         }
     },
-    role:{
-        type:DataTypes.ENUM,
-        values:["admin","telemarketer","agent","product_owner"],
-        allowNull:true
+    role_id:{
+        type:DataTypes.INTEGER,
+        allowNull:false,
+        references:{
+            model:Role,
+            key:'role_id'
+
+        }
     }
+    // role:{
+    //     type:DataTypes.ENUM,
+    //     values:["admin","telemarketer","agent","product_owner"],
+    //     allowNull:true
+    // }
 },{timestamps:false});
 
 // const createUser=async () => {
