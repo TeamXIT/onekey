@@ -1,38 +1,23 @@
 //usertypeselection.tsx
-import React from "react";
+import React, { useState } from "react";
 import { Image, Text, View, TouchableOpacity, Alert } from "react-native";
 import { styles } from "../../styles/styles";
-import CustomCardComponent from "../../Molecules/CustomCardComponet";
+import TeamXCard from "../../molecules/TeamXCard";
 import { CardOptions } from "../../helpers/Models/CardOptions";
 
 const UserTypeSelection = ({ navigation }) => {
+    const [userType, setUserType] = useState("");
 
     function handleCardPress(value: CardOptions): void {
-        console.log("Selected option is: ", value);
-
-        switch (value) {
-            case CardOptions.BPO:
-                break;
-            case CardOptions.Agent:
-               break;
-            case CardOptions.Seller:
-                break;
-            case CardOptions.Lawyer:
-              break;
-            default:
-                console.log("Unknown option selected");
-                break;
-        }
+        setUserType(value);
     }
 
     const handlenextpress = () => {
-        navigation.navigate('Landing')
-        console.log('next pressed!');
+        navigation.navigate('Landing');
     };
-    
+
     const handlebackpress = () => {
         navigation.goBack();
-
     };
 
     return (
@@ -41,25 +26,25 @@ const UserTypeSelection = ({ navigation }) => {
                 <Image source={require('../../../asserts/Images/ic_user.png')} />
             </View>
             <View style={styles.US_cardsContainer1}>
-                <CustomCardComponent
+                <TeamXCard
                     onPress={() => handleCardPress(CardOptions.BPO)}
                     imageSource={require('../../../asserts/Images/ic_bpo5.png')}
                     labelText="BPO"
                 />
-                <CustomCardComponent
+                <TeamXCard
                     onPress={() => handleCardPress(CardOptions.Agent)}
                     imageSource={require('../../../asserts/Images/ic_user.png')}
                     labelText="Agent"
                 />
             </View>
             <View style={styles.cardsContainer2}>
-                <CustomCardComponent
+                <TeamXCard
                     onPress={() => handleCardPress(CardOptions.Seller)}
                     imageSource={require('../../../asserts/Images/ic_seller.png')}
                     labelText="Seller"
                 />
-                <CustomCardComponent
-                     onPress={() => handleCardPress(CardOptions.Lawyer)}
+                <TeamXCard
+                    onPress={() => handleCardPress(CardOptions.Lawyer)}
                     imageSource={require('../../../asserts/Images/ic_lawyer.png')}
                     labelText="Lawyer"
                 />

@@ -1,6 +1,6 @@
 import { Text, View, Image, Switch, TouchableOpacity, Alert } from "react-native"
 import { styles } from "../../styles/styles";
-import TextField from "../../Molecules/textfield";
+import TeamXTextInput from "../../molecules/TeamXTextInput";
 import { useState } from "react";
 
 const Signin = ({ navigation }) => {
@@ -31,7 +31,7 @@ const Signin = ({ navigation }) => {
             </View>
             <View style={{marginLeft:-15}}>
             <View style={styles.SectionStyle}>
-                <TextField
+                <TeamXTextInput
                     value={username}
                     onChangeText={setUsername}
                     placeholder="Enter Username"
@@ -40,7 +40,7 @@ const Signin = ({ navigation }) => {
                 />
             </View>
             <View style={styles.SectionStyle}>
-                <TextField
+                <TeamXTextInput
                     value={password}
                     onChangeText={setPassword}
                     placeholder="Enter Password"
