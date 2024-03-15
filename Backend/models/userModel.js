@@ -1,6 +1,7 @@
 const sequelize = require('../config/db');
 const DataTypes = require('sequelize'); 
-const Role = require('./roleModel');
+const {Role} = require('./roleModel');
+
 const User = sequelize.define("Users",{
     user_id:{
         type:DataTypes.INTEGER,
@@ -31,7 +32,6 @@ const User = sequelize.define("Users",{
     },
     role_id:{
         type:DataTypes.INTEGER,
-        allowNull:false,
         references:{
             model:Role,
             key:'role_id'
@@ -44,7 +44,6 @@ const User = sequelize.define("Users",{
     //     allowNull:true
     // }
 },{timestamps:false});
-
 // const createUser=async () => {
 //     try {
 //       await User.sync({ force: true }); 

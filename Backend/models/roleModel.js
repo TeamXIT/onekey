@@ -3,7 +3,6 @@ const DataTypes = require('sequelize');
 const Role = sequelize.define("Roles",{
     role_id:{
         type:DataTypes.INTEGER,
-        autoIncrement:true,
         primaryKey:true
     },
     role_name:{
