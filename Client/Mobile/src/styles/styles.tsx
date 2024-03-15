@@ -8,9 +8,14 @@ const primaryColor = "#952323";
 const secondaryColor = "#F2E8C6";
 const fieldColor = '#A63120';
 const textColor = useColorScheme() === 'light' ? darkText : lightText;
-const switchcolor1='#767577';
-const switchcolor2='#f4f3f4';
-const switchcolor3="#3e3e3e";
+const gray="#808080";
+const lightGray="#D3D3D3";
+const smokeWhite="#FAFAFA";
+
+const notmalSize= 20;
+const mediumSize= 24;
+const largeSize= 30;
+
 const styles = StyleSheet.create({
     appColor: {
         color: primaryColor
@@ -26,12 +31,11 @@ const styles = StyleSheet.create({
         color: fieldColor
     },
     appSwitchFalse:{
-        color:switchcolor1
+        color:lightGray
     },
     appSwitchTumbFalse:{
-        color:switchcolor2
+        color:gray
     },
-
     global: {
         backgroundColor: componentColor,
         color: textColor,
@@ -159,7 +163,6 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         marginBottom: 10,
-
     },
     BackTextStyle: {
         color: '#a73121',
@@ -167,8 +170,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 18,
         alignSelf: 'center',
-        
-
     },
     TextStyle: {
         color: '#F2E8C6',
@@ -179,7 +180,7 @@ const styles = StyleSheet.create({
     },
     arrowIcon: {
         width: 30,
-        height: 25,
+        height: 18,
     },
     NexttouchableContent: {
         flexDirection: 'row',

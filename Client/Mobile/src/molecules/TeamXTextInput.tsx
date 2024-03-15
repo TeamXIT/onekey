@@ -4,7 +4,7 @@ import { styles } from '../styles/styles';
 import { View, TextInput, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
 
-const TextField = ({ value, onChangeText, placeholder, keyboardType, secureTextEntry, returnKeyType }) => {
+const TeamXTextInput = ({ value, onChangeText, placeholder, keyboardType, secureTextEntry, returnKeyType, maxLength }) => {
     return (
         <View style={styles.SectionStyle}>
             <TextInput
@@ -12,28 +12,33 @@ const TextField = ({ value, onChangeText, placeholder, keyboardType, secureTextE
                 onChangeText={onChangeText}
                 value={value}
                 placeholder={placeholder}
-                placeholderTextColor="#8b9cb5"
+                placeholderTextColor={styles.appSwitchTumbFalse.color}
                 keyboardType={keyboardType}
                 onSubmitEditing={Keyboard.dismiss}
                 secureTextEntry={secureTextEntry}
                 returnKeyType={returnKeyType}
+                maxLength={maxLength}
             />
         </View>
     );
 };
-TextField.propTypes = {
+
+TeamXTextInput.propTypes = {
     value: PropTypes.string.isRequired,
     onChangeText: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
     keyboardType: PropTypes.oneOf(['default', 'email-address', 'numeric', 'phone-pad']),
     secureTextEntry: PropTypes.bool,
     returnKeyType: PropTypes.oneOf(['done', 'go', 'next', 'search', 'send']),
+    maxLength: PropTypes.number
 };
 
-TextField.defaultProps = {
+TeamXTextInput.defaultProps = {
     placeholder: '',
     keyboardType: 'default',
     secureTextEntry: false,
-    returnKeyType: 'done',
+    returnKeyType: 'next',
+    MaxLength: 32
 };
-export default TextField;
+
+export default TeamXTextInput;
