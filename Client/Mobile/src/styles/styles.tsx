@@ -47,10 +47,10 @@ const styles = StyleSheet.create({
         height:150,
         width:150,
         marginTop:60,
-        marginLeft:'33%',
+        marginLeft:'30%',
         borderRadius:80
        },
-       text:{
+    text:{
         fontSize:notmalSize,
       },
      button:{
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         height:50,
         width:340,
         borderRadius:30,
-        fontSize:20,
+        fontSize:notmalSize,
         marginLeft:30,
         marginTop:25,
         paddingLeft:10
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         color:'white',
         paddingLeft:60,
         paddingTop:10,
-        fontSize:20 
+        fontSize:notmalSize
     },
     V_image: {
         height: 150,
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
      },
      V_button:{
         
-        backgroundColor:'#A73121',
+        backgroundColor:primaryColor,
         borderRadius:30,
         height:50,
         width:200,
@@ -111,10 +111,10 @@ const styles = StyleSheet.create({
         marginTop:30
     },
     V_buttonText:{
-        color:'white',
+        color:smokeWhite,
        paddingLeft:70,
         paddingTop:10,
-        fontSize:20 
+        fontSize:notmalSize
    },
     S_background:{
         backgroundColor:secondaryColor,
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
         color: '#F2E8C6',
         textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: notmalSize,
         alignSelf: 'center',
     },
     arrowIcon: {
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
         fontSize: notmalSize,
     },
     screenHeader:{ 
-        fontSize: 20 
+        fontSize: notmalSize 
     },
     logoimg: {
         width: '70%',
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         color: '#FFFFFF',
         borderColor: primaryColor,
-        height: 40,
+        height: 45,
         width: 180,
         alignItems: 'center',
         borderRadius: 20,
@@ -281,14 +281,15 @@ const styles = StyleSheet.create({
     buttonTextStyle: {
         color: '#FFFFFF',
         paddingVertical: 10,
-        fontSize: 16,
+        fontSize: notmalSize,
     },
     s_r_view:{ 
         flexDirection: 'row',
         marginLeft: 10, 
         marginRight: 10 
     },
-    s_r_view1:{ flex: 1, 
+    s_r_view1:{ 
+        flex: 1, 
         flexDirection: 'row', 
         justifyContent: 'flex-start', 
         alignItems: 'center' 
