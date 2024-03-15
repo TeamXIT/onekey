@@ -30,7 +30,7 @@ const Signup=({navigation}) =>{
         Alert.alert('Invalid, Enter valid password')
         return;
     }
-    navigation.navigate('Verification')
+     navigation.navigate('verification')
   }
   return (
       <SafeAreaView>
