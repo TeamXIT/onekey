@@ -17,11 +17,20 @@ const signUp = async (req,res)=>{
         if(password !== confirmPassword){
             return res.status(400).json({error:'Password do not match'});
         }
-        const existingUser = await User.findOne({
-           where: Sequelize.or({username},{email})
-        });
-        if(existingUser){
-            return res.status(400).json({error:'Username or email already exists'});
+        // const existingUser = await User.findOne({
+        //    where: Sequelize.or({username},{email})
+        // });
+        const existingUserName = await User.findOne({
+            where:{username}
+        })
+        if(existingUserName){
+            return res.status(400).json({error:'Username already exists'});
+        }
+        const existingEmail = await User.findOne({
+            where:{email}
+        })
+        if(existingEmail){
+            return res.status(400).json({error:'Email already exists'});
         }
         const newUser = await User.create({
             username,
