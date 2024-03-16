@@ -4,22 +4,25 @@ const componentColor = useColorScheme() === 'light' ? '#FAFAFA' : '#404040';
 const transparent = "transparent";
 const darkText = "#212121";
 const lightText = '#FAFAFA';
-const primaryColor ="#48525e";
+const primaryColor = "#48525e";
 const secondaryColor = "#F2E8C6";
 const fieldColor = '#A63120';
 const textColor = useColorScheme() === 'light' ? darkText : lightText;
-const gray="#808080";
-const lightGray="#D3D3D3";
-const notmalSize= 20;
-const mediumSize= 24;
+const gray = "#808080";
+const lightGray = "#D3D3D3";
+const xSmallSize = 14;
+const smallSize = 18;
+const normalSize = 20;
+const mediumSize = 24;
+const largeSize = 30;
 
 const styles = StyleSheet.create({
     appColor: {
         color: '#d9d0b2',
-        opacity:0.5
+        opacity: 0.5
     },
-    appBackground:{
-        color:primaryColor
+    appBackground: {
+        color: primaryColor
     },
     appTextColor: {
         color: textColor
@@ -31,11 +34,11 @@ const styles = StyleSheet.create({
     appInputBg: {
         color: fieldColor
     },
-    appSwitchFalse:{
-        color:lightGray
+    appSwitchFalse: {
+        color: lightGray
     },
-    appSwitchTumbFalse:{
-        color:gray
+    appSwitchTumbFalse: {
+        color: gray
     },
     global: {
         backgroundColor: componentColor,
@@ -44,38 +47,38 @@ const styles = StyleSheet.create({
         tintColor: primaryColor,
         overlayColor: transparent,
     },
-    image:{
-        height:150,
-        width:150,
-        marginTop:60,
-        marginLeft:'30%',
-        borderRadius:80
-       },
-    text:{
-        fontSize:notmalSize,
-        color:secondaryColor
-      },
-   header: {
-        fontSize: 30,
-        textAlign:'center',
-        marginTop:20,
-        marginBottom:35,
-        color: secondaryColor 
+    image: {
+        height: 150,
+        width: 150,
+        marginTop: 60,
+        marginLeft: '30%',
+        borderRadius: 80
     },
-    BgContainer:{
-        backgroundColor:primaryColor,
-        height:'100%',
-        padding:15,
+    text: {
+        fontSize: normalSize,
+        color: secondaryColor
     },
-    S_background:{
-        backgroundColor:primaryColor,
-        height:'100%',
-        width:'100%'
-    },    
+    header: {
+        fontSize: largeSize,
+        textAlign: 'center',
+        marginTop: 20,
+        marginBottom: 35,
+        color: secondaryColor
+    },
+    BgContainer: {
+        backgroundColor: primaryColor,
+        height: '100%',
+        padding: 15,
+    },
+    S_background: {
+        backgroundColor: primaryColor,
+        height: '100%',
+        width: '100%'
+    },
     US_container: {
         flex: 1,
         alignItems: "center",
-        height:'100%',
+        height: '100%',
         backgroundColor: primaryColor
     },
     US_cardsContainer1: {
@@ -84,11 +87,11 @@ const styles = StyleSheet.create({
         marginTop: '60%',
         width: '100%',
     },
-    US_logoContainer:{
-        position:'absolute',
-        top:-55,
-        height:'100%',
-        width:'100%'
+    US_logoContainer: {
+        position: 'absolute',
+        top: -55,
+        height: '100%',
+        width: '100%'
     },
     cards: {
         width: '40%',
@@ -107,7 +110,7 @@ const styles = StyleSheet.create({
     },
     cardText: {
         color: primaryColor,
-        fontSize: 18,
+        fontSize: smallSize,
         fontWeight: 'bold',
     },
     cardIcon: {
@@ -119,7 +122,7 @@ const styles = StyleSheet.create({
         color: primaryColor,
         textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: notmalSize,
+        fontSize: normalSize,
         alignSelf: 'center',
     },
     arrowIcon: {
@@ -129,24 +132,24 @@ const styles = StyleSheet.create({
     NexttouchableContent: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft:100,
-        borderRadius:5,
+        marginLeft: 100,
+        borderRadius: 5,
         backgroundColor: secondaryColor,
-        padding:10
+        padding: 10
     },
-    BacktouchableContent:{
-        marginRight: 100, 
-        marginLeft: 0, 
+    BacktouchableContent: {
+        marginRight: 100,
+        marginLeft: 0,
         backgroundColor: secondaryColor,
-        padding:10,
-        borderRadius:5,
+        padding: 10,
+        borderRadius: 5,
         flexDirection: 'row',
         alignItems: 'center',
     },
     imagecontainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop:15,
+        marginTop: 15,
         borderWidth: 1,
         borderColor: secondaryColor,
         borderRadius: 8,
@@ -169,9 +172,9 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
     },
-    smallbuttonContainer:{
-            flexDirection:'row',
-            padding:90
+    smallbuttonContainer: {
+        flexDirection: 'row',
+        padding: 90
     },
     mainContainer: {
         flex: 1,
@@ -183,70 +186,70 @@ const styles = StyleSheet.create({
     },
     inputStyle: {
         flex: 1,
-        height:60,
+        height: 60,
         color: textColor,
-        fontWeight:'200',
+        fontWeight: '200',
         paddingLeft: 20,
         paddingRight: 15,
         borderWidth: 1,
         borderRadius: 8,
         borderColor: secondaryColor,
-        fontSize: notmalSize,
+        fontSize: normalSize,
     },
     otpcontainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-      },
+    },
     otpinput: {
         width: 50,
         height: 50,
         borderWidth: 1,
-        color:secondaryColor,
+        color: secondaryColor,
         marginHorizontal: 5,
         borderColor: secondaryColor,
         textAlign: 'center',
-        fontSize: notmalSize,
+        fontSize: normalSize,
         borderRadius: 5,
-      },
-    imageinputStyle:{
-        height:45,
+    },
+    imageinputStyle: {
+        height: 45,
         color: secondaryColor,
-        fontWeight:'300',
-        width:'90%',
+        fontWeight: '300',
+        width: '90%',
         paddingLeft: 20,
         paddingRight: 15,
         borderRadius: 8,
-       
-        fontSize: notmalSize,
+
+        fontSize: normalSize,
     },
     SectionStyle: {
-        flexDirection: 'column', 
+        flexDirection: 'column',
         width: '97%',
         marginBottom: 10,
-        marginHorizontal: 10, 
+        marginHorizontal: 10,
     },
     headerTextStyle: {
         color: secondaryColor,
-        fontWeight:'500',
-        fontSize: notmalSize,
+        fontWeight: '500',
+        fontSize: normalSize,
     },
-    screenHeader:{ 
+    screenHeader: {
         fontSize: mediumSize,
-        color:secondaryColor 
+        color: secondaryColor
     },
     logoimg: {
         width: '90%',
         height: 300,
         resizeMode: 'contain',
-        marginBottom:-50,
-        marginLeft:25,
+        marginBottom: -50,
+        marginLeft: 25,
         margin: 30,
     },
     pressableTextStyle: {
         color: textColor,
         textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: 14,
+        fontSize: xSmallSize,
         alignSelf: 'center',
         padding: 10,
     },
@@ -254,9 +257,9 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         color: '#FFFFFF',
         borderColor: secondaryColor,
-        height:60,
+        height: 60,
         width: '97%',
-        padding:5,
+        padding: 5,
         alignItems: 'center',
         borderRadius: 8,
         marginTop: 20,
@@ -265,39 +268,39 @@ const styles = StyleSheet.create({
     buttonTextStyle: {
         color: secondaryColor,
         paddingVertical: 10,
-        fontSize: notmalSize,
-        fontWeight:'bold'
+        fontSize: normalSize,
+        fontWeight: 'bold'
     },
-    s_r_view:{ 
+    s_r_view: {
         flexDirection: 'row',
-        marginTop:15,
-        marginLeft: 10, 
+        marginTop: 15,
+        marginLeft: 10,
         marginRight: 10,
-        marginBottom:50 
+        marginBottom: 50
     },
-    s_r_view1:{ 
-        flex: 1, 
-        flexDirection: 'row', 
-        justifyContent: 'flex-start', 
-        alignItems: 'center' 
+    s_r_view1: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
     },
-    s_f_view:{ 
-        flex: 1, 
-        flexDirection: 'row', 
-        justifyContent: 'flex-end', 
-        alignItems: 'center' 
+    s_f_view: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center'
     },
-    siup_outer_view:{
-        backgroundColor:primaryColor,
-        padding:15,
-        paddingLeft:20,
-        paddingRight:20
+    siup_outer_view: {
+        backgroundColor: primaryColor,
+        padding: 15,
+        paddingLeft: 20,
+        paddingRight: 20
     },
-    bottom_text:{
-        flexDirection:'row',
-        justifyContent:'center',
-        marginTop:30,
-        marginBottom:100
+    bottom_text: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 30,
+        marginBottom: 100
     }
 });
 export { styles };

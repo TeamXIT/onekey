@@ -15,6 +15,8 @@ import Dashboard from './src/organisms/Landing/Dashboard';
 import Home from './src/organisms/Landing/Home';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
 import forgotPassword from './src/organisms/Authen/forgotPassword';
+import Comment from './src/organisms/Landing/Comment';
+import Projects from './src/organisms/Landing/Projects';
 
 const Stack = createStackNavigator();
 
@@ -94,6 +96,14 @@ const Landing = () => {
       <Stack.Screen
        name="home"
        component={Home}
+      />
+      <Stack.Screen
+       name="project"
+       component={Projects}
+      />
+       <Stack.Screen
+       name="comment"
+       component={Comment}
       />
     </Stack.Navigator>
   );
