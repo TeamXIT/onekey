@@ -33,17 +33,18 @@ const Auth = () => {
         name="signup"
         component={Signup}
         options={{
-          title: 'Signup', //Set Header Title
+          title: 'Signup',
+           //Set Header Title
           headerStyle: {
             backgroundColor: styles.appColor.color, //Set Header color
           },
+          headerShown: false,
           headerTintColor: '#fff', //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style
           },
         }}
       />
-      
       <Stack.Screen
         name="verification"
         component={Verification}
@@ -52,6 +53,7 @@ const Auth = () => {
           headerStyle: {
             backgroundColor: styles.appColor.color, //Set Header color
           },
+          headerShown: false,
           headerTintColor: '#fff', //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style
@@ -62,10 +64,11 @@ const Auth = () => {
         name="typeselection"
         component={UserTypeSelection}
         options={{
-          title: 'Selection User', //Set Header Title
+          title: '', //Set Header Title
           headerStyle: {
-            backgroundColor: styles.appColor.color, //Set Header color
+            backgroundColor: styles.appBackground.color, //Set Header color
           },
+          headerShown: false,
           headerTintColor: '#fff', //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style

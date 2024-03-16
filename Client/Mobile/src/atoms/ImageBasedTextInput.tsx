@@ -1,14 +1,19 @@
-
 import React from 'react';
+import { View, TextInput, Keyboard, Image } from 'react-native';
 import { styles } from '../styles/styles';
-import { View, TextInput, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
 
-const TeamXTextInput = ({ value, onChangeText, placeholder, keyboardType, secureTextEntry, returnKeyType, maxLength }) => {
+const TextImageInput = ({ value, onChangeText, placeholder, keyboardType, secureTextEntry, returnKeyType, maxLength, image }) => {
     return (
-        <View style={styles.SectionStyle}>
+        <View style={styles.imagecontainer}>
+            {image && (
+                <Image
+                    source={image}
+                    style={styles.textimage}
+                />
+            )}
             <TextInput
-                style={styles.inputStyle}
+                style={styles.imageinputStyle}
                 onChangeText={onChangeText}
                 value={value}
                 placeholder={placeholder}
@@ -23,22 +28,30 @@ const TeamXTextInput = ({ value, onChangeText, placeholder, keyboardType, secure
     );
 };
 
-TeamXTextInput.propTypes = {
+TextImageInput.propTypes = {
     value: PropTypes.string.isRequired,
     onChangeText: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
     keyboardType: PropTypes.oneOf(['default', 'email-address', 'numeric', 'phone-pad']),
     secureTextEntry: PropTypes.bool,
     returnKeyType: PropTypes.oneOf(['done', 'go', 'next', 'search', 'send']),
-    maxLength: PropTypes.number
+    maxLength: PropTypes.number,
+    image: PropTypes.oneOfType([
+        PropTypes.number, 
+        PropTypes.shape({ 
+            uri: PropTypes.string.isRequired,
+        }),
+    ]),
 };
 
-TeamXTextInput.defaultProps = {
+TextImageInput.defaultProps = {
     placeholder: '',
     keyboardType: 'default',
     secureTextEntry: false,
     returnKeyType: 'next',
-    MaxLength: 32
+    maxLength: 32,
+    image: null,
 };
 
-export default TeamXTextInput;
+
+export default TextImageInput;

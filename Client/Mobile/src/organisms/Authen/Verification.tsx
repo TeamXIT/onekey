@@ -1,15 +1,28 @@
-import { View, Text, SafeAreaView, TextInput, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { View, Text, Image, Alert } from "react-native";
 import {styles} from "../../styles/styles";
+import { useState } from "react";
+import TeamXTextInput from "../../molecules/TeamXTextInput";
+import ButtonComponent from "../../atoms/TeamXbutton";
+import LogoImage from "../../atoms/logo";
+import OTPInput from "../../molecules/otpComponent";
 
 const Verification = ({ navigation }) => {
+    const[otp,setOtp]=useState('');
+    const verify=()=>{
+        if(otp==''){
+            return Alert.alert('Invalid','Enter valid OTP')
+        }
+        navigation.navigate('typeselection')
+    }
+
     return (
-        <View style={{backgroundColor:"#DAD4B5",flex:1}}>
-            <Image source={require('../../../assets/images/person.png')} style={styles.V_image} />
-            <Text style={styles.V_verifyTest}>Verify OTP</Text>
-            <TextInput placeholder="Enter OTP" style={styles.V_input} />
-            <TouchableOpacity style={styles.V_button}  onPress={()=>navigation.navigate('typeselection')}>
-                <Text style={styles.V_buttonText}>Verify</Text>
-            </TouchableOpacity>
+        <View style={styles.BgContainer}>
+             <LogoImage />
+            <Text style={styles.header}>Verify OTP</Text>
+            <View style={[styles.SectionStyle,[]]}>
+            <OTPInput  onOTPChange={setOtp} />
+            </View>
+            <ButtonComponent onPress={verify} text="VERIFY" />
         </View>
     )
 };

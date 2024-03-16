@@ -4,6 +4,7 @@ import { Image, Text, View, TouchableOpacity, Alert } from "react-native";
 import { styles } from "../../styles/styles";
 import TeamXCard from "../../molecules/TeamXCard";
 import { CardOptions } from "../../helpers/Models/CardOptions";
+import LogoImage from "../../atoms/logo";
 
 const UserTypeSelection = ({ navigation }) => {
     const [userType, setUserType] = useState("");
@@ -22,8 +23,8 @@ const UserTypeSelection = ({ navigation }) => {
 
     return (
         <View style={styles.US_container}>
-            <View style={styles.US_logo}>
-                <Image source={require('../../../asserts/Images/ic_user.png')} />
+            <View style={styles.US_logoContainer}>
+                <LogoImage/>
             </View>
             <View style={styles.US_cardsContainer1}>
                 <TeamXCard
@@ -49,11 +50,11 @@ const UserTypeSelection = ({ navigation }) => {
                     labelText="Lawyer"
                 />
             </View>
-            <View style={styles.buttonContainer}>
+            <View style={styles.smallbuttonContainer}>
                 <TouchableOpacity onPress={handlebackpress}>
                     <View style={styles.BacktouchableContent}>
                         <Image source={require('../../../asserts/Images/ic_leftarrow.png')} style={styles.arrowIcon} />
-                        <Text style={styles.BackTextStyle}>Back </Text>
+                        <Text style={styles.TextStyle}>Back </Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={handlenextpress}>
