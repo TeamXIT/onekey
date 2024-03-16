@@ -33,6 +33,18 @@ const signUp = async (req,res)=>{
     }catch(error){
         return res.status(500).json({error:error.message});
     }
+}
+const getAllRoles = async (req,res)=>{
+    try{ 
+        const roles = await Role.findAll();
+        if(!roles){
+           return res.status(404).json({error:'Roles not found'});
+        }
+        return res.status(200).json(roles);
+
+    }catch(error){
+        return res.status(500).json({error:error.message});
+    }
 } 
 
 const selectRole = async (req,res)=>{
@@ -41,11 +53,9 @@ const selectRole = async (req,res)=>{
             username,
             roleIdOrroleName
         }=req.body;
-        console.log(req.body);
         const user = await User.findOne({
             where: {username:username}
         });
-        console.log(user);
         if(!user){
             return res.status(404).json({error:'User not found'});
         }
@@ -62,16 +72,16 @@ const selectRole = async (req,res)=>{
                 where:{role_id:roleIdOrroleName}
             });
         }
-        console.log(existingRole);
         //if user entered role not a valid role
         if(! existingRole){
             return res.status(404).json({error:'Invalid role'});
         }
-        let userrole_id=existingRole.role_id
+        let userrole_id=existingRole.role_id;
+        let userrole_name = existingRole.role_name;
         //updating the role_id of user 
         const assignedRole = await User.update({role_id:userrole_id},{where:{username:username}});
         let _secret=process.env.JWT_SECRET || 'rajasekhar-secret-key';
-        const token = jwt.sign({username,userrole_id},_secret,{expiresIn:'1h'});
+        const token = jwt.sign({username,userrole_name},_secret,{expiresIn:'1h'});
         return res.status(200).json({message:'User role selected successfully',token});
     }catch(error){
         return res.status(500).json({error:error.message});
@@ -104,4 +114,4 @@ const signIn = async (req,res)=>{
         res.status(500).json({error:error.message});
     }
 }
-module.exports = {signUp,selectRole,signIn};
+module.exports = {signUp,getAllRoles,selectRole,signIn};
