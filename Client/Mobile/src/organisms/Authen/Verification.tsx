@@ -14,7 +14,7 @@ const Verification = ({ navigation }) => {
     if (!otp.trim()) {
         setOtpError('Please provide OTP.');
         hasError = true;
-    } else if (otp.trim().length < 6) {
+    } else if (otp.trim().length <= 6) {
         setOtpError('OTP must be at least 6 characters');
         hasError = true;
     } else {
@@ -35,6 +35,7 @@ const Verification = ({ navigation }) => {
                 placeholder="Enter OTP"
                 keyboardType="email-address"
                 secureTextEntry={true}
+                maxLength={6}
                 
             />
         {otpError ? <Text style={styles.error}>{otpError}</Text> : null}

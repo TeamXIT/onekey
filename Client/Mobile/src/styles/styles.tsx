@@ -11,6 +11,7 @@ const textColor = useColorScheme() === 'light' ? darkText : lightText;
 const gray="#808080";
 const lightGray="#D3D3D3";
 const smokeWhite="#FAFAFA";
+const errorTextColor='#FF0000';
 
 const notmalSize= 20;
 const mediumSize= 24;
@@ -296,7 +297,7 @@ const styles = StyleSheet.create({
         alignItems: 'center' 
     },
     error:{
-        color:'red',
+        color:errorTextColor,
         marginLeft:30
     }
 });
