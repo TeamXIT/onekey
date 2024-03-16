@@ -11,10 +11,11 @@ const textColor = useColorScheme() === 'light' ? darkText : lightText;
 const gray = "#808080";
 const lightGray = "#D3D3D3";
 const smokeWhite = "#FAFAFA";
-
 const notmalSize = 20;
 const mediumSize = 24;
 const largeSize = 30;
+const Mediumgray ="#777";
+
 
 const styles = StyleSheet.create({
     appColor: {
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     button: {
-        backgroundColor: '#952323',
+        backgroundColor: primaryColor,
         borderRadius: 30,
         height: 50,
         width: 200,
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 1,
-        borderColor: '#952323',
+        borderColor: primaryColor,
         height: 50,
         width: 340,
         borderRadius: 30,
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
     US_container: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: '#F2E8C6'
+        backgroundColor: secondaryColor
     },
     US_logo: {
         marginTop: '10%',
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
     },
 
     cardText: {
-        color: '#F2E8C6',
+        color: secondaryColor,
         fontSize: 18,
         fontWeight: 'bold',
     },
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     TextStyle: {
-        color: '#F2E8C6',
+        color: secondaryColor,
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 20,
@@ -189,13 +190,13 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 5,
         borderColor: "#a73121",
-        backgroundColor: '#952323',
+        backgroundColor: primaryColor,
         padding: 10
     },
     BacktouchableContent: {
         marginRight: 100,
         marginLeft: 0,
-        backgroundColor: '#F2E8C6',
+        backgroundColor: secondaryColor,
         padding: 10,
         borderWidth: 2,
         borderRadius: 5,
@@ -208,7 +209,7 @@ const styles = StyleSheet.create({
         padding: 120
     },
     enhancedCard: {
-        backgroundColor: '#952323',
+        backgroundColor: primaryColor,
         borderRadius: 10,
         shadowColor: '#000',
         shadowOffset: {
@@ -300,22 +301,75 @@ const styles = StyleSheet.create({
         top: -5,
         width: 60,
         height: 60,
-        tintColor: "#A73121"
+        tintColor: primaryColor
     },
     tabIcons: {
         width: 40,
         height: 40,
     },
-    tabBar:{
+    tabBar: {
         height: 70,
         position: 'absolute',
         bottom: 10,
         left: 10,
         right: 10,
         elevation: 5,
-        backgroundColor: '#F2E8C6',
+        backgroundColor: secondaryColor,
         borderRadius: 10,
     },
+    container: {
+        padding: 16,
+    },
+    card: {
+        backgroundColor: secondaryColor,
+        borderWidth: 1,
+        borderColor: primaryColor,
+        marginBottom: 10,
+        borderRadius: 10,
+        elevation: 3,
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 150,
+        padding: 16,
+        position: 'relative',
+    },
+    cardimage: {
+        width: 80,
+        height: 80,
+        borderRadius: 10,
+        marginRight: 20,
+    },
+    buttonlikeContainer: {
+        flexDirection: 'row',
+        position: 'absolute',
+        top: 110,
+        right: 16,
+    },
+    icon: {
+        width: 24,
+        height: 24,
+        marginRight: 20,
+    },
+    content: {
+        flex: 1,
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 4,
+    },
+    description: {
+        fontSize: 16,
+    },
+    likes: {
+        fontSize: 14,
+        color: Mediumgray,
+    },
+    Margin:{
+        marginBottom: 100,
+    }
+
     
+
 });
 export { styles };
