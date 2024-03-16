@@ -1,12 +1,28 @@
-<p>login works!</p>
-
-<h1>Interpolation</h1>
-
-{{title}}
-
-<img [src]="logo" [alt]="title" />
-
-<Button (click)="clickMe()">click me</Button>
-
-
-<input type="text" [(ngModel)]="title" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./login.component.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="imgDiv">
+        <img src="../../assets/images/sale.png">
+    </div>
+    
+    <div class="form1">
+        <img class="image" src="../../assets/images/onekey.png">
+    </div>
+    
+    <div class="form">
+        <label class="label">UserName</label><br>
+        <input class="fInput" type="text"><br>
+        <label class="label">Password</label><br>
+        <input class="fInput" type="password"><br>
+        <input class="button" type="button" value="Login">
+        <p>Don't have an account? Click to <a href="../sign-up/sign-up.component.html">SignUp</a></p>
+    
+    </div>
+</body>
+</html>
