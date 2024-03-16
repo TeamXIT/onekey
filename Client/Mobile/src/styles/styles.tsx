@@ -298,7 +298,11 @@ const styles = StyleSheet.create({
     },
     error:{
         color:errorTextColor,
-        marginLeft:30
+        marginLeft:'10%'
+    },
+    mainContainerView:{
+        backgroundColor: secondaryColor,
+         flex: 1
     }
 });
 export { styles };

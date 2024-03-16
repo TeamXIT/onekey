@@ -3,6 +3,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { useState } from "react";
 import { styles } from '../../styles/styles'
 import TeamXTextInput from "../../molecules/TeamXTextInput";
+import ErrorText from "../../molecules/ErrorText";
 
 const Signup = ({ navigation }) => {
   const [username, setUsername] = useState('');
@@ -13,67 +14,70 @@ const Signup = ({ navigation }) => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  
   const handleSubmitPress = () => {
-    let hasError = false;
-    
-    if (!username.trim()) {
-      setUsernameError('Please provide username.');
-      hasError = true;
-    } else {
-      setUsernameError('');
-    }
-  
-    if (!email.trim()) {
-      setEmailError('Please provide email.');
-      hasError = true;
-    } else {
-      setEmailError('');
-    }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let hasError = false;
 
-    // Check if the entered email matches the email format
-    if (!emailRegex.test(email.trim())) {
-      setEmailError('Please enter a valid email address.');
-      hasError = true;
-    }
-  
-    if (!password.trim()) {
-      setPasswordError('Please provide password.');
-      hasError = true;
+    // Check username
+    if (!username.trim()) {
+        setUsernameError('Please provide username.');
+        hasError = true;
+    } else if (username.trim().length < 8) {
+        setUsernameError('Username must be at least 8 characters.');
+        hasError = true;
     } else {
-      setPasswordError('');
+        setUsernameError('');
     }
-  
+
+    // Check email
+    if (!email.trim()) {
+        setEmailError('Please provide email.');
+        hasError = true;
+    } else if (!emailRegex.test(email.trim())) {
+        setEmailError('Please enter a valid email address.');
+        hasError = true;
+    } else if (email.trim().length < 8) {
+        setEmailError('Email must be at least 8 characters.');
+        hasError = true;
+    } else {
+        setEmailError('');
+    }
+
+    // Check password
+    if (!password.trim()) {
+        setPasswordError('Please provide password.');
+        hasError = true;
+    } else if (password.trim().length < 8) {
+        setPasswordError('Password must be at least 8 characters.');
+        hasError = true;
+    } else {
+        setPasswordError('');
+    }
+
+    // Check confirm password
     if (!confirmPassword.trim()) {
-      setConfirmPasswordError('Please provide confirm password.');
-      hasError = true;
+        setConfirmPasswordError('Please provide confirm password.');
+        hasError = true;
+    } else if (confirmPassword.trim().length < 8) {
+        setConfirmPasswordError('Confirm password must be at least 8 characters.');
+        hasError = true;
     } else if (confirmPassword.trim() !== password.trim()) {
-      setConfirmPasswordError('Passwords do not match.');
-      hasError = true;
-    } else  {
-      setConfirmPasswordError('');
+        setConfirmPasswordError('Passwords do not match.');
+        hasError = true;
+    } else {
+        setConfirmPasswordError('');
     }
-     if( username.trim().length<=8){
-      setUsernameError('username must be atleast 8 charecters')
-      hasError = true;
-   } if( email.trim().length<=8){
-      setEmailError('email must be atleast 8 charecters')
-      hasError = true;
-    } if( password.trim().length<=8){
-      setPasswordError('password must be atleast 8 charecters')
-      hasError = true;
-   } if( confirmPassword.trim().length<=8){
-      setConfirmPasswordError('confirm password must be atleast 8 charecters')
-      hasError = true;
-    }
+
+    // Navigate only if there are no errors
     if (!hasError) {
-      navigation.navigate('verification');
+        navigation.navigate('verification');
     }
   }
   return (
     <SafeAreaView>
       <ScrollView>
-        <View style={{ backgroundColor: "#F2E8C6", flex: 1 }}>
+        <View style={styles.mainContainerView}>
           <Image source={require('../../../assets/images/person.png')} style={styles.image} />
           <TeamXTextInput
             value={username}
@@ -81,7 +85,7 @@ const Signup = ({ navigation }) => {
             placeholder="Username"
             maxLength={32}
           />
-          {usernameError ? <Text style={styles.error}>{usernameError}</Text> : null}
+          <ErrorText errorText={usernameError}  />
 
           <TeamXTextInput
             value={email}
@@ -91,7 +95,7 @@ const Signup = ({ navigation }) => {
             maxLength={32}
 
           />
-          {emailError ? <Text style={styles.error}>{emailError}</Text> : null}
+          <ErrorText errorText={emailError}  />
 
           <TeamXTextInput
             value={password}
@@ -101,7 +105,7 @@ const Signup = ({ navigation }) => {
             maxLength={32}
 
           />
-          {passwordError ? <Text style={styles.error}>{passwordError}</Text> : null}
+          <ErrorText errorText={passwordError}  />
 
           <TeamXTextInput
             value={confirmPassword}
@@ -111,7 +115,7 @@ const Signup = ({ navigation }) => {
             maxLength={32}
 
           />
-          {confirmPasswordError ? <Text style={styles.error}>{confirmPasswordError}</Text> : null}
+          <ErrorText errorText={confirmPasswordError}  />
 
           <TouchableOpacity style={styles.button} onPress={handleSubmitPress} >
             <Text style={styles.buttonText}>SIGN UP</Text>

@@ -2,6 +2,8 @@ import { Text, View, Image, Switch, TouchableOpacity, Alert } from "react-native
 import { styles } from "../../styles/styles";
 import TeamXTextInput from "../../molecules/TeamXTextInput";
 import { useState } from "react";
+import ErrorText from "../../molecules/ErrorText";
+import RememberSwitch from "../../molecules/RememberSwitch";
 
 const Signin = ({ navigation }) => {
     const [username, setUsername] = useState('');
@@ -11,25 +13,26 @@ const Signin = ({ navigation }) => {
     const [passwordError, setPasswordError] = useState('');
     const handleSubmitPress = () => {
         let hasError = false;
-        if (!username.trim() && !password.trim()) {
+        if (!username.trim()) {
             setUsernameError('Please provide username.');
-            setPasswordError('Please provide password.');
-        }
-        else if (!username.trim()) {
-            setUsernameError('Please provide username.');
-            setPasswordError('');
             hasError = true;
-        } else if (!password.trim()) {
+        } else if (username.trim().length < 8) {
+            setUsernameError('Username must be at least 8 characters.');
+            hasError = true;
+        } else {
             setUsernameError('');
+        }
+        if (!password.trim()) {
             setPasswordError('Please provide password.');
             hasError = true;
-        } else if (username.trim().length <= 8) {
-            setUsernameError('username must be atleast 8 charecters')
-        } else if (password.trim().length <= 8) {
-            setPasswordError('password must be atleast 8 charecters')
+        } else if (password.trim().length < 8) {
+            setPasswordError('Password must be at least 8 characters.');
+            hasError = true;
+        } else {
+            setPasswordError('');
         }
-        else {
-            navigation.navigate('Landing');
+        if (!hasError) {
+            navigation.navigate('verification');
         }
     }
     return (
@@ -54,7 +57,7 @@ const Signin = ({ navigation }) => {
                         maxLength={32}
 
                     />
-                    {usernameError ? <Text style={styles.error}>{usernameError}</Text> : null}
+                    <ErrorText errorText={usernameError} />
 
                 </View>
                 <View >
@@ -67,14 +70,16 @@ const Signin = ({ navigation }) => {
                         maxLength={32}
 
                     />
-                    {passwordError ? <Text style={styles.error}>{passwordError}</Text> : null}
                 </View>
+                <ErrorText errorText={passwordError} />
+
             </View>
             <View style={styles.s_r_view}>
                 <View style={styles.s_r_view1}>
-                    <Switch trackColor={{ false: styles.appSwitchFalse.color, true: styles.appColor.color }} thumbColor={isRemember ? styles.appColor.color : styles.appSwitchTumbFalse.color}
-                        onValueChange={setIsRemember} value={isRemember} />
-                    <Text style={styles.headerTextStyle}>Remember</Text>
+                    <RememberSwitch
+                        isRemember={isRemember}
+                        setIsRemember={setIsRemember}
+                    />
                 </View>
                 <View style={styles.s_f_view}>
                     <Text
