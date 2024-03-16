@@ -2,15 +2,16 @@ import { View,Text, SafeAreaView, TextInput, StyleSheet, TouchableOpacity, Image
 import { ScrollView } from "react-native-gesture-handler";
 import { useState } from "react";
 import {styles} from '../../styles/styles'
-import TeamXTextInput from "../../molecules/TeamXTextInput";
-import ButtonComponent from "../../atoms/buttonComponent";
+import ButtonComponent from "../../atoms/TeamXbutton";
+import LogoImage from "../../atoms/logo";
+import TextImageInput from "../../atoms/ImageBasedTextInput";
+
 const Signup = ({navigation}) =>{
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const handleSubmitPress = () => { 
-    
+  const handleSubmitPress = () => {    
     if (!username) {
         Alert.alert('Invalid , Enter user name')
         return;
@@ -36,39 +37,48 @@ const Signup = ({navigation}) =>{
   return (
       <SafeAreaView>
         <ScrollView>
-        <View style={styles.siup_o_view}>
-           <Image source={require('../../../assets/images/person.png')} style={styles.image}/>
-          
-           <TeamXTextInput
-                value={username}
-                onChangeText={setUsername}
-                placeholder="Username"
-            />
-            <TeamXTextInput
-                value={email}
-                onChangeText={setEmail}
-                placeholder="Email"
-                keyboardType="email-address"
-            />
-            <TeamXTextInput
-                value={password}
-                onChangeText={setPassword}
-                placeholder="Password"
-                secureTextEntry={true}
-            />
-            <TeamXTextInput
-                value={confirmPassword}
-                onChangeText={setConfirmPassword}
-                placeholder="Confirm Password"
-                secureTextEntry={true}
-            />
+        <View style={styles.siup_outer_view}>
+        <LogoImage />
+        <View style={{alignItems:'center'}}>
+                <Text style={styles.screenHeader}>Signup</Text>
+                </View>
+                <TextImageInput
+                    value={username}
+                    onChangeText={setUsername}
+                    image={require('../../../assets/images/ic_user.png')}
+                    placeholder="Enter Username"
+                    keyboardType="email-address"
+                    returnKeyType="next"
+                />
+                <TextImageInput
+                    value={email}
+                    onChangeText={setEmail}
+                    image={require('../../../assets/images/ic_email.png')}
+                    placeholder="Enter Email"
+                    keyboardType="email-address"
+                    />
+           <TextImageInput
+                    value={password}
+                    onChangeText={setPassword}
+                    image={require('../../../assets/images/ic_eye.png')}
+                    placeholder="New Password"
+                    secureTextEntry={true}
+                    returnKeyType="done"
+                />
+             <TextImageInput
+                    value={confirmPassword}
+                    onChangeText={setConfirmPassword}
+                    image={require('../../../assets/images/ic_eye.png')}
+                    placeholder="Confirm  Password"
+                    secureTextEntry={true}
+                    returnKeyType="done"
+                />
             <ButtonComponent onPress={handleSubmitPress} text="SIGNUP" />
-            <View  style={{flexDirection:'row',justifyContent:'center',marginTop:30,marginBottom:100}}>
+            <View  style={styles.bottom_text}>
               <Text style={styles.text}>Already  have an account?  </Text><TouchableOpacity><Text style={[styles.text,{fontWeight:'bold'}]} onPress={()=>navigation.navigate('signin')}>SIGNIN</Text></TouchableOpacity> 
             </View>
         </View>
         </ScrollView>
       </SafeAreaView>
     )};
-
 export default Signup;
