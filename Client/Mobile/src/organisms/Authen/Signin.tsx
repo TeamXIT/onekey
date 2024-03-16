@@ -2,6 +2,7 @@ import { Text, View, Image, Switch, TouchableOpacity, Alert } from "react-native
 import { styles } from "../../styles/styles";
 import TeamXTextInput from "../../molecules/TeamXTextInput";
 import { useState } from "react";
+import ErrorText from "../../molecules/ErrorText";
 import ButtonComponent from "../../atoms/TeamXbutton";
 import LogoImage from "../../atoms/logo";
 import TextImageInput from "../../atoms/ImageBasedTextInput";
@@ -10,16 +11,31 @@ const Signin = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isRemember, setIsRemember] = useState(false);
+    const [usernameError, setUsernameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
     const handleSubmitPress = () => {
-        if (!username) {
-            return Alert.alert('Invalid', 'Enter User Name');
-
+        let hasError = false;
+        if (!username.trim()) {
+            setUsernameError('Please provide username.');
+            hasError = true;
+        } else if (username.trim().length < 8) {
+            setUsernameError('Username must be at least 8 characters.');
+            hasError = true;
+        } else {
+            setUsernameError('');
         }
-        if (!password) {
-            return Alert.alert('Invalid', 'Enter Password')
-
+        if (!password.trim()) {
+            setPasswordError('Please provide password.');
+            hasError = true;
+        } else if (password.trim().length < 8) {
+            setPasswordError('Password must be at least 8 characters.');
+            hasError = true;
+        } else {
+            setPasswordError('');
         }
-        navigation.navigate('Landing');
+        if (!hasError) {
+            navigation.navigate('verification');
+        }
     }
     return (
         <View style={styles.mainContainer}>
@@ -51,9 +67,10 @@ const Signin = ({ navigation }) => {
             </View>
             <View style={styles.s_r_view}>
                 <View style={styles.s_r_view1}>
-                    <Switch trackColor={{ false: styles.appSwitchFalse.color, true: styles.appColor.color }} thumbColor={isRemember ? styles.appColor.color :styles.appSwitchTumbFalse.color}
-                         onValueChange={setIsRemember} value={isRemember} />
-                    <Text style={styles.headerTextStyle}>Remember</Text>
+                    <RememberSwitch
+                        isRemember={isRemember}
+                        setIsRemember={setIsRemember}
+                    />
                 </View>
                 <View style={styles.s_f_view}>
                     <Text

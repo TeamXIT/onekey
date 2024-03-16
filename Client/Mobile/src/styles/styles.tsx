@@ -8,6 +8,7 @@ const primaryColor = "#48525e";
 const secondaryColor = "#F2E8C6";
 const fieldColor = '#A63120';
 const textColor = useColorScheme() === 'light' ? darkText : lightText;
+
 const gray = "#808080";
 const lightGray = "#D3D3D3";
 const xSmallSize = 14;
@@ -273,6 +274,27 @@ const styles = StyleSheet.create({
     },
     s_r_view: {
         flexDirection: 'row',
+        marginLeft: 10, 
+        marginRight: 10 
+    },
+    s_r_view1:{ flex: 1, 
+        flexDirection: 'row', 
+        justifyContent: 'flex-start', 
+        alignItems: 'center' 
+    },
+    s_f_view:{ 
+        flex: 1, 
+        flexDirection: 'row', 
+        justifyContent: 'flex-end', 
+        alignItems: 'center' 
+    },
+    error:{
+        color:errorTextColor,
+        marginLeft:'10%'
+    },
+    mainContainerView:{
+        backgroundColor: secondaryColor,
+         flex: 1,
         marginTop: 15,
         marginLeft: 10,
         marginRight: 10,
