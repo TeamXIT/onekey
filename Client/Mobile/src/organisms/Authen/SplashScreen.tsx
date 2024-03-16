@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Text,View } from "react-native"
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "../../styles/styles";
+import LogoImage from "../../atoms/logo";
 
 const SplashScreen = ({navigation}) => {
     const [animating, setAnimating] = useState(true);
@@ -16,6 +17,7 @@ const SplashScreen = ({navigation}) => {
       }, []);
     return(
     <View style={styles.S_background}>
+      <LogoImage />
 
     </View>
     );

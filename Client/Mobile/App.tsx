@@ -15,6 +15,8 @@ import Dashboard from './src/organisms/Landing/Dashboard';
 import Home from './src/organisms/Landing/Home';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
 import forgotPassword from './src/organisms/Authen/forgotPassword';
+import Comment from './src/organisms/Landing/Comment';
+import Projects from './src/organisms/Landing/Projects';
 
 const Stack = createStackNavigator();
 
@@ -31,17 +33,18 @@ const Auth = () => {
         name="signup"
         component={Signup}
         options={{
-          title: 'Signup', //Set Header Title
+          title: 'Signup',
+           //Set Header Title
           headerStyle: {
             backgroundColor: styles.appColor.color, //Set Header color
           },
+          headerShown: false,
           headerTintColor: '#fff', //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style
           },
         }}
       />
-      
       <Stack.Screen
         name="verification"
         component={Verification}
@@ -50,6 +53,7 @@ const Auth = () => {
           headerStyle: {
             backgroundColor: styles.appColor.color, //Set Header color
           },
+          headerShown: false,
           headerTintColor: '#fff', //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style
@@ -60,10 +64,11 @@ const Auth = () => {
         name="typeselection"
         component={UserTypeSelection}
         options={{
-          title: 'Selection User', //Set Header Title
+          title: '', //Set Header Title
           headerStyle: {
-            backgroundColor: styles.appColor.color, //Set Header color
+            backgroundColor: styles.appBackground.color, //Set Header color
           },
+          headerShown: false,
           headerTintColor: '#fff', //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style
@@ -91,6 +96,14 @@ const Landing = () => {
       <Stack.Screen
        name="home"
        component={Home}
+      />
+      <Stack.Screen
+       name="project"
+       component={Projects}
+      />
+       <Stack.Screen
+       name="comment"
+       component={Comment}
       />
     </Stack.Navigator>
   );

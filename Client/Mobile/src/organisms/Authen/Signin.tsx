@@ -3,7 +3,9 @@ import { styles } from "../../styles/styles";
 import TeamXTextInput from "../../molecules/TeamXTextInput";
 import { useState } from "react";
 import ErrorText from "../../molecules/ErrorText";
-import RememberSwitch from "../../molecules/RememberSwitch";
+import ButtonComponent from "../../atoms/TeamXbutton";
+import LogoImage from "../../atoms/logo";
+import TextImageInput from "../../atoms/ImageBasedTextInput";
 
 const Signin = ({ navigation }) => {
     const [username, setUsername] = useState('');
@@ -38,41 +40,30 @@ const Signin = ({ navigation }) => {
     return (
         <View style={styles.mainContainer}>
             <View style={{ alignItems: 'center' }}>
-                <Image
-                    source={require('../../../assets/images/ic_user.png')}
-                    style={styles.logoimg}
-                />
-                <View>
-                    <Text style={{ fontSize: 20 }}>Signin Here</Text>
-                </View>
+            <LogoImage />
+           
             </View>
-            <View style={{ marginLeft: -15 }}>
-                <View>
-                    <TeamXTextInput
-                        value={username}
-                        onChangeText={setUsername}
-                        placeholder="Enter Username"
-                        keyboardType="email-address"
-                        returnKeyType="next"
-                        maxLength={32}
-
-                    />
-                    <ErrorText errorText={usernameError} />
-
-                </View>
-                <View >
-                    <TeamXTextInput
-                        value={password}
-                        onChangeText={setPassword}
-                        placeholder="Enter Password"
-                        secureTextEntry={true}
-                        returnKeyType="done"
-                        maxLength={32}
-
-                    />
-                </View>
-                <ErrorText errorText={passwordError} />
-
+            <View style={{marginLeft:-15}}>
+            <View style={styles.SectionStyle}>
+                <TextImageInput
+                    value={username}
+                    onChangeText={setUsername}
+                    image={require('../../../assets/images/ic_user.png')}
+                    placeholder="Enter Username"
+                    keyboardType="email-address"
+                    returnKeyType="next"
+                />
+            </View>
+            <View style={styles.SectionStyle}>
+                <TextImageInput
+                    value={password}
+                    onChangeText={setPassword}
+                    image={require('../../../assets/images/ic_eye.png')}
+                    placeholder="Enter Password"
+                    secureTextEntry={true}
+                    returnKeyType="done"
+                />
+            </View>
             </View>
             <View style={styles.s_r_view}>
                 <View style={styles.s_r_view1}>
@@ -89,20 +80,11 @@ const Signin = ({ navigation }) => {
                     </Text>
                 </View>
             </View>
-            <View style={{ alignItems: "center" }}>
-                <TouchableOpacity
-                    style={styles.buttonStyle}
-                    activeOpacity={0.5}
-                    onPress={handleSubmitPress}>
-                    <Text style={styles.buttonTextStyle}>SIGNIN</Text>
-                </TouchableOpacity>
-            </View>
+            <ButtonComponent onPress={handleSubmitPress} text="SIGNIN" />
 
-            <Text
-                style={styles.pressableTextStyle}
-                onPress={() => navigation.navigate('signup')}>
-                Don't have an account ? SIGNUP HERE
-            </Text>
+            <View  style={styles.bottom_text}>
+              <Text style={styles.text}>Don't have an account?  </Text><TouchableOpacity><Text style={[styles.text,{fontWeight:'bold'}]} onPress={()=>navigation.navigate('signup')}>SIGNUP</Text></TouchableOpacity> 
+            </View>
         </View>
     );
 }

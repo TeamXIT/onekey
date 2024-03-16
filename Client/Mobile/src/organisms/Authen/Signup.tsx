@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, TextInput, StyleSheet, TouchableOpacity, Image, Alert } from "react-native";
+import { View,Text, SafeAreaView, TextInput, StyleSheet, TouchableOpacity, Image ,Alert} from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { useState } from "react";
 import { styles } from '../../styles/styles'
@@ -10,6 +10,7 @@ const Signup = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
   const [usernameError, setUsernameError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -74,62 +75,56 @@ const Signup = ({ navigation }) => {
         navigation.navigate('verification');
     }
   }
+
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View style={styles.mainContainerView}>
-          <Image source={require('../../../assets/images/person.png')} style={styles.image} />
-          <TeamXTextInput
-            value={username}
-            onChangeText={setUsername}
-            placeholder="Username"
-            maxLength={32}
-          />
+      <SafeAreaView>
+        <ScrollView>
+        <View style={styles.siup_outer_view}>
+        <LogoImage />
+        <View style={{alignItems:'center'}}>
+                <Text style={styles.screenHeader}>Signup</Text>
+                </View>
+                <TextImageInput
+                    value={username}
+                    onChangeText={setUsername}
+                    image={require('../../../assets/images/ic_user.png')}
+                    placeholder="Enter Username"
+                    keyboardType="email-address"
+                    returnKeyType="next"
+                />
           <ErrorText errorText={usernameError}  />
-
-          <TeamXTextInput
-            value={email}
-            onChangeText={setEmail}
-            placeholder="Email"
-            keyboardType="email-address"
-            maxLength={32}
-
-          />
+                <TextImageInput
+                    value={email}
+                    onChangeText={setEmail}
+                    image={require('../../../assets/images/ic_email.png')}
+                    placeholder="Enter Email"
+                    keyboardType="email-address"
+                    />
           <ErrorText errorText={emailError}  />
-
-          <TeamXTextInput
-            value={password}
-            onChangeText={setPassword}
-            placeholder="Password"
-            secureTextEntry={true}
-            maxLength={32}
-
-          />
+           <TextImageInput
+                    value={password}
+                    onChangeText={setPassword}
+                    image={require('../../../assets/images/ic_eye.png')}
+                    placeholder="New Password"
+                    secureTextEntry={true}
+                    returnKeyType="done"
+                />
           <ErrorText errorText={passwordError}  />
-
-          <TeamXTextInput
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-            placeholder="Confirm Password"
-            secureTextEntry={true}
-            maxLength={32}
-
-          />
-          <ErrorText errorText={confirmPasswordError}  />
-
-          <TouchableOpacity style={styles.button} onPress={handleSubmitPress} >
-            <Text style={styles.buttonText}>SIGN UP</Text>
-          </TouchableOpacity>
-          <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 30, marginBottom: 100 }}>
-            <Text style={styles.text}>Already have an account?  </Text>
-            <TouchableOpacity>
-              <Text style={[styles.text, { fontWeight: 'bold' }]} onPress={() => navigation.navigate('signin')}>Login</Text>
-            </TouchableOpacity>
-          </View>
+             <TextImageInput
+                    value={confirmPassword}
+                    onChangeText={setConfirmPassword}
+                    image={require('../../../assets/images/ic_eye.png')}
+                    placeholder="Confirm  Password"
+                    secureTextEntry={true}
+                    returnKeyType="done"
+                />
+           <ErrorText errorText={confirmPasswordError}  />
+            <ButtonComponent onPress={handleSubmitPress} text="SIGNUP" />
+            <View  style={styles.bottom_text}>
+              <Text style={styles.text}>Already  have an account?  </Text><TouchableOpacity><Text style={[styles.text,{fontWeight:'bold'}]} onPress={()=>navigation.navigate('signin')}>SIGNIN</Text></TouchableOpacity> 
+            </View>
         </View>
-      </ScrollView>
-    </SafeAreaView>
-  )
-};
-
+        </ScrollView>
+      </SafeAreaView>
+    )};
 export default Signup;

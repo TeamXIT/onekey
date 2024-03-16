@@ -1,3 +1,4 @@
+
 import { View, Text, SafeAreaView, TextInput, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { styles } from "../../styles/styles";
 import { useState } from "react";
@@ -27,24 +28,15 @@ const Verification = ({ navigation }) => {
         }
     }
     return (
-        <View style={styles.mainContainerView}>
-            <Image source={require('../../../assets/images/person.png')} style={styles.V_image} />
+        <View style={styles.BgContainer}>
+            <LogoImage />
             <Text style={styles.V_verifyTest}>Verify OTP</Text>
-            <TeamXTextInput
-                value={otp}
-                onChangeText={setOtp}
-                placeholder="Enter OTP"
-                keyboardType="email-address"
-                secureTextEntry={true}
-                maxLength={6}
-
-            />
+            <View style={[styles.SectionStyle,[]]}>
+             <OTPInput  onOTPChange={setOtp} />
+            </View>
             <ErrorText errorText={otpError} />
 
-            <TouchableOpacity style={styles.V_button} onPress={handleSubmitPress}>
-                <Text style={styles.V_buttonText}>Verify</Text>
-            </TouchableOpacity>
-        </View>
+            <ButtonComponent onPress={verify} text="VERIFY" />
     )
 };
 
