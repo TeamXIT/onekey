@@ -34,6 +34,18 @@ const signUp = async (req,res)=>{
         return res.status(500).json({error:error.message});
     }
 } 
+const getAllRoles = async (req,res)=>{
+    try{ 
+        const roles = await Role.findAll();
+        if(!roles){
+           return res.status(404).json({error:'Roles not found'});
+        }
+        return res.status(200).json(roles);
+
+    }catch(error){
+        return res.status(500).json({error:error.message});
+    }
+}
 
 const selectRole = async (req,res)=>{
     try{
@@ -104,4 +116,4 @@ const signIn = async (req,res)=>{
         res.status(500).json({error:error.message});
     }
 }
-module.exports = {signUp,selectRole,signIn};
+module.exports = {signUp,getAllRoles,selectRole,signIn};

@@ -1,11 +1,15 @@
 const express = require('express');
 const sequelize = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
+const productRoutes = require('./routes/productRoutes');
+// const {createUser} = require('./models/userModel');
 const port = 3000;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+// createUser();
 app.use('/api/auth',authRoutes);
+app.use('/api/product',productRoutes);
 app.get('/',(req,res)=>{
     res.json("Welcome to onekey...");
 });

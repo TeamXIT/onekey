@@ -1,6 +1,6 @@
 const sequelize = require('../config/db');
 const Datatypes = require('sequelize'); 
-const User = require('./userModel');
+const {User} = require('./userModel');
 const Product = sequelize.define("Products",{
    product_id:{
     type:Datatypes.INTEGER,
@@ -22,6 +22,6 @@ const Product = sequelize.define("Products",{
         key:'user_id'
     }
    }
-},{versionKey:false,timestamps:true});
-
+},{timestamps:false});
+// Product.sync();
 module.exports = {Product};

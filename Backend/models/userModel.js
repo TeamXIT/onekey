@@ -44,12 +44,12 @@ const User = sequelize.define("Users",{
     //     allowNull:true
     // }
 },{timestamps:false});
-// const createUser=async () => {
-//     try {
-//       await User.sync({ force: true }); 
-//       console.log('User table created successfully');
-//     } catch (error) {
-//       console.error('Error creating user table:', error);
-//     } }
+const createUser=async () => {
+    try {
+      await User.sync({ force: true }); 
+      console.log('User table created successfully');
+    } catch (error) {
+      console.error('Error creating user table:', error);
+    } }
 // createUser();
-module.exports = {User};
+module.exports = {User,createUser};
