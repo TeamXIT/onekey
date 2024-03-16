@@ -14,19 +14,19 @@ body{
     text-align: center;
     margin-top: 0px;
     width:50%;
-    margin-left: 635px;
+    margin-left: 640px;
     padding-top: 15px;
-    padding-bottom: 46px;
-    background-color: #F2E8C6;
+    padding-bottom: 44px;
+    background-color: #48525e;
 }
 .logoDiv{
     text-align: center;
     margin-top: 0px;
-    width:50%;
-    margin-left: 635px;
+    width:51%;
+    margin-left: 640px;
     padding-top: 15px;
     padding-bottom: 0px;
-    background-color: #F2E8C6;
+    background-color: #48525e;
 }
 
 
@@ -42,7 +42,7 @@ body{
 .label{
    text-align: left;
    margin-left: -250px;
-   color:black;
+   color:white;
    font-size: 23px;
    
 }
@@ -51,11 +51,11 @@ body{
     width:150px;
     border-radius: 5px;
     border:2px solid black;
-    background-color:#A73121;
-    color:#F2E8C6;
+    background-color:#F2E8C6;;
+    color:black;
 }
 input[type="button"]:hover{
-    background-color:rgb(242, 23, 23);
+    background-color:cornflowerblue;
     color: white;
     cursor: pointer;
 }
@@ -69,6 +69,7 @@ input[type="button"]:hover{
 
 .formDiv p{
     margin-top: 35px;
+    color:white;
 }
 
 .imgDiv{
