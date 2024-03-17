@@ -214,6 +214,50 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         marginTop: 30
-    }
+    },
+
+    card: {
+        backgroundColor: secondaryColor,
+        marginBottom: 10,
+        marginLeft: 8,
+        marginRight: 8,
+        borderRadius: 10,
+        elevation: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 150
+    },
+    cardContent: {
+        flex: 1,
+        flexDirection: 'column',
+        marginLeft: 10,
+    },
+    cardimage: {
+        width: 100,
+        height: 100,
+        marginRight: 20,
+    },
+    buttonlikeContainer: {
+        flexDirection: 'row',
+        marginTop: 10,
+    },
+    icon: {
+        marginRight: 15,
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 4,
+    },
+    description: {
+        fontSize: 16,
+        marginBottom: 4,
+    },
+    likes: {
+        fontSize: 14,
+    },
+
+    
+
 });
 export { styles };

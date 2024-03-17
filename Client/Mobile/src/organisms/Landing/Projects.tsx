@@ -37,17 +37,17 @@ const Projects = ({ navigation }) => {
         <TouchableOpacity onPress={() => handleLikePress(item.id)}>
           <Image
             source={require('../../images/ic_like.png')}
-            style={[styles.icon, { tintColor: likeCounts[item.id] ? "#A73121" : "#777" }]}
+            style={[styles.icon, { tintColor: likeCounts[item.id] ? "#0987F0" : "#777" }]}
           />
         </TouchableOpacity>
         <TouchableOpacity onPress={handleCommentPress}>
           <Image
             source={require('../../images/ic_comment.png')}
-            style={[styles.icon, { tintColor: comment ? "#777" : "#A73121" }]}
+            style={[styles.icon, { tintColor:  "#777" }]}
           />
         </TouchableOpacity>
       </View>
-      <View style={styles.content}>
+      <View style={styles.cardContent}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.description}>{item.description}</Text>
         <Text style={styles.likes}>{likeCounts[item.id] || 0} Likes</Text>
