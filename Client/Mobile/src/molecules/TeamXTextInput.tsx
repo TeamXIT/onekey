@@ -6,20 +6,18 @@ import PropTypes from 'prop-types';
 
 const TeamXTextInput = ({ value, onChangeText, placeholder, keyboardType, secureTextEntry, returnKeyType, maxLength }) => {
     return (
-        <View style={styles.SectionStyle}>
             <TextInput
-                style={styles.inputStyle}
+                style={styles.imageInputStyle}
                 onChangeText={onChangeText}
                 value={value}
                 placeholder={placeholder}
-                placeholderTextColor={styles.appColor.color}
+                placeholderTextColor={styles.appTertiary.color}
                 keyboardType={keyboardType}
                 onSubmitEditing={Keyboard.dismiss}
                 secureTextEntry={secureTextEntry}
                 returnKeyType={returnKeyType}
                 maxLength={maxLength}
             />
-        </View>
     );
 };
 

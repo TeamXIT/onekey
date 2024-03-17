@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { styles } from '../styles/styles'; 
 
-const ButtonComponent = ({ onPress, text }) => {
+const TeamXButton = ({ onPress, text }) => {
     return (
         <View style={{ alignItems: "center" }}>
             <TouchableOpacity
@@ -17,9 +17,9 @@ const ButtonComponent = ({ onPress, text }) => {
     );
 };
 
-ButtonComponent.propTypes = {
+TeamXButton.propTypes = {
     onPress: PropTypes.func.isRequired,
     text: PropTypes.string.isRequired,
 };
 
-export default ButtonComponent;
+export default TeamXButton;

@@ -38,7 +38,7 @@ const Auth = () => {
           title: 'Signup',
           //Set Header Title
           headerStyle: {
-            backgroundColor: styles.appColor.color, //Set Header color
+            backgroundColor: styles.appTertiary.color, //Set Header color
           },
           headerShown: false,
           headerTintColor: '#fff', //Set Header text color
@@ -53,7 +53,7 @@ const Auth = () => {
         options={{
           title: 'Verification', //Set Header Title
           headerStyle: {
-            backgroundColor: styles.appColor.color, //Set Header color
+            backgroundColor: styles.appTertiary.color, //Set Header color
           },
           headerShown: false,
           headerTintColor: '#fff', //Set Header text color
@@ -68,7 +68,7 @@ const Auth = () => {
         options={{
           title: '', //Set Header Title
           headerStyle: {
-            backgroundColor: styles.appBackground.color, //Set Header color
+            backgroundColor: styles.appPrimary.color, //Set Header color
           },
           headerShown: false,
           headerTintColor: '#fff', //Set Header text color

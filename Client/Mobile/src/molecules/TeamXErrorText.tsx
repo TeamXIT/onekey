@@ -5,7 +5,7 @@ import { styles } from '../styles/styles';
 const TeamXErrorText = ({ errorText }) => {
   return (
     <>
-      {errorText ? <Text style={styles.error}>{errorText}</Text> : null}
+      {errorText ? <Text style={styles.errorTextStyle}>{errorText}</Text> : null}
     </>
   );
 };

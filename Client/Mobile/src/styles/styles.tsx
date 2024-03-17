@@ -6,6 +6,7 @@ const darkText = "#212121";
 const lightText = '#FAFAFA';
 const primaryColor = "#48525e";
 const secondaryColor = "#F2E8C6";
+const tertiaryColor = "#d9d0b2";
 const fieldColor = '#A63120';
 const gray = "#808080";
 const lightGray = "#D3D3D3";
@@ -21,12 +22,14 @@ const mediumSize = 24;
 const largeSize = 30;
 
 const styles = StyleSheet.create({
-    appColor: {
-        color: '#d9d0b2',
-        opacity: 0.5
-    },
-    appBackground: {
+    appPrimary: {
         color: primaryColor
+    },
+    appSecondary: {
+        color: secondaryColor
+    },
+    appTertiary: {
+        color: tertiaryColor,
     },
     appTextColor: {
         color: textColor
@@ -34,133 +37,47 @@ const styles = StyleSheet.create({
     appTransparent: {
         color: transparent
     },
-    appInputBg: {
-        color: fieldColor
-    },
     appSwitchFalse: {
         color: lightGray
     },
     appSwitchTumbFalse: {
         color: gray
     },
-    global: {
-        backgroundColor: componentColor,
-        color: textColor,
+    containerStyle: {
+        flex: 1,
         alignItems: "center",
-        tintColor: primaryColor,
-        overlayColor: transparent,
+        backgroundColor: primaryColor,
+        height: '100%',
+        width: '100%',
+        padding: 15
     },
-    image: {
-        height: 150,
-        width: 150,
-        marginTop: 60,
-        marginLeft: '30%',
-        borderRadius: 80
-    },
-    text: {
+    textStyle: {
         fontSize: normalSize,
         color: secondaryColor
     },
-    header: {
-        fontSize: largeSize,
-        textAlign: 'center',
-        marginTop: 20,
-        marginBottom: 35,
-        color: secondaryColor
-    },
-    BgContainer: {
-        backgroundColor: primaryColor,
-        height: '100%',
-        padding: 15,
-    },
-    S_background: {
-        backgroundColor: primaryColor,
-        height: '100%',
-        width: '100%'
-    },
-    US_container: {
-        flex: 1,
-        alignItems: "center",
-        height: '100%',
-        backgroundColor: primaryColor
-    },
-    US_cardsContainer1: {
+    //TODO: Update
+    US_cardsContainerStyle: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: '60%',
         width: '100%',
     },
-    US_logoContainer: {
-        position: 'absolute',
-        top: -55,
-        height: '100%',
-        width: '100%'
-    },
-    cards: {
+    cardStyle: {
         width: '40%',
         height: 160,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation: 20
-    },
-    cardsContainer2: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 50,
-        width: '100%',
-    },
-    cardText: {
-        color: primaryColor,
-        fontSize: smallSize,
-        fontWeight: 'bold',
+        elevation: 20,
+        gap: 10
     },
     cardIcon: {
         width: 40,
         height: 40,
-        marginBottom: 10,
     },
-    TextStyle: {
+    cardTextStyle: {
         color: primaryColor,
-        textAlign: 'center',
+        fontSize: smallSize,
         fontWeight: 'bold',
-        fontSize: normalSize,
-        alignSelf: 'center',
-    },
-    arrowIcon: {
-        width: 30,
-        height: 18,
-    },
-    NexttouchableContent: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginLeft: 100,
-        borderRadius: 5,
-        backgroundColor: secondaryColor,
-        padding: 10
-    },
-    BacktouchableContent: {
-        marginRight: 100,
-        marginLeft: 0,
-        backgroundColor: secondaryColor,
-        padding: 10,
-        borderRadius: 5,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    imagecontainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginTop: 15,
-        borderWidth: 1,
-        borderColor: secondaryColor,
-        borderRadius: 8,
-        padding: 10,
-    },
-    textimage: {
-        width: 30,
-        height: 30,
-        marginRight: 10,
     },
     enhancedCard: {
         backgroundColor: secondaryColor,
@@ -174,33 +91,61 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
     },
+
+    TextStyle: {
+        color: primaryColor,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: normalSize,
+        alignSelf: 'center',
+    },
+    //TODO: Update
+    arrowIcon: {
+        width: 30,
+        height: 18,
+    },
+    //TODO: Update
     smallbuttonContainer: {
         flexDirection: 'row',
-        padding: 90
+        paddingTop: 90,
+        paddingBottom: 90
     },
-    mainContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        backgroundColor: primaryColor,
-        alignContent: 'center',
-        paddingLeft: 25,
-        paddingRight: 25,
-    },
-    inputStyle: {
-        flex: 1,
-        height: 60,
-        color: textColor,
-        fontWeight: '200',
-        paddingLeft: 20,
-        paddingRight: 15,
-        borderWidth: 1,
-        borderRadius: 8,
-        borderColor: secondaryColor,
-        fontSize: normalSize,
-    },
-    otpcontainer: {
+    NexttouchableContent: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginLeft: 100,
+        borderRadius: 5,
+        backgroundColor: secondaryColor,
+        padding: 10
+    },
+    BacktouchableContent: {
+        marginLeft: 0,
+        backgroundColor: secondaryColor,
+        padding: 10,
+        borderRadius: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    imageContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 15,
+        borderWidth: 1,
+        borderColor: secondaryColor,
+        borderRadius: 8,
+        padding: 10,
+        gap: 10
+    },
+    textimage: {
+        width: 30,
+        height: 30,
+    },
+    //TODO: Refactor component
+    otpContainer: {
+        width: '95%',
+        flexDirection: 'row',
+        justifyContent: "center",
+        gap: 10,
     },
     otpinput: {
         width: 50,
@@ -213,7 +158,7 @@ const styles = StyleSheet.create({
         fontSize: normalSize,
         borderRadius: 5,
     },
-    imageinputStyle: {
+    imageInputStyle: {
         height: 45,
         color: secondaryColor,
         fontWeight: '300',
@@ -223,13 +168,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         fontSize: normalSize,
     },
-    SectionStyle: {
-        flexDirection: 'column',
-        width: '97%',
-        marginBottom: 10,
-        marginHorizontal: 10,
-    },
-    headerTextStyle: {
+    switchTextStyle: {
         color: secondaryColor,
         fontWeight: '500',
         fontSize: normalSize,
@@ -238,20 +177,12 @@ const styles = StyleSheet.create({
         fontSize: mediumSize,
         color: secondaryColor
     },
-    logoimg: {
+    logoImg: {
         width: '90%',
         height: 300,
         resizeMode: 'contain',
         marginBottom: -50,
         margin: 30,
-    },
-    pressableTextStyle: {
-        color: textColor,
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: xSmallSize,
-        alignSelf: 'center',
-        padding: 10,
     },
     buttonStyle: {
         borderWidth: 2,
@@ -271,40 +202,18 @@ const styles = StyleSheet.create({
         fontSize: normalSize,
         fontWeight: 'bold'
     },
-    s_r_view: {
+    stackHEdgeStyle: {
         flexDirection: 'row',
         marginLeft: 10,
         marginRight: 10
     },
-    s_r_view1: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center'
-    },
-    s_f_view: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center'
-    },
-    error: {
+    errorTextStyle: {
         color: errorColor,
-        marginLeft: '10%'
     },
-    mainContainerView: {
-        backgroundColor: secondaryColor,
-        flex: 1,
-        paddingTop: 15,
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingBottom: 50
-    },
-    bottom_text: {
+    extedLinkContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginTop: 30,
-        marginBottom: 100
+        marginTop: 30
     }
 });
 export { styles };

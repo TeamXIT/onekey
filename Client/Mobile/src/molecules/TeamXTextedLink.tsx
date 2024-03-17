@@ -8,10 +8,10 @@ type ItemProps = {
 }
 const TeamXTextedLink = (props: ItemProps) => {
     return (
-        <View style={styles.bottom_text}>
-            <Text style={styles.text}>{props.value}</Text>
+        <View style={styles.extedLinkContainer}>
+            <Text style={styles.textStyle}>{props.value}</Text>
             <TouchableOpacity>
-                <Text style={[styles.text, { fontWeight: 'bold' }]} onPress={() => props.handleOnPress()}>{props.linkValue}</Text>
+                <Text style={[styles.textStyle, { fontWeight: 'bold' }]} onPress={() => props.handleOnPress()}>{props.linkValue}</Text>
             </TouchableOpacity>
         </View>
     )

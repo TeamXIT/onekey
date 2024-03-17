@@ -6,12 +6,12 @@ const TeamXSwitch = ({ isRemember, setIsRemember, value }) => {
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <Switch
-        trackColor={{ false: styles.appSwitchFalse.color, true: styles.appColor.color }}
-        thumbColor={isRemember ? styles.appColor.color : styles.appSwitchTumbFalse.color}
+        trackColor={{ false: styles.appSwitchFalse.color, true: styles.appTertiary.color }}
+        thumbColor={isRemember ? styles.appTertiary.color : styles.appSwitchTumbFalse.color}
         onValueChange={setIsRemember}
         value={isRemember}
       />
-      <Text style={styles.headerTextStyle}>{value}</Text>
+      <Text style={styles.switchTextStyle}>{value}</Text>
     </View>
 
   );

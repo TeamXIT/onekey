@@ -23,9 +23,10 @@ const UserTypeSelection = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.US_container}>
-            {/* <TeamXLogoImage /> */}
-            <View style={styles.US_cardsContainer1}>
+        <View style={styles.containerStyle}>
+            <TeamXLogoImage />
+            
+            <View style={styles.US_cardsContainerStyle}>
                 <TeamXCard
                     onPress={() => handleCardPress(CardOptions.BPO)}
                     imageSource={require('../../images/ic_bpo5.png')}
@@ -37,7 +38,7 @@ const UserTypeSelection = ({ navigation }) => {
                     labelText="Agent"
                 />
             </View>
-            <View style={styles.cardsContainer2}>
+            <View style={styles.US_cardsContainerStyle}>
                 <TeamXCard
                     onPress={() => handleCardPress(CardOptions.Seller)}
                     imageSource={require('../../images/ic_seller.png')}

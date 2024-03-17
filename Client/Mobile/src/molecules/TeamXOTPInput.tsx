@@ -1,10 +1,16 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, TextInput } from 'react-native';
 import { styles } from '../styles/styles';
 
-const TeamXOTPInput = ({ numberOfDigits = 6, onOTPChange }) => {
+const TeamXOTPInput = ({ numberOfDigits, onOTPChange }) => {
   const [otp, setOTP] = useState(Array(numberOfDigits).fill(''));
   const inputRefs = useRef([]);
+
+  useEffect(() => {
+    setTimeout(()=> {
+      inputRefs.current[0].focus();
+    }, 500);
+  }, [])
 
   const handleChange = (index, value) => {
     const newOTP = [...otp];
@@ -15,15 +21,17 @@ const TeamXOTPInput = ({ numberOfDigits = 6, onOTPChange }) => {
   };
 
   const handleKeyPress = (index, key) => {
-    if (key === 'Backspace' && index > 0 && !otp[index]) {
-      inputRefs.current[index - 1].focus();
-    } else if (index < numberOfDigits - 1 && otp[index]) {
+    if (key === 'Backspace') {
+      if (index > 0) {
+        inputRefs.current[index - 1].focus();
+      }
+    } else if (index < (numberOfDigits - 1)) {
       inputRefs.current[index + 1].focus();
     }
   };
 
   return (
-    <View style={styles.otpcontainer}>
+    <View style={styles.otpContainer}>
       {otp.map((digit, index) => (
         <TextInput
           key={index}

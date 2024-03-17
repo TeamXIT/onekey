@@ -1,15 +1,14 @@
-
 import { View } from "react-native";
 import { styles } from "../../styles/styles";
 import { useState } from "react";
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
-import ButtonComponent from "../../atoms/TeamXbutton";
+import TeamXButton from "../../atoms/TeamXButton";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
 import TeamXOTPInput from "../../molecules/TeamXOTPInput";
 import TeamXHeaderText from "../../atoms/TeamXHeaderText";
 
-
 const Verification = ({ navigation }) => {
+    const otpChatLength = 4;
     const [otp, setOtp] = useState('');
     const [otpError, setOtpError] = useState('');
 
@@ -19,8 +18,8 @@ const Verification = ({ navigation }) => {
         if (!otp.trim()) {
             setOtpError('Please provide OTP.');
             hasError = true;
-        } else if (otp.trim().length < 6) {
-            setOtpError('OTP must be  6 characters');
+        } else if (otp.trim().length < otpChatLength) {
+            setOtpError('Invalid OTP');
             hasError = true;
         } else {
             setOtpError('');
@@ -32,14 +31,12 @@ const Verification = ({ navigation }) => {
     }
 
     return (
-        <View style={styles.mainContainer}>
+        <View style={styles.containerStyle}>
             <TeamXLogoImage />
             <TeamXHeaderText value={"VERIFY OTP"} />
-            <View style={[styles.SectionStyle, []]}>
-                <TeamXOTPInput onOTPChange={setOtp} />
-            </View>
+            <TeamXOTPInput numberOfDigits={otpChatLength} onOTPChange={setOtp} />
             <TeamXErrorText errorText={otpError} />
-            <ButtonComponent onPress={handleSubmitPress} text="VERIFY" />
+            <TeamXButton onPress={handleSubmitPress} text="VERIFY" />
         </View>
     )
 };

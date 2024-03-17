@@ -1,7 +1,7 @@
 import { Text, View, TouchableOpacity } from "react-native"
 import { styles } from "../../styles/styles";
 import { useState } from "react";
-import ButtonComponent from "../../atoms/TeamXbutton";
+import TeamXButton from "../../atoms/TeamXButton";
 import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
 import TeamXSwitch from "../../molecules/TeamXSwitch";
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
@@ -44,7 +44,7 @@ const Signin = ({ navigation }) => {
         }
     }
     return (
-        <View style={styles.mainContainer}>
+        <View style={styles.containerStyle}>
             <TeamXLogoImage />
             <TeamXHeaderText value="SIGNIN" />
             <View style={{ marginLeft: -15 }}>
@@ -67,24 +67,20 @@ const Signin = ({ navigation }) => {
                 />
                 <TeamXErrorText errorText={passwordError} />
             </View>
-            <View style={styles.s_r_view}>
-                <View style={styles.s_r_view1}>
-                    <TeamXSwitch
-                        isRemember={isRemember}
-                        setIsRemember={setIsRemember}
-                        value="Remember"
-                    />
-                </View>
-                <View style={styles.s_f_view}>
-                    <Text
-                        style={styles.headerTextStyle}
-                        onPress={() => navigation.navigate('forgotPassword')}>
-                        Forgot Password
-                    </Text>
-                </View>
+            <View style={styles.stackHEdgeStyle}>
+                <TeamXSwitch
+                    isRemember={isRemember}
+                    setIsRemember={setIsRemember}
+                    value="Remember"
+                />
+                <Text
+                    style={styles.switchTextStyle}
+                    onPress={() => navigation.navigate('forgotPassword')}>
+                    Forgot Password
+                </Text>
             </View>
 
-            <ButtonComponent onPress={handleSubmitPress} text="SIGNIN" />
+            <TeamXButton onPress={handleSubmitPress} text="SIGNIN" />
 
             <TeamXTextedLink
                 value={"Don't have an account?  "}

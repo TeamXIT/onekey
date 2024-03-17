@@ -4,9 +4,9 @@ import { styles } from "../styles/styles";
 
 const TeamXCard = ({ onPress, imageSource, labelText }) => {
   return (
-    <TouchableOpacity style={[styles.cards, styles.enhancedCard]} onPress={onPress} activeOpacity={0.5}>
+    <TouchableOpacity style={[styles.cardStyle, styles.enhancedCard]} onPress={onPress} activeOpacity={0.5}>
       <Image source={imageSource} style={styles.cardIcon} />
-      <Text style={styles.cardText}>{labelText}</Text>
+      <Text style={styles.cardTextStyle}>{labelText}</Text>
     </TouchableOpacity>
   );
 };

@@ -16,7 +16,7 @@ const SplashScreen = ({ navigation }) => {
     }, 3000);
   }, []);
   return (
-    <View style={styles.S_background}>
+    <View style={styles.containerStyle}>
       <TeamXLogoImage />
     </View>
   );

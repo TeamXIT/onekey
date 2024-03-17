@@ -5,7 +5,7 @@ import TeamXLogoImage from "../../atoms/TeamXLogoImage";
 import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
 import TeamXHeaderText from "../../atoms/TeamXHeaderText";
-import ButtonComponent from "../../atoms/TeamXbutton";
+import TeamXButton from "../../atoms/TeamXButton";
 import TeamXTextedLink from "../../molecules/TeamXTextedLink";
 
 const Signup = ({ navigation }) => {
@@ -81,7 +81,7 @@ const Signup = ({ navigation }) => {
 
     return (
         <ScrollView>
-            <View style={styles.mainContainer}>
+            <View style={styles.containerStyle}>
                 <TeamXLogoImage />
                 <TeamXHeaderText value="SIGNUP" />
                 <TeamXImageTextInput
@@ -119,7 +119,7 @@ const Signup = ({ navigation }) => {
                     returnKeyType="done"
                 />
                 <TeamXErrorText errorText={confirmPasswordError} />
-                <ButtonComponent onPress={handleSubmitPress} text="SIGNUP" />
+                <TeamXButton onPress={handleSubmitPress} text="SIGNUP" />
                 <TeamXTextedLink
                     value={"Already  have an account?  "}
                     linkValue={"SIGNIN"}

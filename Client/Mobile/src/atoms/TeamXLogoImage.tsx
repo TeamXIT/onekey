@@ -6,7 +6,7 @@ const TeamXLogoImage = () => {
     return (
         <Image
             source={require('../images/ic_logo.png')}
-            style={styles.logoimg}
+            style={styles.logoImg}
         />
     );
 };
