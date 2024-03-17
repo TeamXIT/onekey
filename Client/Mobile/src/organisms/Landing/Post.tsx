@@ -1,8 +1,8 @@
 import { Text } from "react-native"
 
 const post = () => {
-    return(
-    <Text>post</Text>
+    return (
+        <Text>post</Text>
     );
 }
 

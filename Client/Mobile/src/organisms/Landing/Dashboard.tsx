@@ -24,12 +24,12 @@ const Dashboard = () => {
                     headerShown: true,
                     headerStyle: {
                         backgroundColor: "#952323",
-                      },
-                       headerTintColor:"#F2E8C6",
+                    },
+                    headerTintColor: "#F2E8C6",
                     tabBarLabel: ({ focused }) => (
                         <TeamXTabs
                             text="Home"
-                            imageSource={require('../../../asserts/Images/ic_home.png')}
+                            imageSource={require('../../images/ic_home.png')}
                             focused={focused}
                         />
                     ),
@@ -40,13 +40,13 @@ const Dashboard = () => {
                     headerShown: true,
                     headerStyle: {
                         backgroundColor: "#952323",
-                      },
-                       headerTintColor:"#F2E8C6",
-                    tabBarLabel: () => (
-                        <Image
-                            source={require('../../../asserts/Images/ic_add.png')}
-                            resizeMode='contain'
-                            style={styles.tabIcon}
+                    },
+                    headerTintColor: "#F2E8C6",
+                    tabBarLabel: ({ focused }) => (
+                        <TeamXTabs
+                            text="Home"
+                            imageSource={require('../../images/ic_home.png')}
+                            focused={focused}
                         />
                     ),
                 }}
@@ -54,14 +54,14 @@ const Dashboard = () => {
             <Tab.Screen name="Projects" component={Projects}
                 options={{
                     headerShown: true,
-                        headerStyle: {
-                          backgroundColor: "#952323",
-                        },
-                         headerTintColor:"#F2E8C6",
+                    headerStyle: {
+                        backgroundColor: "#952323",
+                    },
+                    headerTintColor: "#F2E8C6",
                     tabBarLabel: ({ focused }) => (
                         <TeamXTabs
                             text="Projects"
-                            imageSource={require('../../../asserts/Images/ic_project.png')}
+                            imageSource={require('../../images/ic_project.png')}
                             focused={focused}
                         />
                     ),

@@ -2,8 +2,8 @@
 import { Text } from "react-native"
 
 const Comment = () => {
-    return(
-    <Text>Comment</Text>
+    return (
+        <Text>Comment</Text>
     );
 }
 

@@ -1,16 +1,19 @@
 import { StyleSheet, useColorScheme } from "react-native";
 
-const componentColor = useColorScheme() === 'light' ? '#FAFAFA' : '#404040';
+// Colors
 const transparent = "transparent";
 const darkText = "#212121";
 const lightText = '#FAFAFA';
 const primaryColor = "#48525e";
 const secondaryColor = "#F2E8C6";
 const fieldColor = '#A63120';
-const textColor = useColorScheme() === 'light' ? darkText : lightText;
-
 const gray = "#808080";
 const lightGray = "#D3D3D3";
+const componentColor = useColorScheme() === 'light' ? '#FAFAFA' : '#404040';
+const textColor = useColorScheme() === 'light' ? darkText : lightText;
+const errorColor = "#FF0000";
+
+// FontSizes
 const xSmallSize = 14;
 const smallSize = 18;
 const normalSize = 20;
@@ -31,7 +34,6 @@ const styles = StyleSheet.create({
     appTransparent: {
         color: transparent
     },
-
     appInputBg: {
         color: fieldColor
     },
@@ -101,7 +103,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         elevation: 20
-
     },
     cardsContainer2: {
         flexDirection: 'row',
@@ -220,7 +221,6 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 15,
         borderRadius: 8,
-
         fontSize: normalSize,
     },
     SectionStyle: {
@@ -243,7 +243,6 @@ const styles = StyleSheet.create({
         height: 300,
         resizeMode: 'contain',
         marginBottom: -50,
-        marginLeft: 25,
         margin: 30,
     },
     pressableTextStyle: {
@@ -274,31 +273,8 @@ const styles = StyleSheet.create({
     },
     s_r_view: {
         flexDirection: 'row',
-        marginLeft: 10, 
-        marginRight: 10 
-    },
-    s_r_view1:{ flex: 1, 
-        flexDirection: 'row', 
-        justifyContent: 'flex-start', 
-        alignItems: 'center' 
-    },
-    s_f_view:{ 
-        flex: 1, 
-        flexDirection: 'row', 
-        justifyContent: 'flex-end', 
-        alignItems: 'center' 
-    },
-    error:{
-        color:errorTextColor,
-        marginLeft:'10%'
-    },
-    mainContainerView:{
-        backgroundColor: secondaryColor,
-         flex: 1,
-        marginTop: 15,
         marginLeft: 10,
-        marginRight: 10,
-        marginBottom: 50
+        marginRight: 10
     },
     s_r_view1: {
         flex: 1,
@@ -312,11 +288,17 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center'
     },
-    siup_outer_view: {
-        backgroundColor: primaryColor,
-        padding: 15,
-        paddingLeft: 20,
-        paddingRight: 20
+    error: {
+        color: errorColor,
+        marginLeft: '10%'
+    },
+    mainContainerView: {
+        backgroundColor: secondaryColor,
+        flex: 1,
+        paddingTop: 15,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingBottom: 50
     },
     bottom_text: {
         flexDirection: 'row',

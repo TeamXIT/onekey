@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 import { styles } from '../../styles/styles';
 
 const Projects = ({ navigation }) => {
@@ -8,14 +8,14 @@ const Projects = ({ navigation }) => {
 
   const data = [
 
-    { id: '1', title: 'Card 1', description: 'Description for Card 1', image: require('../../../asserts/Images/ic_seller.png'), likes: 0 },
-    { id: '2', title: 'Card 2', description: 'Description for Card 2', image: require('../../../asserts/Images/ic_seller.png'), likes: 0 },
-    { id: '3', title: 'Card 3', description: 'Description for Card 3', image: require('../../../asserts/Images/ic_seller.png'), likes: 0 },
-    { id: '4', title: 'Card 4', description: 'Description for Card 4', image: require('../../../asserts/Images/ic_seller.png'), likes: 0 },
-    { id: '5', title: 'Card 5', description: 'Description for Card 5', image: require('../../../asserts/Images/ic_seller.png'), likes: 0 },
-    { id: '6', title: 'Card 6', description: 'Description for Card 6', image: require('../../../asserts/Images/ic_seller.png'), likes: 0 },
-    { id: '7', title: 'Card 7', description: 'Description for Card 7', image: require('../../../asserts/Images/ic_seller.png'), likes: 0 },
-    { id: '8', title: 'Card 8', description: 'Description for Card 8', image: require('../../../asserts/Images/ic_seller.png'), likes: 0 },
+    { id: '1', title: 'Card 1', description: 'Description for Card 1', image: require('../../images/ic_seller.png'), likes: 0 },
+    { id: '2', title: 'Card 2', description: 'Description for Card 2', image: require('../../images/ic_seller.png'), likes: 0 },
+    { id: '3', title: 'Card 3', description: 'Description for Card 3', image: require('../../images/ic_seller.png'), likes: 0 },
+    { id: '4', title: 'Card 4', description: 'Description for Card 4', image: require('../../images/ic_seller.png'), likes: 0 },
+    { id: '5', title: 'Card 5', description: 'Description for Card 5', image: require('../../images/ic_seller.png'), likes: 0 },
+    { id: '6', title: 'Card 6', description: 'Description for Card 6', image: require('../../images/ic_seller.png'), likes: 0 },
+    { id: '7', title: 'Card 7', description: 'Description for Card 7', image: require('../../images/ic_seller.png'), likes: 0 },
+    { id: '8', title: 'Card 8', description: 'Description for Card 8', image: require('../../images/ic_seller.png'), likes: 0 },
 
   ];
 
@@ -37,13 +37,13 @@ const Projects = ({ navigation }) => {
       <View style={styles.buttonlikeContainer}>
         <TouchableOpacity onPress={() => handleLikePress(item.id)}>
           <Image
-            source={require('../../../asserts/Images/ic_like.png')}
+            source={require('../../images/ic_like.png')}
             style={[styles.icon, { tintColor: likeCounts[item.id] ? "#A73121" : "#777" }]}
           />
         </TouchableOpacity>
         <TouchableOpacity onPress={handleCommentPress}>
           <Image
-            source={require('../../../asserts/Images/ic_comment.png')}
+            source={require('../../images/ic_comment.png')}
             style={[styles.icon, { tintColor: comment ? "#777" : "#A73121" }]}
           />
         </TouchableOpacity>
@@ -62,10 +62,9 @@ const Projects = ({ navigation }) => {
       renderItem={renderItem}
       keyExtractor={item => item.id}
       numColumns={1}
-      contentContainerStyle={[styles.container, styles.Margin]}
+    //contentContainerStyle={[styles.container, styles.Margin]}
     />
   );
 };
-
 
 export default Projects;

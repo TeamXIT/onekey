@@ -1,27 +1,25 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Text,View } from "react-native"
+import { View } from "react-native"
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "../../styles/styles";
-import LogoImage from "../../atoms/logo";
+import TeamXLogoImage from "../../atoms/TeamXLogoImage";
 
-const SplashScreen = ({navigation}) => {
-    const [animating, setAnimating] = useState(true);
+const SplashScreen = ({ navigation }) => {
+  const [animating, setAnimating] = useState(true);
 
-    useEffect(() => {
-        setTimeout(() => {
-          AsyncStorage.getItem('userId').then((value) => {
-            navigation.replace(value === null ? 'Auth' : 'Landing');
-          });
-        }, 3000);
-      }, []);
-    return(
+  useEffect(() => {
+    setTimeout(() => {
+      AsyncStorage.getItem('userId').then((value) => {
+        navigation.replace(value === null ? 'Auth' : 'Landing');
+      });
+    }, 3000);
+  }, []);
+  return (
     <View style={styles.S_background}>
-      <LogoImage />
-
+      <TeamXLogoImage />
     </View>
-    );
+  );
 }
-
 
 export default SplashScreen;

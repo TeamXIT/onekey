@@ -3,7 +3,7 @@ import { View, TextInput, Keyboard, Image } from 'react-native';
 import { styles } from '../styles/styles';
 import PropTypes from 'prop-types';
 
-const TextImageInput = ({ value, onChangeText, placeholder, keyboardType, secureTextEntry, returnKeyType, maxLength, image }) => {
+const TeamXImageTextInput = ({ value, onChangeText, placeholder, keyboardType, secureTextEntry, returnKeyType, maxLength, image }) => {
     return (
         <View style={styles.imagecontainer}>
             {image && (
@@ -28,7 +28,7 @@ const TextImageInput = ({ value, onChangeText, placeholder, keyboardType, secure
     );
 };
 
-TextImageInput.propTypes = {
+TeamXImageTextInput.propTypes = {
     value: PropTypes.string.isRequired,
     onChangeText: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
@@ -37,14 +37,14 @@ TextImageInput.propTypes = {
     returnKeyType: PropTypes.oneOf(['done', 'go', 'next', 'search', 'send']),
     maxLength: PropTypes.number,
     image: PropTypes.oneOfType([
-        PropTypes.number, 
-        PropTypes.shape({ 
+        PropTypes.number,
+        PropTypes.shape({
             uri: PropTypes.string.isRequired,
         }),
     ]),
 };
 
-TextImageInput.defaultProps = {
+TeamXImageTextInput.defaultProps = {
     placeholder: '',
     keyboardType: 'default',
     secureTextEntry: false,
@@ -54,4 +54,4 @@ TextImageInput.defaultProps = {
 };
 
 
-export default TextImageInput;
+export default TeamXImageTextInput;

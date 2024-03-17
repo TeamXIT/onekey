@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import { styles } from '../styles/styles';
 
-const ErrorText = ({ errorText }) => {
+const TeamXErrorText = ({ errorText }) => {
   return (
     <>
       {errorText ? <Text style={styles.error}>{errorText}</Text> : null}
@@ -10,4 +10,4 @@ const ErrorText = ({ errorText }) => {
   );
 };
 
-export default ErrorText;
+export default TeamXErrorText;

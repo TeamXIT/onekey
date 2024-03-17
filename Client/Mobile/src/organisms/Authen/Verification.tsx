@@ -1,10 +1,13 @@
 
-import { View, Text, SafeAreaView, TextInput, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { View } from "react-native";
 import { styles } from "../../styles/styles";
 import { useState } from "react";
-import ErrorText from "../../molecules/ErrorText";
+import TeamXLogoImage from "../../atoms/TeamXLogoImage";
+import ButtonComponent from "../../atoms/TeamXbutton";
+import TeamXErrorText from "../../molecules/TeamXErrorText";
+import TeamXOTPInput from "../../molecules/TeamXOTPInput";
+import TeamXHeaderText from "../../atoms/TeamXHeaderText";
 
-import TeamXTextInput from "../../molecules/TeamXTextInput";
 
 const Verification = ({ navigation }) => {
     const [otp, setOtp] = useState('');
@@ -27,16 +30,17 @@ const Verification = ({ navigation }) => {
             navigation.navigate('typeselection');
         }
     }
-    return (
-        <View style={styles.BgContainer}>
-            <LogoImage />
-            <Text style={styles.V_verifyTest}>Verify OTP</Text>
-            <View style={[styles.SectionStyle,[]]}>
-             <OTPInput  onOTPChange={setOtp} />
-            </View>
-            <ErrorText errorText={otpError} />
 
-            <ButtonComponent onPress={verify} text="VERIFY" />
+    return (
+        <View style={styles.mainContainer}>
+            <TeamXLogoImage />
+            <TeamXHeaderText value={"VERIFY OTP"} />
+            <View style={[styles.SectionStyle, []]}>
+                <TeamXOTPInput onOTPChange={setOtp} />
+            </View>
+            <TeamXErrorText errorText={otpError} />
+            <ButtonComponent onPress={handleSubmitPress} text="VERIFY" />
+        </View>
     )
 };
 

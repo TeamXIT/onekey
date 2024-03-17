@@ -1,18 +1,24 @@
-import { Text, View, Image, Switch, TouchableOpacity, Alert } from "react-native"
+import { Text, View, TouchableOpacity } from "react-native"
 import { styles } from "../../styles/styles";
-import TeamXTextInput from "../../molecules/TeamXTextInput";
 import { useState } from "react";
-import ErrorText from "../../molecules/ErrorText";
 import ButtonComponent from "../../atoms/TeamXbutton";
-import LogoImage from "../../atoms/logo";
-import TextImageInput from "../../atoms/ImageBasedTextInput";
+import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
+import TeamXSwitch from "../../molecules/TeamXSwitch";
+import TeamXLogoImage from "../../atoms/TeamXLogoImage";
+import TeamXHeaderText from "../../atoms/TeamXHeaderText";
+import TeamXTextedLink from "../../molecules/TeamXTextedLink";
+import { useAppDispatch } from "../../reducers/hooks";
+import TeamXErrorText from "../../molecules/TeamXErrorText";
 
 const Signin = ({ navigation }) => {
+    const dispatch = useAppDispatch()
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isRemember, setIsRemember] = useState(false);
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+
     const handleSubmitPress = () => {
         let hasError = false;
         if (!username.trim()) {
@@ -39,37 +45,34 @@ const Signin = ({ navigation }) => {
     }
     return (
         <View style={styles.mainContainer}>
-            <View style={{ alignItems: 'center' }}>
-            <LogoImage />
-           
-            </View>
-            <View style={{marginLeft:-15}}>
-            <View style={styles.SectionStyle}>
-                <TextImageInput
+            <TeamXLogoImage />
+            <TeamXHeaderText value="SIGNIN" />
+            <View style={{ marginLeft: -15 }}>
+                <TeamXImageTextInput
                     value={username}
                     onChangeText={setUsername}
-                    image={require('../../../assets/images/ic_user.png')}
+                    image={require('../../images/ic_user.png')}
                     placeholder="Enter Username"
                     keyboardType="email-address"
                     returnKeyType="next"
                 />
-            </View>
-            <View style={styles.SectionStyle}>
-                <TextImageInput
+                <TeamXErrorText errorText={usernameError} />
+                <TeamXImageTextInput
                     value={password}
                     onChangeText={setPassword}
-                    image={require('../../../assets/images/ic_eye.png')}
+                    image={require('../../images/ic_eye.png')}
                     placeholder="Enter Password"
                     secureTextEntry={true}
                     returnKeyType="done"
                 />
-            </View>
+                <TeamXErrorText errorText={passwordError} />
             </View>
             <View style={styles.s_r_view}>
                 <View style={styles.s_r_view1}>
-                    <RememberSwitch
+                    <TeamXSwitch
                         isRemember={isRemember}
                         setIsRemember={setIsRemember}
+                        value="Remember"
                     />
                 </View>
                 <View style={styles.s_f_view}>
@@ -80,11 +83,13 @@ const Signin = ({ navigation }) => {
                     </Text>
                 </View>
             </View>
+
             <ButtonComponent onPress={handleSubmitPress} text="SIGNIN" />
 
-            <View  style={styles.bottom_text}>
-              <Text style={styles.text}>Don't have an account?  </Text><TouchableOpacity><Text style={[styles.text,{fontWeight:'bold'}]} onPress={()=>navigation.navigate('signup')}>SIGNUP</Text></TouchableOpacity> 
-            </View>
+            <TeamXTextedLink
+                value={"Don't have an account?  "}
+                linkValue={"SIGNUP"}
+                handleOnPress={() => navigation.navigate('signup')} />
         </View>
     );
 }

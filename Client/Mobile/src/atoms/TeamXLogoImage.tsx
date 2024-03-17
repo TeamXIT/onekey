@@ -2,13 +2,13 @@ import React from 'react';
 import { Image } from 'react-native';
 import { styles } from '../styles/styles';
 
-const LogoImage = () => {
+const TeamXLogoImage = () => {
     return (
         <Image
-            source={require('../../assets/images/ic_logo.png')}
+            source={require('../images/ic_logo.png')}
             style={styles.logoimg}
         />
     );
 };
 
-export default LogoImage;
+export default TeamXLogoImage;

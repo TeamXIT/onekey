@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { View, TextInput } from 'react-native';
 import { styles } from '../styles/styles';
 
-const OTPInput = ({ numberOfDigits = 5, onOTPChange }) => {
+const TeamXOTPInput = ({ numberOfDigits = 6, onOTPChange }) => {
   const [otp, setOTP] = useState(Array(numberOfDigits).fill(''));
   const inputRefs = useRef([]);
 
@@ -42,6 +42,4 @@ const OTPInput = ({ numberOfDigits = 5, onOTPChange }) => {
   );
 };
 
-
-
-export default OTPInput;
+export default TeamXOTPInput;

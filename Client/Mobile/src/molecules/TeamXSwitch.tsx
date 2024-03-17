@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Switch, Text } from 'react-native';
 import { styles } from '../styles/styles';
 
-const RememberSwitch = ({ isRemember, setIsRemember }) => {
+const TeamXSwitch = ({ isRemember, setIsRemember, value }) => {
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <Switch
@@ -11,10 +11,10 @@ const RememberSwitch = ({ isRemember, setIsRemember }) => {
         onValueChange={setIsRemember}
         value={isRemember}
       />
-      <Text style={styles.headerTextStyle}>Remember</Text>
+      <Text style={styles.headerTextStyle}>{value}</Text>
     </View>
 
   );
 };
 
-export default RememberSwitch;
+export default TeamXSwitch;

@@ -14,9 +14,11 @@ import Verification from './src/organisms/Authen/Verification';
 import Dashboard from './src/organisms/Landing/Dashboard';
 import Home from './src/organisms/Landing/Home';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
-import forgotPassword from './src/organisms/Authen/forgotPassword';
+import forgotPassword from './src/organisms/Authen/ForgotPassword';
 import Comment from './src/organisms/Landing/Comment';
 import Projects from './src/organisms/Landing/Projects';
+import { Provider } from 'react-redux';
+import { store } from './src/reducers/store';
 
 const Stack = createStackNavigator();
 
@@ -27,14 +29,14 @@ const Auth = () => {
       <Stack.Screen
         name="signin"
         component={Signin}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="signup"
         component={Signup}
         options={{
           title: 'Signup',
-           //Set Header Title
+          //Set Header Title
           headerStyle: {
             backgroundColor: styles.appColor.color, //Set Header color
           },
@@ -78,7 +80,7 @@ const Auth = () => {
       <Stack.Screen
         name="forgotPassword"
         component={forgotPassword}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
@@ -89,21 +91,21 @@ const Landing = () => {
   return (
     <Stack.Navigator initialRouteName="dashboard">
       <Stack.Screen
-       name="dashboard"
-       component={Dashboard}
-       options={{headerShown: false}}
+        name="dashboard"
+        component={Dashboard}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
-       name="home"
-       component={Home}
+        name="home"
+        component={Home}
       />
       <Stack.Screen
-       name="project"
-       component={Projects}
+        name="project"
+        component={Projects}
       />
-       <Stack.Screen
-       name="comment"
-       component={Comment}
+      <Stack.Screen
+        name="comment"
+        component={Comment}
       />
     </Stack.Navigator>
   );
@@ -111,30 +113,32 @@ const Landing = () => {
 
 function App(): React.JSX.Element {
   return (
-    <NavigationContainer>
-    <Stack.Navigator initialRouteName="splashScreen">
-      {/* SplashScreen which will come once for 5 Seconds */}
-      <Stack.Screen
-        name="splashScreen"
-        component={SplashScreen}
-        // Hiding header for Splash Screen
-        options={{headerShown: false}}
-      />
-      {/* Auth Navigator: Include Login and Signup */}
-      <Stack.Screen
-        name="Auth"
-        component={Auth}
-        options={{headerShown: false}}
-      />
-      {/* Navigation Drawer as a landing page */}
-      <Stack.Screen
-        name="Landing"
-        component={Landing}
-        // Hiding header for Navigation Drawer
-        options={{headerShown: false}}
-      />
-    </Stack.Navigator>
-  </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="splashScreen">
+          {/* SplashScreen which will come once for 5 Seconds */}
+          <Stack.Screen
+            name="splashScreen"
+            component={SplashScreen}
+            // Hiding header for Splash Screen
+            options={{ headerShown: false }}
+          />
+          {/* Auth Navigator: Include Login and Signup */}
+          <Stack.Screen
+            name="Auth"
+            component={Auth}
+            options={{ headerShown: false }}
+          />
+          {/* Navigation Drawer as a landing page */}
+          <Stack.Screen
+            name="Landing"
+            component={Landing}
+            // Hiding header for Navigation Drawer
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
