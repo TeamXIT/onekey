@@ -5,10 +5,14 @@ import TeamXLogoImage from "../../atoms/TeamXLogoImage";
 import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
 import TeamXHeaderText from "../../atoms/TeamXHeaderText";
-import TeamXButton from "../../atoms/TeamXButton";
+import TeamXButton from "../../atoms/TeamXbutton";
 import TeamXTextedLink from "../../molecules/TeamXTextedLink";
+import { useAppDispatch } from "../../reducers/hooks";
+import { signupUser } from "../../reducers/auth/authSlice";
+
 
 const Signup = ({ navigation }) => {
+    const dispatch =useAppDispatch();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -79,10 +83,8 @@ const Signup = ({ navigation }) => {
         } else {
             setConfirmPasswordError('');
         }
-
-        // Navigate only if there are no errors
         if (!hasError) {
-            navigation.navigate('verification');
+            dispatch(signupUser(username,email,password,confirmPassword)).then(()=>{ navigation.navigate('verification');});
         }
     }
 

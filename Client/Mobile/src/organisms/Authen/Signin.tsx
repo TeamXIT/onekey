@@ -1,7 +1,7 @@
 import { Text, View, TouchableOpacity } from "react-native"
 import { styles } from "../../styles/styles";
-import { useState } from "react";
-import TeamXButton from "../../atoms/TeamXButton";
+import { useState, } from "react";
+import TeamXButton from "../../atoms/TeamXbutton";
 import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
 import TeamXSwitch from "../../molecules/TeamXSwitch";
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
@@ -9,6 +9,8 @@ import TeamXHeaderText from "../../atoms/TeamXHeaderText";
 import TeamXTextedLink from "../../molecules/TeamXTextedLink";
 import { useAppDispatch } from "../../reducers/hooks";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
+import { signinUser } from "../../reducers/auth/authSlice";
+import { useSelector } from "react-redux";
 
 const Signin = ({ navigation }) => {
     const dispatch = useAppDispatch()
@@ -19,7 +21,7 @@ const Signin = ({ navigation }) => {
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
 
-    const handleSubmitPress = () => {
+    const handleSubmitPress = async () => {
         let hasError = false;
         if (!username.trim()) {
             setUsernameError('Please provide username.');
@@ -39,9 +41,20 @@ const Signin = ({ navigation }) => {
         } else {
             setPasswordError('');
         }
-        if (!hasError) {
-            navigation.navigate('verification');
+        if (passwordError !=='') {
+            setPasswordError('Invalid password. Please try again.');
+            hasError = true;
         }
+        if (!hasError) {
+            dispatch(signinUser(username,password))
+           const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+            if (!isAuthenticated) {
+                setPasswordError('Invalid password. Please try again.');
+            } else {
+                navigation.navigate('Landing');
+            }
+        }
+        
     }
     return (
         <View style={styles.containerStyle}>
@@ -93,3 +106,6 @@ const Signin = ({ navigation }) => {
 }
 
 export default Signin;
+
+
+

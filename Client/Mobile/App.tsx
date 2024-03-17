@@ -14,12 +14,12 @@ import Verification from './src/organisms/Authen/Verification';
 import Dashboard from './src/organisms/Landing/Dashboard';
 import Home from './src/organisms/Landing/Home';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
-import forgotPassword from './src/organisms/Authen/ForgotPassword';
 import Comment from './src/organisms/Landing/Comment';
 import Projects from './src/organisms/Landing/Projects';
 import { Provider } from 'react-redux';
 import { store } from './src/reducers/store';
 import OneKeyIntro from './src/organisms/Authen/OneKeyInto';
+import ForgotPassword from './src/organisms/Authen/forgotPassword';
 
 const Stack = createStackNavigator();
 
@@ -84,7 +84,7 @@ const Auth = () => {
       />
       <Stack.Screen
         name="forgotPassword"
-        component={forgotPassword}
+        component={ForgotPassword}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
