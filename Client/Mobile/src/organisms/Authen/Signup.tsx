@@ -21,6 +21,13 @@ const Signup = ({ navigation }) => {
 
     const handleSubmitPress = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        //TODO: password validation
+        //1. Must have min 8 chars
+        //2. Must have at least one small char
+        //3. Must have at leasr one Capital char
+        //4. Must have at least one numeric chat
+        //EX1: Teamx@123
+        //EX2: teamXit#1
         let hasError = false;
 
         // Check username

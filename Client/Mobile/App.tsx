@@ -19,6 +19,7 @@ import Comment from './src/organisms/Landing/Comment';
 import Projects from './src/organisms/Landing/Projects';
 import { Provider } from 'react-redux';
 import { store } from './src/reducers/store';
+import OneKeyIntro from './src/organisms/Authen/OneKeyInto';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,10 @@ const Auth = () => {
   // Stack Navigator for Login and Sign up Screen
   return (
     <Stack.Navigator initialRouteName="signin">
+      <Stack.Screen
+        name="intro"
+        component={OneKeyIntro}
+        options={{ headerShown: false }} />
       <Stack.Screen
         name="signin"
         component={Signin}
