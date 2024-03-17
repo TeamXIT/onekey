@@ -47,7 +47,7 @@ const Signin = ({ navigation }) => {
         <View style={styles.containerStyle}>
             <TeamXLogoImage />
             <TeamXHeaderText value="SIGNIN" />
-            <View style={{ marginLeft: -15 }}>
+            <View>
                 <TeamXImageTextInput
                     value={username}
                     onChangeText={setUsername}
@@ -57,6 +57,8 @@ const Signin = ({ navigation }) => {
                     returnKeyType="next"
                 />
                 <TeamXErrorText errorText={usernameError} />
+            </View>
+            <View>
                 <TeamXImageTextInput
                     value={password}
                     onChangeText={setPassword}

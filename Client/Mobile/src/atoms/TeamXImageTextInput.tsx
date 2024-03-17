@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, TextInput, Keyboard, Image } from 'react-native';
+import { View, Image } from 'react-native';
 import { styles } from '../styles/styles';
 import PropTypes from 'prop-types';
 import TeamXTextInput from '../molecules/TeamXTextInput';
 
 const TeamXImageTextInput = ({ value, onChangeText, placeholder, keyboardType, secureTextEntry, returnKeyType, maxLength, image }) => {
     return (
-        <View style={styles.imageContainer}>
+        <View style={styles.imgTextContainer}>
             {image && (
                 <Image
                     source={image}

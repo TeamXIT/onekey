@@ -4,9 +4,12 @@ import { styles } from "../../styles/styles";
 import TeamXCard from "../../molecules/TeamXCard";
 import { CardOptions } from "../../helpers/Models/CardOptions";
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
+import TeamXErrorText from "../../molecules/TeamXErrorText";
 
 const UserTypeSelection = ({ navigation }) => {
+
     const [userType, setUserType] = useState("");
+    const [error, setError] = useState("");
 
     function handleCardPress(value: CardOptions): void {
         setUserType(value);
@@ -14,7 +17,10 @@ const UserTypeSelection = ({ navigation }) => {
 
     const handleNextpress = () => {
         if (userType) {
+            setError("");
             navigation.navigate('Landing');
+        } else {
+            setError("Select type of user to signup");
         }
     };
 
@@ -25,7 +31,7 @@ const UserTypeSelection = ({ navigation }) => {
     return (
         <View style={styles.containerStyle}>
             <TeamXLogoImage />
-            
+
             <View style={styles.US_cardsContainerStyle}>
                 <TeamXCard
                     onPress={() => handleCardPress(CardOptions.BPO)}
@@ -50,6 +56,7 @@ const UserTypeSelection = ({ navigation }) => {
                     labelText="Lawyer"
                 />
             </View>
+            <TeamXErrorText errorText={error} />
             <View style={styles.smallbuttonContainer}>
                 <TouchableOpacity onPress={handleBackpress}>
                     <View style={styles.BacktouchableContent}>

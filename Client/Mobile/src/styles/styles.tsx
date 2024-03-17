@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
         backgroundColor: primaryColor,
         height: '100%',
         width: '100%',
-        padding: 15
+        padding: 15,
+        gap: 10
     },
     textStyle: {
         fontSize: normalSize,
@@ -126,10 +127,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
-    imageContainer: {
+    imgTextContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 15,
         borderWidth: 1,
         borderColor: secondaryColor,
         borderRadius: 8,
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         borderColor: secondaryColor,
         height: 60,
-        width: '97%',
+        width: '100%',
         padding: 5,
         alignItems: 'center',
         borderRadius: 8,

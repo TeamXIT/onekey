@@ -84,41 +84,49 @@ const Signup = ({ navigation }) => {
             <View style={styles.containerStyle}>
                 <TeamXLogoImage />
                 <TeamXHeaderText value="SIGNUP" />
-                <TeamXImageTextInput
-                    value={username}
-                    onChangeText={setUsername}
-                    image={require('../../images/ic_user.png')}
-                    placeholder="Enter Username"
-                    keyboardType="email-address"
-                    returnKeyType="next"
-                />
-                <TeamXErrorText errorText={usernameError} />
-                <TeamXImageTextInput
-                    value={email}
-                    onChangeText={setEmail}
-                    image={require('../../images/ic_email.png')}
-                    placeholder="Enter Email"
-                    keyboardType="email-address"
-                />
-                <TeamXErrorText errorText={emailError} />
-                <TeamXImageTextInput
-                    value={password}
-                    onChangeText={setPassword}
-                    image={require('../../images/ic_eye.png')}
-                    placeholder="New Password"
-                    secureTextEntry={true}
-                    returnKeyType="done"
-                />
-                <TeamXErrorText errorText={passwordError} />
-                <TeamXImageTextInput
-                    value={confirmPassword}
-                    onChangeText={setConfirmPassword}
-                    image={require('../../images/ic_eye.png')}
-                    placeholder="Confirm  Password"
-                    secureTextEntry={true}
-                    returnKeyType="done"
-                />
-                <TeamXErrorText errorText={confirmPasswordError} />
+                <View>
+                    <TeamXImageTextInput
+                        value={username}
+                        onChangeText={setUsername}
+                        image={require('../../images/ic_user.png')}
+                        placeholder="Enter Username"
+                        keyboardType="email-address"
+                        returnKeyType="next"
+                    />
+                    <TeamXErrorText errorText={usernameError} />
+                </View>
+                <View>
+                    <TeamXImageTextInput
+                        value={email}
+                        onChangeText={setEmail}
+                        image={require('../../images/ic_email.png')}
+                        placeholder="Enter Email"
+                        keyboardType="email-address"
+                    />
+                    <TeamXErrorText errorText={emailError} />
+                </View>
+                <View>
+                    <TeamXImageTextInput
+                        value={password}
+                        onChangeText={setPassword}
+                        image={require('../../images/ic_eye.png')}
+                        placeholder="New Password"
+                        secureTextEntry={true}
+                        returnKeyType="done"
+                    />
+                    <TeamXErrorText errorText={passwordError} />
+                </View>
+                <View>
+                    <TeamXImageTextInput
+                        value={confirmPassword}
+                        onChangeText={setConfirmPassword}
+                        image={require('../../images/ic_eye.png')}
+                        placeholder="Confirm  Password"
+                        secureTextEntry={true}
+                        returnKeyType="done"
+                    />
+                    <TeamXErrorText errorText={confirmPasswordError} />
+                </View>
                 <TeamXButton onPress={handleSubmitPress} text="SIGNUP" />
                 <TeamXTextedLink
                     value={"Already  have an account?  "}
