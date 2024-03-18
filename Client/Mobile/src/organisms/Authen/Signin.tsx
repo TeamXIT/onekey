@@ -1,7 +1,7 @@
 import { Text, View, TouchableOpacity } from "react-native"
 import { styles } from "../../styles/styles";
 import { useState } from "react";
-import TeamXButton from "../../atoms/TeamXButton";
+import TeamXButton from '../../atoms/TeamXbutton';
 import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
 import TeamXSwitch from "../../molecules/TeamXSwitch";
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
@@ -20,6 +20,7 @@ const Signin = ({ navigation }) => {
     const [passwordError, setPasswordError] = useState('');
 
     const handleSubmitPress = () => {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
         let hasError = false;
         if (!username.trim()) {
             setUsernameError('Please provide username.');
@@ -33,8 +34,8 @@ const Signin = ({ navigation }) => {
         if (!password.trim()) {
             setPasswordError('Please provide password.');
             hasError = true;
-        } else if (password.trim().length < 8) {
-            setPasswordError('Password must be at least 8 characters.');
+        } else if (!passwordRegex.test(password.trim())) {
+            setPasswordError('Password must have minimum 8 characters, at least one lowercase letter, one uppercase letter, and one numeric character.');
             hasError = true;
         } else {
             setPasswordError('');

@@ -205,7 +205,8 @@ const styles = StyleSheet.create({
     stackHEdgeStyle: {
         flexDirection: 'row',
         marginLeft: 10,
-        marginRight: 10
+        marginRight: 10,
+        gap:70
     },
     errorTextStyle: {
         color: errorColor,
