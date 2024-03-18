@@ -22,8 +22,7 @@ const DynamicProperties = sequelize.define("DynamicProperty",{
             key:'product_id'
         }
     }
-},{versionKey:false,timestamps:true});
-
+},{timestamps:true});
 
 
 module.exports = {DynamicProperties};
