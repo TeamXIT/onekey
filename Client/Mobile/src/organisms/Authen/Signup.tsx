@@ -35,8 +35,8 @@ const Signup = ({ navigation }) => {
         if (!username.trim()) {
             setUsernameError('Please provide username.');
             hasError = true;
-        } else if (username.trim().length < 8) {
-            setUsernameError('Username must be at least 8 characters.');
+        } else if (username.trim().length < 4) {
+            setUsernameError('Username must be at least 4 characters.');
             hasError = true;
         } else {
             setUsernameError('');
