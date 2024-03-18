@@ -55,7 +55,7 @@ const Dashboard = () => {
                 options={{
                     headerShown: true,
                     headerStyle: {
-                        backgroundColor: "#952323",
+                        backgroundColor: "#48525e",
                     },
                     headerTintColor: "#F2E8C6",
                     tabBarLabel: ({ focused }) => (

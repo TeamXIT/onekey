@@ -13,7 +13,7 @@ const lightGray = "#D3D3D3";
 const componentColor = useColorScheme() === 'light' ? '#FAFAFA' : '#404040';
 const textColor = useColorScheme() === 'light' ? darkText : lightText;
 const errorColor = "#FF0000";
-
+const blue ="#0987F0";
 // FontSizes
 const xSmallSize = 14;
 const smallSize = 18;
@@ -215,8 +215,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 30
     },
-
-    card: {
+    cardStyle: {
         backgroundColor: secondaryColor,
         marginBottom: 10,
         marginLeft: 8,
@@ -225,39 +224,40 @@ const styles = StyleSheet.create({
         elevation: 5,
         flexDirection: 'row',
         alignItems: 'center',
-        height: 150
+        height: 170
     },
     cardContent: {
         flex: 1,
         flexDirection: 'column',
-        marginLeft: 10,
+        marginLeft: -70,
     },
     cardimage: {
-        width: 100,
-        height: 100,
-        marginRight: 20,
+        marginBottom: 40,
+        marginLeft: 10,
+
     },
-    buttonlikeContainer: {
+    buttonContainer: {
         flexDirection: 'row',
-        marginTop: 10,
+        marginTop: 110,
+        right: 110,
     },
     icon: {
-        marginRight: 15,
+        marginRight: 30,
     },
-    title: {
-        fontSize: 18,
+    cardTitle: {
+        fontSize: normalSize,
         fontWeight: 'bold',
         marginBottom: 4,
     },
-    description: {
-        fontSize: 16,
+    cardDescription: {
+        fontSize: smallSize,
         marginBottom: 4,
     },
-    likes: {
-        fontSize: 14,
+    cardLikes: {
+        fontSize: xSmallSize,
+        color: blue
     },
 
-    
 
 });
 export { styles };

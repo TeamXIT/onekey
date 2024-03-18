@@ -14,7 +14,7 @@ import Verification from './src/organisms/Authen/Verification';
 import Dashboard from './src/organisms/Landing/Dashboard';
 import Home from './src/organisms/Landing/Home';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
-import forgotPassword from './src/organisms/Authen/ForgotPassword';
+import forgotPassword from './src/organisms/Authen/forgotPassword';
 import Comment from './src/organisms/Landing/Comment';
 import Projects from './src/organisms/Landing/Projects';
 import { Provider } from 'react-redux';
@@ -26,7 +26,7 @@ const Stack = createStackNavigator();
 const Auth = () => {
   // Stack Navigator for Login and Sign up Screen
   return (
-    <Stack.Navigator initialRouteName="signin">
+    <Stack.Navigator initialRouteName="typeselection">
       <Stack.Screen
         name="intro"
         component={OneKeyIntro}
@@ -120,7 +120,7 @@ function App(): React.JSX.Element {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="splashScreen">
+        <Stack.Navigator initialRouteName="Landing">
           {/* SplashScreen which will come once for 5 Seconds */}
           <Stack.Screen
             name="splashScreen"
