@@ -13,7 +13,7 @@ const lightGray = "#D3D3D3";
 const componentColor = useColorScheme() === 'light' ? '#FAFAFA' : '#404040';
 const textColor = useColorScheme() === 'light' ? darkText : lightText;
 const errorColor = "#FF0000";
-
+const blue ="#0987F0";
 // FontSizes
 const xSmallSize = 14;
 const smallSize = 18;
@@ -61,15 +61,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         width: '100%',
-    },
-    cardStyle: {
-        width: '40%',
-        height: 160,
-        borderRadius: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-        elevation: 20,
-        gap: 10
     },
     cardIcon: {
         width: 40,
@@ -214,6 +205,88 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         marginTop: 30
-    }
+    },
+    cardStyle: {
+        backgroundColor: secondaryColor,
+        marginBottom: 10,
+        marginLeft: 8,
+        marginRight: 8,
+        borderRadius: 10,
+        elevation: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 170
+    },
+    cardContent: {
+        flex: 1,
+        flexDirection: 'column',
+        marginLeft: -70,
+    },
+    cardimage: {
+        marginBottom: 40,
+        marginLeft: 10,
+
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        marginTop: 110,
+        right: 110,
+    },
+    cardTitle: {
+        fontSize: normalSize,
+        fontWeight: 'bold',
+        marginBottom: 4,
+    },
+    cardDescription: {
+        fontSize: smallSize,
+        marginBottom: 4,
+    },
+    cardLikes: {
+        fontSize: xSmallSize,
+        color: blue
+    },
+    tabBar: {
+        position: 'absolute',
+        height: 75,
+        bottom: 10,
+        right: 16,
+        left: 16,
+        borderRadius: 16,
+        backgroundColor: '#48525e',
+        borderTopWidth: 1,
+
+    },
+    tabContainer: {
+        alignItems: 'center',
+        marginLeft: 30,
+        marginRight: 50
+    },
+    tabbtn: {
+        width: 50,
+        height: 50,
+        borderWidth: 4,
+        borderRadius: 25,
+        backgroundColor: 'transparent',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    icon: {
+        height: 40,
+        width: 40,
+        tintColor: secondaryColor,
+    },
+    text: {
+        fontSize: 15,
+        textAlign: 'center',
+        color: secondaryColor,
+        marginTop: 1,
+        fontWeight: "bold"
+    },
+    circle: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: primaryColor,
+    },
 });
 export { styles };
