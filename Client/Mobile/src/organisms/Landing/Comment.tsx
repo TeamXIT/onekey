@@ -1,9 +1,11 @@
 
-import { Text } from "react-native"
+import { Text } from 'react-native';
 
-const Comment = () => {
+const Comment = ({ route }) => {
+    const { commentData } = route.params;
     return (
-        <Text>Comment</Text>
+       
+        <Text >Title: {commentData.title}</Text>
     );
 }
 
