@@ -1,7 +1,7 @@
 import { Text, View, TouchableOpacity } from "react-native"
 import { styles } from "../../styles/styles";
 import { useState, } from "react";
-import TeamXButton from "../../atoms/TeamXbutton";
+import TeamXButton from "../../atoms/TeamXButton";
 import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
 import TeamXSwitch from "../../molecules/TeamXSwitch";
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
