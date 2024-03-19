@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     enhancedCard: {
-    
+        width:130,
         backgroundColor: secondaryColor,
         borderRadius: 10,
         shadowColor: '#000',
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
         marginLeft: 100,
         borderRadius: 5,
         backgroundColor: secondaryColor,
-        padding: 10,
+       
         paddingLeft:38,
         paddingRight:38,
         paddingTop:10,
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     BacktouchableContent: {
         marginLeft: 0,
         backgroundColor: secondaryColor,
-        padding: 10,
+        
         borderRadius: 5,
         flexDirection: 'row',
         alignItems: 'center',
@@ -227,8 +227,12 @@ const styles = StyleSheet.create({
         marginTop: 30
     },
     cardSelected:{
-        borderColor: 'red',
+        borderColor: errorColor,
         borderWidth: 2
-    }
+    },
+    
+    
+    
+    
 });
 export { styles };

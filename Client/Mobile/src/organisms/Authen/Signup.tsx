@@ -21,7 +21,7 @@ const Signup = ({ navigation }) => {
 
     const handleSubmitPress = () => {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
         //TODO: password validation
         //1. Must have min 8 chars
         //2. Must have at least one small char
