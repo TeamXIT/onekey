@@ -3,111 +3,100 @@ import API_BASE_URL from '../config/apiConfig';
 import type { PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios';
 
-export interface AuthState {
-    value: number
-    loading:boolean
-    isAuthenticated:boolean
-    isSignedup:boolean
+type AuthState = {
+    //This is must for every slice to indicate screen status
+    screen: {
+        isBusy: boolean,
+        error: string
+    }
+    //In data we add all API responce values
+    data: {
+        SigninAuthToken: string
+        SignupAuthToken: string
+    }
 }
 
 const initialState: AuthState = {
-    value: 0,
-    loading:false,
-    isAuthenticated:false,
-    isSignedup:false,
-   
+    screen: {
+        isBusy: false,
+        error: ''
+    },
+    data: {
+        SigninAuthToken: '',
+        SignupAuthToken: ''
+    }
 }
 
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        increment: (state) => {
-            state.value += 1
+        setBusy: (state, { payload }) => {
+            state.screen.isBusy = payload;
         },
-        decrement: (state) => {
-            state.value -= 1
+        setError: (state, { payload }) => {
+            state.screen.error = payload;
         },
-        incrementByAmount: (state, action: PayloadAction<number>) => {
-            state.value += action.payload
+        setSigninAuthentication: (state, { payload }) => {
+            //const resp = JSON.stringify(payload);
+            state.data.SigninAuthToken = payload;
+            console.log("Signin Payload: ", state.data.SigninAuthToken);
         },
-        signin: (state)=>{
-            state.loading=true
-        },
-        siginSuccess:(state)=>{
-            state.loading=false;
-            state.isAuthenticated=true;
-        },
-        siginFailure:(state)=>{
-            state.loading=false;
-            state.isAuthenticated=false;
-        },
-        signup: (state)=>{
-            state.loading=true
-        },
-        signupSuccess:(state)=>{
-            state.isSignedup=true,
-            state.loading=false
-        },
-        signupFailure:(state)=>{
-            state.loading=false,
-            state.isSignedup=false
+        setSignupAuthentication: (state, { payload }) => {
+            state.data.SignupAuthToken = payload;
         },
     },
 })
 
-
 export const {
-    increment,
-    decrement,
-    incrementByAmount,
-    signin,
-    signup,
-    siginSuccess,
-    siginFailure,
-    signupSuccess,
-    signupFailure,
+    setBusy,
+    setError,
+    setSigninAuthentication,
+    setSignupAuthentication,
 } = authSlice.actions
-export const signinUser=  (_username:string,_password:string)=> async(dispatch:any) => {
-    dispatch(signin());
-    try{
-        let credentials= {
-            username:_username,
-            password:_password,
-          }
-        const responce= await axios.post(`${API_BASE_URL}/auth/signin`,credentials);
-        console.log(responce.data)
-        if(responce.status===200){
-             dispatch(siginSuccess()); 
+
+export const UserSignin = (_username: string, _password: string) => async (dispatch: any) => {
+    dispatch(setBusy(true));
+    try {
+        let credentials = {
+            username: _username,
+            password: _password,
         }
-        else{
-             dispatch(siginFailure(responce.data.error ));
+        const responce = await axios.post(`${API_BASE_URL}/auth/signin`, credentials);
+        console.log("Signin Responce: ", responce.data)
+        if (responce.status === 200) {
+            dispatch(setError(''));
+            dispatch(setSigninAuthentication(responce.data));
         }
-    }catch(error){
-        console.error('Sign-in error:',error);
-        dispatch(siginFailure());
+        else {
+            dispatch(setError(responce.data));
+        }
+        dispatch(setBusy(false));
+    } catch (error) {
+        dispatch(setBusy(false));
     }
 }
-export const signupUser= (_username:string,_email:string,_password:string,_confirmPassword:string)=> async(dispatch:any) => {
-    dispatch(signup());
-    try{
-        let credentials= {
-            username:_username,
-            email:_email,
-            password:_password,
-            confirmPassword:_confirmPassword
-
-          }
-        const responce=await axios.post(`${API_BASE_URL}/auth/signup`,credentials)
-        console.log(responce.data)
-        if(responce.status===200){
-            dispatch(signupSuccess());
+export const UserSignup = (_username: string, _email: string, _password: string, _confirmPassword: string) => async (dispatch: any) => {
+    dispatch(setBusy(true));
+    try {
+        let credentials = {
+            username: _username,
+            email: _email,
+            password: _password,
+            confirmPassword: _confirmPassword
         }
-        else{
-            dispatch(signupFailure());
+        const responce = await axios.post(`${API_BASE_URL}/auth/signup`, credentials)
+        console.log("Signup Responce: ", responce.data)
+        if (responce.status === 200) {
+            dispatch(setError(''));
+            dispatch(setSignupAuthentication(responce.data));
         }
-    }catch(error){
-        dispatch(siginFailure)
+        else {
+            dispatch(setError(responce.data));
+        }
+        dispatch(setBusy(false));
+    } catch (error) {
+        dispatch(setBusy(false));
     }
 }
 

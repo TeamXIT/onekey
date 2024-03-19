@@ -1,18 +1,19 @@
-import { View, ScrollView } from "react-native";
-import React, { useState } from "react";
+import { View, ScrollView, Alert } from "react-native";
+import React, { useEffect, useState } from "react";
 import { styles } from '../../styles/styles'
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
 import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
 import TeamXHeaderText from "../../atoms/TeamXHeaderText";
-import TeamXButton from "../../atoms/TeamXbutton";
+import TeamXButton from "../../atoms/TeamXButton";
 import TeamXTextedLink from "../../molecules/TeamXTextedLink";
-import { useAppDispatch } from "../../reducers/hooks";
-import { signupUser } from "../../reducers/auth/authSlice";
-
+import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
+import { UserSignup } from "../../reducers/auth/authSlice";
 
 const Signup = ({ navigation }) => {
-    const dispatch =useAppDispatch();
+    const dispatch = useAppDispatch();
+    const authen = useAppSelector(state => state.auth);
+
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -23,16 +24,21 @@ const Signup = ({ navigation }) => {
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
+    useEffect(() => {
+        if (authen.data.SignupAuthToken) {
+            if (!authen.screen.error) {
+                navigation.navigate('verification');
+            }
+            else {
+                Alert.alert("Warning", authen.screen.error)
+            }
+        }
+    }, [authen.data.SignupAuthToken])
+
+
     const handleSubmitPress = () => {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
         const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-        //TODO: password validation
-        //1. Must have min 8 chars
-        //2. Must have at least one small char
-        //3. Must have at leasr one Capital char
-        //4. Must have at least one numeric chat
-        //EX1: Teamx@123
-        //EX2: teamXit#1
         let hasError = false;
 
         // Check username
@@ -61,7 +67,7 @@ const Signup = ({ navigation }) => {
         }
 
         // Check password
-        
+
         if (!password.trim()) {
             setPasswordError('Please provide password.');
             hasError = true;
@@ -71,7 +77,7 @@ const Signup = ({ navigation }) => {
         } else {
             setPasswordError('');
         }
-       // Check confirm password
+        // Check confirm password
         if (!confirmPassword.trim()) {
             setConfirmPasswordError('Please provide confirm password.');
             hasError = true;
@@ -85,7 +91,7 @@ const Signup = ({ navigation }) => {
             setConfirmPasswordError('');
         }
         if (!hasError) {
-            dispatch(signupUser(username,email,password,confirmPassword)).then(()=>{ navigation.navigate('verification');});
+            dispatch(UserSignup(username, email, password, confirmPassword));
         }
     }
 
