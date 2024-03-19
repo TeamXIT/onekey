@@ -5,7 +5,7 @@ import TeamXLogoImage from "../../atoms/TeamXLogoImage";
 import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
 import TeamXHeaderText from "../../atoms/TeamXHeaderText";
-import TeamXButton from "../../atoms/TeamXButton";
+import TeamXButton from "../../atoms/TeamXbutton";
 import TeamXTextedLink from "../../molecules/TeamXTextedLink";
 import { useAppDispatch } from "../../reducers/hooks";
 import { signupUser } from "../../reducers/auth/authSlice";
@@ -24,7 +24,8 @@ const Signup = ({ navigation }) => {
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
     const handleSubmitPress = () => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+        const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
         //TODO: password validation
         //1. Must have min 8 chars
         //2. Must have at least one small char
@@ -38,8 +39,8 @@ const Signup = ({ navigation }) => {
         if (!username.trim()) {
             setUsernameError('Please provide username.');
             hasError = true;
-        } else if (username.trim().length < 8) {
-            setUsernameError('Username must be at least 8 characters.');
+        } else if (username.trim().length < 4) {
+            setUsernameError('Username must be at least 4 characters.');
             hasError = true;
         } else {
             setUsernameError('');
@@ -60,17 +61,17 @@ const Signup = ({ navigation }) => {
         }
 
         // Check password
+        
         if (!password.trim()) {
             setPasswordError('Please provide password.');
             hasError = true;
-        } else if (password.trim().length < 8) {
-            setPasswordError('Password must be at least 8 characters.');
+        } else if (!passwordRegex.test(password.trim())) {
+            setPasswordError('Password must have minimum 8 characters, at least one lowercase letter, one uppercase letter, and one numeric character.');
             hasError = true;
         } else {
             setPasswordError('');
         }
-
-        // Check confirm password
+       // Check confirm password
         if (!confirmPassword.trim()) {
             setConfirmPasswordError('Please provide confirm password.');
             hasError = true;

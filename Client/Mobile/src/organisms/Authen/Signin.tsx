@@ -21,13 +21,14 @@ const Signin = ({ navigation }) => {
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
 
-    const handleSubmitPress = async () => {
+    const handleSubmitPress = () => {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
         let hasError = false;
         if (!username.trim()) {
             setUsernameError('Please provide username.');
             hasError = true;
-        } else if (username.trim().length < 8) {
-            setUsernameError('Username must be at least 8 characters.');
+        } else if (username.trim().length < 4) {
+            setUsernameError('Username must be at least 4 characters.');
             hasError = true;
         } else {
             setUsernameError('');
@@ -35,8 +36,8 @@ const Signin = ({ navigation }) => {
         if (!password.trim()) {
             setPasswordError('Please provide password.');
             hasError = true;
-        } else if (password.trim().length < 8) {
-            setPasswordError('Password must be at least 8 characters.');
+        } else if (!passwordRegex.test(password.trim())) {
+            setPasswordError('Password must have minimum 8 characters, at least one lowercase letter, one uppercase letter, and one numeric character.');
             hasError = true;
         } else {
             setPasswordError('');
