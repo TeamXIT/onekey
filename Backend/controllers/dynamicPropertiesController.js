@@ -26,12 +26,14 @@ const createDynamicProperty = async (req,res)=>{
                 res.status(404).json({error:'Invalid value type'});
         }
         const newDynamicProperty = await DynamicProperties.create({
-            name,
+            name:name,
             value_type:unit,
             value:convertedValue,
-            product_id
+            product_id:product_id
         });
-        newDynamicProperty.save();
+        newDynamicProperty.save().then(()=>{
+            res.status(200).json('Inserted successfully');
+        });
         
     }catch(error){
         res.status(500).json({error:error.message});
@@ -57,6 +59,9 @@ const getDynamicPropertiesById = async (req,res)=>{
         res.status(500).json({error:error.message});
     }
 }
+const updateDynamicProperty = async(req,res)=>{
+
+}
 const deleteDynamicProperty = async (req,res)=>{
     const {id} = req.query;
     try{
@@ -71,4 +76,4 @@ const deleteDynamicProperty = async (req,res)=>{
     }
 }
 
-module.exports = {createDynamicProperty,getAllDynamicProperties,getDynamicPropertiesById,deleteDynamicProperty};
+module.exports = {createDynamicProperty,getAllDynamicProperties,getDynamicPropertiesById,updateDynamicProperty,deleteDynamicProperty};

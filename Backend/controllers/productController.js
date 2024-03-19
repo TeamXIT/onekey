@@ -1,3 +1,4 @@
+const moment = require('moment');
 const {Product} = require('../models/productModel');
 const createProduct = async (req,res)=>{
     try{
@@ -8,14 +9,27 @@ const createProduct = async (req,res)=>{
         return res.status(500).json({error:error.message});
     }
 }
-const getAllProducts = async (req,res)=>{
-    try{
-        const products = await Product.findAll();
-        return res.status(200).json(products);
-    }catch(error){
-        return res.status(500).json({error:error.message});
+const getAllProducts = async (req,res)=>{        
+        try {
+            const recLimit=req.query.limit || 10;
+            const pageNumber=req.query.page || 1;            
+            let count= await Product.count();    
+            let totalPages=Math.ceil(count/recLimit);   
+            let productsList= await Product.findAll({
+            offset:(pageNumber-1)*recLimit,
+            limit:recLimit,
+            });
+            const formattedProducts = productsList.map(({ createdAt, updatedAt, ...Product }) => ({
+            ...Product,
+            createdAt: moment(createdAt).format("MMM Do YY"),
+            updatedAt: moment(updatedAt).format("MMM Do YY"),
+          }));
+           res.status(200).json({totalPages:totalPages,totalCount:count,items:formattedProducts});
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
     }
-}
+
 const getById = async (req,res)=>{
     const {product_id} = req.query;
     try{

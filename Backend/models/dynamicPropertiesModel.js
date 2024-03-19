@@ -1,17 +1,17 @@
 const sequelize = require('../config/db');
 const DataTypes = require('sequelize');
-const Product = require('./productModel');
+const {Product} = require('./productModel');
 const DynamicProperties = sequelize.define("DynamicProperty",{
     name:{
         type:DataTypes.STRING(100),
         allowNull:false
     },
     value_type:{
-        type:DataTypes.ENUM('STRING','CHAR','TEXT','INTEGER','BIGINT','FLOAT','DOUBLE','DECIMAL','BOOLEAN','DATE','DATEONLY','TIME','ENUM','JSON','JSONB','ARRAY'),
+        type:DataTypes.STRING,
         allowNull:false
     },
     value:{
-        type:DataTypes.STRING(255),
+        type:DataTypes.FLOAT,
         allowNull:false
     },
     product_id:{
@@ -24,5 +24,6 @@ const DynamicProperties = sequelize.define("DynamicProperty",{
     }
 },{timestamps:true});
 
+// DynamicProperties.sync({force:true});
 
 module.exports = {DynamicProperties};
