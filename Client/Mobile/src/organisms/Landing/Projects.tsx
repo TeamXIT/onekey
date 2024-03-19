@@ -14,7 +14,6 @@ const Projects = ({ navigation }) => {
     { id: '6', title: 'Card 6', description: 'Description for Card 6', image: require('../../images/ic_house.png'), likes: 0 },
     { id: '7', title: 'Card 7', description: 'Description for Card 7', image: require('../../images/ic_house.png'), likes: 0 },
     { id: '8', title: 'Card 8', description: 'Description for Card 8', image: require('../../images/ic_house.png'), likes: 0 },
-
   ];
 
   const handleLikePress = (id) => {
@@ -26,7 +25,6 @@ const Projects = ({ navigation }) => {
 
   const handleCommentPress = () => {
     navigation.navigate('comment');
-  
   };
 
   const renderItem = ({ item }) => (
@@ -53,8 +51,6 @@ const Projects = ({ navigation }) => {
         <Text style={styles.cardDescription}>{item.description}</Text>
         <Text style={styles.cardLikes}>{likeCounts[item.id] || 0} Likes</Text>
       </View>
-
-
     </View>
   );
 
