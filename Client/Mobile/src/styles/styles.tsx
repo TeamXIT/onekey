@@ -257,7 +257,52 @@ const styles = StyleSheet.create({
         fontSize: xSmallSize,
         color: blue
     },
+    tabBar: {
+        position: 'absolute',
+        height: 75,
+        bottom: 10,
+        right: 16,
+        left: 16,
+        borderRadius: 16,
+        backgroundColor: '#48525e',
+        borderTopWidth: 1,
+
+    },
+    tabContainer: {
+        alignItems: 'center',
+        marginLeft: 30,
+        marginRight: 50
+    },
+    tabbtn: {
+        width: 50,
+        height: 50,
+        borderWidth: 4,
+        borderRadius: 25,
+        backgroundColor: 'transparent',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    icon: {
+        height: 40,
+        width: 40,
+        tintColor: secondaryColor,
 
 
+    },
+    text: {
+        fontSize: 15,
+        textAlign: 'center',
+        color: secondaryColor,
+        marginTop: 1,
+        fontWeight: "bold"
+    },
+    circle: {
+
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: primaryColor,
+
+    },
 });
 export { styles };
