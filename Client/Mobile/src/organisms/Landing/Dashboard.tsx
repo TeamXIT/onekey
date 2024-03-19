@@ -38,7 +38,7 @@ const TabButton = ({ item, onPress, accessibilityState }) => {
             circleRef.current.animate('circle1');
             textRef.current.transitionTo({ scale: 1 });
         }
-    },);
+    },[]);
 
     return (
         <TouchableOpacity onPress={onPress} activeOpacity={1}>

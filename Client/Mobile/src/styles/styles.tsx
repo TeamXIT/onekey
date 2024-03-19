@@ -62,15 +62,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         width: '100%',
     },
-    cardStyle: {
-        width: '40%',
-        height: 160,
-        borderRadius: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-        elevation: 20,
-        gap: 10
-    },
     cardIcon: {
         width: 40,
         height: 40,
@@ -241,9 +232,6 @@ const styles = StyleSheet.create({
         marginTop: 110,
         right: 110,
     },
-    icon: {
-        marginRight: 30,
-    },
     cardTitle: {
         fontSize: normalSize,
         fontWeight: 'bold',
@@ -287,8 +275,6 @@ const styles = StyleSheet.create({
         height: 40,
         width: 40,
         tintColor: secondaryColor,
-
-
     },
     text: {
         fontSize: 15,
@@ -298,11 +284,9 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     circle: {
-
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: primaryColor,
-
     },
 });
 export { styles };
