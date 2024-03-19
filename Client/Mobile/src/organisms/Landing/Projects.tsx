@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { styles } from '../../styles/styles';
 
 const Projects = ({ navigation }) => {
   const [likeCounts, setLikeCounts] = useState({});
-  const [comment, setcomment] = useState(false);
-
+  
   const data = [
     { id: '1', title: 'Card 1', description: 'Description for Card 1', image: require('../../images/ic_house.png'), likes: 0 },
     { id: '2', title: 'Card 2', description: 'Description for Card 2', image: require('../../images/ic_house.png'), likes: 0 },
@@ -27,31 +26,35 @@ const Projects = ({ navigation }) => {
 
   const handleCommentPress = () => {
     navigation.navigate('comment');
-    setcomment(true);
+  
   };
 
   const renderItem = ({ item }) => (
-    <View style={styles.card}>
-      <Image source={item.image} style={styles.cardimage} />
-      <View style={styles.buttonlikeContainer}>
+    <View style={styles.cardStyle}>
+      <View>
+        <Image source={item.image} style={styles.cardimage} />
+      </View>
+      <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => handleLikePress(item.id)}>
           <Image
             source={require('../../images/ic_like.png')}
-            style={[styles.icon, { tintColor: likeCounts[item.id] ? "#A73121" : "#777" }]}
+            style={[styles.icon, { tintColor: likeCounts[item.id] ? "#0987F0" : "#777" }]}
           />
         </TouchableOpacity>
         <TouchableOpacity onPress={handleCommentPress}>
           <Image
             source={require('../../images/ic_comment.png')}
-            style={[styles.icon, { tintColor: comment ? "#777" : "#A73121" }]}
+            style={[styles.icon, { tintColor: "#777" }]}
           />
         </TouchableOpacity>
       </View>
-      <View style={styles.content}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.description}>{item.description}</Text>
-        <Text style={styles.likes}>{likeCounts[item.id] || 0} Likes</Text>
+      <View style={styles.cardContent}>
+        <Text style={styles.cardTitle}>{item.title}</Text>
+        <Text style={styles.cardDescription}>{item.description}</Text>
+        <Text style={styles.cardLikes}>{likeCounts[item.id] || 0} Likes</Text>
       </View>
+
+
     </View>
   );
 
@@ -61,7 +64,6 @@ const Projects = ({ navigation }) => {
       renderItem={renderItem}
       keyExtractor={item => item.id}
       numColumns={1}
-    //contentContainerStyle={[styles.container, styles.Margin]}
     />
   );
 };

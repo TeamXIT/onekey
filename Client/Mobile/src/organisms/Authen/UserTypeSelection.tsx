@@ -50,21 +50,17 @@ const UserTypeSelection = ({ navigation }) => {
         <ScrollView>
             <View style={styles.containerStyle}>
                 <TeamXLogoImage />
-
-                {/* Render FlatList */}
                 
                 <FlatList
                     data={cardData}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
                     numColumns={2} 
-                   
-                
                     // You might want to adjust this based on your layout
                 />
-                
 
                 <TeamXErrorText errorText={error} />
+                
                 <View style={[styles.smallbuttonContainer,{}]}>
                     <TouchableOpacity onPress={handleBackpress}>
                         <View style={[styles.BacktouchableContent,]}>
