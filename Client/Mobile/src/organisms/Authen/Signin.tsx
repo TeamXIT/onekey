@@ -1,23 +1,37 @@
-import { Text, View, TouchableOpacity } from "react-native"
+import { Alert, Text, View } from "react-native"
 import { styles } from "../../styles/styles";
-import { useState } from "react";
-import TeamXButton from '../../atoms/TeamXbutton';
+import { useEffect, useState, } from "react";
+import TeamXButton from "../../atoms/TeamXButton";
 import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
 import TeamXSwitch from "../../molecules/TeamXSwitch";
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
 import TeamXHeaderText from "../../atoms/TeamXHeaderText";
 import TeamXTextedLink from "../../molecules/TeamXTextedLink";
-import { useAppDispatch } from "../../reducers/hooks";
+import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
+import { UserSignin } from "../../reducers/auth/authSlice";
 
 const Signin = ({ navigation }) => {
     const dispatch = useAppDispatch()
+    const authen = useAppSelector(state => state.auth);
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isRemember, setIsRemember] = useState(false);
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+
+
+    useEffect(() => {
+        if (authen.data.SigninAuthToken) {
+            if (!authen.screen.error) {
+                navigation.navigate('verification');
+            }
+            else {
+                Alert.alert("Warning", authen.screen.error)
+            }
+        }
+    }, [authen.data.SigninAuthToken])
 
     const handleSubmitPress = () => {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -40,8 +54,12 @@ const Signin = ({ navigation }) => {
         } else {
             setPasswordError('');
         }
+        if (passwordError !== '') {
+            setPasswordError('Invalid password. Please try again.');
+            hasError = true;
+        }
         if (!hasError) {
-            navigation.navigate('verification');
+            dispatch(UserSignin(username, password))
         }
     }
     return (
@@ -94,3 +112,6 @@ const Signin = ({ navigation }) => {
 }
 
 export default Signin;
+
+
+
