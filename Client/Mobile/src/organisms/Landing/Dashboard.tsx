@@ -9,6 +9,8 @@ import { useEffect, useRef } from 'react';
 import * as Animatable from 'react-native-animatable';
 import { styles } from '../../styles/styles';
 
+const likeIconActiveColor = "#F2E8C6";
+  const likeIconInactiveColor = "#48525e";
 const Tab = createBottomTabNavigator();
 const icons = {
     Home: require('../../images/ic_home.png'),
@@ -38,14 +40,14 @@ const TabButton = ({ item, onPress, accessibilityState }) => {
             circleRef.current.animate('circle1');
             textRef.current.transitionTo({ scale: 1 });
         }
-    },[]);
+    },);
 
     return (
         <TouchableOpacity onPress={onPress} activeOpacity={1}>
             <Animatable.View ref={viewRef} duration={1000} style={styles.tabContainer}>
-                <View style={[styles.tabbtn, { borderColor: focused ? '#F2E8C6' : '#48525e' }]}>
+                <View style={[styles.tabbtn, { borderColor: focused ? likeIconActiveColor : likeIconInactiveColor }]}>
                     <Animatable.View ref={circleRef} style={styles.circle} />
-                    <Image resizeMode="contain" source={item.icon} style={styles.icon} />
+                    <Image resizeMode="contain" source={item.icon} style={styles.tabicon} />
                 </View>
                 <Animatable.Text ref={textRef} style={styles.text}>
                     {item.label}
@@ -83,3 +85,7 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
+
+
