@@ -13,7 +13,7 @@ const lightGray = "#D3D3D3";
 const componentColor = useColorScheme() === 'light' ? '#FAFAFA' : '#404040';
 const textColor = useColorScheme() === 'light' ? darkText : lightText;
 const errorColor = "#FF0000";
-
+const blue ="#0987F0";
 // FontSizes
 const xSmallSize = 14;
 const smallSize = 18;
@@ -214,6 +214,48 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         marginTop: 30
+    },
+    cardStyle: {
+        backgroundColor: secondaryColor,
+        marginBottom: 10,
+        marginLeft: 8,
+        marginRight: 8,
+        borderRadius: 10,
+        elevation: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 170
+    },
+    cardContent: {
+        flex: 1,
+        flexDirection: 'column',
+        marginLeft: -70,
+    },
+    cardimage: {
+        marginBottom: 40,
+        marginLeft: 10,
+
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        marginTop: 110,
+        right: 110,
+    },
+    icon: {
+        marginRight: 30,
+    },
+    cardTitle: {
+        fontSize: normalSize,
+        fontWeight: 'bold',
+        marginBottom: 4,
+    },
+    cardDescription: {
+        fontSize: smallSize,
+        marginBottom: 4,
+    },
+    cardLikes: {
+        fontSize: xSmallSize,
+        color: blue
     },
     tabBar: {
         position: 'absolute',
