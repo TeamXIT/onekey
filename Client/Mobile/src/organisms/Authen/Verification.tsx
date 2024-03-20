@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { styles } from "../../styles/styles";
 import { useState } from "react";
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
-import TeamXButton from "../../atoms/TeamXButton";
+import TeamXButton from "../../atoms/TeamXbutton";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
 import TeamXOTPInput from "../../molecules/TeamXOTPInput";
 import TeamXHeaderText from "../../atoms/TeamXHeaderText";

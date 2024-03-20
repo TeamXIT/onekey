@@ -14,6 +14,12 @@ const componentColor = useColorScheme() === 'light' ? '#FAFAFA' : '#404040';
 const textColor = useColorScheme() === 'light' ? darkText : lightText;
 const errorColor = "#FF0000";
 const blue ="#0987F0";
+const into1BgColor = "#20d2bb";
+const into2BgColor = "#febe29";
+const into3BgColor = "#22bcb5";
+const into4BgColor = "#3395ff";
+const into5BgColor = "#f6437b";
+const into6BgColor ="#febe29";
 // FontSizes
 const xSmallSize = 14;
 const smallSize = 18;
@@ -22,7 +28,31 @@ const mediumSize = 24;
 const largeSize = 30;
 
 const styles = StyleSheet.create({
-    appPrimary: {
+    screenOnebgColor:{
+        color:into1BgColor
+    },
+    screenTwobgColor:{
+        color:into2BgColor
+    },
+    
+    screenThreebgColor:{
+        color:into3BgColor
+    },
+    
+    screenFourbgColor:{
+        color:into4BgColor
+    },
+    
+    screenFivebgColor:{
+        color:into5BgColor
+    },
+    
+    screenSixbgColor:{
+        color:into6BgColor
+    },
+        
+
+   appPrimary: {
         color: primaryColor
     },
     appSecondary: {
@@ -65,6 +95,7 @@ const styles = StyleSheet.create({
     cardIcon: {
         width: 40,
         height: 40,
+        
     },
     cardTextStyle: {
         color: primaryColor,
@@ -102,7 +133,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingTop: 90,
         paddingBottom: 90,
-        gap:-38
+        gap:-48
     },
     NexttouchableContent: {
         flexDirection: 'row',
@@ -223,14 +254,13 @@ const styles = StyleSheet.create({
     },
     cardStyle: {
         backgroundColor: secondaryColor,
-        marginBottom: 10,
-        marginLeft: 8,
-        marginRight: 8,
         borderRadius: 10,
         elevation: 5,
         flexDirection: 'row',
-        alignItems: 'center',
-        height: 170
+        paddingTop:25,
+        justifyContent:'center',
+        height: 150,
+        width:180
     },
     cardContent: {
         flex: 1,
@@ -303,5 +333,41 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: primaryColor,
     },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        padding: 10,
+        justifyContent: 'center',
+    },
+    titleStyle: {
+        padding: 10,
+        textAlign: 'center',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    paragraphStyle: {
+        padding: 20,
+        textAlign: 'center',
+        fontSize: 16,
+    },
+    introImageStyle: {
+        width: 200,
+        height: 200,
+    },
+    introTextStyle: {
+        fontSize: 18,
+        color: 'white',
+        textAlign: 'center',
+        paddingVertical: 30,
+    },
+    introTitleStyle: {
+        fontSize: 25,
+        color: 'white',
+        textAlign: 'center',
+        marginBottom: 16,
+        fontWeight: 'bold',
+    },
 });
+
 export { styles };

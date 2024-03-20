@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native"
 import AppIntroSlider from "react-native-app-intro-slider";
+import {  styles} from "../../styles/styles";
+
+
 
 const slides = [
     {
@@ -11,7 +14,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_mobile_recharge.png',
         },
-        backgroundColor: '#20d2bb',
+        backgroundColor: styles.screenOnebgColor.color
     },
     {
         key: 's2',
@@ -21,7 +24,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_flight_ticket_booking.png',
         },
-        backgroundColor: '#febe29',
+        backgroundColor: styles.screenTwobgColor.color
     },
     {
         key: 's3',
@@ -31,7 +34,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_discount.png',
         },
-        backgroundColor: '#22bcb5',
+        backgroundColor: styles.screenThreebgColor.color
     },
     {
         key: 's4',
@@ -41,7 +44,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_best_deals.png',
         },
-        backgroundColor: '#3395ff',
+        backgroundColor: styles.screenFourbgColor.color
     },
     {
         key: 's5',
@@ -51,7 +54,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_bus_ticket_booking.png',
         },
-        backgroundColor: '#f6437b',
+        backgroundColor: styles.screenFivebgColor.color
     },
     {
         key: 's6',
@@ -61,7 +64,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_train_ticket_booking.png',
         },
-        backgroundColor: '#febe29',
+        backgroundColor: styles.screenSixbgColor.color
     },
 ];
 
@@ -110,40 +113,39 @@ const OneKeyIntro = ({ navigation }) => {
 
 export default OneKeyIntro;
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        padding: 10,
-        justifyContent: 'center',
-    },
-    titleStyle: {
-        padding: 10,
-        textAlign: 'center',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-    paragraphStyle: {
-        padding: 20,
-        textAlign: 'center',
-        fontSize: 16,
-    },
-    introImageStyle: {
-        width: 200,
-        height: 200,
-    },
-    introTextStyle: {
-        fontSize: 18,
-        color: 'white',
-        textAlign: 'center',
-        paddingVertical: 30,
-    },
-    introTitleStyle: {
-        fontSize: 25,
-        color: 'white',
-        textAlign: 'center',
-        marginBottom: 16,
-        fontWeight: 'bold',
-    },
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
