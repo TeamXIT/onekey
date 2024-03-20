@@ -13,13 +13,8 @@ const lightGray = "#D3D3D3";
 const componentColor = useColorScheme() === 'light' ? '#FAFAFA' : '#404040';
 const textColor = useColorScheme() === 'light' ? darkText : lightText;
 const errorColor = "#FF0000";
-const blue ="#0987F0";
-const into1BgColor = "#20d2bb";
-const into2BgColor = "#febe29";
-const into3BgColor = "#22bcb5";
-const into4BgColor = "#3395ff";
-const into5BgColor = "#f6437b";
-const into6BgColor ="#febe29";
+const blue = "#0987F0";
+
 // FontSizes
 const xSmallSize = 14;
 const smallSize = 18;
@@ -28,31 +23,7 @@ const mediumSize = 24;
 const largeSize = 30;
 
 const styles = StyleSheet.create({
-    screenOnebgColor:{
-        color:into1BgColor
-    },
-    screenTwobgColor:{
-        color:into2BgColor
-    },
-    
-    screenThreebgColor:{
-        color:into3BgColor
-    },
-    
-    screenFourbgColor:{
-        color:into4BgColor
-    },
-    
-    screenFivebgColor:{
-        color:into5BgColor
-    },
-    
-    screenSixbgColor:{
-        color:into6BgColor
-    },
-        
-
-   appPrimary: {
+    appPrimary: {
         color: primaryColor
     },
     appSecondary: {
@@ -95,7 +66,7 @@ const styles = StyleSheet.create({
     cardIcon: {
         width: 40,
         height: 40,
-        
+
     },
     cardTextStyle: {
         color: primaryColor,
@@ -103,7 +74,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     enhancedCard: {
-        width:130,
+        width: 130,
         backgroundColor: secondaryColor,
         borderRadius: 10,
         shadowColor: '#000',
@@ -114,7 +85,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 3.84,
         elevation: 5,
-        },
+    },
 
     TextStyle: {
         color: primaryColor,
@@ -133,7 +104,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingTop: 90,
         paddingBottom: 90,
-        gap:-48
+        gap: -48
     },
     NexttouchableContent: {
         flexDirection: 'row',
@@ -141,23 +112,23 @@ const styles = StyleSheet.create({
         marginLeft: 100,
         borderRadius: 5,
         backgroundColor: secondaryColor,
-       
-        paddingLeft:38,
-        paddingRight:38,
-        paddingTop:10,
-        paddingBottom:10
+
+        paddingLeft: 38,
+        paddingRight: 38,
+        paddingTop: 10,
+        paddingBottom: 10
     },
     BacktouchableContent: {
         marginLeft: 0,
         backgroundColor: secondaryColor,
-        
+
         borderRadius: 5,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft:38,
-        paddingRight:38,
-        paddingTop:10,
-        paddingBottom:10
+        paddingLeft: 38,
+        paddingRight: 38,
+        paddingTop: 10,
+        paddingBottom: 10
     },
     imgTextContainer: {
         flexDirection: 'row',
@@ -238,7 +209,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginLeft: 10,
         marginRight: 10,
-        gap:70
+        gap: 70
     },
     errorTextStyle: {
         color: errorColor,
@@ -248,7 +219,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 30
     },
-    cardSelected:{
+    cardSelected: {
         borderColor: errorColor,
         borderWidth: 2
     },
@@ -257,10 +228,10 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         elevation: 5,
         flexDirection: 'row',
-        paddingTop:25,
-        justifyContent:'center',
+        paddingTop: 25,
+        justifyContent: 'center',
         height: 150,
-        width:180
+        width: 180
     },
     cardContent: {
         flex: 1,
@@ -332,41 +303,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: primaryColor,
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        padding: 10,
-        justifyContent: 'center',
-    },
-    titleStyle: {
-        padding: 10,
-        textAlign: 'center',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-    paragraphStyle: {
-        padding: 20,
-        textAlign: 'center',
-        fontSize: 16,
-    },
-    introImageStyle: {
-        width: 200,
-        height: 200,
-    },
-    introTextStyle: {
-        fontSize: 18,
-        color: 'white',
-        textAlign: 'center',
-        paddingVertical: 30,
-    },
-    introTitleStyle: {
-        fontSize: 25,
-        color: 'white',
-        textAlign: 'center',
-        marginBottom: 16,
-        fontWeight: 'bold',
     },
 });
 

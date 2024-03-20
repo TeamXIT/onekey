@@ -5,7 +5,7 @@ import TeamXLogoImage from "../../atoms/TeamXLogoImage";
 import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
 import TeamXHeaderText from "../../atoms/TeamXHeaderText";
-import TeamXButton from "../../atoms/TeamXbutton";
+import TeamXButton from "../../atoms/TeamXButton";
 import TeamXTextedLink from "../../molecules/TeamXTextedLink";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import { UserSignup } from "../../reducers/auth/authSlice";

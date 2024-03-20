@@ -1,9 +1,5 @@
-import { useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native"
 import AppIntroSlider from "react-native-app-intro-slider";
-import {  styles} from "../../styles/styles";
-
-
 
 const slides = [
     {
@@ -14,7 +10,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_mobile_recharge.png',
         },
-        backgroundColor: styles.screenOnebgColor.color
+        backgroundColor: "#20d2bb"
     },
     {
         key: 's2',
@@ -24,7 +20,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_flight_ticket_booking.png',
         },
-        backgroundColor: styles.screenTwobgColor.color
+        backgroundColor: "#febe29"
     },
     {
         key: 's3',
@@ -34,7 +30,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_discount.png',
         },
-        backgroundColor: styles.screenThreebgColor.color
+        backgroundColor: "#f6437b"
     },
     {
         key: 's4',
@@ -44,7 +40,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_best_deals.png',
         },
-        backgroundColor: styles.screenFourbgColor.color
+        backgroundColor: "#22bcb5"
     },
     {
         key: 's5',
@@ -54,7 +50,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_bus_ticket_booking.png',
         },
-        backgroundColor: styles.screenFivebgColor.color
+        backgroundColor: "#3395ff"
     },
     {
         key: 's6',
@@ -64,12 +60,11 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_train_ticket_booking.png',
         },
-        backgroundColor: styles.screenSixbgColor.color
+        backgroundColor: "#febe29"
     },
 ];
 
 const OneKeyIntro = ({ navigation }) => {
-
     const onDone = () => {
         navigation.navigate("signin");
     };
@@ -113,6 +108,43 @@ const OneKeyIntro = ({ navigation }) => {
 
 export default OneKeyIntro;
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        padding: 10,
+        justifyContent: 'center',
+    },
+    titleStyle: {
+        padding: 10,
+        textAlign: 'center',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    paragraphStyle: {
+        padding: 20,
+        textAlign: 'center',
+        fontSize: 16,
+    },
+    introImageStyle: {
+        width: 200,
+        height: 200,
+    },
+    introTextStyle: {
+        fontSize: 18,
+        color: 'white',
+        textAlign: 'center',
+        paddingVertical: 30,
+    },
+    introTitleStyle: {
+        fontSize: 25,
+        color: 'white',
+        textAlign: 'center',
+        marginBottom: 16,
+        fontWeight: 'bold',
+    }
+});
 
 
 

@@ -14,7 +14,7 @@ import Verification from './src/organisms/Authen/Verification';
 import Dashboard from './src/organisms/Landing/Dashboard';
 import Home from './src/organisms/Landing/Home';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
-import ForgotPassword from './src/organisms/Authen/forgotPassword';
+import ForgotPassword from './src/organisms/Authen/ForgotPassword';
 import Comment from './src/organisms/Landing/Comment';
 import Projects from './src/organisms/Landing/Projects';
 import { Provider } from 'react-redux';
