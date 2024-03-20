@@ -34,8 +34,10 @@ const TeamXCard = ({ onPress, imageSource, labelText, selected }) => {
       onPress={handlePress} 
       activeOpacity={0.5}
     >
+      <View style={{ flexDirection: 'column',gap:10}}>
       <Image source={imageSource} style={styles.cardIcon} />
       <Text style={styles.cardTextStyle}>{labelText}</Text>
+      </View>
     </TouchableOpacity>
   );
 };

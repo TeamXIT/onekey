@@ -14,6 +14,7 @@ const componentColor = useColorScheme() === 'light' ? '#FAFAFA' : '#404040';
 const textColor = useColorScheme() === 'light' ? darkText : lightText;
 const errorColor = "#FF0000";
 const blue = "#0987F0";
+
 // FontSizes
 const xSmallSize = 14;
 const smallSize = 18;
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
     cardIcon: {
         width: 40,
         height: 40,
+
     },
     cardTextStyle: {
         color: primaryColor,
@@ -320,4 +322,5 @@ const styles = StyleSheet.create({
         backgroundColor: primaryColor,
     },
 });
+
 export { styles };

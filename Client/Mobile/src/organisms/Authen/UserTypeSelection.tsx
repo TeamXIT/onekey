@@ -37,7 +37,7 @@ const UserTypeSelection = ({ navigation }) => {
     
 
     const renderItem = ({ item }) => (
-        <View style={{padding:30,marginLeft:-5}}>
+        <View style={{padding:25}}>
         <TeamXCard
                 onPress={item.onPress}
                 imageSource={item.imageSource}
