@@ -1,6 +1,7 @@
 const sequelize = require('../config/db');
 const DataTypes = require('sequelize');
-const Product = require('./productModel');
+const {Product} = require('./productModel');
+
 const DynamicProperties = sequelize.define("DynamicProperty",{
     property_id:{
         type:DataTypes.INTEGER,
@@ -27,8 +28,7 @@ const DynamicProperties = sequelize.define("DynamicProperty",{
             key:'product_id'
         }
     }
-},{versionKey:false,timestamps:true});
-
+},{ tableName: 'DynamicProperties',versionKey:false,timestamps:true});
 
 
 module.exports = {DynamicProperties};
