@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingTop: 90,
         paddingBottom: 90,
-        gap: -48
+        gap: -38
     },
     NexttouchableContent: {
         flexDirection: 'row',
@@ -223,52 +223,74 @@ const styles = StyleSheet.create({
         borderColor: errorColor,
         borderWidth: 2
     },
+    //project screen
+    cardcontainer: {
+        paddingBottom: 100,
+    },
     cardStyle: {
         backgroundColor: secondaryColor,
-        borderRadius: 10,
-        elevation: 5,
+        marginBottom: 5,
+        marginTop: 10,
+        borderRadius: 20,
+        elevation: 3,
         flexDirection: 'row',
-        paddingTop: 25,
-        justifyContent: 'center',
+        alignItems: 'center',
         height: 150,
-        width: 180
+        padding: 16,
+        position: 'relative',
+    },
+    cardimage: {
+        width: 150,
+        height: 150,
+        borderRadius: 10,
+        marginRight: 20,
     },
     cardContent: {
         flex: 1,
-        flexDirection: 'column',
-        marginLeft: -70,
-    },
-    cardimage: {
-        marginBottom: 40,
-        marginLeft: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
 
     },
-    buttonContainer: {
-        flexDirection: 'row',
-        marginTop: 110,
-        right: 110,
-    },
     cardTitle: {
-        fontSize: normalSize,
+
+        fontSize: 18,
         fontWeight: 'bold',
-        marginBottom: 4,
+
     },
     cardDescription: {
-        fontSize: smallSize,
-        marginBottom: 4,
+        marginTop: 10,
+        fontSize: 16,
     },
-    cardLikes: {
-        fontSize: xSmallSize,
-        color: blue
+    cardlikes: {
+        fontSize: 15,
+        color: blue,
+        marginTop: 50,
+        marginLeft: 50
     },
+
+    buttonContainer: {
+        position: 'absolute',
+        top: 110,
+        left: 250,
+        flexDirection: 'row',
+
+    },
+    commentIcon: {
+
+        marginLeft: 10,
+    },
+    LikeIcon: {
+        marginRight: 65,
+    },
+    //bottom tab
     tabBar: {
         position: 'absolute',
-        height: 75,
+        height: 65,
         bottom: 10,
         right: 16,
         left: 16,
         borderRadius: 16,
-        backgroundColor: '#48525e',
+        backgroundColor: primaryColor,
         borderTopWidth: 1,
 
     },
@@ -285,19 +307,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
-
     },
-    icon: {
-        height: 40,
-        width: 40,
+    tabicon: {
         tintColor: secondaryColor,
     },
     text: {
-        fontSize: 15,
+        fontSize: 10,
         textAlign: 'center',
         color: secondaryColor,
-        marginTop: 1,
-        fontWeight: "bold"
     },
     circle: {
         alignItems: 'center',

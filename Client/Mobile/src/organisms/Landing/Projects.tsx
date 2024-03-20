@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity,} from 'react-native';
 import { styles } from '../../styles/styles';
 
+
 const Projects = ({ navigation }) => {
-  const [likeCounts, setLikeCounts] = useState({});
+  const [likeCounts, setLikeCounts] = useState<{ [key: string]: number }>({});
+  const likeIconActiveColor = "#0987F0";
+  const likeIconInactiveColor = "#777";
   
+
   const data = [
     { id: '1', title: 'Card 1', description: 'Description for Card 1', image: require('../../images/ic_house.png'), likes: 0 },
     { id: '2', title: 'Card 2', description: 'Description for Card 2', image: require('../../images/ic_house.png'), likes: 0 },
@@ -16,42 +20,48 @@ const Projects = ({ navigation }) => {
     { id: '8', title: 'Card 8', description: 'Description for Card 8', image: require('../../images/ic_house.png'), likes: 0 },
   ];
 
-  const handleLikePress = (id) => {
+  const handleCardPress = (item: any) => {
+    navigation.navigate('CardDetails', { cardData: item });
+  };
+
+  const handleLikePress = (id: string | number) => {
     setLikeCounts(prevState => ({
       ...prevState,
       [id]: (prevState[id] || 0) + 1,
     }));
   };
 
-  const handleCommentPress = () => {
-    navigation.navigate('comment');
+  const handleCommentPress = (item: any) => {
+    navigation.navigate('comment', { commentData: item });
   };
 
   const renderItem = ({ item }) => (
+    <TouchableOpacity onPress={() => handleCardPress(item)}>
     <View style={styles.cardStyle}>
       <View>
         <Image source={item.image} style={styles.cardimage} />
+      </View>
+      <View style={styles.cardContent}>
+        <Text style={styles.cardTitle}>{item.title}</Text>
+        <Text style={styles.cardDescription}>{item.description}</Text>
+        <Text style={styles.cardlikes}>{likeCounts[item.id] || 0} Likes</Text>
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => handleLikePress(item.id)}>
           <Image
             source={require('../../images/ic_like.png')}
-            style={[styles.icon, { tintColor: likeCounts[item.id] ? "#0987F0" : "#777" }]}
+            style={[styles.LikeIcon, { tintColor: likeCounts[item.id] ? likeIconActiveColor : likeIconInactiveColor }]}
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleCommentPress}>
+        <TouchableOpacity onPress={() => handleCommentPress(item)}>
           <Image
             source={require('../../images/ic_comment.png')}
-            style={[styles.icon, { tintColor: "#777" }]}
+            style={[styles.commentIcon, { tintColor:  likeIconInactiveColor }]}
           />
         </TouchableOpacity>
       </View>
-      <View style={styles.cardContent}>
-        <Text style={styles.cardTitle}>{item.title}</Text>
-        <Text style={styles.cardDescription}>{item.description}</Text>
-        <Text style={styles.cardLikes}>{likeCounts[item.id] || 0} Likes</Text>
-      </View>
     </View>
+    </TouchableOpacity>
   );
 
   return (
@@ -60,7 +70,8 @@ const Projects = ({ navigation }) => {
       renderItem={renderItem}
       keyExtractor={item => item.id}
       numColumns={1}
-    />
+      contentContainerStyle={styles.cardcontainer}
+    />  
   );
 };
 
