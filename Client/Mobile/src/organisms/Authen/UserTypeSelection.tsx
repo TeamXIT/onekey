@@ -9,23 +9,25 @@ import TeamXErrorText from "../../molecules/TeamXErrorText";
 const UserTypeSelection = ({ navigation }) => {
     const [userType, setUserType] = useState("");
     const [error, setError] = useState("");
+    const [selectedCard, setSelectedCard] = useState(null); // State to keep track of selected card
 
     // Define your data array
     const cardData = [
         { id: '1', onPress: () => handleCardPress(CardOptions.BPO), imageSource: require('../../images/ic_bpo5.png'), labelText: "BPO" },
-        { id: '2', onPress: () => handleCardPress(CardOptions.Agent), imageSource: require('../../images/ic_user.png'), labelText: "Agent" },
+        { id: '2', onPress: () => handleCardPress(CardOptions.Agent), imageSource: require('../../images/ic_agent.png'), labelText: "Agent" },
         { id: '3', onPress: () => handleCardPress(CardOptions.Seller), imageSource: require('../../images/ic_seller.png'), labelText: "Seller" },
         { id: '4', onPress: () => handleCardPress(CardOptions.Lawyer), imageSource: require('../../images/ic_lawyer.png'), labelText: "Lawyer" },
     ];
 
-    function handleCardPress(value: string | ((prevState: string) => string)) {
+    function handleCardPress(value) {
         setUserType(value);
+        setSelectedCard(value); // Update selected card
     }
 
     const handleNextpress = () => {
         if (userType) {
             setError("");
-            navigation.navigate('Landing');
+            navigation.replace('Landing');
         } else {
             setError("Select type of user to signup");
         }
@@ -35,15 +37,14 @@ const UserTypeSelection = ({ navigation }) => {
         navigation.goBack();
     };
     
-
     const renderItem = ({ item }) => (
-        <View style={{padding:25}}>
         <TeamXCard
-                onPress={item.onPress}
-                imageSource={item.imageSource}
-                labelText={item.labelText} 
-                selected={''}        />
-        </View>
+            onPress={item.onPress}
+            imageSource={item.imageSource}
+            labelText={item.labelText}
+            selected={selectedCard === item.labelText} // Pass whether the card is selected
+            setSelectedCard={setSelectedCard} // Pass setSelectedCard function
+        />
     );
    
     return (

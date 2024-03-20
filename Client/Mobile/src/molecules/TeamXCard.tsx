@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Image, Text, View } from 'react-native';
-import { styles } from "../styles/styles";
+import { styles,secondaryColor } from "../styles/styles";
 
-const TeamXCard = ({ onPress, imageSource, labelText, selected }) => {
+const TeamXCard = ({ onPress, imageSource, labelText, selected, setSelectedCard }) => {
   const [isSelected, setIsSelected] = useState(selected || false);
 
   useEffect(() => {
@@ -10,35 +10,27 @@ const TeamXCard = ({ onPress, imageSource, labelText, selected }) => {
   }, [selected]);
 
   const handlePress = () => {
-    
     if (!isSelected) {
       setIsSelected(true);
-      console.log(labelText); 
       onPress(labelText); 
-    } else { 
-      setIsSelected(false);
-      
-      setIsSelected(true);
-      console.log(labelText); 
-      onPress(labelText); 
+      setSelectedCard(labelText); 
     }
+    console.log(labelText)
   };
 
   return (
-    <TouchableOpacity 
-      style={[
-        styles.cardStyle,
-        styles.enhancedCard,
-        isSelected ? styles.cardSelected : null,
+    <View style={{padding:20}}>
+      <TouchableOpacity 
+       style={[styles.UsercardStyle,
+        isSelected ? {borderColor: 'red',borderWidth:2} : {borderColor:secondaryColor,borderWidth:2}
       ]} 
-      onPress={handlePress} 
-      activeOpacity={0.5}
-    >
-      <View style={{ flexDirection: 'column',gap:10}}>
-      <Image source={imageSource} style={styles.cardIcon} />
-      <Text style={styles.cardTextStyle}>{labelText}</Text>
-      </View>
-    </TouchableOpacity>
+        onPress={handlePress} 
+        activeOpacity={0.5}
+      >
+        <Image source={imageSource} />
+        <Text >{labelText}</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
