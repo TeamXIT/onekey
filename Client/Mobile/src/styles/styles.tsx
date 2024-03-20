@@ -221,6 +221,7 @@ const styles = StyleSheet.create({
         borderColor: errorColor,
         borderWidth: 2
     },
+    //project screen
     cardStyle: {
         backgroundColor: secondaryColor,
         marginBottom: 10,
@@ -232,34 +233,46 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 170
     },
-    cardContent: {
-        flex: 1,
-        flexDirection: 'column',
-        marginLeft: -70,
-    },
-    cardimage: {
-        marginBottom: 40,
-        marginLeft: 10,
-
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        marginTop: 110,
-        right: 110,
-    },
     cardTitle: {
-        fontSize: normalSize,
+        fontSize: smallSize,
         fontWeight: 'bold',
-        marginBottom: 4,
+        marginTop: 20,
     },
     cardDescription: {
-        fontSize: smallSize,
-        marginBottom: 4,
+        fontSize: xSmallSize,
+       
     },
     cardLikes: {
+        marginTop:60,
         fontSize: xSmallSize,
-        color: blue
+        color: blue,
+        marginLeft:20
     },
+    cardContent: {
+      flex: 1,
+      flexDirection: 'column',
+      marginLeft: 15,
+    },
+    cardimage: {
+      padding:80,
+      marginBottom: 40,
+      marginLeft: 15,
+      marginTop:20,
+    
+    },
+    buttonContainer: {
+      position: 'absolute',
+      top: 130,
+      left: 250,
+      flexDirection: 'row',
+    },
+    commentIcon: {
+      marginLeft: 40,
+    },
+    LikeIcon: {
+      marginLeft: 25,
+    },
+   //bottom tab
     tabBar: {
         position: 'absolute',
         height: 75,
@@ -267,7 +280,7 @@ const styles = StyleSheet.create({
         right: 16,
         left: 16,
         borderRadius: 16,
-        backgroundColor: '#48525e',
+        backgroundColor: primaryColor,
         borderTopWidth: 1,
 
     },
@@ -284,24 +297,70 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
-
     },
-    icon: {
+    tabicon: {
         height: 40,
         width: 40,
         tintColor: secondaryColor,
     },
-    text: {
-        fontSize: 15,
+    tabtext: {
+        fontSize: xSmallSize,
         textAlign: 'center',
         color: secondaryColor,
         marginTop: 1,
         fontWeight: "bold"
     },
-    circle: {
+    tabcircle: {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: primaryColor,
     },
+    
+      cardcontainer: {
+        paddingBottom: 90,
+      },
+      //carddetails
+      CardDetailscontainer: {
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: secondaryColor,
+      },
+      CardDetailsimage: {
+        width: 200,
+        height: 200,
+        marginBottom: 10,
+      },
+      CardDetailsline: {
+        width: '100%',
+        borderBottomWidth: 40,
+        borderColor: tertiaryColor,
+        marginBottom: 15,
+      },
+      CardDetailsactionsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '80%',
+        marginBottom: 10,
+      },
+      CardDetailsicon: {
+        width: 24,
+        height: 24,
+        marginTop: -45,
+      },
+      CardDetailstitle: {
+        fontSize: normalSize ,
+        fontWeight: 'bold',
+        marginBottom: 10,
+      },
+      CardDetailsdescription: {
+        fontSize: smallSize,
+      },
+      CardDetailslike: {
+        marginRight: 150,
+        marginTop: -55,
+        fontSize: smallSize,
+        marginBottom: 50,
+        color: primaryColor,
+      },
 });
 export { styles };
