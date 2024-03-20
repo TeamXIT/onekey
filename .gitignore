@@ -3693,3 +3693,14 @@ Backend/node_modules/yallist/LICENSE
 Backend/node_modules/yallist/package.json
 Backend/node_modules/yallist/README.md
 Backend/node_modules/yallist/yallist.js
+Backend/node_modules/.package-lock.json
+Backend/node_modules/object-assign/readme.md
+Backend/node_modules/object-assign/package.json
+Backend/node_modules/object-assign/license
+Backend/node_modules/object-assign/index.js
+Backend/node_modules/cors/lib/index.js
+Backend/node_modules/cors/README.md
+Backend/node_modules/cors/package.json
+Backend/node_modules/cors/LICENSE
+Backend/node_modules/cors/HISTORY.md
+Backend/node_modules/cors/CONTRIBUTING.md
