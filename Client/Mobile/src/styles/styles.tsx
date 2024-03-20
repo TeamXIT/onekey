@@ -323,4 +323,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export { styles, secondaryColor };
+export { styles, secondaryColor, errorColor };

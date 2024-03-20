@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Image, Text, View } from 'react-native';
-import { styles,secondaryColor } from "../styles/styles";
+import { styles,secondaryColor,errorColor } from "../styles/styles";
 
 const TeamXCard = ({ onPress, imageSource, labelText, selected, setSelectedCard }) => {
   const [isSelected, setIsSelected] = useState(selected || false);
@@ -22,7 +22,7 @@ const TeamXCard = ({ onPress, imageSource, labelText, selected, setSelectedCard 
     <View style={{padding:20}}>
       <TouchableOpacity 
        style={[styles.UsercardStyle,
-        isSelected ? {borderColor: 'red',borderWidth:2} : {borderColor:secondaryColor,borderWidth:2}
+        isSelected ? {borderColor: errorColor,borderWidth:2} : {borderColor:secondaryColor,borderWidth:2}
       ]} 
         onPress={handlePress} 
         activeOpacity={0.5}
