@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native"
 import AppIntroSlider from "react-native-app-intro-slider";
 
@@ -11,7 +10,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_mobile_recharge.png',
         },
-        backgroundColor: '#20d2bb',
+        backgroundColor: "#20d2bb"
     },
     {
         key: 's2',
@@ -21,7 +20,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_flight_ticket_booking.png',
         },
-        backgroundColor: '#febe29',
+        backgroundColor: "#febe29"
     },
     {
         key: 's3',
@@ -31,7 +30,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_discount.png',
         },
-        backgroundColor: '#22bcb5',
+        backgroundColor: "#f6437b"
     },
     {
         key: 's4',
@@ -41,7 +40,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_best_deals.png',
         },
-        backgroundColor: '#3395ff',
+        backgroundColor: "#22bcb5"
     },
     {
         key: 's5',
@@ -51,7 +50,7 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_bus_ticket_booking.png',
         },
-        backgroundColor: '#f6437b',
+        backgroundColor: "#3395ff"
     },
     {
         key: 's6',
@@ -61,12 +60,11 @@ const slides = [
             uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_train_ticket_booking.png',
         },
-        backgroundColor: '#febe29',
+        backgroundColor: "#febe29"
     },
 ];
 
 const OneKeyIntro = ({ navigation }) => {
-
     const onDone = () => {
         navigation.navigate("signin");
     };
@@ -145,5 +143,5 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 16,
         fontWeight: 'bold',
-    },
+    }
 });

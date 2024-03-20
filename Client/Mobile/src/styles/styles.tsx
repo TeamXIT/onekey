@@ -13,7 +13,8 @@ const lightGray = "#D3D3D3";
 const componentColor = useColorScheme() === 'light' ? '#FAFAFA' : '#404040';
 const textColor = useColorScheme() === 'light' ? darkText : lightText;
 const errorColor = "#FF0000";
-const blue ="#0987F0";
+const blue = "#0987F0";
+
 // FontSizes
 const xSmallSize = 14;
 const smallSize = 18;
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
     cardIcon: {
         width: 40,
         height: 40,
+
     },
     cardTextStyle: {
         color: primaryColor,
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     enhancedCard: {
-        width:130,
+        width: 130,
         backgroundColor: secondaryColor,
         borderRadius: 10,
         shadowColor: '#000',
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 3.84,
         elevation: 5,
-        },
+    },
 
     TextStyle: {
         color: primaryColor,
@@ -102,7 +104,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingTop: 90,
         paddingBottom: 90,
-        gap:-38
+        gap: -38
     },
     NexttouchableContent: {
         flexDirection: 'row',
@@ -110,23 +112,23 @@ const styles = StyleSheet.create({
         marginLeft: 100,
         borderRadius: 5,
         backgroundColor: secondaryColor,
-       
-        paddingLeft:38,
-        paddingRight:38,
-        paddingTop:10,
-        paddingBottom:10
+
+        paddingLeft: 38,
+        paddingRight: 38,
+        paddingTop: 10,
+        paddingBottom: 10
     },
     BacktouchableContent: {
         marginLeft: 0,
         backgroundColor: secondaryColor,
-        
+
         borderRadius: 5,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft:38,
-        paddingRight:38,
-        paddingTop:10,
-        paddingBottom:10
+        paddingLeft: 38,
+        paddingRight: 38,
+        paddingTop: 10,
+        paddingBottom: 10
     },
     imgTextContainer: {
         flexDirection: 'row',
@@ -207,7 +209,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginLeft: 10,
         marginRight: 10,
-        gap:70
+        gap: 70
     },
     errorTextStyle: {
         color: errorColor,
@@ -217,57 +219,78 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 30
     },
-    cardSelected:{
+    cardSelected: {
         borderColor: errorColor,
         borderWidth: 2
     },
+    //project screen
+    cardcontainer: {
+        paddingBottom: 100,
+    },
     cardStyle: {
         backgroundColor: secondaryColor,
-        marginBottom: 10,
-        marginLeft: 8,
-        marginRight: 8,
-        borderRadius: 10,
-        elevation: 5,
+        marginBottom: 5,
+        marginTop: 10,
+        borderRadius: 20,
+        elevation: 3,
         flexDirection: 'row',
         alignItems: 'center',
-        height: 170
+        height: 150,
+        padding: 16,
+        position: 'relative',
+    },
+    cardimage: {
+        width: 150,
+        height: 150,
+        borderRadius: 10,
+        marginRight: 20,
     },
     cardContent: {
         flex: 1,
-        flexDirection: 'column',
-        marginLeft: -70,
-    },
-    cardimage: {
-        marginBottom: 40,
-        marginLeft: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
 
     },
-    buttonContainer: {
-        flexDirection: 'row',
-        marginTop: 110,
-        right: 110,
-    },
     cardTitle: {
-        fontSize: normalSize,
+
+        fontSize: 18,
         fontWeight: 'bold',
-        marginBottom: 4,
+
     },
     cardDescription: {
-        fontSize: smallSize,
-        marginBottom: 4,
+        marginTop: 10,
+        fontSize: 16,
     },
-    cardLikes: {
-        fontSize: xSmallSize,
-        color: blue
+    cardlikes: {
+        fontSize: 15,
+        color: blue,
+        marginTop: 50,
+        marginLeft: 50
     },
+
+    buttonContainer: {
+        position: 'absolute',
+        top: 110,
+        left: 250,
+        flexDirection: 'row',
+
+    },
+    commentIcon: {
+
+        marginLeft: 10,
+    },
+    LikeIcon: {
+        marginRight: 65,
+    },
+    //bottom tab
     tabBar: {
         position: 'absolute',
-        height: 75,
+        height: 65,
         bottom: 10,
         right: 16,
         left: 16,
         borderRadius: 16,
-        backgroundColor: '#48525e',
+        backgroundColor: primaryColor,
         borderTopWidth: 1,
 
     },
@@ -284,19 +307,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
-
     },
-    icon: {
-        height: 40,
-        width: 40,
+    tabicon: {
         tintColor: secondaryColor,
     },
     text: {
-        fontSize: 15,
+        fontSize: 10,
         textAlign: 'center',
         color: secondaryColor,
-        marginTop: 1,
-        fontWeight: "bold"
     },
     circle: {
         alignItems: 'center',
@@ -304,4 +322,5 @@ const styles = StyleSheet.create({
         backgroundColor: primaryColor,
     },
 });
+
 export { styles };
