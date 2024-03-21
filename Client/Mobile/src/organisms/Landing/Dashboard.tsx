@@ -1,8 +1,9 @@
 import React, { useEffect, useReducer, useRef } from 'react'
 import { BottomTabBarProps, BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Animated, LayoutChangeEvent, Pressable, StyleSheet } from 'react-native';
+import { View, LayoutChangeEvent, Pressable, StyleSheet } from 'react-native';
+import Animated, { useAnimatedStyle, withTiming, useDerivedValue } from 'react-native-reanimated'
+import Lottie from 'lottie-react-native'
 import Svg, { Path } from 'react-native-svg';
-import { useDerivedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator();
@@ -66,8 +67,7 @@ const AnimatedTabBar = ({ state: { index: activeIndex, routes }, navigation, des
     }
 
     const [layout, dispatch] = useReducer(reducer, [])
-    console.log(layout)
-
+  
     const handleLayout = (event: LayoutChangeEvent, index: number) => {
         dispatch({ x: event.nativeEvent.layout.x, index })
     }
