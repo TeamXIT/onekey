@@ -14,6 +14,8 @@ const componentColor = useColorScheme() === 'light' ? '#FAFAFA' : '#404040';
 const textColor = useColorScheme() === 'light' ? darkText : lightText;
 const errorColor = "#FF0000";
 const blue = "#0987F0";
+const shadowcolor= '#000'
+
 // FontSizes
 const xSmallSize = 14;
 const smallSize = 18;
@@ -65,27 +67,27 @@ const styles = StyleSheet.create({
     cardIcon: {
         width: 40,
         height: 40,
+
     },
-    cardTextStyle: {
-        color: primaryColor,
-        fontSize: smallSize,
-        fontWeight: 'bold',
-    },
-    enhancedCard: {
-        width: 130,
-        backgroundColor: secondaryColor,
-        borderRadius: 10,
-        shadowColor: '#000',
+    UsercardStyle: {
+        height:140,
+        width:140,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:secondaryColor,
+        borderRadius:10,
+        shadowColor: shadowcolor,
         shadowOffset: {
-            width: 0,
-            height: 2,
+          width: 0,
+          height: 2,
         },
         shadowOpacity: 0.2,
         shadowRadius: 3.84,
         elevation: 5,
+        gap:5
     },
-
-    TextStyle: {
+  
+   TextStyle: {
         color: primaryColor,
         textAlign: 'center',
         fontWeight: 'bold',
@@ -102,17 +104,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingTop: 90,
         paddingBottom: 90,
-        gap: -38
+        gap: -58
     },
     NexttouchableContent: {
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft: 100,
-        borderRadius: 5,
+        borderRadius: 10,
         backgroundColor: secondaryColor,
 
-        paddingLeft: 38,
-        paddingRight: 38,
+        paddingLeft: 40,
+        paddingRight: 40,
         paddingTop: 10,
         paddingBottom: 10
     },
@@ -120,11 +122,11 @@ const styles = StyleSheet.create({
         marginLeft: 0,
         backgroundColor: secondaryColor,
 
-        borderRadius: 5,
+        borderRadius: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft: 38,
-        paddingRight: 38,
+        paddingLeft: 40,
+        paddingRight: 40,
         paddingTop: 10,
         paddingBottom: 10
     },
@@ -320,4 +322,5 @@ const styles = StyleSheet.create({
         backgroundColor: primaryColor,
     },
 });
-export { styles };
+
+export { styles, secondaryColor, errorColor };

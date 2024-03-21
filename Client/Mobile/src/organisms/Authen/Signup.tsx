@@ -92,6 +92,7 @@ const Signup = ({ navigation }) => {
         }
         if (!hasError) {
             dispatch(UserSignup(username, email, password, confirmPassword));
+            navigation.navigate('verification')
         }
     }
 
