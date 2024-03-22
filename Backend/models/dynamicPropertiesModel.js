@@ -8,7 +8,7 @@ const DynamicProperties = sequelize.define("DynamicProperty",{
         allowNull:false
     },
     value_type:{
-        type:DataTypes.ENUM('STRING','CHAR','TEXT','INTEGER','BIGINT','FLOAT','DOUBLE','DECIMAL','BOOLEAN','DATE','DATEONLY','TIME','ENUM','JSON','JSONB','ARRAY'),
+        type:DataTypes.STRING,
         allowNull:false
     },
     value:{

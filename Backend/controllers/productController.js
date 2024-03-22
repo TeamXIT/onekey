@@ -5,8 +5,8 @@ const {DynamicProperties} = require('../models/dynamicPropertiesModel');
 const createProduct = async (req, res) => {
     try {
         const { name, description, owner_id, dynamic_properties } = req.body;
-        let product;
-        product = await Product.findOne({ where: { name: name } });
+        
+       let  product = await Product.findOne({ where: { name: name } });
         if (!product) {
             // Create a new product if it doesn't exist
             product = await Product.create({
@@ -19,7 +19,10 @@ const createProduct = async (req, res) => {
                 { description: description, owner_id: owner_id },
                 { where: { name: name } }
             );
+            
         }
+        product=await Product.findOne({ where: { name: name } });
+     
        const createdDynamicProperties = [];
         dynamic_properties.forEach(async (property) => {
             const createdProperty = await DynamicProperties.create({
@@ -30,7 +33,7 @@ const createProduct = async (req, res) => {
             });
             createdDynamicProperties.push(createdProperty);
         });
-        res.status(200).json({ product, createdDynamicProperties });
+        res.status(200).json({ message:'Created Successfully'});
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
