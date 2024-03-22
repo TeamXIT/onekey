@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity,} from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity, TouchableHighlight, } from 'react-native';
 import { styles } from '../../styles/styles';
 
 
 const Projects = ({ navigation }) => {
   const [likeCounts, setLikeCounts] = useState({});
-  const likeIconActiveColor = "#0987F0";
+  const likeIconActiveColor = "#FF0000";
   const likeIconInactiveColor = "#777";
 
   const data = [
@@ -20,13 +20,20 @@ const Projects = ({ navigation }) => {
   ];
 
   const handleCardPress = (item) => {
-    navigation.navigate('CardDetails', { cardData: { ...item, like: likeCounts[item.id] || 0 } });
+    navigation.navigate('CardDetails', {
+      cardData: {
+        ...item,
+        like: likeCounts[item.id] || 0,
+        image: item.image
+      },
+      isLiked: likeCounts[item.id] > 0
+    });
   };
 
   const handleLikePress = (id) => {
     setLikeCounts(prevState => ({
       ...prevState,
-      [id]: prevState[id] ? prevState[id] - 1 : 1, 
+      [id]: prevState[id] ? prevState[id] - 1 : 1,
     }));
   };
 
@@ -35,7 +42,10 @@ const Projects = ({ navigation }) => {
   };
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => handleCardPress(item)}>
+    <TouchableHighlight
+      onPress={() => handleCardPress(item)}
+      underlayColor="rgba(0,0,0,0.2)"
+    >
       <View style={styles.cardStyle}>
         <View>
           <Image source={item.image} style={styles.cardimage} />
@@ -48,7 +58,7 @@ const Projects = ({ navigation }) => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={() => handleLikePress(item.id)}>
             <Image
-              source={require('../../images/ic_like.png')}
+              source={require('../../images/ic_like1.png')}
               style={[styles.LikeIcon, { tintColor: likeCounts[item.id] ? likeIconActiveColor : likeIconInactiveColor }]}
             />
           </TouchableOpacity>
@@ -60,7 +70,7 @@ const Projects = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 
   return (
