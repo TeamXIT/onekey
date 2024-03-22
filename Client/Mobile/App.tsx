@@ -20,6 +20,7 @@ import Projects from './src/organisms/Landing/Projects';
 import { Provider } from 'react-redux';
 import { store } from './src/reducers/store';
 import OneKeyIntro from './src/organisms/Authen/OneKeyInto';
+import CardDetails from './src/organisms/Landing/CardDetails';
 
 const Stack = createStackNavigator();
 
@@ -112,6 +113,22 @@ const Landing = () => {
         name="comment"
         component={Comment}
       />
+       <Stack.Screen
+        name="CardDetails"
+        component={CardDetails}
+        options={{
+          title: 'CardDetails',
+          //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appPrimary.color, //Set Header color
+          },
+          headerShown: true,
+          headerTintColor: styles.appSecondary.color, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 };
@@ -120,7 +137,7 @@ function App(): React.JSX.Element {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="splashScreen">
+        <Stack.Navigator initialRouteName="Landing">
           {/* SplashScreen which will come once for 5 Seconds */}
           <Stack.Screen
             name="splashScreen"

@@ -10,7 +10,7 @@ import * as Animatable from 'react-native-animatable';
 import { styles } from '../../styles/styles';
 
 const likeIconActiveColor = "#F2E8C6";
-  const likeIconInactiveColor = "#48525e";
+const likeIconInactiveColor = "#48525e";
 const Tab = createBottomTabNavigator();
 const icons = {
     Home: require('../../images/ic_home.png'),
@@ -22,6 +22,7 @@ const TabArr = [
     { route: 'Home', label: 'Home', icon: icons.Home, component: Home },
     { route: 'Post', label: 'Post', icon: icons.post, component: Post },
     { route: 'Projects', label: 'Projects', icon: icons.Projects, component: Projects },
+   
 ];
 
 const TabButton = ({ item, onPress, accessibilityState }) => {
@@ -46,10 +47,10 @@ const TabButton = ({ item, onPress, accessibilityState }) => {
         <TouchableOpacity onPress={onPress} activeOpacity={1}>
             <Animatable.View ref={viewRef} duration={1000} style={styles.tabContainer}>
                 <View style={[styles.tabbtn, { borderColor: focused ? likeIconActiveColor : likeIconInactiveColor }]}>
-                    <Animatable.View ref={circleRef} style={styles.circle} />
+                    <Animatable.View ref={circleRef} style={styles.tabcircle} />
                     <Image resizeMode="contain" source={item.icon} style={styles.tabicon} />
                 </View>
-                <Animatable.Text ref={textRef} style={styles.text}>
+                <Animatable.Text ref={textRef} style={styles.tabtext}>
                     {item.label}
                 </Animatable.Text>
             </Animatable.View>
