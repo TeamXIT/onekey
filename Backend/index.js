@@ -29,5 +29,5 @@ app.listen(port, async () => {
     Product.belongsTo(User, { foreignKey: 'owner_id' });
     User.belongsTo(Role, { foreignKey: 'role_id' });
 
-    await sequelize.sync({alter: true});
+    await sequelize.sync({alter: false});
 });

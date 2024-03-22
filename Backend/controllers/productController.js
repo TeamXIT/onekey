@@ -71,6 +71,49 @@ const getById = async (req,res)=>{
         return res.status(500).json({error:error.message});
     }
 }
+
+const updateProduct = async (req,res)=>{
+    try{
+        const {name,description,owner_id,dynamic_properties} = req.body;
+        let product = await Product.findOne({where:{name:name}});
+        if(!product){
+            return res.status(404).json({error:'Product not found'});
+        }
+        else{
+            product = await Product.update(
+                {description:description,owner_id:owner_id},
+                {where:{name:name}}
+            );
+            product = await Product.findOne({where:{name:name}});
+            let oldDynamicproperties = await DynamicProperties.findAll({where:{product_id:product.product_id}});
+            const existingDynamicProperties = [];
+            for (let i = 0; i < oldDynamicproperties.length; i++) {
+                const property = oldDynamicproperties[i];
+                const matchingProperty = dynamic_properties.find(prop => prop.name === property.name);
+
+                if (matchingProperty) {
+                    await DynamicProperties.update(
+                        {
+                            name: matchingProperty.name,
+                            value_type: matchingProperty.value_type,
+                            value: matchingProperty.value,
+                            product_id: product.product_id
+                        },
+                        { where: { name: matchingProperty.name } }
+                    );
+                } else {
+                    await DynamicProperties.destroy({ where: { name: property.name } });
+                }
+            }
+                let newDynamicproperties = await DynamicProperties.findAll({where:{product_id:product.product_id}});
+
+                res.status(200).json({newDynamicproperties,oldDynamicproperties});
+        }
+        
+    }catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}
 const deleteProduct = async (req,res)=>{
         const {product_id} = req.query;
     try{
@@ -85,4 +128,4 @@ const deleteProduct = async (req,res)=>{
         return res.status(500).json({error:error.message});
     }
 }
-module.exports = {getAllProducts,getById,createProduct,deleteProduct};
+module.exports = {getAllProducts,getById,createProduct,deleteProduct,updateProduct};
