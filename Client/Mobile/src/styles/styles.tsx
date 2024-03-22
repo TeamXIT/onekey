@@ -14,7 +14,7 @@ const componentColor = useColorScheme() === 'light' ? '#FAFAFA' : '#404040';
 const textColor = useColorScheme() === 'light' ? darkText : lightText;
 const errorColor = "#FF0000";
 const blue = "#0987F0";
-const shadowcolor= '#000'
+const shadowcolor = '#000'
 
 // FontSizes
 const xSmallSize = 14;
@@ -70,24 +70,24 @@ const styles = StyleSheet.create({
 
     },
     UsercardStyle: {
-        height:140,
-        width:140,
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:secondaryColor,
-        borderRadius:10,
+        height: 140,
+        width: 140,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: secondaryColor,
+        borderRadius: 10,
         shadowColor: shadowcolor,
         shadowOffset: {
-          width: 0,
-          height: 2,
+            width: 0,
+            height: 2,
         },
         shadowOpacity: 0.2,
         shadowRadius: 3.84,
         elevation: 5,
-        gap:5
+        gap: 5
     },
-  
-   TextStyle: {
+
+    TextStyle: {
         color: primaryColor,
         textAlign: 'center',
         fontWeight: 'bold',
@@ -224,9 +224,6 @@ const styles = StyleSheet.create({
         borderWidth: 2
     },
     //project screen
-    cardcontainer: {
-        paddingBottom: 100,
-    },
     cardStyle: {
         backgroundColor: secondaryColor,
         marginBottom: 5,
@@ -239,12 +236,6 @@ const styles = StyleSheet.create({
         padding: 16,
         position: 'relative',
     },
-    cardimage: {
-        width: 150,
-        height: 150,
-        borderRadius: 10,
-        marginRight: 20,
-    },
     cardTitle: {
         fontSize: smallSize,
         fontWeight: 'bold',
@@ -252,124 +243,74 @@ const styles = StyleSheet.create({
     },
     cardDescription: {
         fontSize: xSmallSize,
-       
     },
     cardLikes: {
-        marginTop:60,
+        marginTop: 60,
         fontSize: xSmallSize,
         color: blue,
-        marginLeft:20
+        marginLeft: 20
     },
     cardContent: {
-      flex: 1,
-      flexDirection: 'column',
-      marginLeft: 15,
+        flex: 1,
+        flexDirection: 'column',
+        marginLeft: 15,
     },
     cardimage: {
-      padding:80,
-      marginBottom: 40,
-      marginLeft: 15,
-      marginTop:20,
-    
+        padding: 80,
+        marginBottom: 40,
+        marginLeft: 15,
+        marginTop: 20,
     },
     buttonContainer: {
-      position: 'absolute',
-      top: 130,
-      left: 250,
-      flexDirection: 'row',
+        position: 'absolute',
+        top: 130,
+        left: 250,
+        flexDirection: 'row',
     },
     commentIcon: {
-      marginLeft: 40,
+        marginLeft: 40,
     },
     LikeIcon: {
-      marginLeft: 25,
+        marginLeft: 25,
     },
-   //bottom tab
-    tabBar: {
-        position: 'absolute',
-        height: 65,
-        bottom: 10,
-        right: 16,
-        left: 16,
-        borderRadius: 16,
-        backgroundColor: primaryColor,
-        borderTopWidth: 1,
-
-    },
-    tabContainer: {
-        alignItems: 'center',
-        marginLeft: 30,
-        marginRight: 50
-    },
-    tabbtn: {
-        width: 50,
-        height: 50,
-        borderWidth: 4,
-        borderRadius: 25,
-        backgroundColor: 'transparent',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    tabicon: {
-        tintColor: secondaryColor,
-    },
-    text: {
-        fontSize: 10,
-        textAlign: 'center',
-        color: secondaryColor,
-    },
-    tabcircle: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: primaryColor,
-    },
-   
-      cardcontainer: {
-        paddingBottom: 90,
-      },
-      //carddetails
-      CardDetailscontainer: {
+    //carddetails
+    CardDetailscontainer: {
         flex: 1,
         alignItems: 'center',
         backgroundColor: secondaryColor,
-      },
-      CardDetailsimage: {
+    },
+    CardDetailsimage: {
         width: 200,
         height: 200,
         marginBottom: 10,
-      },
-      CardDetailsline: {
-        width: '100%',
-        borderBottomWidth: 40,
-        borderColor: tertiaryColor,
-        marginBottom: 15,
-      },
-      CardDetailsactionsContainer: {
+    },
+    CardDetailsactionsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '80%',
-        marginBottom: 10,
-      },
-      CardDetailsicon: {
+        width: '100%',
+        backgroundColor: primaryColor,
+        opacity: 50
+    },
+    CardDetailsicon: {
         width: 24,
         height: 24,
         marginTop: -45,
-      },
-      CardDetailstitle: {
-        fontSize: normalSize ,
+    },
+    CardDetailstitle: {
+        fontSize: normalSize,
         fontWeight: 'bold',
         marginBottom: 10,
-      },
-      CardDetailsdescription: {
+    },
+    CardDetailsdescription: {
         fontSize: smallSize,
-      },
-      CardDetailslike: {
+    },
+    CardDetailslike: {
         marginRight: 150,
         marginTop: -55,
         fontSize: smallSize,
         marginBottom: 50,
         color: primaryColor,
-      },
+    },
 });
 
 export { styles, secondaryColor, errorColor };

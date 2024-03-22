@@ -6,18 +6,19 @@ const CardDetails = ({ route, navigation }) => {
   const { cardData } = route.params;
 
   const handleCommentPress = () => {
-    navigation.navigate('comment');
+    navigation.navigate('comment', { commentData: cardData });
   };
 
   return (
     <View style={styles.CardDetailscontainer}>
-      <Image source={cardData.image} style={styles.CardDetailsimage} />
-      <View style={styles.CardDetailsline}></View>
-      <View style={styles.CardDetailsactionsContainer}>
-        <Image source={require('../../images/ic_like.png')} style={[styles.CardDetailsicon, { tintColor: "#48525e" }]} />
-        <TouchableOpacity onPress={handleCommentPress}>
-          <Image source={require('../../images/ic_comment.png')} style={[styles.CardDetailsicon, { tintColor: "#48525e" }]} />
-        </TouchableOpacity>
+      <View>
+        <Image source={cardData.image} style={styles.CardDetailsimage} />
+        <View style={styles.CardDetailsactionsContainer}>
+          <Image source={require('../../images/ic_like.png')} style={[styles.CardDetailsicon, { tintColor: "#48525e" }]} />
+          <TouchableOpacity onPress={handleCommentPress}>
+            <Image source={require('../../images/ic_comment.png')} style={[styles.CardDetailsicon, { tintColor: "#48525e" }]} />
+          </TouchableOpacity>
+        </View>
       </View>
       <Text style={styles.CardDetailslike}> Likes: {cardData.like}</Text>
       <Text style={styles.CardDetailstitle}>Title: {cardData.title}</Text>

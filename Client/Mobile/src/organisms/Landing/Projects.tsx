@@ -69,7 +69,6 @@ const Projects = ({ navigation }) => {
       renderItem={renderItem}
       keyExtractor={item => item.id}
       numColumns={1}
-      contentContainerStyle={styles.cardcontainer}
     />
   );
 };

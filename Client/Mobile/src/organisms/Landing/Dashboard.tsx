@@ -61,7 +61,7 @@ const AnimatedTabBar = ({ state: { index: activeIndex, routes }, navigation, des
     }
 
     const [layout, dispatch] = useReducer(reducer, [])
-  
+
     const handleLayout = (event: LayoutChangeEvent, index: number) => {
         dispatch({ x: event.nativeEvent.layout.x, index })
     }
