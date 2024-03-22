@@ -11,7 +11,6 @@ import { styles } from '../../styles/styles';
 
 const likeIconActiveColor = "#F2E8C6";
 const likeIconInactiveColor = "#48525e";
-
 const Tab = createBottomTabNavigator();
 const icons = {
     Home: require('../../images/ic_home.png'),
@@ -42,7 +41,7 @@ const TabButton = ({ item, onPress, accessibilityState }) => {
             circleRef.current.animate('circle1');
             textRef.current.transitionTo({ scale: 1 });
         }
-    },[]);
+    },);
 
     return (
         <TouchableOpacity onPress={onPress} activeOpacity={1}>
@@ -87,3 +86,7 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
+
+

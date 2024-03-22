@@ -26,8 +26,4 @@ const CardDetails = ({ route, navigation }) => {
   );
 };
 
-
-  
-
-
 export default CardDetails;

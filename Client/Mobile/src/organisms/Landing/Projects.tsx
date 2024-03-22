@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity,} from 'react-native';
 import { styles } from '../../styles/styles';
+
 
 const Projects = ({ navigation }) => {
   const [likeCounts, setLikeCounts] = useState({});

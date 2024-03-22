@@ -13,7 +13,9 @@ const lightGray = "#D3D3D3";
 const componentColor = useColorScheme() === 'light' ? '#FAFAFA' : '#404040';
 const textColor = useColorScheme() === 'light' ? darkText : lightText;
 const errorColor = "#FF0000";
-const blue ="#0987F0";
+const blue = "#0987F0";
+const shadowcolor= '#000'
+
 // FontSizes
 const xSmallSize = 14;
 const smallSize = 18;
@@ -65,27 +67,27 @@ const styles = StyleSheet.create({
     cardIcon: {
         width: 40,
         height: 40,
+
     },
-    cardTextStyle: {
-        color: primaryColor,
-        fontSize: smallSize,
-        fontWeight: 'bold',
-    },
-    enhancedCard: {
-        width:130,
-        backgroundColor: secondaryColor,
-        borderRadius: 10,
-        shadowColor: '#000',
+    UsercardStyle: {
+        height:140,
+        width:140,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:secondaryColor,
+        borderRadius:10,
+        shadowColor: shadowcolor,
         shadowOffset: {
-            width: 0,
-            height: 2,
+          width: 0,
+          height: 2,
         },
         shadowOpacity: 0.2,
         shadowRadius: 3.84,
         elevation: 5,
-        },
-
-    TextStyle: {
+        gap:5
+    },
+  
+   TextStyle: {
         color: primaryColor,
         textAlign: 'center',
         fontWeight: 'bold',
@@ -102,31 +104,31 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingTop: 90,
         paddingBottom: 90,
-        gap:-38
+        gap: -58
     },
     NexttouchableContent: {
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft: 100,
-        borderRadius: 5,
+        borderRadius: 10,
         backgroundColor: secondaryColor,
-       
-        paddingLeft:38,
-        paddingRight:38,
-        paddingTop:10,
-        paddingBottom:10
+
+        paddingLeft: 40,
+        paddingRight: 40,
+        paddingTop: 10,
+        paddingBottom: 10
     },
     BacktouchableContent: {
         marginLeft: 0,
         backgroundColor: secondaryColor,
-        
-        borderRadius: 5,
+
+        borderRadius: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft:38,
-        paddingRight:38,
-        paddingTop:10,
-        paddingBottom:10
+        paddingLeft: 40,
+        paddingRight: 40,
+        paddingTop: 10,
+        paddingBottom: 10
     },
     imgTextContainer: {
         flexDirection: 'row',
@@ -207,7 +209,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginLeft: 10,
         marginRight: 10,
-        gap:70
+        gap: 70
     },
     errorTextStyle: {
         color: errorColor,
@@ -217,21 +219,31 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 30
     },
-    cardSelected:{
+    cardSelected: {
         borderColor: errorColor,
         borderWidth: 2
     },
     //project screen
+    cardcontainer: {
+        paddingBottom: 100,
+    },
     cardStyle: {
         backgroundColor: secondaryColor,
-        marginBottom: 10,
-        marginLeft: 8,
-        marginRight: 8,
-        borderRadius: 10,
-        elevation: 5,
+        marginBottom: 5,
+        marginTop: 10,
+        borderRadius: 20,
+        elevation: 3,
         flexDirection: 'row',
         alignItems: 'center',
-        height: 170
+        height: 150,
+        padding: 16,
+        position: 'relative',
+    },
+    cardimage: {
+        width: 150,
+        height: 150,
+        borderRadius: 10,
+        marginRight: 20,
     },
     cardTitle: {
         fontSize: smallSize,
@@ -275,7 +287,7 @@ const styles = StyleSheet.create({
    //bottom tab
     tabBar: {
         position: 'absolute',
-        height: 75,
+        height: 65,
         bottom: 10,
         right: 16,
         left: 16,
@@ -299,23 +311,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     tabicon: {
-        height: 40,
-        width: 40,
         tintColor: secondaryColor,
     },
-    tabtext: {
-        fontSize: xSmallSize,
+    text: {
+        fontSize: 10,
         textAlign: 'center',
         color: secondaryColor,
-        marginTop: 1,
-        fontWeight: "bold"
     },
     tabcircle: {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: primaryColor,
     },
-    
+   
       cardcontainer: {
         paddingBottom: 90,
       },
@@ -363,4 +371,5 @@ const styles = StyleSheet.create({
         color: primaryColor,
       },
 });
-export { styles };
+
+export { styles, secondaryColor, errorColor };
