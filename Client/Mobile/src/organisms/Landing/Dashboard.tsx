@@ -5,6 +5,10 @@ import Animated, { useAnimatedStyle, withTiming, useDerivedValue } from 'react-n
 import Lottie from 'lottie-react-native'
 import Svg, { Path } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Home from './Home';
+import Projects from './Projects';
+import Post from './Post';
+import Settings from './Settings';
 
 const Tab = createBottomTabNavigator();
 const AnimatedSvg = Animated.createAnimatedComponent(Svg)
@@ -19,42 +23,32 @@ const Dashboard = () => {
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/home.icon.json')} style={styles.icon} />,
                     }}
-                    component={PlaceholderScreen} />
+                    component={Home} />
                 <Tab.Screen
                     name="Upload"
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/upload.icon.json')} style={styles.icon} />,
                     }}
-                    component={PlaceholderScreen} />
+                    component={Projects} />
                 <Tab.Screen
                     name="Chat"
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/chat.icon.json')} style={styles.icon} />,
                     }}
-                    component={PlaceholderScreen} />
+                    component={Post} />
                 <Tab.Screen
                     name="Settings"
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/settings.icon.json')} style={styles.icon} />,
                     }}
-                    component={PlaceholderScreen} />
+                    component={Settings} />
             </Tab.Navigator>
         </>
     )
 }
-
-// ------------------------------------------------------------------
-
-const PlaceholderScreen = () => {
-    return (
-        <View style={{ flex: 1, backgroundColor: '#604AE6' }} />
-    )
-}
-
-// ------------------------------------------------------------------
 
 const AnimatedTabBar = ({ state: { index: activeIndex, routes }, navigation, descriptors }: BottomTabBarProps) => {
     const { bottom } = useSafeAreaInsets()

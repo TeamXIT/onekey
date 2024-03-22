@@ -21,6 +21,7 @@ import { Provider } from 'react-redux';
 import { store } from './src/reducers/store';
 import OneKeyIntro from './src/organisms/Authen/OneKeyInto';
 import CardDetails from './src/organisms/Landing/CardDetails';
+import Settings from './src/organisms/Landing/Settings';
 
 const Stack = createStackNavigator();
 
@@ -110,10 +111,14 @@ const Landing = () => {
         component={Projects}
       />
       <Stack.Screen
+        name='settings'
+        component={Settings}
+      />
+      <Stack.Screen
         name="comment"
         component={Comment}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="CardDetails"
         component={CardDetails}
         options={{
