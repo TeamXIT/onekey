@@ -3,11 +3,6 @@ const DataTypes = require('sequelize');
 const {Product} = require('./productModel');
 
 const DynamicProperties = sequelize.define("DynamicProperty",{
-    property_id:{
-        type:DataTypes.INTEGER,
-        autoIncrement:true,
-        primaryKey:true
-    },
     name:{
         type:DataTypes.STRING(100),
         allowNull:false
@@ -28,7 +23,7 @@ const DynamicProperties = sequelize.define("DynamicProperty",{
             key:'product_id'
         }
     }
-},{ tableName: 'DynamicProperties',versionKey:false,timestamps:true});
+},{sequelize, tableName: 'DynamicProperties',versionKey:false,timestamps:false});
 
 
 module.exports = {DynamicProperties};

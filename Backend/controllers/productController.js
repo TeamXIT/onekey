@@ -1,10 +1,46 @@
 const moment = require('moment');
 const {Product} = require('../models/productModel');
+const {DynamicProperties} = require('../models/dynamicPropertiesModel');
 const createProduct = async (req,res)=>{
     try{
-        const newProduct = await Product.create(req.body);
-        newProduct.save();
-        res.status(200).json({message:'product created successfully..'});
+        const {name,description,owner_id,dynamic_properties} = req.body;
+        const product = await Product.findOne({where:{name:name}});
+        if(!product){
+            const newProduct = await Product.create({
+                name:name,
+                description:description,
+                owner_id:owner_id
+            });
+            newProduct.save();
+            console.log(newProduct.id);
+
+            const createdDynamicProperties = [];
+            dynamic_properties.forEach(async property => {
+            const createdProperty = await DynamicProperties.create({
+                name: property.name,
+                value_type: property.value_type,
+                value: property.value,
+                ProductId: newProduct.id // Associate with the newly created product
+            });
+            createdDynamicProperties.push(createdProperty);
+        });
+        }
+        else{
+            const existingProduct = await Product.update(
+                {description:description,owner_id:owner_id},{where:{name:name}
+            });
+            const createdDynamicProperties = [];
+            dynamic_properties.forEach(async property => {
+            const createdProperty = await DynamicProperties.create({
+                name: property.name,
+                value_type: property.value_type,
+                value: property.value,
+                ProductId: existingProduct.id // Associate with the newly created product
+            });
+            createdDynamicProperties.push(createdProperty);
+        });
+        }
+        res.status(200).json(existingProduct,createdProperty);
     }catch(error){
         return res.status(500).json({error:error.message});
     }
