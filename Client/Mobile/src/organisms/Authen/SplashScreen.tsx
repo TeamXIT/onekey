@@ -1,9 +1,26 @@
-import { Text } from "react-native"
+import React from "react";
+import { useEffect, useState } from "react";
+import { View } from "react-native"
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { styles } from "../../styles/styles";
+import TeamXLogoImage from "../../atoms/TeamXLogoImage";
 
-const SplashScreen = () => {
-    return(
-    <Text>SplashScreen</Text>
-    );
+const SplashScreen = ({ navigation }) => {
+  const [animating, setAnimating] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      //AsyncStorage.removeItem('userId');
+      AsyncStorage.getItem('userId').then((value) => {
+        navigation.replace(value === null ? 'Auth' : 'Landing');
+      });
+    }, 3000);
+  }, []);
+  return (
+    <View style={styles.containerStyle}>
+      <TeamXLogoImage />
+    </View>
+  );
 }
 
 export default SplashScreen;

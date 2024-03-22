@@ -14,26 +14,40 @@ import Verification from './src/organisms/Authen/Verification';
 import Dashboard from './src/organisms/Landing/Dashboard';
 import Home from './src/organisms/Landing/Home';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
+import ForgotPassword from './src/organisms/Authen/ForgotPassword';
+import Comment from './src/organisms/Landing/Comment';
+import Projects from './src/organisms/Landing/Projects';
+import { Provider } from 'react-redux';
+import { store } from './src/reducers/store';
+import OneKeyIntro from './src/organisms/Authen/OneKeyInto';
+import CardDetails from './src/organisms/Landing/CardDetails';
+import Settings from './src/organisms/Landing/Settings';
 
 const Stack = createStackNavigator();
 
 const Auth = () => {
   // Stack Navigator for Login and Sign up Screen
   return (
-    <Stack.Navigator initialRouteName="signin">
+    <Stack.Navigator initialRouteName="intro">
+      <Stack.Screen
+        name="intro"
+        component={OneKeyIntro}
+        options={{ headerShown: false }} />
       <Stack.Screen
         name="signin"
         component={Signin}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="signup"
         component={Signup}
         options={{
-          title: 'Signup', //Set Header Title
+          title: 'Signup',
+          //Set Header Title
           headerStyle: {
-            backgroundColor: styles.appColor.color, //Set Header color
+            backgroundColor: styles.appTertiary.color, //Set Header color
           },
+          headerShown: false,
           headerTintColor: '#fff', //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style
@@ -46,8 +60,9 @@ const Auth = () => {
         options={{
           title: 'Verification', //Set Header Title
           headerStyle: {
-            backgroundColor: styles.appColor.color, //Set Header color
+            backgroundColor: styles.appTertiary.color, //Set Header color
           },
+          headerShown: false,
           headerTintColor: '#fff', //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style
@@ -58,15 +73,21 @@ const Auth = () => {
         name="typeselection"
         component={UserTypeSelection}
         options={{
-          title: 'Selection User', //Set Header Title
+          title: '', //Set Header Title
           headerStyle: {
-            backgroundColor: styles.appColor.color, //Set Header color
+            backgroundColor: styles.appPrimary.color, //Set Header color
           },
+          headerShown: false,
           headerTintColor: '#fff', //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style
           },
         }}
+      />
+      <Stack.Screen
+        name="forgotPassword"
+        component={ForgotPassword}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
@@ -77,13 +98,41 @@ const Landing = () => {
   return (
     <Stack.Navigator initialRouteName="dashboard">
       <Stack.Screen
-       name="dashboard"
-       component={Dashboard}
-       options={{headerShown: false}}
+        name="dashboard"
+        component={Dashboard}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
-       name="home"
-       component={Home}
+        name="home"
+        component={Home}
+      />
+      <Stack.Screen
+        name="project"
+        component={Projects}
+      />
+      <Stack.Screen
+        name='settings'
+        component={Settings}
+      />
+      <Stack.Screen
+        name="comment"
+        component={Comment}
+      />
+      <Stack.Screen
+        name="CardDetails"
+        component={CardDetails}
+        options={{
+          title: 'CardDetails',
+          //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appPrimary.color, //Set Header color
+          },
+          headerShown: true,
+          headerTintColor: styles.appSecondary.color, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
       />
     </Stack.Navigator>
   );
@@ -91,30 +140,32 @@ const Landing = () => {
 
 function App(): React.JSX.Element {
   return (
-    <NavigationContainer>
-    <Stack.Navigator initialRouteName="splashScreen">
-      {/* SplashScreen which will come once for 5 Seconds */}
-      <Stack.Screen
-        name="splashScreen"
-        component={SplashScreen}
-        // Hiding header for Splash Screen
-        options={{headerShown: false}}
-      />
-      {/* Auth Navigator: Include Login and Signup */}
-      <Stack.Screen
-        name="Auth"
-        component={Auth}
-        options={{headerShown: false}}
-      />
-      {/* Navigation Drawer as a landing page */}
-      <Stack.Screen
-        name="Landing"
-        component={Landing}
-        // Hiding header for Navigation Drawer
-        options={{headerShown: false}}
-      />
-    </Stack.Navigator>
-  </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Landing">
+          {/* SplashScreen which will come once for 5 Seconds */}
+          <Stack.Screen
+            name="splashScreen"
+            component={SplashScreen}
+            // Hiding header for Splash Screen
+            options={{ headerShown: false }}
+          />
+          {/* Auth Navigator: Include Login and Signup */}
+          <Stack.Screen
+            name="Auth"
+            component={Auth}
+            options={{ headerShown: false }}
+          />
+          {/* Navigation Drawer as a landing page */}
+          <Stack.Screen
+            name="Landing"
+            component={Landing}
+            // Hiding header for Navigation Drawer
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
