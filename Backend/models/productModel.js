@@ -23,6 +23,6 @@ const Product = sequelize.define("Products", {
             key: 'user_id',
         }
     }
-}, { tableName: 'Products', versionKey: false, timestamps: true });
+}, { tableName: 'Products', versionKey: false, timestamps: false });
 
 module.exports = { Product };
