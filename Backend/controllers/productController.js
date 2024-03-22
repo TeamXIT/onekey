@@ -1,48 +1,38 @@
 const moment = require('moment');
 const {Product} = require('../models/productModel');
 const {DynamicProperties} = require('../models/dynamicPropertiesModel');
-const createProduct = async (req,res)=>{
-    try{
-        const {name,description,owner_id,dynamic_properties} = req.body;
-        const product = await Product.findOne({where:{name:name}});
-        if(!product){
-            const newProduct = await Product.create({
-                name:name,
-                description:description,
-                owner_id:owner_id
-            });
-            newProduct.save();
-            console.log(newProduct.id);
 
-            const createdDynamicProperties = [];
-            dynamic_properties.forEach(async property => {
+const createProduct = async (req, res) => {
+    try {
+        const { name, description, owner_id, dynamic_properties } = req.body;
+        let product;
+        product = await Product.findOne({ where: { name: name } });
+        if (!product) {
+            // Create a new product if it doesn't exist
+            product = await Product.create({
+                name: name,
+                description: description,
+                owner_id: owner_id
+            });
+        } else {
+            product = await Product.update(
+                { description: description, owner_id: owner_id },
+                { where: { name: name } }
+            );
+        }
+       const createdDynamicProperties = [];
+        dynamic_properties.forEach(async (property) => {
             const createdProperty = await DynamicProperties.create({
                 name: property.name,
                 value_type: property.value_type,
                 value: property.value,
-                ProductId: newProduct.id // Associate with the newly created product
+                product_id: product.product_id // Use the product_id obtained from product
             });
             createdDynamicProperties.push(createdProperty);
         });
-        }
-        else{
-            const existingProduct = await Product.update(
-                {description:description,owner_id:owner_id},{where:{name:name}
-            });
-            const createdDynamicProperties = [];
-            dynamic_properties.forEach(async property => {
-            const createdProperty = await DynamicProperties.create({
-                name: property.name,
-                value_type: property.value_type,
-                value: property.value,
-                ProductId: existingProduct.id // Associate with the newly created product
-            });
-            createdDynamicProperties.push(createdProperty);
-        });
-        }
-        res.status(200).json(existingProduct,createdProperty);
-    }catch(error){
-        return res.status(500).json({error:error.message});
+        res.status(200).json({ product, createdDynamicProperties });
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
     }
 }
 const getAllProducts = async (req,res)=>{        
@@ -64,34 +54,16 @@ const getAllProducts = async (req,res)=>{
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
-    }
-
+}
 const getById = async (req,res)=>{
     const {product_id} = req.query;
     try{
        const product = await Product.findOne({where:{product_id:product_id}});
-       if(!product){
+       const dynamicproperties = await DynamicProperties.findAll({where:{product_id:product_id}});
+       if(!product || !dynamicproperties){
             return res.status(404).json({error:'product not found'});
        }
-       return res.status(200).json(product);
-    }catch(error){
-        return res.status(500).json({error:error.message});
-    }
-}
-const updateById = async (req,res)=>{
-    const {product_id} = req.query;
-    const {name,description,owner_id}=req.body;
-    try{
-        const product = await Product.findOne({where:{product_id:product_id}});
-        if(!product){
-            return res.status(404).json({error:'product not found'});
-        }
-        // product.name=name;
-        // product.description=description;
-        // product.owner_id=owner_id;
-        const updatedProduct = await Product.update({name,description,owner_id},{where:{product_id:product_id}});
-        // product.save();
-        return res.status(200).json({message:'product updated successfully'});
+       return res.status(200).json(product,dynamicproperties);
     }catch(error){
         return res.status(500).json({error:error.message});
     }
@@ -103,10 +75,11 @@ const deleteProduct = async (req,res)=>{
         if(!product){
             return res.status(404).json({error:'product not found'});
         }
+        const dynamic_properties = await DynamicProperties.destroy({where:{product_id:product_id}});
         const _product = await Product.destroy({where:{product_id:product_id}});
         return res.status(200).json({message:'product deleted successfully..'});
     }catch(error){
         return res.status(500).json({error:error.message});
     }
 }
-module.exports = {getAllProducts,getById,createProduct,updateById,deleteProduct};
+module.exports = {getAllProducts,getById,createProduct,deleteProduct};
