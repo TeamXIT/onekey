@@ -9,14 +9,14 @@ const Projects = ({ navigation }) => {
   const likeIconInactiveColor = "#777";
 
   const data = [
-    { id: '1', title: 'Card 1', description: 'Description for Card 1', image: require('../../images/ic_house.png'), like: 0 },
-    { id: '2', title: 'Card 2', description: 'Description for Card 2', image: require('../../images/ic_house.png'), like: 0 },
-    { id: '3', title: 'Card 3', description: 'Description for Card 3', image: require('../../images/ic_house.png'), like: 0 },
-    { id: '4', title: 'Card 4', description: 'Description for Card 4', image: require('../../images/ic_house.png'), like: 0 },
-    { id: '5', title: 'Card 5', description: 'Description for Card 5', image: require('../../images/ic_house.png'), like: 0 },
-    { id: '6', title: 'Card 6', description: 'Description for Card 6', image: require('../../images/ic_house.png'), like: 0 },
-    { id: '7', title: 'Card 7', description: 'Description for Card 7', image: require('../../images/ic_house.png'), like: 0 },
-    { id: '8', title: 'Card 8', description: 'Description for Card 8', image: require('../../images/ic_house.png'), like: 0 },
+    { id: '1', title: 'Card 1', description: 'Description for Card 1.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0},
+    { id: '2', title: 'Card 2', description: 'Description for Card 2.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
+    { id: '3', title: 'Card 3', description: 'Description for Card 3.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
+    { id: '4', title: 'Card 4', description: 'Description for Card 4.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
+    { id: '5', title: 'Card 5', description: 'Description for Card 5.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
+    { id: '6', title: 'Card 6', description: 'Description for Card 6.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
+    { id: '7', title: 'Card 7', description: 'Description for Card 7.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
+    { id: '8', title: 'Card 8', description: 'Description for Card 8.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
   ];
 
   const handleCardPress = (item) => {
@@ -26,7 +26,8 @@ const Projects = ({ navigation }) => {
         like: likeCounts[item.id] || 0,
         image: item.image
       },
-      isLiked: likeCounts[item.id] > 0
+      isLiked: likeCounts[item.id] > 0,
+      updateLikeCount: updateLikeCount,
     });
   };
 
@@ -41,9 +42,21 @@ const Projects = ({ navigation }) => {
     navigation.navigate('comment', { commentData: item });
   };
 
-  const renderItem = ({ item }) => (
+  const updateLikeCount = (id, likeCount) => {
+    setLikeCounts(prevState => ({
+      ...prevState,
+      [id]: likeCount,
+    }));
+  };
+
+  const renderItem = ({ item }) => {
+    const descriptionToShow = item.description.length > 40 ?
+    item.description.substring(0, 40) + '...' : item.description;
+
+    return (
     <TouchableOpacity
       onPress={() => handleCardPress(item)}
+      style={styles.cardContainer}
     >
       <View style={styles.cardStyle}>
         <View>
@@ -51,7 +64,7 @@ const Projects = ({ navigation }) => {
         </View>
         <View style={styles.cardContent}>
           <Text style={styles.cardTitle}>{item.title}</Text>
-          <Text style={styles.cardDescription}>{item.description}</Text>
+          <Text style={styles.cardDescription}>{descriptionToShow}</Text>
           <Text style={styles.cardLikes}>{likeCounts[item.id] || 0} Likes</Text>
         </View>
         <View style={styles.buttonContainer}>
@@ -71,6 +84,7 @@ const Projects = ({ navigation }) => {
       </View>
     </TouchableOpacity>
   );
+    };
 
   return (
     <FlatList

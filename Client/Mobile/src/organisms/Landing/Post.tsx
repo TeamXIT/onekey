@@ -1,9 +1,14 @@
-import { Text } from "react-native"
+import { StyleSheet, Text, View } from "react-native";
+import { styles } from "../../styles/styles";
 
-const post = () => {
+const Post = () => {
     return (
-        <Text>post</Text>
+        <View style={styles.HomeContainer}>
+            <Text style={styles.HomeText}>chat screen</Text>
+        </View>
     );
 }
 
-export default post;
+
+
+export default Post;
