@@ -2,15 +2,12 @@ const express = require('express');
 require('dotenv');
 const sequelize = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
-const dynamicPropertiesRoutes = require('./routes/dynamicPropertiesRoutes');
 const productRoutes= require('./routes/productRoutes');
 const { User } = require('./models/userModel');
 const { Role } = require('./models/roleModel');
-const { DynamicProperties } = require('./models/dynamicPropertiesModel');
 const { Leads } = require('./models/leadsModel');
 const { Product } = require('./models/productModel');
-
-
+const {DynamicProperties} = require('./models/dynamicPropertiesModel');
 
 const cors = require('cors');
 const port = 3000;
@@ -20,7 +17,6 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/product',productRoutes);
-app.use('/api/dynamicProperties',dynamicPropertiesRoutes);
 
 app.get('/', (req, res) => {
     res.json("Welcome to onekey...");
@@ -33,5 +29,5 @@ app.listen(port, async () => {
     Product.belongsTo(User, { foreignKey: 'owner_id' });
     User.belongsTo(Role, { foreignKey: 'role_id' });
 
-    await sequelize.sync();
+    await sequelize.sync({alter: false});
 });

@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
         fontSize: xSmallSize,
     },
     cardLikes: {
-        marginTop: 60,
+        marginTop: 40,
         fontSize: xSmallSize,
         color: blue,
         marginLeft: 20
@@ -258,12 +258,12 @@ const styles = StyleSheet.create({
     cardimage: {
         padding: 80,
         marginBottom: 40,
-        marginLeft: 15,
+        marginLeft: 5,
         marginTop: 20,
     },
     buttonContainer: {
         position: 'absolute',
-        top: 130,
+        top: 110,
         left: 250,
         flexDirection: 'row',
     },
@@ -276,27 +276,46 @@ const styles = StyleSheet.create({
     //carddetails
     CardDetailscontainer: {
         flex: 1,
-        alignItems: 'center',
         backgroundColor: secondaryColor,
-    },
-    CardDetailsimage: {
-        width: 200,
-        height: 200,
-        marginBottom: 10,
-    },
-    CardDetailsactionsContainer: {
+      },
+      iconContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        marginTop: 20,
+      },
+      carddeatilsIcon: {
+        tintColor: primaryColor,
+      },
+      CardDetailsmainImage: {
         width: '100%',
-        backgroundColor: primaryColor,
-        opacity: 50
-    },
-    CardDetailsicon: {
-        width: 24,
-        height: 24,
-        marginTop: -45,
-    },
-    CardDetailstitle: {
+        height: 310,
+      },
+      thumbnailsContainer: {
+        flexDirection: 'row',
+        padding: 10,
+      },
+      thumbnailImage: {
+        width: 70,
+        height: 70,
+        marginRight: 10,
+        borderWidth: 4,
+        borderColor: secondaryColor,
+        borderRadius: 10,
+      },
+      plusIconContainer: {
+        position: 'absolute',
+        bottom: 0,
+        right: 10,
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        borderRadius: 10,
+        width: 70,
+        height: 70,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      plusIcon: {
+        color: secondaryColor,
         fontSize: normalSize,
         fontWeight: 'bold',
         marginBottom: 10,
