@@ -42,11 +42,9 @@ const selectRole = async (req, res) => {
             username,
             roleIdOrroleName
         } = req.body;
-        console.log(req.body);
         const user = await User.findOne({
             where: { username: username }
         });
-        console.log(user);
         if (!user) {
             return res.status(404).json(baseResponses.constantMessages.USER_NOT_FOUND());
         }
@@ -63,7 +61,6 @@ const selectRole = async (req, res) => {
                 where: { role_id: roleIdOrroleName }
             });
         }
-        console.log(existingRole);
         //if user entered role is not a valid role
         if (!existingRole) {
             return res.status(404).json(baseResponses.constantMessages.INVALID_ROLE());
@@ -98,7 +95,7 @@ const signIn = async (req, res) => {
             return res.status(400).json(baseResponses.constantMessages.WRONG_PASSWORD());
         }
         let _secret = process.env.JWT_SECRET || 'rajasekhar-secret-key';
-        const token = jwt.sign({ username, role: user.role }, _secret, { expiresIn: '1h' });
+        const token = jwt.sign({ username, role: user.role_id }, _secret, { expiresIn: '1h' });
         return res.status(200).json(baseResponses.constantMessages.LOGIN_SUCCESSFUL({ token }));
 
     } catch (error) {
