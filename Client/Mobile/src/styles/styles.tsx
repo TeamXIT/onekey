@@ -317,6 +317,38 @@ const styles = StyleSheet.create({
       plusIcon: {
         color: secondaryColor,
         fontSize: normalSize,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    CardDetailsdescription: {
+        fontSize: smallSize,
+    },
+    CardDetailslike: {
+        marginRight: 150,
+        marginTop: -55,
+        fontSize: smallSize,
+        marginBottom: 50,
+        color: primaryColor,
+    },
+    Slidercontainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flex:1,
+        backgroundColor:primaryColor
+       
+      },
+      Sliderimage: {
+        width: 250,
+        height: 250,
+        
+      },
+      Sliderarrow: {
+        padding: 5,
+      },
+      SliderarrowIcon: {
+        width: 50,
+        height: 50,
       },
 });
 
