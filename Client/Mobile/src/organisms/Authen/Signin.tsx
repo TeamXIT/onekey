@@ -21,7 +21,6 @@ const Signin = ({ navigation }) => {
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
 
-
     useEffect(() => {
         if (authen.data.SigninAuthToken) {
             if (!authen.screen.error) {
@@ -34,6 +33,7 @@ const Signin = ({ navigation }) => {
     }, [authen.data.SigninAuthToken])
 
     const handleSubmitPress = () => {
+        //navigation.replace('Landing'); return;
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
         let hasError = false;
         if (!username.trim()) {

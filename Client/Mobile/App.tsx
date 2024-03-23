@@ -22,6 +22,7 @@ import { store } from './src/reducers/store';
 import OneKeyIntro from './src/organisms/Authen/OneKeyInto';
 import CardDetails from './src/organisms/Landing/CardDetails';
 import Settings from './src/organisms/Landing/Settings';
+import ImageList from './src/organisms/Landing/ImageList';
 
 const Stack = createStackNavigator();
 
@@ -119,6 +120,10 @@ const Landing = () => {
         component={Comment}
       />
       <Stack.Screen
+        name="imagelist"
+        component={ImageList}
+      />
+      <Stack.Screen
         name="CardDetails"
         component={CardDetails}
         options={{
@@ -142,7 +147,7 @@ function App(): React.JSX.Element {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Landing">
+        <Stack.Navigator initialRouteName="splashScreen">
           {/* SplashScreen which will come once for 5 Seconds */}
           <Stack.Screen
             name="splashScreen"

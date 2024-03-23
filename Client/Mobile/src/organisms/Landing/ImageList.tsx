@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import { styles } from '../../../src/styles/styles';
 
-const ImageList = () => {
+const ImageList = ({ route, navigation }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  console.log("Image list: ", route);
   
   const images = [
     require('../../../src/images/ic_homeImageOne.png'),
@@ -12,10 +12,8 @@ const ImageList = () => {
     require('../../../src/images/ic_homeImageThree.png'),
     require('../../../src/images/ic_homeImageFour.png'),
     require('../../../src/images/ic_homeImageFive.png'),
-    
   ];
 
-  
   const goToPrevSlide = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
@@ -27,7 +25,8 @@ const ImageList = () => {
       setCurrentIndex(currentIndex + 1);
     }
   };
-return (
+
+  return (
     <View style={styles.Slidercontainer}>
       <TouchableOpacity onPress={goToPrevSlide} style={styles.Sliderarrow}>
         <Image source={require('../../../src/images/ic_leftSingleArrow.png')} style={styles.SliderarrowIcon} />

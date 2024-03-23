@@ -62,7 +62,7 @@ export const UserSignin = (_username: string, _password: string) => async (dispa
             username: _username,
             password: _password,
         }
-        const responce = await axios.post(`${API_BASE_URL}/auth/signin`, credentials);
+        const responce = await axios.post(`${API_BASE_URL}/auth/sign-in`, credentials);
         console.log("Signin Responce: ", responce.data)
         if (responce.status === 200) {
             dispatch(setError(''));
@@ -85,9 +85,10 @@ export const UserSignup = (_username: string, _email: string, _password: string,
             password: _password,
             confirmPassword: _confirmPassword
         }
-        const responce = await axios.post(`${API_BASE_URL}/auth/signup`, credentials)
+        const responce = await axios.post(`${API_BASE_URL}/auth/sign-up`, credentials)
         console.log("Signup Responce: ", responce.data)
         if (responce.status === 200) {
+            console.log("Signup result: ", responce);
             dispatch(setError(''));
             dispatch(setSignupAuthentication(responce.data));
         }

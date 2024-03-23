@@ -42,9 +42,8 @@ const Projects = ({ navigation }) => {
   };
 
   const renderItem = ({ item }) => (
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={() => handleCardPress(item)}
-      underlayColor="rgba(0,0,0,0.2)"
     >
       <View style={styles.cardStyle}>
         <View>
@@ -70,7 +69,7 @@ const Projects = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 
   return (
