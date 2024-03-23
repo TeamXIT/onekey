@@ -10,7 +10,14 @@ const baseResponses = {
         WRONG_PASSWORD: (data = null) => baseResponses.error('Wrong password', data),
         USER_REGISTERED: (data = null) => baseResponses.success('User registered successfully', data),
         ROLE_SELECTED: (data = null) => baseResponses.success('User role selected successfully', data),
-        LOGIN_SUCCESSFUL: (data = null) => baseResponses.success('Login successful', data)
+        LOGIN_SUCCESSFUL: (data = null) => baseResponses.success('Login successful', data),
+        PRODUCT_DELETE_SUCCESSFUL: (data = null) => baseResponses.success('Product deleted successfully', data),
+        PRODUCT_CREATE_SUCCESSFUL: (data = null) => baseResponses.success('Product created successfully', data),
+        PRODUCT_NOT_FOUND: (data = null) => baseResponses.error('Product not found', data),
+        GET_ALL_PRODUCT_SUCCESSFUL: (data = null) => baseResponses.success('Product retrieved successfully', data),
+        PRODUCT_UPDATE_SUCCESSFUL: (data = null) => baseResponses.success('Product updated successfully', data),
+        GET_PRODUCT_BY_ID_SUCCESSFUL: (data = null) => baseResponses.success('Product retrieved successfully', data)
+
     }
 };
 
