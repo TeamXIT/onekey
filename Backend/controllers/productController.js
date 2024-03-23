@@ -59,14 +59,14 @@ const getAllProducts = async (req,res)=>{
         }
 }
 const getById = async (req,res)=>{
-    const {product_id} = req.query;
+    const product_id = Number(req.query.product_id);
     try{
        const product = await Product.findOne({where:{product_id:product_id}});
        const dynamicproperties = await DynamicProperties.findAll({where:{product_id:product_id}});
-       if(!product || !dynamicproperties){
+       if(!product){
             return res.status(404).json({error:'product not found'});
        }
-       return res.status(200).json(product,dynamicproperties);
+       return res.status(200).json({product,dynamicproperties});
     }catch(error){
         return res.status(500).json({error:error.message});
     }
@@ -115,7 +115,7 @@ const updateProduct = async (req,res)=>{
     }
 }
 const deleteProduct = async (req,res)=>{
-        const {product_id} = req.query;
+        const product_id = Number(req.query.product_id);
     try{
         const product = await Product.findOne({where:{product_id:product_id}});
         if(!product){
