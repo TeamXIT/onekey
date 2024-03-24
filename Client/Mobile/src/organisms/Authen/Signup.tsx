@@ -23,18 +23,13 @@ const Signup = ({ navigation }) => {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
-
     useEffect(() => {
-        if (authen.data.SignupAuthToken) {
-            if (!authen.screen.error) {
-                navigation.navigate('verification');
-            }
-            else {
-                Alert.alert("Warning", authen.screen.error)
-            }
+        if (authen.screen.error!=='') {
+            setPasswordError('Invalid password. Please try again.');
+        } else if (authen.data.SignupUsername) {
+            navigation.navigate('verification');
         }
-    }, [authen.data.SignupAuthToken])
-
+    }, [authen.screen.error, authen.data.SignupUsername, navigation]);
 
     const handleSubmitPress = () => {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -91,11 +86,17 @@ const Signup = ({ navigation }) => {
             setConfirmPasswordError('');
         }
         if (!hasError) {
-            dispatch(UserSignup(username, email, password, confirmPassword));
-            navigation.navigate('verification')
-        }
+            dispatch(UserSignup(username, email, password, confirmPassword))
+                .then((success) => {
+                    if (success.success) {
+                        navigation.navigate('verification'); // Navigate to verification screen upon successful signup
+                    }
+                    else {
+                        Alert.alert('Error',success.message)
+                    }
+                })
     }
-
+}
     return (
         <ScrollView>
             <View style={styles.containerStyle}>
