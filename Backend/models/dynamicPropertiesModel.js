@@ -12,7 +12,7 @@ const DynamicProperties = sequelize.define("DynamicProperty",{
         allowNull:false
     },
     value:{
-        type:DataTypes.STRING(255),
+        type:DataTypes.TEXT,
         allowNull:false
     },
     product_id:{
