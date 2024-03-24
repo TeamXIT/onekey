@@ -9,12 +9,10 @@ const CardDetails = ({ route, navigation }) => {
     require('../../images/ic_home3.png'),
     require('../../images/ic_home1.png'),
     require('../../images/ic_home1.png'),
-    require('../../images/ic_home1.png'),
-    require('../../images/ic_home1.png'),
-    require('../../images/ic_home1.png'),
+    
   ];
 
-  const { cardData, isLiked } = route.params;
+  const { cardData, isLiked,updateLikeCount } = route.params;
   const images = [cardData.image, ...thumbnailImages];
   const [mainImageIndex, setMainImageIndex] = useState(0);
   const [selectedThumbnailIndex, setSelectedThumbnailIndex] = useState(0);
@@ -32,7 +30,10 @@ const CardDetails = ({ route, navigation }) => {
   };
 
   const handleLikePress = () => {
+    const newLikeState = !isLiked;
+    updateLikeCount(cardData.id, newLikeState ? 1 : 0); 
     setIsLikedState(!isLikedState);
+    setIsLikedState(newLikeState);
   };
 
   return (
@@ -41,7 +42,7 @@ const CardDetails = ({ route, navigation }) => {
       <View style={styles.iconContainer}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image
-            source={require('../../images/ic_back.png')}
+            source={require('../../images/ic_leftarrow.png')}
             style={styles.carddeatilsIcon}
           />
         </TouchableOpacity>
@@ -82,7 +83,13 @@ const CardDetails = ({ route, navigation }) => {
             </View>
           </TouchableOpacity>
         ))}
+        
       </ScrollView>
+      {/* Title and Description */}
+      <View style={styles.titleDescriptionContainer}>
+        <Text style={styles.carddetailsTitle}>{cardData.title}</Text>
+        <Text style={styles.carddetailsDescription}>{cardData.description}</Text>
+      </View>
     </View>
   );
 };

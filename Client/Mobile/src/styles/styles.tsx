@@ -224,6 +224,9 @@ const styles = StyleSheet.create({
         borderWidth: 2
     },
     //project screen
+    cardContainer:{
+        backgroundColor: primaryColor,
+    },
     cardStyle: {
         backgroundColor: secondaryColor,
         marginBottom: 5,
@@ -245,7 +248,7 @@ const styles = StyleSheet.create({
         fontSize: xSmallSize,
     },
     cardLikes: {
-        marginTop: 40,
+        marginTop: 20,
         fontSize: xSmallSize,
         color: blue,
         marginLeft: 20
@@ -276,20 +279,24 @@ const styles = StyleSheet.create({
     //carddetails
     CardDetailscontainer: {
         flex: 1,
-        backgroundColor: secondaryColor,
+        backgroundColor: primaryColor,
       },
       iconContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
         marginTop: 20,
+        marginBottom:10,
       },
       carddeatilsIcon: {
-        tintColor: primaryColor,
+        tintColor: secondaryColor,
       },
       CardDetailsmainImage: {
         width: '100%',
         height: 310,
+        backgroundColor: secondaryColor,
+        borderWidth: 2,
+        borderRadius: 10,
       },
       thumbnailsContainer: {
         flexDirection: 'row',
@@ -320,16 +327,20 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 10,
     },
-    CardDetailsdescription: {
-        fontSize: smallSize,
-    },
-    CardDetailslike: {
-        marginRight: 150,
-        marginTop: -55,
-        fontSize: smallSize,
-        marginBottom: 50,
-        color: primaryColor,
-    },
+    titleDescriptionContainer: {
+        flex: 5,
+        paddingHorizontal: 5,  
+      },
+      carddetailsTitle: {
+        fontSize: normalSize,
+        fontWeight: 'bold',
+        marginBottom: 5,
+        color: secondaryColor,
+      },
+      carddetailsDescription: {
+        fontSize: xSmallSize,
+        color: secondaryColor,
+      },
     Slidercontainer: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -350,6 +361,17 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
       },
+      //homes&post&settings
+      HomeContainer: {
+        flex: 1, 
+        backgroundColor: primaryColor, 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+    },
+    HomeText:{
+        color:secondaryColor,
+        fontSize:normalSize
+    }
 });
 
 export { styles, secondaryColor, errorColor };

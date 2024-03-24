@@ -22,6 +22,7 @@ const Dashboard = () => {
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/home.icon.json')} style={styles.icon} />,
+                        headerShown: false,
                     }}
                     component={Projects} />
                 <Tab.Screen
@@ -29,6 +30,7 @@ const Dashboard = () => {
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/upload.icon.json')} style={styles.icon} />,
+                        headerShown: false,
                     }}
                     component={Home} />
                 <Tab.Screen
@@ -36,6 +38,7 @@ const Dashboard = () => {
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/chat.icon.json')} style={styles.icon} />,
+                        headerShown: false,
                     }}
                     component={Post} />
                 <Tab.Screen
@@ -43,6 +46,7 @@ const Dashboard = () => {
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/settings.icon.json')} style={styles.icon} />,
+                        headerShown: false,
                     }}
                     component={Settings} />
             </Tab.Navigator>
