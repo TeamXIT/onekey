@@ -16,8 +16,15 @@ const baseResponses = {
         PRODUCT_NOT_FOUND: (data = null) => baseResponses.error('Product not found', data),
         GET_ALL_PRODUCT_SUCCESSFUL: (data = null) => baseResponses.success('Product retrieved successfully', data),
         PRODUCT_UPDATE_SUCCESSFUL: (data = null) => baseResponses.success('Product updated successfully', data),
-        GET_PRODUCT_BY_ID_SUCCESSFUL: (data = null) => baseResponses.success('Product retrieved successfully', data)
-
+        GET_PRODUCT_BY_ID_SUCCESSFUL: (data = null) => baseResponses.success('Product retrieved successfully', data),
+        PASSWORD_LENGTH_ERROR: (data = null) => baseResponses.error('Password must contain at least 8 characters',data),
+        PASSWORD_UPPERCASE_ERROR: (data = null) => baseResponses.error('Password must contain at least one upper case character',data),
+        PASSWORD_LOWERCASE_ERROR: (data = null) => baseResponses.error('Password must contain at least one lower case character',data),
+        PASSWORD_NUMBER_ERROR: (data = null) => baseResponses.error('Password must contain at least one number character',data),
+        PASSWORD_SYMBOL_ERROR: (data = null) => baseResponses.error('Password must contain at least one special character',data),
+        USERNAME_LENGTH_ERROR: (data = null) => baseResponses.error('Username must contain at least 4 characters',data),
+        EMAIL_ERROR: (data = null) => baseResponses.error('Invalid email address',data),
+        ROLE_NOT_FOUND_ERROR: (data = null) => baseResponses.error('Complete your registration',data),
     }
 };
 
