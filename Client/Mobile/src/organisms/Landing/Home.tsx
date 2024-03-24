@@ -1,9 +1,15 @@
-import { Text } from "react-native"
+import { StyleSheet, Text, View } from "react-native";
+import { styles } from "../../styles/styles";
 
 const Home = () => {
     return (
-        <Text>Home</Text>
+        <View style={styles.HomeContainer}>
+            <Text style={styles.HomeText}>WELCOME TO ONEKEY :)</Text>
+        </View>
     );
 }
+
+
+
 
 export default Home;
