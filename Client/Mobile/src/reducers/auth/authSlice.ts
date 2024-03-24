@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import API_BASE_URL from '../config/apiConfig';
-import type { PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios';
 
 type AuthState = {
@@ -38,9 +37,7 @@ export const authSlice = createSlice({
             state.screen.error = payload;
         },
         setSigninAuthentication: (state, { payload }) => {
-            //const resp = JSON.stringify(payload);
             state.data.SigninAuthToken = payload;
-            console.log("Signin Payload: ", state.data.SigninAuthToken);
         },
         setSignupAuthentication: (state, { payload }) => {
             state.data.SignupAuthToken = payload;
@@ -63,7 +60,6 @@ export const UserSignin = (_username: string, _password: string) => async (dispa
             password: _password,
         }
         const responce = await axios.post(`${API_BASE_URL}/auth/sign-in`, credentials);
-        console.log("Signin Responce: ", responce.data)
         if (responce.status === 200) {
             dispatch(setError(''));
             dispatch(setSigninAuthentication(responce.data));
@@ -86,9 +82,7 @@ export const UserSignup = (_username: string, _email: string, _password: string,
             confirmPassword: _confirmPassword
         }
         const responce = await axios.post(`${API_BASE_URL}/auth/sign-up`, credentials)
-        console.log("Signup Responce: ", responce.data)
         if (responce.status === 200) {
-            console.log("Signup result: ", responce);
             dispatch(setError(''));
             dispatch(setSignupAuthentication(responce.data));
         }
