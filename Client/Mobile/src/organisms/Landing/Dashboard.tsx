@@ -5,10 +5,10 @@ import Animated, { useAnimatedStyle, withTiming, useDerivedValue } from 'react-n
 import Lottie from 'lottie-react-native'
 import Svg, { Path } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Home from './Home';
 import Projects from './Projects';
 import Post from './Post';
 import Settings from './Settings';
+import Upload from './Upload';
 
 const Tab = createBottomTabNavigator();
 const AnimatedSvg = Animated.createAnimatedComponent(Svg)
@@ -18,24 +18,27 @@ const Dashboard = () => {
         <>
             <Tab.Navigator tabBar={(props) => <AnimatedTabBar {...props} />} >
                 <Tab.Screen
-                    name="Home"
+                    name="Projects"
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/home.icon.json')} style={styles.icon} />,
+                        headerShown: false,
                     }}
-                    component={Home} />
+                    component={Projects} />
                 <Tab.Screen
                     name="Upload"
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/upload.icon.json')} style={styles.icon} />,
+                        headerShown: false,
                     }}
-                    component={Projects} />
+                    component={Upload} />
                 <Tab.Screen
                     name="Chat"
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/chat.icon.json')} style={styles.icon} />,
+                        headerShown: false,
                     }}
                     component={Post} />
                 <Tab.Screen
@@ -43,6 +46,7 @@ const Dashboard = () => {
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/settings.icon.json')} style={styles.icon} />,
+                        headerShown: false,
                     }}
                     component={Settings} />
             </Tab.Navigator>

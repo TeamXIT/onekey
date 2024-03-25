@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const { baseResponses } = require('../helpers/baseResponses');
 const { User } = require('../models/userModel');
 const { Role } = require('../models/roleModel');
-
 const signUp = async (req, res) => {
     try {
         const {
@@ -12,9 +11,36 @@ const signUp = async (req, res) => {
             password,
             confirmPassword
         } = req.body;
+
         if (!username || !email || !password || !confirmPassword) {
             return res.status(400).json(baseResponses.constantMessages.ALL_FIELDS_REQUIRED());
         }
+        if (username.length < 4) {
+            return res.status(400).json(baseResponses.constantMessages.USERNAME_LENGTH_ERROR());
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            return res.status(400).json(baseResponses.constantMessages.EMAIL_ERROR());
+        }
+        if (password.length < 8) {
+            return res.status(400).json(baseResponses.constantMessages.PASSWORD_LENGTH_ERROR());
+        }
+
+        if (!/[A-Z]/.test(password)) {
+            return res.status(400).json(baseResponses.constantMessages.PASSWORD_UPPERCASE_ERROR());
+        }
+
+        if (!/[a-z]/.test(password)) {
+            return res.status(400).json(baseResponses.constantMessages.PASSWORD_LOWERCASE_ERROR());
+        }
+
+        if (!/\d/.test(password)) {
+            return res.status(400).json(baseResponses.constantMessages.PASSWORD_NUMBER_ERROR());
+        }
+
+        if (!/[^A-Za-z0-9]/.test(password)) {
+            return res.status(400).json(baseResponses.constantMessages.PASSWORD_SYMBOL_ERROR());
+        }
+
         if (password !== confirmPassword) {
             return res.status(400).json(baseResponses.constantMessages.PASSWORD_MISMATCH());
         }
@@ -85,11 +111,36 @@ const signIn = async (req, res) => {
         if (!username || !password) {
             return res.status(400).json(baseResponses.constantMessages.ALL_FIELDS_REQUIRED());
         }
+        if (username.length < 4) {
+            return res.status(400).json(baseResponses.constantMessages.USERNAME_LENGTH_ERROR());
+        }
+        if (password.length < 8) {
+            return res.status(400).json(baseResponses.constantMessages.PASSWORD_LENGTH_ERROR());
+        }
+
+        if (!/[A-Z]/.test(password)) {
+            return res.status(400).json(baseResponses.constantMessages.PASSWORD_UPPERCASE_ERROR());
+        }
+
+        if (!/[a-z]/.test(password)) {
+            return res.status(400).json(baseResponses.constantMessages.PASSWORD_LOWERCASE_ERROR());
+        }
+
+        if (!/\d/.test(password)) {
+            return res.status(400).json(baseResponses.constantMessages.PASSWORD_NUMBER_ERROR());
+        }
+
+        if (!/[^A-Za-z0-9]/.test(password)) {
+            return res.status(400).json(baseResponses.constantMessages.PASSWORD_SYMBOL_ERROR());
+        }
         const user = await User.findOne({
             where: { username },
         });
         if (!user) {
             return res.status(404).json(baseResponses.constantMessages.USER_NOT_FOUND());
+        }
+        if (user.role_id==null) {
+            return res.status(400).json(baseResponses.constantMessages.ROLE_NOT_FOUND_ERROR());
         }
         if (password !== user.password) {
             return res.status(400).json(baseResponses.constantMessages.WRONG_PASSWORD());

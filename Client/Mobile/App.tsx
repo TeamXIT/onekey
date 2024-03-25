@@ -12,7 +12,6 @@ import Signup from './src/organisms/Authen/Signup';
 import UserTypeSelection from './src/organisms/Authen/UserTypeSelection';
 import Verification from './src/organisms/Authen/Verification';
 import Dashboard from './src/organisms/Landing/Dashboard';
-import Home from './src/organisms/Landing/Home';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
 import ForgotPassword from './src/organisms/Authen/ForgotPassword';
 import Comment from './src/organisms/Landing/Comment';
@@ -23,6 +22,7 @@ import OneKeyIntro from './src/organisms/Authen/OneKeyInto';
 import CardDetails from './src/organisms/Landing/CardDetails';
 import Settings from './src/organisms/Landing/Settings';
 import ImageList from './src/organisms/Landing/ImageList';
+import Upload from './src/organisms/Landing/Upload';
 
 const Stack = createStackNavigator();
 
@@ -104,8 +104,8 @@ const Landing = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="home"
-        component={Home}
+        name="upload"
+        component={Upload}
       />
       <Stack.Screen
         name="project"
@@ -122,6 +122,14 @@ const Landing = () => {
       <Stack.Screen
         name="imagelist"
         component={ImageList}
+        options={{headerStyle: {
+          backgroundColor: styles.appSecondary.color, //Set Header color
+        },
+        headerShown:true,
+        headerTintColor:styles.appPrimary.color, //Set Header text color
+        headerTitleStyle: {
+          fontWeight: 'bold', //Set Header text style
+        },}}
       />
       <Stack.Screen
         name="CardDetails"

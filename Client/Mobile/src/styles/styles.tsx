@@ -15,13 +15,16 @@ const textColor = useColorScheme() === 'light' ? darkText : lightText;
 const errorColor = "#FF0000";
 const blue = "#0987F0";
 const shadowcolor = '#000'
+const plusIconContainerbg ='rgba(0, 0, 0, 0.6)'
 
 // FontSizes
 const xSmallSize = 14;
+const ySmallSize = 16
 const smallSize = 18;
 const normalSize = 20;
 const mediumSize = 24;
 const largeSize = 30;
+
 
 const styles = StyleSheet.create({
     appPrimary: {
@@ -224,6 +227,9 @@ const styles = StyleSheet.create({
         borderWidth: 2
     },
     //project screen
+    cardContainer:{
+        backgroundColor: primaryColor,
+    },
     cardStyle: {
         backgroundColor: secondaryColor,
         marginBottom: 5,
@@ -239,21 +245,22 @@ const styles = StyleSheet.create({
     cardTitle: {
         fontSize: smallSize,
         fontWeight: 'bold',
-        marginTop: 20,
+        // marginTop:'-2%'
+        
     },
     cardDescription: {
         fontSize: xSmallSize,
     },
     cardLikes: {
-        marginTop: 40,
+        marginTop: '15%',
         fontSize: xSmallSize,
         color: blue,
-        marginLeft: 20
+        // marginLeft: 20
     },
     cardContent: {
-        flex: 1,
+        flex: 2,
         flexDirection: 'column',
-        marginLeft: 15,
+        marginLeft: 20,
     },
     cardimage: {
         padding: 80,
@@ -262,34 +269,30 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     buttonContainer: {
-        position: 'absolute',
-        top: 110,
-        left: 250,
         flexDirection: 'row',
-    },
-    commentIcon: {
-        marginLeft: 40,
-    },
-    LikeIcon: {
-        marginLeft: 25,
+        gap: 30
     },
     //carddetails
     CardDetailscontainer: {
         flex: 1,
-        backgroundColor: secondaryColor,
+        backgroundColor: primaryColor,
       },
       iconContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
         marginTop: 20,
+        marginBottom:10,
       },
       carddeatilsIcon: {
-        tintColor: primaryColor,
+        tintColor: secondaryColor,
       },
       CardDetailsmainImage: {
         width: '100%',
         height: 310,
+        backgroundColor: secondaryColor,
+        borderWidth: 2,
+        borderRadius: 10,
       },
       thumbnailsContainer: {
         flexDirection: 'row',
@@ -307,7 +310,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         right: 10,
-        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        backgroundColor: plusIconContainerbg,
         borderRadius: 10,
         width: 70,
         height: 70,
@@ -319,17 +322,21 @@ const styles = StyleSheet.create({
         fontSize: normalSize,
         fontWeight: 'bold',
         marginBottom: 10,
-    },
-    CardDetailsdescription: {
-        fontSize: smallSize,
-    },
-    CardDetailslike: {
-        marginRight: 150,
-        marginTop: -55,
-        fontSize: smallSize,
-        marginBottom: 50,
-        color: primaryColor,
-    },
+     },
+    titleDescriptionContainer: {
+        flex: 5,
+        paddingHorizontal: 5,  
+      },
+      carddetailsTitle: {
+        fontSize: normalSize,
+        fontWeight: 'bold',
+        marginBottom: 5,
+        color: secondaryColor,
+      },
+      carddetailsDescription: {
+        fontSize: xSmallSize,
+        color: secondaryColor,
+      },
     Slidercontainer: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -345,11 +352,177 @@ const styles = StyleSheet.create({
       },
       Sliderarrow: {
         padding: 5,
+       
       },
       SliderarrowIcon: {
         width: 50,
         height: 50,
+        tintColor:secondaryColor,
       },
-});
+      //homes&post&settings
+      HomeContainer: {
+        flex: 1, 
+        backgroundColor: primaryColor, 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+    },
+    HomeText:{
+        color:secondaryColor,
+        fontSize:normalSize
+    },
+      //upload
+    UploadContainer: {
+        flex: 1,
+        backgroundColor: primaryColor,
+        padding: 20,
+
+    },
+    uploadTitleTextInput: {
+        backgroundColor: secondaryColor,
+        borderRadius: 10,
+        height: 50,
+        paddingHorizontal: 10,
+        marginBottom: 20,
+        fontSize: smallSize,
+    },
+    uploadDescriptionTextInput: {
+        backgroundColor: secondaryColor,
+        borderRadius: 10,
+        height: 100,
+        paddingHorizontal: 10,
+        marginBottom: 20,
+        textAlignVertical: "top",
+        fontSize: smallSize,
+    },
+    UploadText: {
+        color: secondaryColor,
+        fontSize: 20,
+        marginBottom: 10,
+    },
+    Uploadbutton: {
+        backgroundColor: primaryColor,
+        padding: 10,
+        borderRadius: 5,
+        alignItems: "center",
+        elevation: 10,
+        borderColor: secondaryColor,
+        borderWidth: 2,
+    },
+    LabelTextBoxContainer: {
+        borderColor: secondaryColor,
+        borderWidth: 2,
+        padding: 10,
+        marginTop: 10,
+        borderRadius: 10
+    },
+    labelText: {
+        color: secondaryColor,
+        fontSize: smallSize,
+        marginBottom: 5,
+    },
+    radioButtonRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    radioButtonLabel: {
+        color: secondaryColor,
+        fontSize: ySmallSize,
+        marginRight: 30,
+    },
+    radioButtonsContainer: {
+        marginBottom: 10,
+        flexDirection: 'row',
+    },
+    AddButton: {
+        backgroundColor:primaryColor,
+        padding: 5,
+        borderRadius: 5,
+        alignItems: "center",
+        elevation: 10,
+        borderColor: secondaryColor,
+        borderWidth: 2,
+        width: 80,
+        alignSelf: 'center'
+    },
+    AddButtonText: {
+        color: secondaryColor,
+        fontSize: ySmallSize,
+    },
+    displayedLabelContainer: {
+        borderColor: secondaryColor,
+        borderWidth: 2,
+        padding: 10,
+        marginTop: 10,
+        borderRadius: 10,
+    },
+    deleteIcon: {
+        position: 'absolute',
+        top: -3,
+        right: -3,
+    },
+    fileButton: {
+        bottom: 30,
+        position: 'relative',
+        right: 10,
+    },
+
+    uploadBtn: {
+
+        backgroundColor: secondaryColor,
+        padding: 10,
+        borderRadius: 10,
+        alignItems: "center",
+        elevation: 10,
+        borderColor: secondaryColor,
+        borderWidth: 2,
+        marginTop: 20,
+        marginBottom:50
+
+    },
+    uploadButtonText: {
+        color: primaryColor,
+        fontSize: normalSize,
+    },
+    AddLabelText:{
+        color:secondaryColor,
+        fontSize: normalSize, 
+    },
+
+//TeamxImageComponent
+    container: {
+        alignItems: 'flex-start', 
+        marginLeft: 20,
+        marginTop: 20,
+    },
+    imageContainer: {
+        position: 'relative',
+        margin: 5,
+    },
+    imagePreview: {
+        width: 80,
+        height: 80,
+        borderRadius: 8,
+    },
+    deleteButton: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+       
+        width: 24,
+        height: 24,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    deleteButtonText: {
+        tintColor: "white",
+       
+    },
+    uploadrow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start', 
+    },
+   });
+
 
 export { styles, secondaryColor, errorColor };

@@ -23,18 +23,15 @@ const Signup = ({ navigation }) => {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const [signupError, setSignupError] = useState('');
 
     useEffect(() => {
-        if (authen.data.SignupAuthToken) {
-            if (!authen.screen.error) {
-                navigation.navigate('verification');
-            }
-            else {
-                Alert.alert("Warning", authen.screen.error)
-            }
+        if (authen.screen.error !== '') {
+            setSignupError(authen.screen.error);
+        } else if (authen.data.Username) {
+            navigation.navigate('typeselection');
         }
-    }, [authen.data.SignupAuthToken])
-
+    }, [authen.screen.error, authen.data.Username]);
 
     const handleSubmitPress = () => {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -67,7 +64,6 @@ const Signup = ({ navigation }) => {
         }
 
         // Check password
-
         if (!password.trim()) {
             setPasswordError('Please provide password.');
             hasError = true;
@@ -77,6 +73,7 @@ const Signup = ({ navigation }) => {
         } else {
             setPasswordError('');
         }
+
         // Check confirm password
         if (!confirmPassword.trim()) {
             setConfirmPasswordError('Please provide confirm password.');
@@ -90,9 +87,10 @@ const Signup = ({ navigation }) => {
         } else {
             setConfirmPasswordError('');
         }
+
         if (!hasError) {
+            setSignupError('');
             dispatch(UserSignup(username, email, password, confirmPassword));
-            navigation.navigate('verification')
         }
     }
 
@@ -144,7 +142,11 @@ const Signup = ({ navigation }) => {
                     />
                     <TeamXErrorText errorText={confirmPasswordError} />
                 </View>
+
+                <TeamXErrorText errorText={signupError} />
+
                 <TeamXButton onPress={handleSubmitPress} text="SIGNUP" />
+
                 <TeamXTextedLink
                     value={"Already  have an account?  "}
                     linkValue={"SIGNIN"}
@@ -153,4 +155,5 @@ const Signup = ({ navigation }) => {
         </ScrollView>
     )
 };
+
 export default Signup;

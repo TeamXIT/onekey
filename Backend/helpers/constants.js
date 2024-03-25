@@ -16,7 +16,15 @@ const BASE_RESPONSE_MESSAGES = {
         USER_NOT_FOUND: 'User not found',
         INVALID_ROLE: 'Invalid role',
         WRONG_PASSWORD: 'Wrong password',
-        PRODUCT_NOT_FOUND:'Product not found'
+        PRODUCT_NOT_FOUND:'Product not found',
+        PASSWORD_LENGTH_ERROR:'Password must contain at least 8 characters',
+        PASSWORD_UPPERCASE_ERROR:'Password must contain at least one upper case character',
+        PASSWORD_LOWERCASE_ERROR:'Password must contain at least one lower case character',
+        PASSWORD_NUMBER_ERROR:'Password must contain at least one number character',
+        PASSWORD_SYMBOL_ERROR:'Password must contain at least one special character',
+        USERNAME_LENGTH_ERROR:'Username must contain at least 4 characters',
+        EMAIL_ERROR:'Invalid email address',
+        ROLE_NOT_FOUND_ERROR:'Complete your registration'
     }
 };
 
