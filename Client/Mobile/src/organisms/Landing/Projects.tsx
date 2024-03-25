@@ -9,7 +9,7 @@ const Projects = ({ navigation }) => {
   const likeIconInactiveColor = "#777";
 
   const data = [
-    { id: '1', title: 'Card 1', description: 'Description for Card 1.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0},
+    { id: '1', title: 'Card 1', description: 'Description for Card 1.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
     { id: '2', title: 'Card 2', description: 'Description for Card 2.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
     { id: '3', title: 'Card 3', description: 'Description for Card 3.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
     { id: '4', title: 'Card 4', description: 'Description for Card 4.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
@@ -51,40 +51,44 @@ const Projects = ({ navigation }) => {
 
   const renderItem = ({ item }) => {
     const descriptionToShow = item.description.length > 40 ?
-    item.description.substring(0, 40) + '...' : item.description;
+      item.description.substring(0, 40) + '...' : item.description;
 
     return (
-    <TouchableOpacity
-      onPress={() => handleCardPress(item)}
-      style={styles.cardContainer}
-    >
-      <View style={styles.cardStyle}>
-        <View>
-          <Image source={item.image} style={styles.cardimage} />
+      <TouchableOpacity
+        onPress={() => handleCardPress(item)}
+        style={styles.cardContainer}
+      >
+        <View style={styles.cardStyle}>
+          <View>
+            <Image source={item.image} style={styles.cardimage} />
+          </View>
+          <View style={styles.cardContent}>
+            <Text style={styles.cardTitle}>{item.title}</Text>
+            <Text style={styles.cardDescription}>{descriptionToShow}</Text>
+
+            <View style={styles.buttonContainer}>
+              <Text style={styles.cardLikes}>{likeCounts[item.id] || 0} Likes</Text>
+              
+              <View style={styles.buttonContainer}>
+                <TouchableOpacity onPress={() => handleLikePress(item.id)}>
+                  <Image
+                    source={require('../../images/ic_like1.png')}
+                    style={{ tintColor: likeCounts[item.id] ? likeIconActiveColor : likeIconInactiveColor }}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleCommentPress(item)}>
+                  <Image
+                    source={require('../../images/ic_comment.png')}
+                    style={{ tintColor: likeIconInactiveColor }}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
         </View>
-        <View style={styles.cardContent}>
-          <Text style={styles.cardTitle}>{item.title}</Text>
-          <Text style={styles.cardDescription}>{descriptionToShow}</Text>
-          <Text style={styles.cardLikes}>{likeCounts[item.id] || 0} Likes</Text>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={() => handleLikePress(item.id)}>
-            <Image
-              source={require('../../images/ic_like1.png')}
-              style={[styles.LikeIcon, { tintColor: likeCounts[item.id] ? likeIconActiveColor : likeIconInactiveColor }]}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleCommentPress(item)}>
-            <Image
-              source={require('../../images/ic_comment.png')}
-              style={[styles.commentIcon, { tintColor: likeIconInactiveColor }]}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
-    </TouchableOpacity>
-  );
-    };
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <FlatList

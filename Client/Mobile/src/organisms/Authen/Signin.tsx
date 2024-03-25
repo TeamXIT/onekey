@@ -20,14 +20,16 @@ const Signin = ({ navigation }) => {
     const [isRemember, setIsRemember] = useState(false);
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
-  
+    const [signinError, setSigninError] = useState('');
+
     useEffect(() => {
-        if (authen.screen.error!=='') {
-            setPasswordError('Invalid password. Please try again.');
-        } else if (authen.data.SigninAuthToken) {
+        if (authen.screen.error !== '') {
+            setSigninError(authen.screen.error);
+        } else if (authen.data.AuthToken) {
             navigation.navigate('Landing');
         }
-    }, [authen.screen.error, authen.data.SigninAuthToken, navigation]);
+    }, [authen.screen.error, authen.data.AuthToken]);
+
     const handleSubmitPress = () => {
         //navigation.replace('Landing'); return;
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -47,8 +49,9 @@ const Signin = ({ navigation }) => {
         } else if (!passwordRegex.test(password.trim())) {
             setPasswordError('Password must have minimum 8 characters, at least one lowercase letter, one uppercase letter, and one numeric character.');
             hasError = true;
-        } 
+        }
         if (!hasError) {
+            setSigninError('');
             dispatch(UserSignin(username, password))
             setPasswordError('');
         }
@@ -91,6 +94,8 @@ const Signin = ({ navigation }) => {
                     Forgot Password
                 </Text>
             </View>
+
+            <TeamXErrorText errorText={signinError} />
 
             <TeamXButton onPress={handleSubmitPress} text="SIGNIN" />
 

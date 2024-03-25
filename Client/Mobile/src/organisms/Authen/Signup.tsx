@@ -23,13 +23,15 @@ const Signup = ({ navigation }) => {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const [signupError, setSignupError] = useState('');
+
     useEffect(() => {
-        if (authen.screen.error!=='') {
-            setPasswordError('Invalid password. Please try again.');
-        } else if (authen.data.SignupUsername) {
-            navigation.navigate('verification');
+        if (authen.screen.error !== '') {
+            setSignupError(authen.screen.error);
+        } else if (authen.data.Username) {
+            navigation.navigate('typeselection');
         }
-    }, [authen.screen.error, authen.data.SignupUsername, navigation]);
+    }, [authen.screen.error, authen.data.Username]);
 
     const handleSubmitPress = () => {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -62,7 +64,6 @@ const Signup = ({ navigation }) => {
         }
 
         // Check password
-
         if (!password.trim()) {
             setPasswordError('Please provide password.');
             hasError = true;
@@ -72,6 +73,7 @@ const Signup = ({ navigation }) => {
         } else {
             setPasswordError('');
         }
+
         // Check confirm password
         if (!confirmPassword.trim()) {
             setConfirmPasswordError('Please provide confirm password.');
@@ -85,18 +87,13 @@ const Signup = ({ navigation }) => {
         } else {
             setConfirmPasswordError('');
         }
+
         if (!hasError) {
-            dispatch(UserSignup(username, email, password, confirmPassword))
-                .then((success) => {
-                    if (success.success) {
-                        navigation.navigate('verification'); // Navigate to verification screen upon successful signup
-                    }
-                    else {
-                        Alert.alert('Error',success.message)
-                    }
-                })
+            setSignupError('');
+            dispatch(UserSignup(username, email, password, confirmPassword));
+        }
     }
-}
+
     return (
         <ScrollView>
             <View style={styles.containerStyle}>
@@ -145,7 +142,11 @@ const Signup = ({ navigation }) => {
                     />
                     <TeamXErrorText errorText={confirmPasswordError} />
                 </View>
+
+                <TeamXErrorText errorText={signupError} />
+
                 <TeamXButton onPress={handleSubmitPress} text="SIGNUP" />
+
                 <TeamXTextedLink
                     value={"Already  have an account?  "}
                     linkValue={"SIGNIN"}
@@ -154,4 +155,5 @@ const Signup = ({ navigation }) => {
         </ScrollView>
     )
 };
+
 export default Signup;

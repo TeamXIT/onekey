@@ -269,16 +269,8 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     buttonContainer: {
-        position: 'absolute',
-        top: 110,
-        left: '82%',
         flexDirection: 'row',
-    },
-    commentIcon: {
-        marginLeft: 40,
-    },
-    LikeIcon: {
-        marginLeft: 20,
+        gap: 30
     },
     //carddetails
     CardDetailscontainer: {
@@ -427,14 +419,6 @@ const styles = StyleSheet.create({
         color: secondaryColor,
         fontSize: smallSize,
         marginBottom: 5,
-    },
-    LabelTextInput: {
-        backgroundColor: secondaryColor,
-        borderRadius: 10,
-        height: 40,
-        paddingHorizontal: 5,
-        marginBottom: 10,
-        fontSize: smallSize,
     },
     radioButtonRow: {
         flexDirection: 'row',
