@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import moment from 'moment';
 import API_BASE_URL from '../config/apiConfig';
 
 type ProductState = {
@@ -132,3 +131,4 @@ export const deleteExistingProduct = (productId:Number) => async (dispatch:any) 
     })
 dispatch(setBusy(false));
 }
+export default productSlice.reducer
