@@ -125,7 +125,7 @@ const Landing = () => {
         options={{headerStyle: {
           backgroundColor: styles.appSecondary.color, //Set Header color
         },
-        headerShown:false,
+        headerShown:true,
         headerTintColor:styles.appPrimary.color, //Set Header text color
         headerTitleStyle: {
           fontWeight: 'bold', //Set Header text style

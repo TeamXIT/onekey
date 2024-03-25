@@ -356,10 +356,12 @@ const styles = StyleSheet.create({
       },
       Sliderarrow: {
         padding: 5,
+       
       },
       SliderarrowIcon: {
         width: 50,
         height: 50,
+        tintColor:secondaryColor,
       },
       //homes&post&settings
       HomeContainer: {
