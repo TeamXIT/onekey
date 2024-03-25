@@ -3,7 +3,8 @@ import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, Alert, Safe
 import { ScrollView } from "react-native-gesture-handler";
 import { RadioButton } from "react-native-paper";
 import TeamxImageComponent from "../../molecules/TeamxImageComponent";
-import { secondaryColor, styles } from "../../styles/styles"
+import { secondaryColor, styles } from "../../styles/styles";
+
 
 const Upload = () => {
     const [showAdditionalTextBox, setShowAdditionalTextBox] = useState(false);
@@ -11,6 +12,9 @@ const Upload = () => {
     const [selectedOption, setSelectedOption] = useState("Text");
     const [labels, setLabels] = useState([]);
     const [additionalText, setAdditionalText] = useState("");
+    const [projectName, setProjectName] = useState("");
+    const [projectDescription, setProjectDescription] = useState("");
+    const [imagePaths, setImagePaths] = useState([]);
 
     const handleAddLabel = () => {
         let isVisible = showAdditionalTextBox;
@@ -29,19 +33,50 @@ const Upload = () => {
         setLabels(updatedLabels);
     };
 
+    const handleReceiveImagePaths = (paths) => {
+        setImagePaths(paths);
+    };
+
+
+    const handleUpload = () => {
+        console.log("Project Name:", projectName);
+        console.log("Project Description:", projectDescription);
+        console.log("Labels");
+        labels.forEach((label, index) => {
+            console.log(`Label: ${index + 1}`);
+            console.log("Text:", label.text);
+            console.log("Type:", label.type);
+            if (label.type === "Text") {
+                console.log("Additional Text:", additionalText);
+            }
+        });
+        console.log("Image Paths:",imagePaths);
+        setLabels([]);
+        setAdditionalText("");
+        setImagePaths([]);
+        setProjectName("");
+        setProjectDescription("");
+       
+    };
+
     return (
 
         <ScrollView style={styles.UploadContainer}>
             <SafeAreaView>
                 <View >
                     <Text style={styles.UploadText}>Project Name</Text>
-                    <TextInput style={styles.uploadTitleTextInput} placeholder="Enter project name" />
+                    <TextInput style={styles.uploadTitleTextInput}
+                        placeholder="Enter project name"
+                        value={projectName}
+                        onChangeText={setProjectName} />
                     <Text style={styles.UploadText}>Project Description</Text>
                     <TextInput
                         style={styles.uploadDescriptionTextInput}
                         multiline
                         numberOfLines={10}
                         placeholder="Enter project description"
+                        value={projectDescription}
+                        onChangeText={setProjectDescription}
                     />
                     <TouchableOpacity style={styles.Uploadbutton} onPress={handleAddLabel}>
                         <Text style={styles.AddLabelText}>Add Label</Text>
@@ -101,18 +136,30 @@ const Upload = () => {
                             {label.type === "File" && (
 
                                 <View style={styles.fileButton}>
-                                    <TeamxImageComponent image={'../../src/images/ic_upload.png'} />
+                                   <TeamxImageComponent image={'../../src/images/ic_upload.png'} onImagePathsReceived={handleReceiveImagePaths} />
                                 </View>
                             )}
                         </View>
                     ))}
+
                 </View>
 
-                <TouchableOpacity style={styles.uploadBtn} onPress={() => Alert.alert("Upload Alert", "Do you want to upload?", [
-                    { text: "OK", onPress: () => console.log("OK Pressed") }
-                ])}>
+                <TouchableOpacity
+                    style={styles.uploadBtn}
+                    onPress={() => {
+                        Alert.alert("Upload Alert", "Do you want to upload?", [
+                            {
+                                text: "OK", onPress: () => {
+                                    handleUpload();
+
+                                }
+                            }
+                        ]);
+                    }}
+                >
                     <Text style={styles.uploadButtonText}>UPLOAD</Text>
                 </TouchableOpacity>
+
             </SafeAreaView>
         </ScrollView>
 

@@ -66,10 +66,9 @@ const Projects = ({ navigation }) => {
             <Text style={styles.cardTitle}>{item.title}</Text>
             <Text style={styles.cardDescription}>{descriptionToShow}</Text>
 
-            <View style={styles.buttonContainer}>
-              <Text style={styles.cardLikes}>{likeCounts[item.id] || 0} Likes</Text>
-              
+                          
               <View style={styles.buttonContainer}>
+              <Text style={styles.cardLikes}>{likeCounts[item.id] || 0} Likes</Text>
                 <TouchableOpacity onPress={() => handleLikePress(item.id)}>
                   <Image
                     source={require('../../images/ic_like1.png')}
@@ -83,7 +82,7 @@ const Projects = ({ navigation }) => {
                   />
                 </TouchableOpacity>
               </View>
-            </View>
+           
           </View>
         </View>
       </TouchableOpacity>

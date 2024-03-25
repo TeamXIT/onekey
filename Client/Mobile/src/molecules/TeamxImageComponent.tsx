@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { View, Image, TouchableOpacity, StyleSheet } from "react-native";
 import ImagePicker from 'react-native-image-crop-picker';
-import {styles} from "../styles/styles"
+import { styles } from "../styles/styles"
 
 
-const TeamxImageComponent = ({ image }) => {
+const TeamxImageComponent = ({ image, onImagePathsReceived }) => {
     const [selectedImages, setSelectedImages] = useState([]);
 
     const openImagePicker = () => {
@@ -19,6 +19,7 @@ const TeamxImageComponent = ({ image }) => {
             .then(selectedImages => {
                 const imagePaths = selectedImages.map((image) => image.path);
                 setSelectedImages(prevImages => [...prevImages, ...imagePaths]);
+                onImagePathsReceived(imagePaths);
             })
             .catch(error => {
                 console.log("Error selecting images:", error);

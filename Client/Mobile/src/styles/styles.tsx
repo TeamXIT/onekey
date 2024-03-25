@@ -245,18 +245,18 @@ const styles = StyleSheet.create({
     cardTitle: {
         fontSize: smallSize,
         fontWeight: 'bold',
-        // marginTop:'-2%'
+       
         
     },
     cardDescription: {
         fontSize: xSmallSize,
     },
-    cardLikes: {
-        marginTop: '15%',
-        fontSize: xSmallSize,
-        color: blue,
-        // marginLeft: 20
-    },
+    // cardLikes: {
+       
+    //     fontSize: xSmallSize,
+    //     color: blue,
+    //     marginLeft: 10,
+    // },
     cardContent: {
         flex: 2,
         flexDirection: 'column',
@@ -270,8 +270,15 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         flexDirection: 'row',
-        gap: 30
-    },
+        alignItems: 'center', 
+        justifyContent: 'space-between',
+        marginTop: 10,
+      },
+      cardLikes: {
+        fontSize: xSmallSize,
+        marginRight: 10,
+        color: blue,
+      },
     //carddetails
     CardDetailscontainer: {
         flex: 1,
