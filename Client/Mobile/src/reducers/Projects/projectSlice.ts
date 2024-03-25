@@ -117,3 +117,18 @@ export const updateExistingProduct = (updatedProductData:JSON) => async (dispatc
     })
 dispatch(setBusy(false));
 }
+export const deleteExistingProduct = (productId:Number) => async (dispatch:any) => {
+    dispatch(setBusy(true));
+    await axios.delete(`${API_BASE_URL}/products/delete?product_id=${productId}`)
+    .then((response) => {
+        console.log('Delete api:',response)
+        dispatch(setError(''));
+
+    })
+    .catch((error) => {
+        const { data } = error.response;
+        const result = JSON.parse(JSON.stringify(data));
+        dispatch(setError(result.error));
+    })
+dispatch(setBusy(false));
+}
