@@ -20,18 +20,14 @@ const Signin = ({ navigation }) => {
     const [isRemember, setIsRemember] = useState(false);
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
-
+  
     useEffect(() => {
-        if (authen.data.SigninAuthToken) {
-            if (!authen.screen.error) {
-                navigation.navigate('verification');
-            }
-            else {
-                Alert.alert("Warning", authen.screen.error)
-            }
+        if (authen.screen.error!=='') {
+            setPasswordError('Invalid password. Please try again.');
+        } else if (authen.data.SigninAuthToken) {
+            navigation.navigate('Landing');
         }
-    }, [authen.data.SigninAuthToken])
-
+    }, [authen.screen.error, authen.data.SigninAuthToken, navigation]);
     const handleSubmitPress = () => {
         //navigation.replace('Landing'); return;
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -51,15 +47,10 @@ const Signin = ({ navigation }) => {
         } else if (!passwordRegex.test(password.trim())) {
             setPasswordError('Password must have minimum 8 characters, at least one lowercase letter, one uppercase letter, and one numeric character.');
             hasError = true;
-        } else {
-            setPasswordError('');
-        }
-        if (passwordError !== '') {
-            setPasswordError('Invalid password. Please try again.');
-            hasError = true;
-        }
+        } 
         if (!hasError) {
             dispatch(UserSignin(username, password))
+            setPasswordError('');
         }
     }
     return (

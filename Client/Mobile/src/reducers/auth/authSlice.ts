@@ -11,7 +11,7 @@ type AuthState = {
     //In data we add all API responce values
     data: {
         SigninAuthToken: string
-        SignupAuthToken: string
+        SignupUsername: string
     }
 }
 
@@ -22,7 +22,7 @@ const initialState: AuthState = {
     },
     data: {
         SigninAuthToken: '',
-        SignupAuthToken: ''
+        SignupUsername: ''
     }
 }
 
@@ -35,12 +35,15 @@ export const authSlice = createSlice({
         },
         setError: (state, { payload }) => {
             state.screen.error = payload;
+            console.log(payload)
         },
         setSigninAuthentication: (state, { payload }) => {
             state.data.SigninAuthToken = payload;
+            
         },
-        setSignupAuthentication: (state, { payload }) => {
-            state.data.SignupAuthToken = payload;
+        setSignupUsername: (state, { payload }) => {
+            state.data.SignupUsername = payload;
+            console.log(payload)
         },
     },
 })
@@ -49,7 +52,7 @@ export const {
     setBusy,
     setError,
     setSigninAuthentication,
-    setSignupAuthentication,
+    setSignupUsername,
 } = authSlice.actions
 
 export const UserSignin = (_username: string, _password: string) => async (dispatch: any) => {
@@ -59,17 +62,21 @@ export const UserSignin = (_username: string, _password: string) => async (dispa
             username: _username,
             password: _password,
         }
+        console.log(credentials)
         const responce = await axios.post(`${API_BASE_URL}/auth/sign-in`, credentials);
         if (responce.status === 200) {
+            dispatch(setSignupUsername(_username));
             dispatch(setError(''));
             dispatch(setSigninAuthentication(responce.data));
         }
         else {
-            dispatch(setError(responce.data));
+            dispatch(setError(responce.data.error));
         }
         dispatch(setBusy(false));
     } catch (error) {
         dispatch(setBusy(false));
+         dispatch(setError('An error occurred while signing in.'));
+         dispatch(setBusy(false));
     }
 }
 export const UserSignup = (_username: string, _email: string, _password: string, _confirmPassword: string) => async (dispatch: any) => {
@@ -84,17 +91,22 @@ export const UserSignup = (_username: string, _email: string, _password: string,
         const responce = await axios.post(`${API_BASE_URL}/auth/sign-up`, credentials)
         if (responce.status === 200) {
             dispatch(setError(''));
-            dispatch(setSignupAuthentication(responce.data));
-        }
-        else {
-            dispatch(setError(responce.data));
+            dispatch(setSignupUsername(responce.data)); 
+           
+            if (responce.data.success) {
+                navigation.navigate('verification');
+            } else {
+                dispatch(setError('Username or email already exists.'));
+            }
+        } else {
+            dispatch(setError(responce.data.error));
         }
         dispatch(setBusy(false));
     } catch (error) {
         dispatch(setBusy(false));
+        dispatch(setError('An error occurred while signing up.'));
     }
 }
-
 
 export default authSlice.reducer
 

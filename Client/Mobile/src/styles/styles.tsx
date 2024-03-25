@@ -245,21 +245,22 @@ const styles = StyleSheet.create({
     cardTitle: {
         fontSize: smallSize,
         fontWeight: 'bold',
-        marginTop: 20,
+        // marginTop:'-2%'
+        
     },
     cardDescription: {
         fontSize: xSmallSize,
     },
     cardLikes: {
-        marginTop: 20,
+        marginTop: '15%',
         fontSize: xSmallSize,
         color: blue,
-        marginLeft: 20
+        // marginLeft: 20
     },
     cardContent: {
-        flex: 1,
+        flex: 2,
         flexDirection: 'column',
-        marginLeft: 15,
+        marginLeft: 20,
     },
     cardimage: {
         padding: 80,
@@ -270,14 +271,14 @@ const styles = StyleSheet.create({
     buttonContainer: {
         position: 'absolute',
         top: 110,
-        left: 250,
+        left: '82%',
         flexDirection: 'row',
     },
     commentIcon: {
         marginLeft: 40,
     },
     LikeIcon: {
-        marginLeft: 25,
+        marginLeft: 20,
     },
     //carddetails
     CardDetailscontainer: {
