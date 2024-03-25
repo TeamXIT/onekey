@@ -42,7 +42,7 @@ const CardDetails = ({ route, navigation }) => {
       <View style={styles.iconContainer}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image
-            source={require('../../images/ic_leftarrow.png')}
+            source={require('../../images/ic_back.png')}
             style={styles.carddeatilsIcon}
           />
         </TouchableOpacity>
