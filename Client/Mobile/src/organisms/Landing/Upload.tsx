@@ -4,6 +4,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { RadioButton } from "react-native-paper";
 import TeamxImageComponent from "../../molecules/TeamxImageComponent";
 import { secondaryColor, styles } from "../../styles/styles"
+import TeamxRadioButton from "../../molecules/TeamxRadioButton";
 
 const Upload = () => {
     const [showAdditionalTextBox, setShowAdditionalTextBox] = useState(false);
@@ -18,17 +19,43 @@ const Upload = () => {
     };
 
     const handleSaveLabel = () => {
+        if (labelText.trim() === "") {
+            Alert.alert(
+                "Empty Label",
+                "Please Enter lable.",
+                [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+            );
+            return;
+        }
+
         setLabels([...labels, { text: labelText, type: selectedOption }]);
         setShowAdditionalTextBox(false);
-        setLabelText(""); // Clear the input after saving
+        setLabelText(""); 
+       
+       
     };
 
     const handleDeleteLabel = (index) => {
+        // Prompt user with an alert
+        Alert.alert(
+            "Delete Confirmation",
+            "Are you sure you want to delete this?",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                { text: "OK", onPress: () => deleteLabel(index) }
+            ]
+        );
+    };
+    
+    const deleteLabel = (index) => {
         const updatedLabels = [...labels];
         updatedLabels.splice(index, 1);
         setLabels(updatedLabels);
     };
-
     return (
 
         <ScrollView style={styles.UploadContainer}>
@@ -55,27 +82,24 @@ const Upload = () => {
                                 onChangeText={(text) => setLabelText(text)}
                                 value={labelText}
                             />
-                            <Text style={[styles.labelText, { alignSelf: "center" }]}>Select your Label Type</Text>
-                            <View style={[styles.radioButtonsContainer, { alignSelf: "center" }]}>
-                                <View style={styles.radioButtonRow}>
-                                    <RadioButton
+
+                            <Text style={styles.labelText}>Select your Label Type</Text>
+                            <View style={styles.radioButtonsContainer}>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <TeamxRadioButton
                                         value="Text"
-                                        color={secondaryColor}
-                                        uncheckedColor={secondaryColor}
-                                        status={selectedOption === 'Text' ? 'checked' : 'unchecked'}
-                                        onPress={() => setSelectedOption('Text')}
+                                        label="Text"
+                                        selectedOption={selectedOption}
+                                        secondaryColor={secondaryColor}
+                                        setSelectedOption={setSelectedOption}
                                     />
-                                    <Text style={styles.radioButtonLabel}>Text</Text>
-                                </View>
-                                <View style={styles.radioButtonRow}>
-                                    <RadioButton
+                                    <TeamxRadioButton
                                         value="File"
-                                        color={secondaryColor}
-                                        uncheckedColor={secondaryColor}
-                                        status={selectedOption === 'File' ? 'checked' : 'unchecked'}
-                                        onPress={() => setSelectedOption('File')}
+                                        label="File"
+                                        selectedOption={selectedOption}
+                                        secondaryColor={secondaryColor}
+                                        setSelectedOption={setSelectedOption}
                                     />
-                                    <Text style={styles.radioButtonLabel}>File</Text>
                                 </View>
                             </View>
                             <TouchableOpacity style={styles.AddButton} onPress={handleSaveLabel}>
@@ -88,7 +112,7 @@ const Upload = () => {
                             <TouchableOpacity onPress={() => handleDeleteLabel(index)} style={styles.deleteIcon}>
                                 <Image source={require('../../images/ic_delete.png')} />
                             </TouchableOpacity>
-                            <Text style={[styles.labelText, { alignSelf: "center" }]}>
+                            <Text style={styles.uploadTitleText}>
                                 {label.text}
                             </Text>
                             {label.type === "Text" && (
@@ -96,6 +120,8 @@ const Upload = () => {
                                     style={styles.uploadDescriptionTextInput}
                                     placeholder="Enter Text"
                                     onChangeText={(text) => setAdditionalText(text)}
+                                    multiline
+                                    numberOfLines={10}
                                 />
                             )}
                             {label.type === "File" && (
@@ -105,7 +131,7 @@ const Upload = () => {
                                 </View>
                             )}
                         </View>
-                    ))}
+                    ))}    
                 </View>
 
                 <TouchableOpacity style={styles.uploadBtn} onPress={() => Alert.alert("Upload Alert", "Do you want to upload?", [
