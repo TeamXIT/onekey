@@ -50,7 +50,6 @@ export const {
     setError,
     setProducts,
     setProduuctById,
-
 } = productSlice.actions
 
 
@@ -85,6 +84,7 @@ export const fetchProductById = (productId: Number) => async (dispatch: any) => 
         })
     dispatch(setBusy(false));
 }
+
 export const createNewProduct = (productData:JSON) => async (dispatch:any) => {
     dispatch(setBusy(true));
     await axios.post(`${API_BASE_URL}/products/create`, productData)
@@ -101,6 +101,7 @@ export const createNewProduct = (productData:JSON) => async (dispatch:any) => {
 dispatch(setBusy(false));
 
 }
+
 export const updateExistingProduct = (updatedProductData:JSON) => async (dispatch:any) => {
     dispatch(setBusy(true));
     await axios.put(`${API_BASE_URL}/products/update`, updatedProductData)
@@ -116,6 +117,7 @@ export const updateExistingProduct = (updatedProductData:JSON) => async (dispatc
     })
 dispatch(setBusy(false));
 }
+
 export const deleteExistingProduct = (productId:Number) => async (dispatch:any) => {
     dispatch(setBusy(true));
     await axios.delete(`${API_BASE_URL}/products/delete?product_id=${productId}`)
@@ -131,4 +133,5 @@ export const deleteExistingProduct = (productId:Number) => async (dispatch:any) 
     })
 dispatch(setBusy(false));
 }
+
 export default productSlice.reducer
