@@ -27,21 +27,20 @@ const Upload = () => {
             Alert.alert(
                 "Invalid detailing",
                 "Please enter title",
-                [{ text: "OK", onPress: () => {}}]
+                [{ text: "OK", onPress: () => { } }]
             );
             return;
         }
 
         const fileTypes = labels.filter(x => x.type === "File")
-        if(fileTypes != null && fileTypes.length >= 1 && selectedOption === "File")
-        {
+        if (fileTypes != null && fileTypes.length >= 1 && selectedOption === "File") {
             Alert.alert(
                 "Oops!...",
                 "We alredy have files included, select another type.",
-                [{ text: "OK", onPress: () => {}}]
+                [{ text: "OK", onPress: () => { } }]
             );
         }
-        else{
+        else {
             setLabels([...labels, { text: labelText, type: selectedOption }]);
             setShowAdditionalTextBox(false);
             setLabelText("");
@@ -130,8 +129,8 @@ const Upload = () => {
     };
 
     return (
-        <ScrollView style={styles.UploadContainer}>
-            <SafeAreaView>
+        <SafeAreaView style={styles.UploadContainer}>
+            <ScrollView style={{ padding: 15, flex: 9 }}>
                 <View >
                     <Text style={styles.UploadText}>Project Name</Text>
                     <TextInput style={styles.uploadTitleTextInput}
@@ -208,26 +207,21 @@ const Upload = () => {
                         </View>
                     ))}
                 </View>
-
-                <TouchableOpacity
-                    style={styles.uploadBtn}
-                    onPress={() => {
-                        Alert.alert("Upload Alert", "Do you want to upload?", [
-                            {
-                                text: "OK", onPress: () => {
-                                    handleUpload();
-
-                                }
+            </ScrollView>
+            <TouchableOpacity
+                style={styles.uploadBtn}
+                onPress={() => {
+                    Alert.alert("Upload Alert", "Do you want to upload?", [
+                        {
+                            text: "OK", onPress: () => {
+                                handleUpload();
                             }
-                        ]);
-                    }}
-                >
-                    <Text style={styles.uploadButtonText}>UPLOAD</Text>
-                </TouchableOpacity>
-
-            </SafeAreaView>
-        </ScrollView>
-
+                        }
+                    ]);
+                }}>
+                <Text style={styles.uploadButtonText}>UPLOAD</Text>
+            </TouchableOpacity>
+        </SafeAreaView>
     );
 }
 

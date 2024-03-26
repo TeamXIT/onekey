@@ -262,15 +262,15 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         flexDirection: 'row',
-        alignItems: 'center', 
+        alignItems: 'center',
         justifyContent: 'space-between',
         marginTop: 10,
-      },
-      cardLikes: {
+    },
+    cardLikes: {
         fontSize: xSmallSize,
         marginRight: 10,
         color: blue,
-      },
+    },
     //carddetails
     CardDetailscontainer: {
         flex: 1,
@@ -373,8 +373,6 @@ const styles = StyleSheet.create({
     UploadContainer: {
         flex: 1,
         backgroundColor: primaryColor,
-        padding: 20,
-
     },
     uploadTitleTextInput: {
         backgroundColor: secondaryColor,
@@ -465,7 +463,7 @@ const styles = StyleSheet.create({
         right: 5,
     },
     uploadBtn: {
-
+        flex: 1,
         backgroundColor: secondaryColor,
         padding: 10,
         borderRadius: 10,
@@ -475,7 +473,6 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         marginTop: 20,
         marginBottom: 50
-
     },
     uploadButtonText: {
         color: primaryColor,
