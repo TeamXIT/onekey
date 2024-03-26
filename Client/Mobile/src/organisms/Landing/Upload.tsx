@@ -9,21 +9,38 @@ import TeamxRadioButton from "../../molecules/TeamxRadioButton";
 
 const Upload = () => {
     const [showAdditionalTextBox, setShowAdditionalTextBox] = useState(false);
-    const [labelText, setLabelText] = useState("");
+    const [ProjectText, setProjectText] = useState("");
     const [selectedOption, setSelectedOption] = useState("Text");
-    const [labels, setLabels] = useState([]);
-    const [additionalText, setAdditionalText] = useState("");
+    const [dynamicProps, setDynamicProps] = useState([]);
     const [projectName, setProjectName] = useState("");
     const [projectDescription, setProjectDescription] = useState("");
     const [imagePaths, setImagePaths] = useState([]);
 
-    const handleAddLabel = () => {
+    const handleAddFile = () => {
+        if (projectName === "") {
+            Alert.alert(
+                "Invalid Input",
+                "Please enter project name",
+                [{ text: "OK", onPress: () => { } }]
+            );
+            return;
+        }
+
+        if (projectDescription === "") {
+            Alert.alert(
+                "Invalid Input",
+                "Please enter project description",
+                [{ text: "OK", onPress: () => { } }]
+            );
+            return;
+        }
+    
         let isVisible = showAdditionalTextBox;
         setShowAdditionalTextBox(isVisible = !isVisible);
     };
 
-    const handleSaveLabel = () => {
-        if (labelText.trim() === "") {
+    const handleSaveFile = () => {
+        if (ProjectText.trim() === "") {
             Alert.alert(
                 "Invalid detailing",
                 "Please enter title",
@@ -32,7 +49,7 @@ const Upload = () => {
             return;
         }
 
-        const fileTypes = labels.filter(x => x.type === "File")
+        const fileTypes = dynamicProps.filter(x => x.type === "File")
         if (fileTypes != null && fileTypes.length >= 1 && selectedOption === "File") {
             Alert.alert(
                 "Oops!...",
@@ -41,13 +58,13 @@ const Upload = () => {
             );
         }
         else {
-            setLabels([...labels, { text: labelText, type: selectedOption }]);
+            setDynamicProps([...dynamicProps, { text: ProjectText, type: selectedOption, description: "" }]);
             setShowAdditionalTextBox(false);
-            setLabelText("");
+            setProjectText("");
         }
     };
 
-    const handleDeleteLabel = (index) => {
+    const handleDeleteFile = (index) => {
         Alert.alert(
             "Delete Confirmation",
             "Are you sure you want to delete this?",
@@ -57,75 +74,59 @@ const Upload = () => {
                     onPress: () => console.log("Cancel Pressed"),
                     style: "cancel"
                 },
-                { text: "Delete", onPress: () => deleteLabel(index) }
+                { text: "Delete", onPress: () => deleteFile(index) }
             ]
         );
     };
 
-    const deleteLabel = (index) => {
-        const updatedLabels = [...labels];
-        updatedLabels.splice(index, 1);
-        setLabels(updatedLabels);
+    const deleteFile = (index) => {
+        const updatedProject = [...dynamicProps];
+        const item = updatedProject[index];
+        console.log("File Item: ", item);
+        if (item.type === "File") {
+            setImagePaths([]);
+        }
+        updatedProject.splice(index, 1);
+        setDynamicProps(updatedProject);
     };
 
-    const handleReceiveImagePaths = (paths) => {
+    const handleReceiveFilePaths = (paths) => {
         setImagePaths(paths);
     };
 
     const handleUpload = () => {
-        console.log("Project Name:", projectName);
-        console.log("Project Description:", projectDescription);
-        console.log("Labels");
-        labels.forEach((label, index) => {
-            console.log("Text:", label.text);
-            console.log("Type:", label.type);
-            if (label.type === "Text") {
-                console.log("Additional Text:", additionalText);
-            }
-            else {
-                console.log("Image Paths:", imagePaths);
+        let assetsData = [];
+        let dynamicData = [];
+        imagePaths.forEach(file => {
+            assetsData.push({
+                name: file.FileName, //not displayed
+                value_type: file.FileType, //not displayed
+                value: file.FilePath
+            });
+        });
+        dynamicProps.forEach(dynamicProp => {
+            if (dynamicProp.type === "Text") {
+                dynamicData.push({
+                    name: dynamicProp.text,
+                    value_type: "string",
+                    value: dynamicProp.description
+                });
             }
         });
 
-        // let assetsData: [{
-        //     name: string,
-        //     value_type: string,
-        //     value: string
-        // }];
-        // let dynamicData: [{
-        //     name: string,
-        //     value_type: string,
-        //     value: string
-        // }];
-        // imagePaths.forEach(file => {
-        //     assetsData.push({
-        //         name: file.Name,
-        //         value_type: file.Filetype,
-        //         value: file.FilePath
-        //     })
-        // });
-        // labels.forEach(label => {
-        //     dynamicData.push({
-        //         name: label.text,
-        //         value_type: "string",
-        //         value: label.additionalText
-        //     })
-        // });
+        let uploadData = {
+            name: projectName,
+            description: projectDescription,
+            assets: assetsData,
+            dynamic_properties: dynamicData
+        };
 
-        // let uploadData = {
-        //     name: projectName,
-        //     description: projectDescription,
-        //     assets : assetsData,
-        //     dynamic_properties: dynamicData
-        // };
+        console.log("Final Upload Data: ", JSON.stringify(uploadData));
 
-        // console.log("Project Data: ", JSON.stringfy(uploadData));
-
-        setLabels([]);
-        setAdditionalText("");
-        setImagePaths([]);
-        setProjectName("");
-        setProjectDescription("");
+        // setDynamicProps([]);
+        // setImagePaths([]);
+        // setProjectName("");
+        // setProjectDescription("");
     };
 
     return (
@@ -145,7 +146,7 @@ const Upload = () => {
                         value={projectDescription}
                         onChangeText={setProjectDescription}
                     />
-                    <TouchableOpacity style={styles.Uploadbutton} onPress={handleAddLabel}>
+                    <TouchableOpacity style={styles.Uploadbutton} onPress={handleAddFile}>
                         <Text style={styles.AddLabelText}>Add More Details</Text>
                     </TouchableOpacity>
                     {showAdditionalTextBox && (
@@ -154,8 +155,8 @@ const Upload = () => {
                             <TextInput
                                 style={styles.uploadTitleTextInput}
                                 placeholder="Enter title"
-                                onChangeText={(text) => setLabelText(text)}
-                                value={labelText}
+                                onChangeText={(text) => setProjectText(text)}
+                                value={ProjectText}
                             />
 
                             <Text style={styles.labelText}>Select your detail type</Text>
@@ -177,31 +178,30 @@ const Upload = () => {
                                     />
                                 </View>
                             </View>
-                            <TouchableOpacity style={styles.AddButton} onPress={handleSaveLabel}>
+                            <TouchableOpacity style={styles.AddButton} onPress={handleSaveFile}>
                                 <Text style={styles.AddButtonText}>Add</Text>
                             </TouchableOpacity>
                         </View>
                     )}
-                    {labels.map((label, index) => (
+                    {dynamicProps.map((project, index) => (
                         <View style={styles.displayedLabelContainer} key={index}>
-                            <TouchableOpacity onPress={() => handleDeleteLabel(index)} style={styles.deleteIcon}>
+                            <TouchableOpacity onPress={() => handleDeleteFile(index)} style={styles.deleteIcon}>
                                 <Image source={require('../../images/ic_delete.png')} />
                             </TouchableOpacity>
                             <Text style={styles.uploadTitleText}>
-                                {label.text}
+                                {project.text}
                             </Text>
-                            {label.type === "Text" && (
+                            {project.type === "Text" && (
                                 <TextInput
                                     style={styles.uploadDescriptionTextInput}
                                     placeholder="Enter Text"
-                                    onChangeText={(text) => setAdditionalText(text)}
+                                    onChangeText={(text) => project.description = text}
                                     multiline
-                                    numberOfLines={10}
                                 />
                             )}
-                            {label.type === "File" && (
+                            {project.type === "File" && (
                                 <View style={styles.fileButton}>
-                                    <TeamxImageComponent image={'../../src/images/ic_upload.png'} onImagePathsReceived={handleReceiveImagePaths} />
+                                    <TeamxImageComponent image={'../../src/images/ic_upload.png'} onFilePathsReceived={handleReceiveFilePaths} />
                                 </View>
                             )}
                         </View>
