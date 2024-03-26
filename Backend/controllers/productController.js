@@ -28,29 +28,26 @@ const createProduct = async (req, res) => {
         const createdDynamicProperties = [];
     
         for (const asset of assets) {
-            console.log(asset);
-            if (asset.value_type === 'IMAGE' || asset.value_type === 'VIDEO' || asset.value_type === 'FILE') {
+            const valueType = asset.value_type.toLowerCase();
+            if (valueType === 'image' || valueType === 'video' || valueType === 'file') {
                 const createAsset = await DynamicProperties.create({
                     name: asset.name,
-                    value_type: asset.value_type,
+                    value_type: valueType,
                     value: asset.value,
                     product_id: product.product_id
-                }).then((res) =>{
-                    console.log(res);
                 });
-                console.log(createAsset);
                 createdDynamicProperties.push(createAsset);
             }
         };
-        // dynamic_properties.forEach(async (property) => {
-        //     const createdProperty = await DynamicProperties.create({
-        //         name: property.name,
-        //         value_type: property.value_type,
-        //         value: property.value,
-        //         product_id: product.product_id // Use the product_id obtained from product
-        //     });
-        //     createdDynamicProperties.push(createdProperty);
-        // });
+        dynamic_properties.forEach(async (property) => {
+            const createdProperty = await DynamicProperties.create({
+                name: property.name,
+                value_type: property.value_type,
+                value: property.value,
+                product_id: product.product_id // Use the product_id obtained from product
+            });
+            createdDynamicProperties.push(createdProperty);
+        });
 
         res.status(200).json(baseResponses.constantMessages.PRODUCT_CREATE_SUCCESSFUL());
     } catch (error) {
