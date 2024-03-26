@@ -15,8 +15,8 @@ const Signin = ({ navigation }) => {
     const dispatch = useAppDispatch()
     const authen = useAppSelector(state => state.auth);
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('teamx');
+    const [password, setPassword] = useState('Teamx@123');
     const [isRemember, setIsRemember] = useState(false);
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');

@@ -3,12 +3,10 @@ import axios from 'axios';
 import API_BASE_URL from '../config/apiConfig';
 
 type ProductState = {
-
     screen: {
         isBusy: boolean,
         error: string
     }
-
     data: {
         products: any[]
         productById: any
@@ -20,11 +18,12 @@ const initialState: ProductState = {
         isBusy: false,
         error: ''
     },
-    data:{
+    data: {
         products: [],
-        productById:{}
+        productById: {}
     }
 }
+
 export const productSlice = createSlice({
     name: 'product',
     initialState,
@@ -38,7 +37,7 @@ export const productSlice = createSlice({
         setProducts: (state, { payload }) => {
             state.data.products = payload;
         },
-        setProduuctById:(state, { payload }) => {
+        setProduuctById: (state, { payload }) => {
             state.data.productById = payload;
         },
 
@@ -57,7 +56,7 @@ export const fetchAllProducts = (recLimit = 10, pageNumber = 1) => async (dispat
     dispatch(setBusy(true));
     await axios.get(`${API_BASE_URL}/products/get-all?limit=${recLimit}&page=${pageNumber}`)
         .then((response) => {
-            console.log('FetchAll api:',response)
+            console.log('FetchAll api:', response)
             dispatch(setError(''));
             dispatch(setProducts(response.data));
         })
@@ -73,7 +72,7 @@ export const fetchProductById = (productId: Number) => async (dispatch: any) => 
     dispatch(setBusy(true));
     await axios.get(`${API_BASE_URL}/products/get-by-id${productId}`)
         .then((response) => {
-            console.log('FetchById api:',response)
+            console.log('FetchById api:', response)
             dispatch(setError(''));
             dispatch(setProduuctById(response.data));
         })
@@ -85,53 +84,51 @@ export const fetchProductById = (productId: Number) => async (dispatch: any) => 
     dispatch(setBusy(false));
 }
 
-export const createNewProduct = (productData:JSON) => async (dispatch:any) => {
+export const createNewProduct = (productData: JSON) => async (dispatch: any) => {
     dispatch(setBusy(true));
     await axios.post(`${API_BASE_URL}/products/create`, productData)
-    .then((response) => {
-        console.log('Create api:',response)
-        dispatch(setError(''));
-
-    })
-    .catch((error) => {
-        const { data } = error.response;
-        const result = JSON.parse(JSON.stringify(data));
-        dispatch(setError(result.error));
-    })
-dispatch(setBusy(false));
-
+        .then((response) => {
+            console.log('Create api:', response)
+            dispatch(setError(''));
+        })
+        .catch((error) => {
+            const { data } = error.response;
+            const result = JSON.parse(JSON.stringify(data));
+            dispatch(setError(result.error));
+        })
+    dispatch(setBusy(false));
 }
 
-export const updateExistingProduct = (updatedProductData:JSON) => async (dispatch:any) => {
+export const updateExistingProduct = (updatedProductData: JSON) => async (dispatch: any) => {
     dispatch(setBusy(true));
     await axios.put(`${API_BASE_URL}/products/update`, updatedProductData)
-    .then((response) => {
-        console.log('Update api:',response)
-        dispatch(setError(''));
+        .then((response) => {
+            console.log('Update api:', response)
+            dispatch(setError(''));
 
-    })
-    .catch((error) => {
-        const { data } = error.response;
-        const result = JSON.parse(JSON.stringify(data));
-        dispatch(setError(result.error));
-    })
-dispatch(setBusy(false));
+        })
+        .catch((error) => {
+            const { data } = error.response;
+            const result = JSON.parse(JSON.stringify(data));
+            dispatch(setError(result.error));
+        })
+    dispatch(setBusy(false));
 }
 
-export const deleteExistingProduct = (productId:Number) => async (dispatch:any) => {
+export const deleteExistingProduct = (productId: Number) => async (dispatch: any) => {
     dispatch(setBusy(true));
     await axios.delete(`${API_BASE_URL}/products/delete?product_id=${productId}`)
-    .then((response) => {
-        console.log('Delete api:',response)
-        dispatch(setError(''));
+        .then((response) => {
+            console.log('Delete api:', response)
+            dispatch(setError(''));
 
-    })
-    .catch((error) => {
-        const { data } = error.response;
-        const result = JSON.parse(JSON.stringify(data));
-        dispatch(setError(result.error));
-    })
-dispatch(setBusy(false));
+        })
+        .catch((error) => {
+            const { data } = error.response;
+            const result = JSON.parse(JSON.stringify(data));
+            dispatch(setError(result.error));
+        })
+    dispatch(setBusy(false));
 }
 
 export default productSlice.reducer

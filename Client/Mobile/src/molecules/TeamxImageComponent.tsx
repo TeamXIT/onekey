@@ -4,9 +4,17 @@ import ImagePicker from 'react-native-image-crop-picker';
 import { styles } from "../styles/styles"
 
 const TeamxImageComponent = ({ image, onImagePathsReceived }) => {
+    let FileData: [{
+        FileName: string,
+        FilePath: string,
+        FileType: string
+    }]
+
     const [selectedImages, setSelectedImages] = useState([]);
 
     const openImagePicker = () => {
+        // https://www.npmjs.com/package/react-native-document-picker
+        // Add validation to only uplaod png, jpg, jpeg, txt, pdf, doc, word, excel
         const options = {
             width: 300,
             height: 400,
@@ -16,6 +24,7 @@ const TeamxImageComponent = ({ image, onImagePathsReceived }) => {
 
         ImagePicker.openPicker(options)
             .then(selectedImages => {
+                console.log("Selected file: ", selectedImages);
                 const imagePaths = selectedImages.map((image) => image.path);
                 setSelectedImages(prevImages => [...prevImages, ...imagePaths]);
                 onImagePathsReceived(imagePaths);
@@ -43,7 +52,7 @@ const TeamxImageComponent = ({ image, onImagePathsReceived }) => {
                 }
             ]
         );
-      };
+    };
 
     return (
         <View style={styles.uploadImagecontainer}>
