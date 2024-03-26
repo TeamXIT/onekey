@@ -15,7 +15,7 @@ const textColor = useColorScheme() === 'light' ? darkText : lightText;
 const errorColor = "#FF0000";
 const blue = "#0987F0";
 const shadowcolor = '#000'
-const plusIconContainerbg ='rgba(0, 0, 0, 0.6)'
+const plusIconContainerbg = 'rgba(0, 0, 0, 0.6)'
 
 // FontSizes
 const xSmallSize = 14;
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
         borderWidth: 2
     },
     //project screen
-    cardContainer:{
+    cardContainer: {
         backgroundColor: primaryColor,
     },
     cardStyle: {
@@ -245,18 +245,10 @@ const styles = StyleSheet.create({
     cardTitle: {
         fontSize: smallSize,
         fontWeight: 'bold',
-       
-        
     },
     cardDescription: {
         fontSize: xSmallSize,
     },
-    // cardLikes: {
-       
-    //     fontSize: xSmallSize,
-    //     color: blue,
-    //     marginLeft: 10,
-    // },
     cardContent: {
         flex: 2,
         flexDirection: 'column',
@@ -283,37 +275,37 @@ const styles = StyleSheet.create({
     CardDetailscontainer: {
         flex: 1,
         backgroundColor: primaryColor,
-      },
-      iconContainer: {
+    },
+    iconContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
         marginTop: 20,
-        marginBottom:10,
-      },
-      carddeatilsIcon: {
+        marginBottom: 10,
+    },
+    carddeatilsIcon: {
         tintColor: secondaryColor,
-      },
-      CardDetailsmainImage: {
+    },
+    CardDetailsmainImage: {
         width: '100%',
         height: 310,
         backgroundColor: secondaryColor,
         borderWidth: 2,
         borderRadius: 10,
-      },
-      thumbnailsContainer: {
+    },
+    thumbnailsContainer: {
         flexDirection: 'row',
         padding: 10,
-      },
-      thumbnailImage: {
+    },
+    thumbnailImage: {
         width: 70,
         height: 70,
         marginRight: 10,
         borderWidth: 4,
         borderColor: secondaryColor,
         borderRadius: 10,
-      },
-      plusIconContainer: {
+    },
+    plusIconContainer: {
         position: 'absolute',
         bottom: 0,
         right: 10,
@@ -323,61 +315,61 @@ const styles = StyleSheet.create({
         height: 70,
         justifyContent: 'center',
         alignItems: 'center',
-      },
-      plusIcon: {
+    },
+    plusIcon: {
         color: secondaryColor,
         fontSize: normalSize,
         fontWeight: 'bold',
         marginBottom: 10,
-     },
+    },
     titleDescriptionContainer: {
         flex: 5,
-        paddingHorizontal: 5,  
-      },
-      carddetailsTitle: {
+        paddingHorizontal: 5,
+    },
+    carddetailsTitle: {
         fontSize: normalSize,
         fontWeight: 'bold',
         marginBottom: 5,
         color: secondaryColor,
-      },
-      carddetailsDescription: {
+    },
+    carddetailsDescription: {
         fontSize: xSmallSize,
         color: secondaryColor,
-      },
+    },
     Slidercontainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        flex:1,
-        backgroundColor:primaryColor
-       
-      },
-      Sliderimage: {
+        flex: 1,
+        backgroundColor: primaryColor
+
+    },
+    Sliderimage: {
         width: 250,
         height: 250,
-        
-      },
-      Sliderarrow: {
+
+    },
+    Sliderarrow: {
         padding: 5,
-       
-      },
-      SliderarrowIcon: {
+
+    },
+    SliderarrowIcon: {
         width: 50,
         height: 50,
-        tintColor:secondaryColor,
-      },
-      //homes&post&settings
-      HomeContainer: {
-        flex: 1, 
-        backgroundColor: primaryColor, 
-        justifyContent: 'center', 
-        alignItems: 'center', 
+        tintColor: secondaryColor,
     },
-    HomeText:{
-        color:secondaryColor,
-        fontSize:normalSize
+    //homes&post&settings
+    HomeContainer: {
+        flex: 1,
+        backgroundColor: primaryColor,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-      //upload
+    HomeText: {
+        color: secondaryColor,
+        fontSize: normalSize
+    },
+    //upload
     UploadContainer: {
         flex: 1,
         backgroundColor: primaryColor,
@@ -425,7 +417,7 @@ const styles = StyleSheet.create({
     labelText: {
         color: secondaryColor,
         fontSize: smallSize,
-        marginBottom: 5,
+        marginBottom: 10,
     },
     radioButtonRow: {
         flexDirection: 'row',
@@ -441,7 +433,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     AddButton: {
-        backgroundColor:primaryColor,
+        backgroundColor: primaryColor,
         padding: 5,
         borderRadius: 5,
         alignItems: "center",
@@ -470,9 +462,8 @@ const styles = StyleSheet.create({
     fileButton: {
         bottom: 30,
         position: 'relative',
-        right: 10,
+        right: 5,
     },
-
     uploadBtn: {
 
         backgroundColor: secondaryColor,
@@ -483,27 +474,31 @@ const styles = StyleSheet.create({
         borderColor: secondaryColor,
         borderWidth: 2,
         marginTop: 20,
-        marginBottom:50
+        marginBottom: 50
 
     },
     uploadButtonText: {
         color: primaryColor,
         fontSize: normalSize,
     },
-    AddLabelText:{
-        color:secondaryColor,
-        fontSize: normalSize, 
+    AddLabelText: {
+        color: secondaryColor,
+        fontSize: normalSize,
     },
 
-//TeamxImageComponent
-    container: {
-        alignItems: 'flex-start', 
+    //TeamxImageComponent
+    uploadImagecontainer: {
+        alignItems: 'flex-start',
         marginLeft: 20,
         marginTop: 20,
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+
     },
     imageContainer: {
         position: 'relative',
-        margin: 5,
+        margin: 10,
+
     },
     imagePreview: {
         width: 80,
@@ -514,7 +509,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         right: 0,
-       
+
         width: 24,
         height: 24,
         alignItems: 'center',
@@ -522,14 +517,28 @@ const styles = StyleSheet.create({
     },
     deleteButtonText: {
         tintColor: "white",
-       
+
     },
     uploadrow: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start', 
+        justifyContent: 'flex-start',
     },
-   });
+    uploadButtonStyle: {
+        height: 80,
+        width: 80
+    },
+    uploadImageStyle: {
+        height: 100,
+        width: 100
+    },
+    uploadTitleText: {
+        color: secondaryColor,
+        marginBottom: 10,
+        fontWeight: 'bold',
+        fontSize: normalSize
+    }
+});
 
 
 export { styles, secondaryColor, errorColor };

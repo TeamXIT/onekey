@@ -93,4 +93,23 @@ export const UserSignup = (_username: string, _email: string, _password: string,
     dispatch(setBusy(false));
 }
 
+export const RoleSelection = (_username: string, role_id_or_name:any) => async (dispatch: any) => {
+    dispatch(setBusy(true));
+    let credentials = {
+        username: _username,
+        roleIdOrroleName: role_id_or_name
+        
+    }
+    await axios.post(`${API_BASE_URL}/auth/select-role`, credentials)
+        .then((response) => {
+            dispatch(setError(''));
+            dispatch(setAuthentication(response.data));
+        })
+        .catch((error) => {
+            const { data } = error.response;
+            const result = JSON.parse(JSON.stringify(data));
+            dispatch(setError(result.error));
+        });
+    dispatch(setBusy(false));
+}
 export default authSlice.reducer
