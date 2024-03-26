@@ -50,12 +50,10 @@ const styles = StyleSheet.create({
     },
     containerStyle: {
         flex: 1,
-        alignItems: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: primaryColor,
-        height: '100%',
-        width: '100%',
-        padding: 15,
-        gap: 10
+        padding: 15
     },
     textStyle: {
         fontSize: normalSize,
@@ -187,7 +185,6 @@ const styles = StyleSheet.create({
         width: '90%',
         height: 300,
         resizeMode: 'contain',
-        marginBottom: -50,
         margin: 30,
     },
     buttonStyle: {
@@ -495,7 +492,6 @@ const styles = StyleSheet.create({
     imageContainer: {
         position: 'relative',
         margin: 10,
-
     },
     imagePreview: {
         width: 80,

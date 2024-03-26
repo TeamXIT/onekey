@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { View } from "react-native"
+import { Text, View } from "react-native"
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "../../styles/styles";
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
@@ -17,8 +17,18 @@ const SplashScreen = ({ navigation }) => {
     }, 3000);
   }, []);
   return (
+    // <View style={styles.containerStyle}>
+    //   <TeamXLogoImage />
+    // </View>
     <View style={styles.containerStyle}>
-      <TeamXLogoImage />
+      <View style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <TeamXLogoImage />
+      </View>
+      <Text style={styles.textStyle}>Powered by {'\n'}   TeamX</Text>
     </View>
   );
 }
