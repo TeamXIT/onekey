@@ -23,10 +23,13 @@ const UserTypeSelection = ({ navigation }) => {
     ];
 
     useEffect(() => {
-        if (authen.data.AuthToken) {
+        if(authen.data.signupToken) {
             navigation.navigate('Landing');
         }
-    }, [authen.screen.error, authen.data.AuthToken]);
+        else{
+            console.log(authen.data.signupToken)
+        }
+    }, [authen.screen.error, authen.data.signupToken]);
 
     function handleCardPress(value) {
         setUserType(value);
