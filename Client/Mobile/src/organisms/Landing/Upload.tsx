@@ -11,8 +11,7 @@ const Upload = () => {
     const [showAdditionalTextBox, setShowAdditionalTextBox] = useState(false);
     const [ProjectText, setProjectText] = useState("");
     const [selectedOption, setSelectedOption] = useState("Text");
-    const [Project, setProject] = useState([]);
-    const [additionalText, setAdditionalText] = useState("");
+    const [dynamicProps, setDynamicProps] = useState([]);
     const [projectName, setProjectName] = useState("");
     const [projectDescription, setProjectDescription] = useState("");
     const [imagePaths, setImagePaths] = useState([]);
@@ -32,7 +31,7 @@ const Upload = () => {
             return;
         }
 
-        const fileTypes = Project.filter(x => x.type === "File")
+        const fileTypes = dynamicProps.filter(x => x.type === "File")
         if (fileTypes != null && fileTypes.length >= 1 && selectedOption === "File") {
             Alert.alert(
                 "Oops!...",
@@ -41,7 +40,7 @@ const Upload = () => {
             );
         }
         else {
-            setProject([...Project, { text: ProjectText, type: selectedOption }]);
+            setDynamicProps([...dynamicProps, { text: ProjectText, type: selectedOption, description: "" }]);
             setShowAdditionalTextBox(false);
             setProjectText("");
         }
@@ -63,9 +62,14 @@ const Upload = () => {
     };
 
     const deleteFile = (index) => {
-        const updatedProject = [...Project];
+        const updatedProject = [...dynamicProps];
+        const item = updatedProject[index];
+        console.log("File Item: ", item);
+        if (item.type === "File") {
+            setImagePaths([]);
+        }
         updatedProject.splice(index, 1);
-        setProject(updatedProject);
+        setDynamicProps(updatedProject);
     };
 
     const handleReceiveFilePaths = (paths) => {
@@ -73,37 +77,23 @@ const Upload = () => {
     };
 
     const handleUpload = () => {
-        console.log("Project Name:", projectName);
-        console.log("Project Description:", projectDescription);
-        console.log("Files");
-        Project.forEach((project, index) => {
-            
-           
-            if (project.type === "Text") {
-                console.log("Additional Text:", additionalText);
-            }
-            else {
-                console.log("Image Paths:", imagePaths);
-            }
-        });
-
         let assetsData = [];
         let dynamicData = [];
         imagePaths.forEach(file => {
-            console.log("name", file);
             assetsData.push({
                 name: file.FileName, //not displayed
                 value_type: file.FileType, //not displayed
                 value: file.FilePath
             });
         });
-        Project.forEach(project => {
-            console.log("image", project);
-            dynamicData.push({
-                name: project.text,
-                value_type: "string",
-                value: additionalText
-            });
+        dynamicProps.forEach(dynamicProp => {
+            if (dynamicProp.type === "Text") {
+                dynamicData.push({
+                    name: dynamicProp.text,
+                    value_type: "string",
+                    value: dynamicProp.description
+                });
+            }
         });
 
         let uploadData = {
@@ -113,10 +103,9 @@ const Upload = () => {
             dynamic_properties: dynamicData
         };
 
-        console.log("Project Data: ", JSON.stringify(uploadData));
+        console.log("Final Upload Data: ", JSON.stringify(uploadData));
 
-        // setProject([]);
-        // setAdditionalText("");
+        // setDynamicProps([]);
         // setImagePaths([]);
         // setProjectName("");
         // setProjectDescription("");
@@ -176,7 +165,7 @@ const Upload = () => {
                             </TouchableOpacity>
                         </View>
                     )}
-                    {Project.map((project, index) => (
+                    {dynamicProps.map((project, index) => (
                         <View style={styles.displayedLabelContainer} key={index}>
                             <TouchableOpacity onPress={() => handleDeleteFile(index)} style={styles.deleteIcon}>
                                 <Image source={require('../../images/ic_delete.png')} />
@@ -188,9 +177,8 @@ const Upload = () => {
                                 <TextInput
                                     style={styles.uploadDescriptionTextInput}
                                     placeholder="Enter Text"
-                                    onChangeText={(text) => setAdditionalText(text)}
+                                    onChangeText={(text) => project.description = text}
                                     multiline
-
                                 />
                             )}
                             {project.type === "File" && (
