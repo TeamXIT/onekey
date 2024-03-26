@@ -12,6 +12,7 @@ type AuthState = {
     data: {
         AuthToken: string
         Username: string
+        signupToken:string
     }
 }
 
@@ -21,6 +22,7 @@ const initialState: AuthState = {
         error: ''
     },
     data: {
+        signupToken:'',
         AuthToken: '',
         Username: ''
     }
@@ -39,8 +41,13 @@ export const authSlice = createSlice({
         setAuthentication: (state, { payload }) => {
             state.data.AuthToken = payload.data.token;
         },
+        setRoleSelectionToken:(state, { payload }) => {
+            state.data.signupToken = payload.data.token;
+            console.log(payload)
+        },
         setUsername: (state, { payload }) => {
             state.data.Username = payload;
+            console.log(payload)
         },
     },
 })
@@ -49,6 +56,7 @@ export const {
     setBusy,
     setError,
     setAuthentication,
+    setRoleSelectionToken,
     setUsername,
 } = authSlice.actions
 
@@ -62,7 +70,6 @@ export const UserSignin = (_username: string, _password: string) => async (dispa
         .then((response) => {
             //console.log("UserSignin API Response: ", response);
             dispatch(setError(''));
-            dispatch(setUsername(_username));
             dispatch(setAuthentication(response.data));
         })
         .catch((error) => {
@@ -84,6 +91,7 @@ export const UserSignup = (_username: string, _email: string, _password: string,
         .then(() => {
             dispatch(setError(''));
             dispatch(setUsername(_username));
+            
         })
         .catch((error) => {
             const { data } = error.response;
@@ -93,17 +101,22 @@ export const UserSignup = (_username: string, _email: string, _password: string,
     dispatch(setBusy(false));
 }
 
-export const RoleSelection = (_username: string, role_id_or_name:any) => async (dispatch: any) => {
+export const RoleSelection = (role_id_or_name:any) => async (dispatch: any, getState: any) => {
+    const { auth } = getState();
+    const { Username } = auth.data;
     dispatch(setBusy(true));
+
     let credentials = {
-        username: _username,
+        username: Username,
         roleIdOrroleName: role_id_or_name
         
     }
+    console.log(credentials);
     await axios.post(`${API_BASE_URL}/auth/select-role`, credentials)
         .then((response) => {
+            console.log(response)
             dispatch(setError(''));
-            dispatch(setAuthentication(response.data));
+            dispatch(setRoleSelectionToken(response.data));
         })
         .catch((error) => {
             const { data } = error.response;
