@@ -17,6 +17,24 @@ const Upload = () => {
     const [imagePaths, setImagePaths] = useState([]);
 
     const handleAddFile = () => {
+        if (projectName === "") {
+            Alert.alert(
+                "Invalid Input",
+                "Please enter project name",
+                [{ text: "OK", onPress: () => { } }]
+            );
+            return;
+        }
+
+        if (projectDescription === "") {
+            Alert.alert(
+                "Invalid Input",
+                "Please enter project description",
+                [{ text: "OK", onPress: () => { } }]
+            );
+            return;
+        }
+    
         let isVisible = showAdditionalTextBox;
         setShowAdditionalTextBox(isVisible = !isVisible);
     };
