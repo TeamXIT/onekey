@@ -9,21 +9,21 @@ import TeamxRadioButton from "../../molecules/TeamxRadioButton";
 
 const Upload = () => {
     const [showAdditionalTextBox, setShowAdditionalTextBox] = useState(false);
-    const [labelText, setLabelText] = useState("");
+    const [ProjectText, setProjectText] = useState("");
     const [selectedOption, setSelectedOption] = useState("Text");
-    const [labels, setLabels] = useState([]);
+    const [Project, setProject] = useState([]);
     const [additionalText, setAdditionalText] = useState("");
     const [projectName, setProjectName] = useState("");
     const [projectDescription, setProjectDescription] = useState("");
     const [imagePaths, setImagePaths] = useState([]);
 
-    const handleAddLabel = () => {
+    const handleAddFile = () => {
         let isVisible = showAdditionalTextBox;
         setShowAdditionalTextBox(isVisible = !isVisible);
     };
 
-    const handleSaveLabel = () => {
-        if (labelText.trim() === "") {
+    const handleSaveFile = () => {
+        if (ProjectText.trim() === "") {
             Alert.alert(
                 "Invalid detailing",
                 "Please enter title",
@@ -32,7 +32,7 @@ const Upload = () => {
             return;
         }
 
-        const fileTypes = labels.filter(x => x.type === "File")
+        const fileTypes = Project.filter(x => x.type === "File")
         if (fileTypes != null && fileTypes.length >= 1 && selectedOption === "File") {
             Alert.alert(
                 "Oops!...",
@@ -41,13 +41,13 @@ const Upload = () => {
             );
         }
         else {
-            setLabels([...labels, { text: labelText, type: selectedOption }]);
+            setProject([...Project, { text: ProjectText, type: selectedOption }]);
             setShowAdditionalTextBox(false);
-            setLabelText("");
+            setProjectText("");
         }
     };
 
-    const handleDeleteLabel = (index) => {
+    const handleDeleteFile = (index) => {
         Alert.alert(
             "Delete Confirmation",
             "Are you sure you want to delete this?",
@@ -57,29 +57,29 @@ const Upload = () => {
                     onPress: () => console.log("Cancel Pressed"),
                     style: "cancel"
                 },
-                { text: "Delete", onPress: () => deleteLabel(index) }
+                { text: "Delete", onPress: () => deleteFile(index) }
             ]
         );
     };
 
-    const deleteLabel = (index) => {
-        const updatedLabels = [...labels];
-        updatedLabels.splice(index, 1);
-        setLabels(updatedLabels);
+    const deleteFile = (index) => {
+        const updatedProject = [...Project];
+        updatedProject.splice(index, 1);
+        setProject(updatedProject);
     };
 
-    const handleReceiveImagePaths = (paths) => {
+    const handleReceiveFilePaths = (paths) => {
         setImagePaths(paths);
     };
 
     const handleUpload = () => {
         console.log("Project Name:", projectName);
         console.log("Project Description:", projectDescription);
-        console.log("Labels");
-        labels.forEach((label, index) => {
-            console.log("Text:", label.text);
-            console.log("Type:", label.type);
-            if (label.type === "Text") {
+        console.log("Files");
+        Project.forEach((project, index) => {
+            
+           
+            if (project.type === "Text") {
                 console.log("Additional Text:", additionalText);
             }
             else {
@@ -87,45 +87,39 @@ const Upload = () => {
             }
         });
 
-        // let assetsData: [{
-        //     name: string,
-        //     value_type: string,
-        //     value: string
-        // }];
-        // let dynamicData: [{
-        //     name: string,
-        //     value_type: string,
-        //     value: string
-        // }];
-        // imagePaths.forEach(file => {
-        //     assetsData.push({
-        //         name: file.Name,
-        //         value_type: file.Filetype,
-        //         value: file.FilePath
-        //     })
-        // });
-        // labels.forEach(label => {
-        //     dynamicData.push({
-        //         name: label.text,
-        //         value_type: "string",
-        //         value: label.additionalText
-        //     })
-        // });
+        let assetsData = [];
+        let dynamicData = [];
+        imagePaths.forEach(file => {
+            console.log("name", file);
+            assetsData.push({
+                name: file.FileName, //not displayed
+                value_type: file.FileType, //not displayed
+                value: file.FilePath
+            });
+        });
+        Project.forEach(project => {
+            console.log("image", project);
+            dynamicData.push({
+                name: project.text,
+                value_type: "string",
+                value: additionalText
+            });
+        });
 
-        // let uploadData = {
-        //     name: projectName,
-        //     description: projectDescription,
-        //     assets : assetsData,
-        //     dynamic_properties: dynamicData
-        // };
+        let uploadData = {
+            name: projectName,
+            description: projectDescription,
+            assets: assetsData,
+            dynamic_properties: dynamicData
+        };
 
-        // console.log("Project Data: ", JSON.stringfy(uploadData));
+        console.log("Project Data: ", JSON.stringify(uploadData));
 
-        setLabels([]);
-        setAdditionalText("");
-        setImagePaths([]);
-        setProjectName("");
-        setProjectDescription("");
+        // setProject([]);
+        // setAdditionalText("");
+        // setImagePaths([]);
+        // setProjectName("");
+        // setProjectDescription("");
     };
 
     return (
@@ -145,7 +139,7 @@ const Upload = () => {
                         value={projectDescription}
                         onChangeText={setProjectDescription}
                     />
-                    <TouchableOpacity style={styles.Uploadbutton} onPress={handleAddLabel}>
+                    <TouchableOpacity style={styles.Uploadbutton} onPress={handleAddFile}>
                         <Text style={styles.AddLabelText}>Add More Details</Text>
                     </TouchableOpacity>
                     {showAdditionalTextBox && (
@@ -154,8 +148,8 @@ const Upload = () => {
                             <TextInput
                                 style={styles.uploadTitleTextInput}
                                 placeholder="Enter title"
-                                onChangeText={(text) => setLabelText(text)}
-                                value={labelText}
+                                onChangeText={(text) => setProjectText(text)}
+                                value={ProjectText}
                             />
 
                             <Text style={styles.labelText}>Select your detail type</Text>
@@ -177,31 +171,31 @@ const Upload = () => {
                                     />
                                 </View>
                             </View>
-                            <TouchableOpacity style={styles.AddButton} onPress={handleSaveLabel}>
+                            <TouchableOpacity style={styles.AddButton} onPress={handleSaveFile}>
                                 <Text style={styles.AddButtonText}>Add</Text>
                             </TouchableOpacity>
                         </View>
                     )}
-                    {labels.map((label, index) => (
+                    {Project.map((project, index) => (
                         <View style={styles.displayedLabelContainer} key={index}>
-                            <TouchableOpacity onPress={() => handleDeleteLabel(index)} style={styles.deleteIcon}>
+                            <TouchableOpacity onPress={() => handleDeleteFile(index)} style={styles.deleteIcon}>
                                 <Image source={require('../../images/ic_delete.png')} />
                             </TouchableOpacity>
                             <Text style={styles.uploadTitleText}>
-                                {label.text}
+                                {project.text}
                             </Text>
-                            {label.type === "Text" && (
+                            {project.type === "Text" && (
                                 <TextInput
                                     style={styles.uploadDescriptionTextInput}
                                     placeholder="Enter Text"
                                     onChangeText={(text) => setAdditionalText(text)}
                                     multiline
-                                    numberOfLines={10}
+
                                 />
                             )}
-                            {label.type === "File" && (
+                            {project.type === "File" && (
                                 <View style={styles.fileButton}>
-                                    <TeamxImageComponent image={'../../src/images/ic_upload.png'} onImagePathsReceived={handleReceiveImagePaths} />
+                                    <TeamxImageComponent image={'../../src/images/ic_upload.png'} onFilePathsReceived={handleReceiveFilePaths} />
                                 </View>
                             )}
                         </View>

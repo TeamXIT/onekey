@@ -460,16 +460,19 @@ const styles = StyleSheet.create({
         right: 5,
     },
     uploadBtn: {
-        flex: 1,
+        
         backgroundColor: secondaryColor,
         padding: 10,
+        width:'70%',
         borderRadius: 10,
         alignItems: "center",
         elevation: 10,
         borderColor: secondaryColor,
-        borderWidth: 2,
         marginTop: 20,
-        marginBottom: 50
+        marginBottom:15,
+        marginLeft:"15%"
+
+       
     },
     uploadButtonText: {
         color: primaryColor,
