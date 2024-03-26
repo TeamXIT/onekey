@@ -119,7 +119,7 @@ const Upload = () => {
         //     dynamic_properties: dynamicData
         // };
 
-        // console.log("Project Data: ", uploadData);
+        // console.log("Project Data: ", JSON.stringfy(uploadData));
 
         setLabels([]);
         setAdditionalText("");

@@ -14,7 +14,7 @@ const TeamxImageComponent = ({ image, onImagePathsReceived }) => {
 
     const openImagePicker = () => {
         // https://www.npmjs.com/package/react-native-document-picker
-        // Add validation to only uplaod png, jpg, jpeg, txt, pdf, doc, word, excel
+        // Add validation to only uplaod png, jpg, jpeg, mp4, txt, pdf, doc, word, excel
         const options = {
             width: 300,
             height: 400,
