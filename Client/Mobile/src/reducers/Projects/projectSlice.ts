@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import API_BASE_URL from '../config/apiConfig';
+import jwt from 'jsonwebtoken';
+
 
 type ProductState = {
     screen: {
@@ -10,6 +12,7 @@ type ProductState = {
     data: {
         products: any[]
         productById: any
+        AuthToken:string
     }
 }
 
@@ -20,7 +23,8 @@ const initialState: ProductState = {
     },
     data: {
         products: [],
-        productById: {}
+        productById: {},
+        AuthToken:''
     }
 }
 
@@ -40,6 +44,9 @@ export const productSlice = createSlice({
         setProduuctById: (state, { payload }) => {
             state.data.productById = payload;
         },
+        setAuthToken:(state, { payload }) => {
+            state.data.AuthToken=payload;
+        }
 
     },
 })
@@ -49,8 +56,8 @@ export const {
     setError,
     setProducts,
     setProduuctById,
+    setAuthToken,
 } = productSlice.actions
-
 
 export const fetchAllProducts = (recLimit = 10, pageNumber = 1) => async (dispatch: any) => {
     dispatch(setBusy(true));
@@ -85,7 +92,11 @@ export const fetchProductById = (productId: Number) => async (dispatch: any) => 
     dispatch(setBusy(false));
 }
 
-export const createNewProduct = (productData: JSON) => async (dispatch: any) => {
+export const createNewProduct = (productData: JSON) => async (dispatch: any, getState: any) => {
+    const authToken = getState().product.data.AuthToken;
+    const user_id = jwt.decode(authToken).sub;
+    productData.owner_id = user_id ;
+
     dispatch(setBusy(true));
     await axios.post(`${API_BASE_URL}/product/create`, productData)
         .then((response) => {
@@ -99,7 +110,6 @@ export const createNewProduct = (productData: JSON) => async (dispatch: any) => 
         })
     dispatch(setBusy(false));
 }
-
 export const updateExistingProduct = (updatedProductData: JSON) => async (dispatch: any) => {
     dispatch(setBusy(true));
     await axios.put(`${API_BASE_URL}/product/update`, updatedProductData)
