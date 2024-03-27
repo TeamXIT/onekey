@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, TouchableHighlight, } from 'react-native';
 import { styles } from '../../styles/styles';
+import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
+import { fetchAllProducts } from '../../reducers/Projects/projectSlice';
+
 
 
 const Projects = ({ navigation }) => {
+  const dispatch = useAppDispatch();
+  const product = useAppSelector(state => state.product);
   const [likeCounts, setLikeCounts] = useState({});
   const likeIconActiveColor = "#FF0000";
   const likeIconInactiveColor = "#777";
@@ -50,6 +55,7 @@ const Projects = ({ navigation }) => {
   };
 
   const renderItem = ({ item }) => {
+    dispatch(fetchAllProducts());
     const descriptionToShow = item.description.length > 40 ?
       item.description.substring(0, 40) + '...' : item.description;
 
