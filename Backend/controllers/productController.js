@@ -6,7 +6,7 @@ const { baseResponses } = require('../helpers/baseResponses');
 const createProduct = async (req, res) => {
     try {
         const { name, description, owner_id, assets, dynamic_properties } = req.body;
-
+        console.log(assets)
         let product = await Product.findOne({ where: { name: name } });
         if (!product) {
             // Create a new product if it doesn't exist
@@ -28,6 +28,7 @@ const createProduct = async (req, res) => {
         const createdDynamicProperties = [];
     
         for (const asset of assets) {
+            try {
             const valueType = asset.value_type.toLowerCase();
             if (valueType === 'image' || valueType === 'video' || valueType === 'file') {
                 const createAsset = await DynamicProperties.create({
@@ -37,6 +38,10 @@ const createProduct = async (req, res) => {
                     product_id: product.product_id
                 });
                 createdDynamicProperties.push(createAsset);
+           
+            }
+            }catch(error){
+                console.log(error)
             }
         };
         dynamic_properties.forEach(async (property) => {
