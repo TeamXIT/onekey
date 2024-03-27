@@ -103,8 +103,6 @@ const styles = StyleSheet.create({
     //TODO: Update
     smallbuttonContainer: {
         flexDirection: 'row',
-        paddingTop: 90,
-        paddingBottom: 90,
         gap: -58
     },
     NexttouchableContent: {
@@ -183,8 +181,8 @@ const styles = StyleSheet.create({
     },
     logoImg: {
         width: '90%',
-        height: 300,
-        resizeMode: 'contain',
+        height: 150,
+        resizeMode: 'center',
         margin: 30,
     },
     buttonStyle: {

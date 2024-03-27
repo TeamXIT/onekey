@@ -23,10 +23,10 @@ const UserTypeSelection = ({ navigation }) => {
     ];
 
     useEffect(() => {
-        if(authen.data.signupToken) {
+        if (authen.data.signupToken) {
             navigation.navigate('Landing');
         }
-        else{
+        else {
             console.log(authen.data.signupToken)
         }
     }, [authen.screen.error, authen.data.signupToken]);
@@ -37,7 +37,7 @@ const UserTypeSelection = ({ navigation }) => {
     }
 
     const handleNextpress = () => {
-       
+
         if (selectedCard) {
             dispatch(RoleSelection(selectedCard))
         } else {
@@ -60,36 +60,32 @@ const UserTypeSelection = ({ navigation }) => {
     );
 
     return (
-        <ScrollView>
-            <View style={styles.containerStyle}>
-                <TeamXLogoImage />
+        <View style={styles.containerStyle}>
+            <TeamXLogoImage />
 
-                <FlatList
-                    data={cardData}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id}
-                    numColumns={2}
-                // You might want to adjust this based on your layout
-                />
+            <FlatList
+                data={cardData}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+                numColumns={2} />
 
-                <TeamXErrorText errorText={error} />
+            <TeamXErrorText errorText={error} />
 
-                <View style={[styles.smallbuttonContainer, {}]}>
-                    <TouchableOpacity onPress={handleBackpress}>
-                        <View style={[styles.BacktouchableContent,]}>
-                            <Image source={require('../../images/ic_leftarrow.png')} style={styles.arrowIcon} />
-                            <Text style={styles.TextStyle}>Back </Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={handleNextpress}>
-                        <View style={[styles.NexttouchableContent,]}>
-                            <Text style={styles.TextStyle}> Next</Text>
-                            <Image source={require('../../images/ic_rightarrow.png')} style={styles.arrowIcon} />
-                        </View>
-                    </TouchableOpacity>
-                </View>
+            <View style={[styles.smallbuttonContainer, {}]}>
+                <TouchableOpacity onPress={handleBackpress}>
+                    <View style={[styles.BacktouchableContent,]}>
+                        <Image source={require('../../images/ic_leftarrow.png')} style={styles.arrowIcon} />
+                        <Text style={styles.TextStyle}>Back </Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleNextpress}>
+                    <View style={[styles.NexttouchableContent,]}>
+                        <Text style={styles.TextStyle}> Next</Text>
+                        <Image source={require('../../images/ic_rightarrow.png')} style={styles.arrowIcon} />
+                    </View>
+                </TouchableOpacity>
             </View>
-        </ScrollView>
+        </View>
     );
 }
 

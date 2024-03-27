@@ -216,6 +216,7 @@ const Upload = () => {
                     ))}
                 </View>
             </ScrollView>
+            
             <TouchableOpacity
                 style={styles.uploadBtn}
                 onPress={() => {
