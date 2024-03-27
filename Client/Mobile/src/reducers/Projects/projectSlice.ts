@@ -86,9 +86,9 @@ export const fetchProductById = (productId: Number) => async (dispatch: any) => 
 
 export const createNewProduct = (productData: JSON) => async (dispatch: any) => {
     dispatch(setBusy(true));
-    await axios.post(`${API_BASE_URL}/products/create`, productData)
+    await axios.post(`${API_BASE_URL}/product/create`, productData)
         .then((response) => {
-            console.log('Create api:', response)
+            console.log('Create api:', response.data)
             dispatch(setError(''));
         })
         .catch((error) => {

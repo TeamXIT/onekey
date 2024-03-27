@@ -5,9 +5,11 @@ import { RadioButton } from "react-native-paper";
 import TeamxImageComponent from "../../molecules/TeamxImageComponent";
 import { secondaryColor, styles } from "../../styles/styles";
 import TeamxRadioButton from "../../molecules/TeamxRadioButton";
-
+import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
+import { createNewProduct } from "../../reducers/Projects/projectSlice";
 
 const Upload = () => {
+    const dispatch = useAppDispatch();
     const [showAdditionalTextBox, setShowAdditionalTextBox] = useState(false);
     const [ProjectText, setProjectText] = useState("");
     const [selectedOption, setSelectedOption] = useState("Text");
@@ -15,6 +17,7 @@ const Upload = () => {
     const [projectName, setProjectName] = useState("");
     const [projectDescription, setProjectDescription] = useState("");
     const [imagePaths, setImagePaths] = useState([]);
+    const product = useAppSelector(state => state.product);
 
     const checkValidations = () => {
         if (projectName === "") {
@@ -129,6 +132,7 @@ const Upload = () => {
             };
 
             console.log("Final Upload Data: ", JSON.stringify(uploadData));
+            dispatch(createNewProduct(uploadData));
             return;
 
             setDynamicProps([]);
