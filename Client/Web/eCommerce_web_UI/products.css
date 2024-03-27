@@ -1,0 +1,159 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.container {
+    display: flex;
+}
+
+.filters {
+    flex: 1;
+    padding: 25px;
+    padding-top: 3%;
+}
+.filter-section button{
+    padding: 0px;
+    width: 30%;
+    height: 6vh;
+    margin-left: 55px;
+    margin-right: -59px;
+    border-radius: 3px;
+    border: none;
+} 
+.icon img{
+    width: 15px;
+    height: 15px;
+}
+#applyBtn
+{
+ background-color: #25d366;
+ color: rgb(255, 255, 255);
+}
+#resetBtn{
+    color: rgb(0, 0, 0);
+    background-color: #ece5dd;
+}
+#applyBtn:hover{
+    background-color: #128c7e;
+    color: rgb(255, 255, 255);
+}
+#resetBtn:hover{
+    background-color: #dcf8c6;
+ color: rgb(0, 0, 0);
+}
+.filter-section {
+    margin-bottom: 0px;
+    border: 2px solid rgb(232, 226, 226);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.filter-section h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    position: relative;
+    color: #075e54;
+}
+
+.filter-section h2 .icon {
+    font-size: 16px;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+
+.products {
+    flex: 3;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+}
+
+.product {
+    border: 2px solid #cfcfd8;
+    text-align: center;
+    border-radius: 5px;
+}
+.product h2{
+    align-self: center;
+}
+.product img {
+    width: 100%;
+    height: 40vh;
+}
+.palette {
+    width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.color {
+    width: 25px;
+    height: 25px;
+    margin: 2px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.color.red {
+     background-color: #ff0000;
+     }
+.color.blue { 
+    background-color: #0000ff;
+ }
+.color.green {
+     background-color: #00ff00; 
+    }
+.color.yellow { 
+    background-color: #ffff00;
+ }
+.color.orange {
+     background-color: #ffa500; 
+    }
+.color.purple {
+     background-color: #800080; 
+    }
+.color.black {
+     background-color: #000000; 
+    }
+.color.grey {
+     background-color: #808080; 
+    }
+.color.brown {
+     background-color: #964b00; 
+    }
+
+.price {
+    font-size: 20px;
+}
+
+.discount-price {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #ff4d4d; 
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .filters {
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .filter-section {
+        margin-bottom: 10px;
+    }
+
+    .products {
+        padding-top: 20px;
+    }
+}
