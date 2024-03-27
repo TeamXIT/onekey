@@ -103,8 +103,6 @@ const styles = StyleSheet.create({
     //TODO: Update
     smallbuttonContainer: {
         flexDirection: 'row',
-        paddingTop: 90,
-        paddingBottom: 90,
         gap: -58
     },
     NexttouchableContent: {
@@ -183,8 +181,8 @@ const styles = StyleSheet.create({
     },
     logoImg: {
         width: '90%',
-        height: 300,
-        resizeMode: 'contain',
+        height: 150,
+        resizeMode: 'center',
         margin: 30,
     },
     buttonStyle: {
@@ -460,16 +458,19 @@ const styles = StyleSheet.create({
         right: 5,
     },
     uploadBtn: {
-        flex: 1,
+
         backgroundColor: secondaryColor,
         padding: 10,
+        width: '70%',
         borderRadius: 10,
         alignItems: "center",
         elevation: 10,
         borderColor: secondaryColor,
-        borderWidth: 2,
         marginTop: 20,
-        marginBottom: 50
+        marginBottom: 15,
+        marginLeft: "15%"
+
+
     },
     uploadButtonText: {
         color: primaryColor,
@@ -502,7 +503,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         right: 0,
-
         width: 24,
         height: 24,
         alignItems: 'center',
@@ -518,12 +518,12 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     uploadButtonStyle: {
+        backgroundColor: plusIconContainerbg,
+        borderRadius: 10,
+        width: 80,
         height: 80,
-        width: 80
-    },
-    uploadImageStyle: {
-        height: 100,
-        width: 100
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     uploadTitleText: {
         color: secondaryColor,

@@ -12,6 +12,7 @@ type AuthState = {
     data: {
         AuthToken: string
         Username: string
+        signupToken: string
     }
 }
 
@@ -22,7 +23,8 @@ const initialState: AuthState = {
     },
     data: {
         AuthToken: '',
-        Username: ''
+        Username: '',
+        signupToken: ''
     }
 }
 
@@ -41,6 +43,11 @@ export const authSlice = createSlice({
         },
         setUsername: (state, { payload }) => {
             state.data.Username = payload;
+            console.log(payload)
+        },
+        setRoleSelectionToken: (state, { payload }) => {
+            state.data.signupToken = payload.data.token;
+            console.log(payload)
         },
     },
 })
@@ -49,6 +56,7 @@ export const {
     setBusy,
     setError,
     setAuthentication,
+    setRoleSelectionToken,
     setUsername,
 } = authSlice.actions
 
@@ -60,9 +68,7 @@ export const UserSignin = (_username: string, _password: string) => async (dispa
     }
     await axios.post(`${API_BASE_URL}/auth/sign-in`, credentials)
         .then((response) => {
-            //console.log("UserSignin API Response: ", response);
             dispatch(setError(''));
-            dispatch(setUsername(_username));
             dispatch(setAuthentication(response.data));
         })
         .catch((error) => {
@@ -93,19 +99,22 @@ export const UserSignup = (_username: string, _email: string, _password: string,
     dispatch(setBusy(false));
 }
 
-export const RoleSelection = (_username: string, role_id_or_name:any) => async (dispatch: any) => {
+export const RoleSelection = (role_id_or_name: any) => async (dispatch: any, getState: any) => {
+    const { auth } = getState();
+    const { Username } = auth.data;
     dispatch(setBusy(true));
+
     let credentials = {
-        username: _username,
+        username: Username,
         roleIdOrroleName: role_id_or_name
-        
     }
     await axios.post(`${API_BASE_URL}/auth/select-role`, credentials)
         .then((response) => {
             dispatch(setError(''));
-            dispatch(setAuthentication(response.data));
+            dispatch(setRoleSelectionToken(response.data));
         })
         .catch((error) => {
+            console.log(error);
             const { data } = error.response;
             const result = JSON.parse(JSON.stringify(data));
             dispatch(setError(result.error));
