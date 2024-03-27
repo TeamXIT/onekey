@@ -460,19 +460,19 @@ const styles = StyleSheet.create({
         right: 5,
     },
     uploadBtn: {
-        
+
         backgroundColor: secondaryColor,
         padding: 10,
-        width:'70%',
+        width: '70%',
         borderRadius: 10,
         alignItems: "center",
         elevation: 10,
         borderColor: secondaryColor,
         marginTop: 20,
-        marginBottom:15,
-        marginLeft:"15%"
+        marginBottom: 15,
+        marginLeft: "15%"
 
-       
+
     },
     uploadButtonText: {
         color: primaryColor,
@@ -505,7 +505,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         right: 0,
-
         width: 24,
         height: 24,
         alignItems: 'center',
@@ -521,12 +520,12 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     uploadButtonStyle: {
+        backgroundColor: plusIconContainerbg,
+        borderRadius: 10,
+        width: 80,
         height: 80,
-        width: 80
-    },
-    uploadImageStyle: {
-        height: 100,
-        width: 100
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     uploadTitleText: {
         color: secondaryColor,

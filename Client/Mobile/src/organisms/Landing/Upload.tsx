@@ -16,14 +16,14 @@ const Upload = () => {
     const [projectDescription, setProjectDescription] = useState("");
     const [imagePaths, setImagePaths] = useState([]);
 
-    const handleAddFile = () => {
+    const checkValidations = () => {
         if (projectName === "") {
             Alert.alert(
                 "Invalid Input",
                 "Please enter project name",
                 [{ text: "OK", onPress: () => { } }]
             );
-            return;
+            return false;
         }
 
         if (projectDescription === "") {
@@ -32,11 +32,17 @@ const Upload = () => {
                 "Please enter project description",
                 [{ text: "OK", onPress: () => { } }]
             );
-            return;
+            return false;
         }
-    
-        let isVisible = showAdditionalTextBox;
-        setShowAdditionalTextBox(isVisible = !isVisible);
+
+        return true;
+    }
+
+    const handleAddFile = () => {
+        if (checkValidations()) {
+            let isVisible = showAdditionalTextBox;
+            setShowAdditionalTextBox(isVisible = !isVisible);
+        }
     };
 
     const handleSaveFile = () => {
@@ -95,38 +101,41 @@ const Upload = () => {
     };
 
     const handleUpload = () => {
-        let assetsData = [];
-        let dynamicData = [];
-        imagePaths.forEach(file => {
-            assetsData.push({
-                name: file.FileName, //not displayed
-                value_type: file.FileType, //not displayed
-                value: file.FilePath
-            });
-        });
-        dynamicProps.forEach(dynamicProp => {
-            if (dynamicProp.type === "Text") {
-                dynamicData.push({
-                    name: dynamicProp.text,
-                    value_type: "string",
-                    value: dynamicProp.description
+        if (checkValidations()) {
+            let assetsData = [];
+            let dynamicData = [];
+            imagePaths.forEach(file => {
+                assetsData.push({
+                    name: file.FileName, //not displayed
+                    value_type: file.FileType, //not displayed
+                    value: file.FilePath
                 });
-            }
-        });
+            });
+            dynamicProps.forEach(dynamicProp => {
+                if (dynamicProp.type === "Text") {
+                    dynamicData.push({
+                        name: dynamicProp.text,
+                        value_type: "string",
+                        value: dynamicProp.description
+                    });
+                }
+            });
 
-        let uploadData = {
-            name: projectName,
-            description: projectDescription,
-            assets: assetsData,
-            dynamic_properties: dynamicData
-        };
+            let uploadData = {
+                name: projectName,
+                description: projectDescription,
+                assets: assetsData,
+                dynamic_properties: dynamicData
+            };
 
-        console.log("Final Upload Data: ", JSON.stringify(uploadData));
+            console.log("Final Upload Data: ", JSON.stringify(uploadData));
+            return;
 
-        // setDynamicProps([]);
-        // setImagePaths([]);
-        // setProjectName("");
-        // setProjectDescription("");
+            setDynamicProps([]);
+            setImagePaths([]);
+            setProjectName("");
+            setProjectDescription("");
+        }
     };
 
     return (
@@ -196,8 +205,7 @@ const Upload = () => {
                                     style={styles.uploadDescriptionTextInput}
                                     placeholder="Enter Text"
                                     onChangeText={(text) => project.description = text}
-                                    multiline
-                                />
+                                    multiline/>
                             )}
                             {project.type === "File" && (
                                 <View style={styles.fileButton}>

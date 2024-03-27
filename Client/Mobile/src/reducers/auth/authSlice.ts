@@ -12,7 +12,7 @@ type AuthState = {
     data: {
         AuthToken: string
         Username: string
-        signupToken:string
+        signupToken: string
     }
 }
 
@@ -22,9 +22,9 @@ const initialState: AuthState = {
         error: ''
     },
     data: {
-        signupToken:'',
         AuthToken: '',
-        Username: ''
+        Username: '',
+        signupToken: ''
     }
 }
 
@@ -41,12 +41,12 @@ export const authSlice = createSlice({
         setAuthentication: (state, { payload }) => {
             state.data.AuthToken = payload.data.token;
         },
-        setRoleSelectionToken:(state, { payload }) => {
-            state.data.signupToken = payload.data.token;
-            console.log(payload)
-        },
         setUsername: (state, { payload }) => {
             state.data.Username = payload;
+            console.log(payload)
+        },
+        setRoleSelectionToken: (state, { payload }) => {
+            state.data.signupToken = payload.data.token;
             console.log(payload)
         },
     },
@@ -68,7 +68,6 @@ export const UserSignin = (_username: string, _password: string) => async (dispa
     }
     await axios.post(`${API_BASE_URL}/auth/sign-in`, credentials)
         .then((response) => {
-            //console.log("UserSignin API Response: ", response);
             dispatch(setError(''));
             dispatch(setAuthentication(response.data));
         })
@@ -91,7 +90,6 @@ export const UserSignup = (_username: string, _email: string, _password: string,
         .then(() => {
             dispatch(setError(''));
             dispatch(setUsername(_username));
-            
         })
         .catch((error) => {
             const { data } = error.response;
@@ -101,7 +99,7 @@ export const UserSignup = (_username: string, _email: string, _password: string,
     dispatch(setBusy(false));
 }
 
-export const RoleSelection = (role_id_or_name:any) => async (dispatch: any, getState: any) => {
+export const RoleSelection = (role_id_or_name: any) => async (dispatch: any, getState: any) => {
     const { auth } = getState();
     const { Username } = auth.data;
     dispatch(setBusy(true));
@@ -109,12 +107,9 @@ export const RoleSelection = (role_id_or_name:any) => async (dispatch: any, getS
     let credentials = {
         username: Username,
         roleIdOrroleName: role_id_or_name
-        
     }
-    console.log(credentials);
     await axios.post(`${API_BASE_URL}/auth/select-role`, credentials)
         .then((response) => {
-           
             dispatch(setError(''));
             dispatch(setRoleSelectionToken(response.data));
         })
