@@ -49,7 +49,7 @@ export const productSlice = createSlice({
         setSuccess: (state, { payload }) => {
             state.data.Success = payload;
     },
-})
+}})
 
 export const {
     setBusy,
