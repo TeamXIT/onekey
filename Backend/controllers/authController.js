@@ -74,10 +74,10 @@ const selectRole = async (req, res) => {
         if (!user) {
             return res.status(404).json(baseResponses.constantMessages.USER_NOT_FOUND());
         }
-        let existingRole;
+        const user_id=user.user_id;
         //if user enters role name 
         if (isNaN(roleIdOrroleName)) {
-            existingRole = await Role.findOne({
+           let existingRole = await Role.findOne({
                 where: { role_name: roleIdOrroleName }
             });
         }
@@ -95,7 +95,7 @@ const selectRole = async (req, res) => {
         //updating the role_id of user 
         const assignedRole = await User.update({ role_id: userrole_id }, { where: { username: username } });
         let _secret = process.env.JWT_SECRET || 'rajasekhar-secret-key';
-        const token = jwt.sign({ username, userrole_id }, _secret, { expiresIn: '1h' });
+        const token = jwt.sign({ username ,user_id, userrole_id }, _secret, { expiresIn: '1h' });
         return res.status(200).json(baseResponses.constantMessages.ROLE_SELECTED({ token }));
     } catch (error) {
         return res.status(500).json(baseResponses.error(error.message));
@@ -136,6 +136,7 @@ const signIn = async (req, res) => {
         const user = await User.findOne({
             where: { username },
         });
+       
         if (!user) {
             return res.status(404).json(baseResponses.constantMessages.USER_NOT_FOUND());
         }
@@ -145,8 +146,9 @@ const signIn = async (req, res) => {
         if (password !== user.password) {
             return res.status(400).json(baseResponses.constantMessages.WRONG_PASSWORD());
         }
+        const user_id=user.user_id;
         let _secret = process.env.JWT_SECRET || 'rajasekhar-secret-key';
-        const token = jwt.sign({ user_id, role: user.role_id }, _secret, { expiresIn: '1h' });
+        const token = jwt.sign({ username, user_id, role: user.role_id }, _secret, { expiresIn: '1h' });
         return res.status(200).json(baseResponses.constantMessages.LOGIN_SUCCESSFUL({ token }));
 
     } catch (error) {
