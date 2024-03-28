@@ -135,10 +135,10 @@ const Upload = () => {
             dispatch(createNewProduct(uploadData));
             return;
 
-            setDynamicProps([]);
-            setImagePaths([]);
-            setProjectName("");
-            setProjectDescription("");
+            // setDynamicProps([]);
+            // setImagePaths([]);
+            // setProjectName("");
+            // setProjectDescription("");
         }
     };
 

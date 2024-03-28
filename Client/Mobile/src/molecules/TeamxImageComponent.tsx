@@ -56,7 +56,7 @@ const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
                 FileType: file.type
             }));
             setSelectedFile(prevFiles => [...prevFiles, ...fileData]);
-            onFilePathsReceived(fileData);
+            onFilePathsReceived(prevFiles => [...prevFiles, ...fileData]);
         }).catch((error) => {
             console.log("Error in openFilePicker:", error);
         });
@@ -64,16 +64,21 @@ const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
 
     const OpenCamera = (IsVideo: boolean) => {
         ImagePicker.openCamera({
+            width: 300,
+            height: 400,
+            cropping: false,
+            multiple: false,
             mediaType: IsVideo ? "video" : "photo",
         }).then((file) => {
+            console.log("CaptureImage: ", file);
             const fileData = [{
                 FilePath: file.path,
                 FileType: file.mime,
                 FileName: file.path.substring(file.path.lastIndexOf('/') + 1)
             }];
-            const filePaths = selectedFile.map((file: { path: any; }) => file.path);
-            setSelectedFile(prevFiles => [...prevFiles, ...filePaths]);
-            onFilePathsReceived(fileData);
+           
+            setSelectedFile(prevFiles => [...prevFiles, ...fileData]);
+            onFilePathsReceived(prevFiles => [...prevFiles, ...fileData]);
         }).catch(error => {
             console.log("Error in TakeCamera:", error);
         });
@@ -88,15 +93,15 @@ const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
         };
         ImagePicker.openPicker(options)
             .then(images => {
+                console.log("Selected images:", images);
                 const fileData = images.map((file: { path: string; mime: any; }) => ({
                     FilePath: file.path,
                     FileType: file.mime,
                     FileName: file.path.substring(file.path.lastIndexOf('/') + 1)
                 }));
-                const filePaths = selectedFile.map((file: { path: any; }) => file.path);
-                setSelectedFile(prevFiles => [...prevFiles, ...filePaths]);
-                onFilePathsReceived(fileData);
-                console.log("openPicker: ", selectedFile);
+                
+                setSelectedFile(prevFiles => [...prevFiles, ...fileData]);
+                onFilePathsReceived(prevFiles => [...prevFiles, ...fileData]);
             })
             .catch(error => {
                 console.log("Error selecting images:", error);
@@ -126,7 +131,7 @@ const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
         <View style={styles.uploadImagecontainer}>
             {selectedFile.map((file, index) => (
                 <View key={index} style={styles.imageContainer}>
-                    <Image source={{ uri: file }} style={styles.imagePreview} />
+                     <Image source={{ uri: file.FilePath }} style={styles.imagePreview} />
                     <TouchableOpacity onPress={() => handleDeleteImage(index)} style={styles.deleteButton}>
                         <Image source={require('../images/ic_delete.png')} style={styles.deleteButtonText} />
                     </TouchableOpacity>
