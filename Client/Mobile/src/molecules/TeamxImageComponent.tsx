@@ -6,6 +6,15 @@ import { styles } from "../styles/styles"
 
 const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
     const [selectedFile, setSelectedFile] = useState([]);
+    const fileIcons = {
+        'pdf': require('../images/ic_pdf.png'),
+        'doc': require('../images/ic_doc.png'),
+        'docx': require('../images/ic_word.png'),
+        'xls': require('../images/ic_xls.png'),
+        'txt': require('../images/ic_txt.png'),
+        'video':require('../images/ic_video.png')
+    };
+
 
     const openSelectPicker = () => {
         Alert.alert(
@@ -52,7 +61,7 @@ const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
             const fileData = files.map(file => ({
                 FileName: file.name,
                 FilePath: file.uri,
-                FileType: file.type
+                FileType: getFileType(file.name)
             }));
             setSelectedFile(prevFiles => [...prevFiles, ...fileData]);
             onFilePathsReceived(prevFiles => [...prevFiles, ...fileData]);
@@ -71,7 +80,7 @@ const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
         }).then((file) => {
             const fileData = [{
                 FilePath: file.path,
-                FileType: file.mime,
+                FileType: 'image',
                 FileName: file.path.substring(file.path.lastIndexOf('/') + 1)
             }];
            
@@ -93,7 +102,7 @@ const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
             .then(images => {
                 const fileData = images.map((file: { path: string; mime: any; }) => ({
                     FilePath: file.path,
-                    FileType: file.mime,
+                    FileType: 'image',
                     FileName: file.path.substring(file.path.lastIndexOf('/') + 1)
                 }));
                 
@@ -124,11 +133,26 @@ const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
         );
     };
 
+    const getFileType = (fileName) => {
+        const extension = fileName.split('.').pop().toLowerCase();
+        if (extension === 'pdf') return 'pdf';
+        if (extension === 'doc' || extension === 'docx') return 'doc';
+        if (extension === 'xls' || extension === 'xlsx') return 'xls';
+        if (extension === 'txt') return 'txt';
+        if (extension === 'jpg' || extension === 'jpeg' || extension === 'png' || extension === 'gif') return 'image';
+        if (extension === 'mp4' || extension === 'mov' || extension === 'avi' || extension === 'mkv') return 'video';
+        return 'unknown';
+    };
+    
     return (
         <View style={styles.uploadImagecontainer}>
             {selectedFile.map((file, index) => (
                 <View key={index} style={styles.imageContainer}>
-                     <Image source={{ uri: file.FilePath }} style={styles.imagePreview} />
+                  {file.FileType === 'image' ? (
+                        <Image source={{ uri: file.FilePath }} style={styles.imagePreview} />
+                    ) : (
+                        <Image source={fileIcons[file.FileType]} style={styles.fileIcon} />
+                    )}
                     <TouchableOpacity onPress={() => handleDeleteImage(index)} style={styles.deleteButton}>
                         <Image source={require('../images/ic_delete.png')} style={styles.deleteButtonText} />
                     </TouchableOpacity>
