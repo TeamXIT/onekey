@@ -55,7 +55,7 @@ const Projects = ({ navigation }) => {
   };
 
   const renderItem = ({ item }) => {
-    dispatch(fetchAllProducts());
+   
     const descriptionToShow = item.description.length > 40 ?
       item.description.substring(0, 40) + '...' : item.description;
 

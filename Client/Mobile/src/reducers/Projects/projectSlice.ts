@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import API_BASE_URL from '../config/apiConfig';
-import jwt from 'jsonwebtoken';
+import jwt_decode from 'jwt-decode';
 
 
 type ProductState = {
@@ -93,10 +93,10 @@ export const fetchProductById = (productId: Number) => async (dispatch: any) => 
 }
 
 export const createNewProduct = (productData: JSON) => async (dispatch: any, getState: any) => {
+   
     const authToken = getState().product.data.AuthToken;
-    const user_id = jwt.decode(authToken).sub;
-    productData.owner_id = user_id ;
-
+    const user_id = await jwt_decode(authToken).user_id;
+    productData.owner_id = user_id;
     dispatch(setBusy(true));
     await axios.post(`${API_BASE_URL}/product/create`, productData)
         .then((response) => {
@@ -104,6 +104,7 @@ export const createNewProduct = (productData: JSON) => async (dispatch: any, get
             dispatch(setError(''));
         })
         .catch((error) => {
+            console.log('Error:', error)
             const { data } = error.response;
             const result = JSON.parse(JSON.stringify(data));
             dispatch(setError(result.error));
