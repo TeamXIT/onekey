@@ -17,9 +17,6 @@ const SplashScreen = ({ navigation }) => {
     }, 3000);
   }, []);
   return (
-    // <View style={styles.containerStyle}>
-    //   <TeamXLogoImage />
-    // </View>
     <View style={styles.containerStyle}>
       <View style={{
         flex: 1,

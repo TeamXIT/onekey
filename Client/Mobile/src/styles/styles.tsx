@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: primaryColor,
-        padding: 15
+        padding: 15,
+        gap: 15
     },
     textStyle: {
         fontSize: normalSize,
@@ -181,9 +182,10 @@ const styles = StyleSheet.create({
     },
     logoImg: {
         width: '90%',
-        height: 150,
-        resizeMode: 'center',
-        margin: 30,
+        height: 120,
+        resizeMode: 'contain',
+        marginLeft: 30,
+        marginRight: 30
     },
     buttonStyle: {
         borderWidth: 2,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, TouchableHighlight, } from 'react-native';
 import { styles } from '../../styles/styles';
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
@@ -13,6 +13,10 @@ const Projects = ({ navigation }) => {
   const likeIconActiveColor = "#FF0000";
   const likeIconInactiveColor = "#777";
 
+  useEffect(() => {
+    // Call GetAll products API
+  }, [product.data.products]);
+  
   const data = [
     { id: '1', title: 'Card 1', description: 'Description for Card 1.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
     { id: '2', title: 'Card 2', description: 'Description for Card 2.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
@@ -55,7 +59,7 @@ const Projects = ({ navigation }) => {
   };
 
   const renderItem = ({ item }) => {
-   
+
     const descriptionToShow = item.description.length > 40 ?
       item.description.substring(0, 40) + '...' : item.description;
 
@@ -72,23 +76,23 @@ const Projects = ({ navigation }) => {
             <Text style={styles.cardTitle}>{item.title}</Text>
             <Text style={styles.cardDescription}>{descriptionToShow}</Text>
 
-                          
-              <View style={styles.buttonContainer}>
+
+            <View style={styles.buttonContainer}>
               <Text style={styles.cardLikes}>{likeCounts[item.id] || 0} Likes</Text>
-                <TouchableOpacity onPress={() => handleLikePress(item.id)}>
-                  <Image
-                    source={require('../../images/ic_like1.png')}
-                    style={{ tintColor: likeCounts[item.id] ? likeIconActiveColor : likeIconInactiveColor }}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleCommentPress(item)}>
-                  <Image
-                    source={require('../../images/ic_comment.png')}
-                    style={{ tintColor: likeIconInactiveColor }}
-                  />
-                </TouchableOpacity>
-              </View>
-           
+              <TouchableOpacity onPress={() => handleLikePress(item.id)}>
+                <Image
+                  source={require('../../images/ic_like1.png')}
+                  style={{ tintColor: likeCounts[item.id] ? likeIconActiveColor : likeIconInactiveColor }}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => handleCommentPress(item)}>
+                <Image
+                  source={require('../../images/ic_comment.png')}
+                  style={{ tintColor: likeIconInactiveColor }}
+                />
+              </TouchableOpacity>
+            </View>
+
           </View>
         </View>
       </TouchableOpacity>

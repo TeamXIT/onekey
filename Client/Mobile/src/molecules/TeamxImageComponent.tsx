@@ -49,7 +49,6 @@ const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
             ],
             allowMultiSelection: true
         }).then(files => {
-            console.log("FileSelection: ", files);
             const fileData = files.map(file => ({
                 FileName: file.name,
                 FilePath: file.uri,
@@ -70,7 +69,6 @@ const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
             multiple: false,
             mediaType: IsVideo ? "video" : "photo",
         }).then((file) => {
-            console.log("CaptureImage: ", file);
             const fileData = [{
                 FilePath: file.path,
                 FileType: file.mime,
@@ -93,7 +91,6 @@ const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
         };
         ImagePicker.openPicker(options)
             .then(images => {
-                console.log("Selected images:", images);
                 const fileData = images.map((file: { path: string; mime: any; }) => ({
                     FilePath: file.path,
                     FileType: file.mime,

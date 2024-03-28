@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, Alert, SafeAreaView } from "react-native"; // Import Image component
 import { ScrollView } from "react-native-gesture-handler";
 import { RadioButton } from "react-native-paper";
@@ -7,6 +7,7 @@ import { secondaryColor, styles } from "../../styles/styles";
 import TeamxRadioButton from "../../molecules/TeamxRadioButton";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import { createNewProduct } from "../../reducers/Projects/projectSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Upload = () => {
     const dispatch = useAppDispatch();
@@ -17,7 +18,15 @@ const Upload = () => {
     const [projectName, setProjectName] = useState("");
     const [projectDescription, setProjectDescription] = useState("");
     const [imagePaths, setImagePaths] = useState([]);
+
     const product = useAppSelector(state => state.product);
+
+    useEffect(() => {
+        // setDynamicProps([]);
+        // setImagePaths([]);
+        // setProjectName("");
+        // setProjectDescription("");
+    }, [product.data.products])
 
     const checkValidations = () => {
         if (projectName === "") {
@@ -109,8 +118,8 @@ const Upload = () => {
             let dynamicData = [];
             imagePaths.forEach(file => {
                 assetsData.push({
-                    name: file.FileName, //not displayed
-                    value_type: file.FileType, //not displayed
+                    name: file.FileName,
+                    value_type: file.FileType,
                     value: file.FilePath
                 });
             });
@@ -131,14 +140,11 @@ const Upload = () => {
                 dynamic_properties: dynamicData
             };
 
-            console.log("Final Upload Data: ", JSON.stringify(uploadData));
-            dispatch(createNewProduct(uploadData));
-            return;
-
-            // setDynamicProps([]);
-            // setImagePaths([]);
-            // setProjectName("");
-            // setProjectDescription("");
+            AsyncStorage.getItem('AuthToken').then(async (value) => {
+                const userId = await jwt_decode(value).user_id;
+                console.log("UserId: ", userId);
+                dispatch(createNewProduct(uploadData, userId));
+            });
         }
     };
 
@@ -209,7 +215,7 @@ const Upload = () => {
                                     style={styles.uploadDescriptionTextInput}
                                     placeholder="Enter Text"
                                     onChangeText={(text) => project.description = text}
-                                    multiline/>
+                                    multiline />
                             )}
                             {project.type === "File" && (
                                 <View style={styles.fileButton}>
@@ -220,7 +226,7 @@ const Upload = () => {
                     ))}
                 </View>
             </ScrollView>
-            
+
             <TouchableOpacity
                 style={styles.uploadBtn}
                 onPress={() => {
@@ -240,3 +246,7 @@ const Upload = () => {
 
 
 export default Upload;
+function jwt_decode(value: string | null) {
+    throw new Error("Function not implemented.");
+}
+

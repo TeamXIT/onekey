@@ -10,7 +10,6 @@ import { RoleSelection } from "../../reducers/auth/authSlice";
 
 const UserTypeSelection = ({ navigation }) => {
     const dispatch = useAppDispatch();
-    const [userType, setUserType] = useState("");
     const [error, setError] = useState("");
     const [selectedCard, setSelectedCard] = useState(null); // State to keep track of selected card
     const authen = useAppSelector(state => state.auth);
@@ -24,7 +23,7 @@ const UserTypeSelection = ({ navigation }) => {
 
     useEffect(() => {
         if (authen.data.signupToken) {
-            navigation.navigate('Landing');
+            navigation.replace('Landing');
         }
         else {
             console.log(authen.data.signupToken)
@@ -32,16 +31,14 @@ const UserTypeSelection = ({ navigation }) => {
     }, [authen.screen.error, authen.data.signupToken]);
 
     function handleCardPress(value) {
-        setUserType(value);
-        setSelectedCard(value); // Update selected card
+        setSelectedCard(value);
     }
 
     const handleNextpress = () => {
-
         if (selectedCard) {
-            dispatch(RoleSelection(selectedCard))
+            dispatch(RoleSelection(selectedCard, authen.data.Username))
         } else {
-            setError("Select type of user to signup");
+            setError("Select type of user to complete signup");
         }
     };
 

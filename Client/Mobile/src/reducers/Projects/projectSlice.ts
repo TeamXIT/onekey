@@ -3,7 +3,6 @@ import axios from 'axios';
 import API_BASE_URL from '../config/apiConfig';
 import jwt_decode from 'jwt-decode';
 
-
 type ProductState = {
     screen: {
         isBusy: boolean,
@@ -44,10 +43,6 @@ export const productSlice = createSlice({
         setProduuctById: (state, { payload }) => {
             state.data.productById = payload;
         },
-        setAuthToken:(state, { payload }) => {
-            state.data.AuthToken=payload;
-        }
-
     },
 })
 
@@ -56,7 +51,6 @@ export const {
     setError,
     setProducts,
     setProduuctById,
-    setAuthToken,
 } = productSlice.actions
 
 export const fetchAllProducts = (recLimit = 10, pageNumber = 1) => async (dispatch: any) => {
@@ -92,15 +86,13 @@ export const fetchProductById = (productId: Number) => async (dispatch: any) => 
     dispatch(setBusy(false));
 }
 
-export const createNewProduct = (productData: JSON) => async (dispatch: any, getState: any) => {
-   
-    const authToken = getState().product.data.AuthToken;
-    const user_id = await jwt_decode(authToken).user_id;
-    productData.owner_id = user_id;
+export const createNewProduct = (productData: JSON, userId: any) => async (dispatch: any) => {
+    productData.owner_id = userId;
+    console.log("createNewProduct payload: ", productData);
     dispatch(setBusy(true));
     await axios.post(`${API_BASE_URL}/product/create`, productData)
         .then((response) => {
-            console.log('Create api:', response.data)
+            console.log('Create api:', response.data);
             dispatch(setError(''));
         })
         .catch((error) => {

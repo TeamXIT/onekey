@@ -10,6 +10,7 @@ import TeamXTextedLink from "../../molecules/TeamXTextedLink";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
 import { UserSignin } from "../../reducers/auth/authSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Signin = ({ navigation }) => {
     const dispatch = useAppDispatch()
@@ -24,14 +25,22 @@ const Signin = ({ navigation }) => {
 
     useEffect(() => {
         if (authen.screen.error !== '') {
-            setSigninError(authen.screen.error);
+            if (authen.screen.error == "Complete your registration") {
+                navigation.navigate('typeselection');
+            }
+            else {
+                setSigninError(authen.screen.error);
+            }
         } else if (authen.data.AuthToken) {
-            navigation.navigate('Landing');
+            AsyncStorage.setItem('username', authen.data.Username).then(() => {
+                AsyncStorage.setItem('AuthToken', authen.data.AuthToken).then(() => {
+                    navigation.replace('Landing');
+                });
+            });
         }
     }, [authen.screen.error, authen.data.AuthToken]);
 
     const handleSubmitPress = () => {
-        //navigation.replace('Landing'); return;
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
         let hasError = false;
         if (!username.trim()) {

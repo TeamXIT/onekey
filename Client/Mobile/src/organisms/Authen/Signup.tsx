@@ -95,7 +95,7 @@ const Signup = ({ navigation }) => {
     }
 
     return (
-        <ScrollView>
+        <ScrollView style={{ flex: 1 }}>
             <View style={styles.containerStyle}>
                 <TeamXLogoImage />
                 <TeamXHeaderText value="SIGNUP" />
@@ -110,6 +110,7 @@ const Signup = ({ navigation }) => {
                     />
                     <TeamXErrorText errorText={usernameError} />
                 </View>
+
                 <View>
                     <TeamXImageTextInput
                         value={email}
@@ -120,6 +121,7 @@ const Signup = ({ navigation }) => {
                     />
                     <TeamXErrorText errorText={emailError} />
                 </View>
+                
                 <View>
                     <TeamXImageTextInput
                         value={password}
@@ -131,6 +133,7 @@ const Signup = ({ navigation }) => {
                     />
                     <TeamXErrorText errorText={passwordError} />
                 </View>
+                
                 <View>
                     <TeamXImageTextInput
                         value={confirmPassword}
