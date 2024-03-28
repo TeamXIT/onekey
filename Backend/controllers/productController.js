@@ -30,7 +30,7 @@ const createProduct = async (req, res) => {
         for (const asset of assets) {
             try {
             const valueType = asset.value_type.toLowerCase();
-            if (valueType === 'image' || valueType === 'video' || valueType === 'file') {
+            if (valueType.includes('image') || valueType.includes('video') || valueType.includes('file'))  {
                 const createAsset = await DynamicProperties.create({
                     name: asset.name,
                     value_type: valueType,

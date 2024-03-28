@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import API_BASE_URL from '../config/apiConfig';
 import axios from 'axios';
+import { setAuthToken } from '../Projects/projectSlice';
 
 type AuthState = {
     //This is must for every slice to indicate screen status
@@ -69,7 +70,8 @@ export const UserSignin = (_username: string, _password: string) => async (dispa
     await axios.post(`${API_BASE_URL}/auth/sign-in`, credentials)
         .then((response) => {
             dispatch(setError(''));
-            dispatch(setAuthentication(response.data));
+            dispatch(setAuthentication(response.data.token));
+            dispatch(setAuthToken(response.data.token));
         })
         .catch((error) => {
             const { data } = error.response;

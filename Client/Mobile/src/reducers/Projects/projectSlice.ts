@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import API_BASE_URL from '../config/apiConfig';
+import jwt_decode from 'jwt-decode';
+
 
 type ProductState = {
     screen: {
@@ -10,6 +12,7 @@ type ProductState = {
     data: {
         products: any[]
         productById: any
+        AuthToken:string
     }
 }
 
@@ -20,7 +23,8 @@ const initialState: ProductState = {
     },
     data: {
         products: [],
-        productById: {}
+        productById: {},
+        AuthToken:''
     }
 }
 
@@ -40,6 +44,9 @@ export const productSlice = createSlice({
         setProduuctById: (state, { payload }) => {
             state.data.productById = payload;
         },
+        setAuthToken:(state, { payload }) => {
+            state.data.AuthToken=payload;
+        }
 
     },
 })
@@ -49,18 +56,19 @@ export const {
     setError,
     setProducts,
     setProduuctById,
+    setAuthToken,
 } = productSlice.actions
-
 
 export const fetchAllProducts = (recLimit = 10, pageNumber = 1) => async (dispatch: any) => {
     dispatch(setBusy(true));
-    await axios.get(`${API_BASE_URL}/products/get-all?limit=${recLimit}&page=${pageNumber}`)
+    await axios.get(`${API_BASE_URL}/product/get-all?limit=${recLimit}&page=${pageNumber}`)
         .then((response) => {
             console.log('FetchAll api:', response)
             dispatch(setError(''));
             dispatch(setProducts(response.data));
         })
         .catch((error) => {
+            console.log(error)
             const { data } = error.response;
             const result = JSON.parse(JSON.stringify(data));
             dispatch(setError(result.error));
@@ -70,7 +78,7 @@ export const fetchAllProducts = (recLimit = 10, pageNumber = 1) => async (dispat
 
 export const fetchProductById = (productId: Number) => async (dispatch: any) => {
     dispatch(setBusy(true));
-    await axios.get(`${API_BASE_URL}/products/get-by-id${productId}`)
+    await axios.get(`${API_BASE_URL}/product/get-by-id${productId}`)
         .then((response) => {
             console.log('FetchById api:', response)
             dispatch(setError(''));
@@ -84,24 +92,28 @@ export const fetchProductById = (productId: Number) => async (dispatch: any) => 
     dispatch(setBusy(false));
 }
 
-export const createNewProduct = (productData: JSON) => async (dispatch: any) => {
+export const createNewProduct = (productData: JSON) => async (dispatch: any, getState: any) => {
+   
+    const authToken = getState().product.data.AuthToken;
+    const user_id = await jwt_decode(authToken).user_id;
+    productData.owner_id = user_id;
     dispatch(setBusy(true));
-    await axios.post(`${API_BASE_URL}/products/create`, productData)
+    await axios.post(`${API_BASE_URL}/product/create`, productData)
         .then((response) => {
-            console.log('Create api:', response)
+            console.log('Create api:', response.data)
             dispatch(setError(''));
         })
         .catch((error) => {
+            console.log('Error:', error)
             const { data } = error.response;
             const result = JSON.parse(JSON.stringify(data));
             dispatch(setError(result.error));
         })
     dispatch(setBusy(false));
 }
-
 export const updateExistingProduct = (updatedProductData: JSON) => async (dispatch: any) => {
     dispatch(setBusy(true));
-    await axios.put(`${API_BASE_URL}/products/update`, updatedProductData)
+    await axios.put(`${API_BASE_URL}/product/update`, updatedProductData)
         .then((response) => {
             console.log('Update api:', response)
             dispatch(setError(''));
@@ -117,7 +129,7 @@ export const updateExistingProduct = (updatedProductData: JSON) => async (dispat
 
 export const deleteExistingProduct = (productId: Number) => async (dispatch: any) => {
     dispatch(setBusy(true));
-    await axios.delete(`${API_BASE_URL}/products/delete?product_id=${productId}`)
+    await axios.delete(`${API_BASE_URL}/product/delete?product_id=${productId}`)
         .then((response) => {
             console.log('Delete api:', response)
             dispatch(setError(''));

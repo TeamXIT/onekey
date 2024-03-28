@@ -19,6 +19,7 @@ const Role = sequelize.define("Roles", {
             await Role.findOrCreate({ where: { role_name: 'agent' }, defaults: { role_id: 2 } });
             await Role.findOrCreate({ where: { role_name: 'bpo' }, defaults: { role_id: 3 } });
             await Role.findOrCreate({ where: { role_name: 'lawyer'}, defaults: { role_id: 4 } });
+            await Role.findOrCreate({ where: { role_name: 'productowner' }, defaults: { role_id: 4 } });
             // Add more roles as needed
         }
     }
