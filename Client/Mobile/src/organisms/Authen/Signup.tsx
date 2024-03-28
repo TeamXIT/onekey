@@ -93,6 +93,7 @@ const Signup = ({ navigation }) => {
             dispatch(UserSignup(username, email, password, confirmPassword));
         }
     }
+    const usernameRef = useRef(null);
     const emailRef = useRef(null)
     const passwordRef = useRef(null);
     const confirmPasswordRef = useRef(null)
@@ -116,13 +117,14 @@ const Signup = ({ navigation }) => {
                 <TeamXHeaderText value="SIGNUP" />
                 <View>
                     <TeamXImageTextInput
-                        value={username}
+                       
+                       value={username}
                         onChangeText={setUsername}
                         image={require('../../images/ic_user.png')}
                         placeholder="Enter Username"
                         keyboardType="email-address"
                         returnKeyType="next"
-                        handleUsernameSubmit={handleUsernameSubmit}
+                        onSubmitEditing={handleUsernameSubmit}
                     />
                     <TeamXErrorText errorText={usernameError} />
                 </View>
@@ -166,8 +168,7 @@ const Signup = ({ navigation }) => {
                         placeholder="Confirm  Password"
                         secureTextEntry={true}
                         returnKeyType="done"
-                        
-                    />
+                        />
                     <TeamXErrorText errorText={confirmPasswordError} />
                 </View>
 
