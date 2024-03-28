@@ -58,7 +58,9 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         fontSize: normalSize,
-        color: secondaryColor
+        color: secondaryColor,
+        
+        
     },
     //TODO: Update
     US_cardsContainerStyle: {
@@ -245,6 +247,7 @@ const styles = StyleSheet.create({
     },
     cardDescription: {
         fontSize: xSmallSize,
+        
     },
     cardContent: {
         flex: 2,
@@ -322,6 +325,7 @@ const styles = StyleSheet.create({
     titleDescriptionContainer: {
         flex: 5,
         paddingHorizontal: 5,
+        margin:10
     },
     carddetailsTitle: {
         fontSize: normalSize,

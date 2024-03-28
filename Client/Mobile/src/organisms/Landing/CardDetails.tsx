@@ -64,7 +64,7 @@ const CardDetails = ({ route, navigation }) => {
       />
 
       {/* Thumbnails */}
-      <ScrollView horizontal style={styles.thumbnailsContainer}>
+      <View  style={styles.thumbnailsContainer}>
         {thumbnailImages.map((img, index) => (
           <TouchableOpacity key={index} onPress={() => handleThumbnailPress(index)}>
             <View>
@@ -83,8 +83,8 @@ const CardDetails = ({ route, navigation }) => {
             </View>
           </TouchableOpacity>
         ))}
-        
-      </ScrollView>
+        </View>
+     
       {/* Title and Description */}
       <View style={styles.titleDescriptionContainer}>
         <Text style={styles.carddetailsTitle}>{cardData.title}</Text>

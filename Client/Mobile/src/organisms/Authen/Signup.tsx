@@ -1,5 +1,5 @@
 import { View, ScrollView, Alert } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { styles } from '../../styles/styles'
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
 import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
@@ -93,10 +93,25 @@ const Signup = ({ navigation }) => {
             dispatch(UserSignup(username, email, password, confirmPassword));
         }
     }
+    const emailRef = useRef(null)
+    const passwordRef = useRef(null);
+    const confirmPasswordRef = useRef(null)
 
+
+    const handleUsernameSubmit = () => {
+        emailRef.current.focus();
+    };
+
+    const handleEmailSubmit = () => {
+        passwordRef.current.focus();
+    };
+
+    const handlePasswordSubmit = () => {
+        confirmPasswordRef.current.focus();
+    };  
     return (
-        <ScrollView style={{ flex: 1 }}>
-            <View style={styles.containerStyle}>
+        <ScrollView  contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} >
+            <View style={[styles.containerStyle,]}>
                 <TeamXLogoImage />
                 <TeamXHeaderText value="SIGNUP" />
                 <View>
@@ -107,41 +122,51 @@ const Signup = ({ navigation }) => {
                         placeholder="Enter Username"
                         keyboardType="email-address"
                         returnKeyType="next"
+                        handleUsernameSubmit={handleUsernameSubmit}
                     />
                     <TeamXErrorText errorText={usernameError} />
                 </View>
 
                 <View>
                     <TeamXImageTextInput
+                        ref={emailRef}
                         value={email}
                         onChangeText={setEmail}
                         image={require('../../images/ic_email.png')}
                         placeholder="Enter Email"
                         keyboardType="email-address"
+                        onSubmitEditing={handleEmailSubmit}
+                        
                     />
                     <TeamXErrorText errorText={emailError} />
                 </View>
                 
                 <View>
                     <TeamXImageTextInput
+                        ref={passwordRef}
                         value={password}
                         onChangeText={setPassword}
                         image={require('../../images/ic_eye.png')}
                         placeholder="New Password"
                         secureTextEntry={true}
                         returnKeyType="done"
+                        onSubmitEditing={handlePasswordSubmit}
+                        
+                        
                     />
                     <TeamXErrorText errorText={passwordError} />
                 </View>
                 
                 <View>
                     <TeamXImageTextInput
+                        ref={confirmPasswordRef}
                         value={confirmPassword}
                         onChangeText={setConfirmPassword}
                         image={require('../../images/ic_eye.png')}
                         placeholder="Confirm  Password"
                         secureTextEntry={true}
                         returnKeyType="done"
+                        
                     />
                     <TeamXErrorText errorText={confirmPasswordError} />
                 </View>

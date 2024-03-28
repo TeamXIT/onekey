@@ -1,6 +1,6 @@
 import { Alert, Text, View } from "react-native"
 import { styles } from "../../styles/styles";
-import { useEffect, useState, } from "react";
+import { useEffect, useRef, useState, } from "react";
 import TeamXButton from "../../atoms/TeamXButton";
 import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
 import TeamXSwitch from "../../molecules/TeamXSwitch";
@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
 import { UserSignin } from "../../reducers/auth/authSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Signin = ({ navigation }) => {
     const dispatch = useAppDispatch()
@@ -65,7 +66,20 @@ const Signin = ({ navigation }) => {
             setPasswordError('');
         }
     }
+    const passwordRef = useRef(null);
+
+
+    const handleUsernameSubmit = () => {
+        passwordRef.current.focus();
+    };
+
+    
+    
+    
+
+
     return (
+        <ScrollView  contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} >
         <View style={styles.containerStyle}>
             <TeamXLogoImage />
             <TeamXHeaderText value="SIGNIN" />
@@ -77,42 +91,47 @@ const Signin = ({ navigation }) => {
                     placeholder="Enter Username"
                     keyboardType="email-address"
                     returnKeyType="next"
+                    onSubmitEditing={handleUsernameSubmit} // Focus on password field when "Enter" is pressed
+
+                    
                 />
+
+                
                 <TeamXErrorText errorText={usernameError} />
             </View>
             <View>
                 <TeamXImageTextInput
+                  ref={passwordRef}
+                    
                     value={password}
                     onChangeText={setPassword}
                     image={require('../../images/ic_eye.png')}
                     placeholder="Enter Password"
                     secureTextEntry={true}
                     returnKeyType="done"
+                    
                 />
                 <TeamXErrorText errorText={passwordError} />
-            </View>
-            <View style={styles.stackHEdgeStyle}>
-                <TeamXSwitch
-                    isRemember={isRemember}
-                    setIsRemember={setIsRemember}
-                    value="Remember"
-                />
-                <Text
-                    style={styles.switchTextStyle}
-                    onPress={() => navigation.navigate('forgotPassword')}>
-                    Forgot Password
-                </Text>
             </View>
 
             <TeamXErrorText errorText={signinError} />
 
             <TeamXButton onPress={handleSubmitPress} text="SIGNIN" />
+            
+                <Text
+                    style={styles.switchTextStyle}
+                    onPress={() => navigation.replace('forgotPassword')}>
+                    Forgot Password
+                </Text>
+            
 
             <TeamXTextedLink
                 value={"Don't have an account?  "}
                 linkValue={"SIGNUP"}
                 handleOnPress={() => navigation.navigate('signup')} />
         </View>
+        </ScrollView>
+
     );
 }
 
