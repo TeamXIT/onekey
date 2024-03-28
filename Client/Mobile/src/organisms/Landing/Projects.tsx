@@ -3,7 +3,7 @@ import { View, Text, FlatList, Image, TouchableOpacity, TouchableHighlight, } fr
 import { styles } from '../../styles/styles';
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import { fetchAllProducts } from '../../reducers/Projects/projectSlice';
-
+const product = useAppSelector(state => state.product);
 
 
 const Projects = ({ navigation }) => {
@@ -14,7 +14,7 @@ const Projects = ({ navigation }) => {
   const likeIconInactiveColor = "#777";
 
   useEffect(() => {
-    // Call GetAll products API
+    dispatch(fetchAllProducts());
   }, [product.data.products]);
   
   const data = [

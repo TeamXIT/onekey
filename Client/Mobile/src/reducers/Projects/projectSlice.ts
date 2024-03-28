@@ -1,29 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import API_BASE_URL from '../config/apiConfig';
-import jwt_decode from 'jwt-decode';
 
 type ProductState = {
     screen: {
         isBusy: boolean,
         error: string
+       
     }
     data: {
         products: any[]
         productById: any
         AuthToken:string
+        Success:boolean
     }
 }
 
 const initialState: ProductState = {
     screen: {
         isBusy: false,
-        error: ''
+        error: '',
+        
     },
     data: {
         products: [],
         productById: {},
-        AuthToken:''
+        AuthToken:'',
+        Success: false
     }
 }
 
@@ -43,6 +46,8 @@ export const productSlice = createSlice({
         setProduuctById: (state, { payload }) => {
             state.data.productById = payload;
         },
+        setSuccess: (state, { payload }) => {
+            state.data.Success = payload;
     },
 })
 
@@ -51,6 +56,7 @@ export const {
     setError,
     setProducts,
     setProduuctById,
+    setSuccess
 } = productSlice.actions
 
 export const fetchAllProducts = (recLimit = 10, pageNumber = 1) => async (dispatch: any) => {
@@ -86,14 +92,19 @@ export const fetchProductById = (productId: Number) => async (dispatch: any) => 
     dispatch(setBusy(false));
 }
 
-export const createNewProduct = (productData: JSON, userId: any) => async (dispatch: any) => {
+export const createNewProduct = (productData: JSON,authToken: string, userId: any) => async (dispatch: any) => {
     productData.owner_id = userId;
+    console.log(userId);
     console.log("createNewProduct payload: ", productData);
     dispatch(setBusy(true));
-    await axios.post(`${API_BASE_URL}/product/create`, productData)
-        .then((response) => {
+       await axios.post(`${API_BASE_URL}/product/create`, productData, {
+        headers: {
+          Authorization: authToken,
+        },
+      }).then((response) => {
             console.log('Create api:', response.data);
             dispatch(setError(''));
+            dispatch(setSuccess(true));
         })
         .catch((error) => {
             console.log('Error:', error)

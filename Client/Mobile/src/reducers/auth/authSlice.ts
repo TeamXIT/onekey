@@ -109,7 +109,8 @@ export const RoleSelection = (role_id_or_name: any, userName: string) => async (
     await axios.post(`${API_BASE_URL}/auth/select-role`, credentials)
         .then((response) => {
             dispatch(setError(''));
-            dispatch(setRoleSelectionToken(response.data));
+            dispatch(setAuthentication(response.data));
+            console.log(response.data.token);
         })
         .catch((error) => {
             console.log(error);
