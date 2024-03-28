@@ -131,10 +131,10 @@ const Upload = () => {
             console.log("Final Upload Data: ", JSON.stringify(uploadData));
             return;
 
-            setDynamicProps([]);
-            setImagePaths([]);
-            setProjectName("");
-            setProjectDescription("");
+            // setDynamicProps([]);
+            // setImagePaths([]);
+            // setProjectName("");
+            // setProjectDescription("");
         }
     };
 
