@@ -57,16 +57,21 @@ const UserTypeSelection = ({ navigation }) => {
     );
 
     return (
+        
         <View style={styles.containerStyle}>
             <TeamXLogoImage />
-
+            
+            
             <FlatList
                 data={cardData}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
                 numColumns={2} />
-
+            <View style={{ marginBottom: 10 }}>
             <TeamXErrorText errorText={error} />
+            </View>
+            
+           
 
             <View style={[styles.smallbuttonContainer, {}]}>
                 <TouchableOpacity onPress={handleBackpress}>
