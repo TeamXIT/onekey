@@ -19,7 +19,7 @@ const SplashScreen = ({ navigation }) => {
   return (
     <View style={styles.containerStyle}>
       <TeamXLogoImage />
-    <Text style={[styles.textStyle,{top:280}]}>Powered by {'\n'}   TeamX</Text>
+      <Text style={[styles.textStyle, { top: 280, alignItems: "center" }]}>Powered by {'\n'} TeamX</Text>
     </View>
   );
 }
