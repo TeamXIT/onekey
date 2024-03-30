@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { styles } from "../../styles/styles";
 
 const Post = () => {
@@ -8,7 +8,5 @@ const Post = () => {
         </View>
     );
 }
-
-
 
 export default Post;

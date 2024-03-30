@@ -66,7 +66,7 @@ const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
             setSelectedFile(prevFiles => [...prevFiles, ...fileData]);
             onFilePathsReceived(prevFiles => [...prevFiles, ...fileData]);
         }).catch((error) => {
-            console.log("Error in openFilePicker:", error);
+            //console.log("Error in openFilePicker:", error);
         });
     };
 
@@ -87,7 +87,7 @@ const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
             setSelectedFile(prevFiles => [...prevFiles, ...fileData]);
             onFilePathsReceived(prevFiles => [...prevFiles, ...fileData]);
         }).catch(error => {
-            console.log("Error in TakeCamera:", error);
+            //console.log("Error in TakeCamera:", error);
         });
     }
 
@@ -110,7 +110,7 @@ const TeamxImageComponent = ({ image, onFilePathsReceived }) => {
                 onFilePathsReceived(prevFiles => [...prevFiles, ...fileData]);
             })
             .catch(error => {
-                console.log("Error selecting images:", error);
+                //console.log("Error selecting images:", error);
             });
     };
 

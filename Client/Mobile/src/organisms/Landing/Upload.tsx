@@ -10,7 +10,6 @@ import { createNewProduct } from "../../reducers/Projects/projectSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import jwt_decode from 'jwt-decode';
 
-
 const Upload = () => {
     const dispatch = useAppDispatch();
     const [showAdditionalTextBox, setShowAdditionalTextBox] = useState(false);
@@ -91,7 +90,7 @@ const Upload = () => {
             [
                 {
                     text: "Cancel",
-                    onPress: () => console.log("Cancel Pressed"),
+                    //onPress: () => console.log("Cancel Pressed"),
                     style: "cancel"
                 },
                 { text: "Delete", onPress: () => deleteFile(index) }
@@ -102,7 +101,6 @@ const Upload = () => {
     const deleteFile = (index) => {
         const updatedProject = [...dynamicProps];
         const item = updatedProject[index];
-        console.log("File Item: ", item);
         if (item.type === "File") {
             setImagePaths([]);
         }
@@ -141,8 +139,8 @@ const Upload = () => {
                 assets: assetsData,
                 dynamic_properties: dynamicData
             };
-            let userId=jwt_decode(authn.data.AuthToken).user_id;
-            dispatch(createNewProduct(uploadData,userId, authn.data.AuthToken));
+            let userId = jwt_decode(authn.data.AuthToken).user_id;
+            dispatch(createNewProduct(uploadData, authn.data.AuthToken, userId));
 
             // AsyncStorage.getItem('AuthToken').then(async (value) => {
             //     const userId = await jwt_decode(value).user_id;

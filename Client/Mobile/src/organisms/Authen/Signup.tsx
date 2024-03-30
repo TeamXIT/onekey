@@ -1,4 +1,4 @@
-import { View, ScrollView, Alert } from "react-native";
+import { View, ScrollView } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { styles } from '../../styles/styles'
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
@@ -9,6 +9,7 @@ import TeamXButton from "../../atoms/TeamXButton";
 import TeamXTextedLink from "../../molecules/TeamXTextedLink";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import { UserSignup } from "../../reducers/auth/authSlice";
+import TeamXLoader from "../../molecules/TeamXLoader";
 
 const Signup = ({ navigation }) => {
     const dispatch = useAppDispatch();
@@ -24,6 +25,7 @@ const Signup = ({ navigation }) => {
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
     const [signupError, setSignupError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (authen.screen.error !== '') {
@@ -31,6 +33,7 @@ const Signup = ({ navigation }) => {
         } else if (authen.data.Username) {
             navigation.navigate('typeselection');
         }
+        setIsLoading(false);
     }, [authen.screen.error, authen.data.Username]);
 
     const handleSubmitPress = () => {
@@ -89,99 +92,87 @@ const Signup = ({ navigation }) => {
         }
 
         if (!hasError) {
+            setIsLoading(true);
             setSignupError('');
             dispatch(UserSignup(username, email, password, confirmPassword));
         }
     }
-    const usernameRef = useRef(null);
+
     const emailRef = useRef(null)
     const passwordRef = useRef(null);
     const confirmPasswordRef = useRef(null)
 
-
-    const handleUsernameSubmit = () => {
-        emailRef.current.focus();
-    };
-
-    const handleEmailSubmit = () => {
-        passwordRef.current.focus();
-    };
-
-    const handlePasswordSubmit = () => {
-        confirmPasswordRef.current.focus();
-    };  
     return (
-        <ScrollView  contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} >
-            <View style={[styles.containerStyle,]}>
-                <TeamXLogoImage />
-                <TeamXHeaderText value="SIGNUP" />
-                <View>
-                    <TeamXImageTextInput
-                       
-                       value={username}
-                        onChangeText={setUsername}
-                        image={require('../../images/ic_user.png')}
-                        placeholder="Enter Username"
-                        keyboardType="email-address"
-                        returnKeyType="next"
-                        onSubmitEditing={handleUsernameSubmit}
-                    />
-                    <TeamXErrorText errorText={usernameError} />
-                </View>
-
-                <View>
-                    <TeamXImageTextInput
-                        ref={emailRef}
-                        value={email}
-                        onChangeText={setEmail}
-                        image={require('../../images/ic_email.png')}
-                        placeholder="Enter Email"
-                        keyboardType="email-address"
-                        onSubmitEditing={handleEmailSubmit}
-                        
-                    />
-                    <TeamXErrorText errorText={emailError} />
-                </View>
-                
-                <View>
-                    <TeamXImageTextInput
-                        ref={passwordRef}
-                        value={password}
-                        onChangeText={setPassword}
-                        image={require('../../images/ic_eye.png')}
-                        placeholder="New Password"
-                        secureTextEntry={true}
-                        returnKeyType="done"
-                        onSubmitEditing={handlePasswordSubmit}
-                        
-                        
-                    />
-                    <TeamXErrorText errorText={passwordError} />
-                </View>
-                
-                <View>
-                    <TeamXImageTextInput
-                        ref={confirmPasswordRef}
-                        value={confirmPassword}
-                        onChangeText={setConfirmPassword}
-                        image={require('../../images/ic_eye.png')}
-                        placeholder="Confirm  Password"
-                        secureTextEntry={true}
-                        returnKeyType="done"
+        <View style={[styles.containerStyle, { padding: 0, gap: 0 }]}>
+            <TeamXLoader loading={isLoading} />
+            <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} >
+                <View style={[styles.containerStyle,]}>
+                    <TeamXLogoImage />
+                    <TeamXHeaderText value="SIGNUP" />
+                    <View>
+                        <TeamXImageTextInput
+                            value={username}
+                            onChangeText={setUsername}
+                            image={require('../../images/ic_user.png')}
+                            placeholder="Enter Username"
+                            keyboardType="email-address"
+                            returnKeyType="next"
+                            onSubmitEditing={() => { emailRef.current?.focus() }}
                         />
-                    <TeamXErrorText errorText={confirmPasswordError} />
+                        <TeamXErrorText errorText={usernameError} />
+                    </View>
+
+                    <View>
+                        <TeamXImageTextInput
+                            ref={emailRef}
+                            value={email}
+                            onChangeText={setEmail}
+                            image={require('../../images/ic_email.png')}
+                            placeholder="Enter Email"
+                            keyboardType="email-address"
+                            onSubmitEditing={() => { passwordRef.current?.focus() }}
+                        />
+                        <TeamXErrorText errorText={emailError} />
+                    </View>
+
+                    <View>
+                        <TeamXImageTextInput
+                            ref={passwordRef}
+                            value={password}
+                            onChangeText={setPassword}
+                            image={require('../../images/ic_eye.png')}
+                            placeholder="New Password"
+                            secureTextEntry={true}
+                            returnKeyType="done"
+                            onSubmitEditing={() => { confirmPasswordRef.current?.focus() }}
+                        />
+                        <TeamXErrorText errorText={passwordError} />
+                    </View>
+
+                    <View>
+                        <TeamXImageTextInput
+                            ref={confirmPasswordRef}
+                            value={confirmPassword}
+                            onChangeText={setConfirmPassword}
+                            image={require('../../images/ic_eye.png')}
+                            placeholder="Confirm  Password"
+                            secureTextEntry={true}
+                            returnKeyType="done"
+                        />
+                        <TeamXErrorText errorText={confirmPasswordError} />
+                    </View>
+
+                    <TeamXErrorText errorText={signupError} />
+
+                    <TeamXButton onPress={handleSubmitPress} text="SIGNUP" />
+
+                    <TeamXTextedLink
+                        value={"Already  have an account?  "}
+                        linkValue={"SIGNIN"}
+                        handleOnPress={() => navigation.navigate('signin')} />
                 </View>
-
-                <TeamXErrorText errorText={signupError} />
-
-                <TeamXButton onPress={handleSubmitPress} text="SIGNUP" />
-
-                <TeamXTextedLink
-                    value={"Already  have an account?  "}
-                    linkValue={"SIGNIN"}
-                    handleOnPress={() => navigation.navigate('signin')} />
-            </View>
-        </ScrollView>
+            </ScrollView>
+        </View>
     )
 };
 

@@ -6,13 +6,13 @@ type ProductState = {
     screen: {
         isBusy: boolean,
         error: string
-       
+
     }
     data: {
         products: any[]
         productById: any
-        AuthToken:string
-        Success:boolean
+        AuthToken: string
+        Success: boolean
     }
 }
 
@@ -20,12 +20,12 @@ const initialState: ProductState = {
     screen: {
         isBusy: false,
         error: '',
-        
+
     },
     data: {
         products: [],
         productById: {},
-        AuthToken:'',
+        AuthToken: '',
         Success: false
     }
 }
@@ -48,8 +48,9 @@ export const productSlice = createSlice({
         },
         setSuccess: (state, { payload }) => {
             state.data.Success = payload;
-    },
-}})
+        },
+    }
+})
 
 export const {
     setBusy,
@@ -68,7 +69,7 @@ export const fetchAllProducts = (recLimit = 10, pageNumber = 1) => async (dispat
             dispatch(setProducts(response.data));
         })
         .catch((error) => {
-            console.log(error)
+            console.log('FetchAll error:', error)
             const { data } = error.response;
             const result = JSON.parse(JSON.stringify(data));
             dispatch(setError(result.error));
@@ -92,20 +93,20 @@ export const fetchProductById = (productId: Number) => async (dispatch: any) => 
     dispatch(setBusy(false));
 }
 
-export const createNewProduct = (productData: JSON,authToken: string, userId: any) => async (dispatch: any) => {
+export const createNewProduct = (productData: any, authToken: string, userId: any) => async (dispatch: any) => {
     productData.owner_id = userId;
-    console.log(userId);
+    console.log("UserId: ", userId);
     console.log("createNewProduct payload: ", productData);
     dispatch(setBusy(true));
-       await axios.post(`${API_BASE_URL}/product/create`, productData, {
+    await axios.post(`${API_BASE_URL}/product/create`, productData, {
         headers: {
-          Authorization: authToken,
+            Authorization: authToken,
         },
-      }).then((response) => {
-            console.log('Create api:', response.data);
-            dispatch(setError(''));
-            dispatch(setSuccess(true));
-        })
+    }).then((response) => {
+        console.log('Create api:', response.data);
+        dispatch(setError(''));
+        dispatch(setSuccess(true));
+    })
         .catch((error) => {
             console.log('Error:', error)
             const { data } = error.response;

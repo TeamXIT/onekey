@@ -4,8 +4,7 @@ import { styles } from '../../../src/styles/styles';
 
 const ImageList = ({ route, navigation }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  console.log("Image list: ", route);
-  
+
   const images = [
     require('../../../src/images/ic_homeImageOne.png'),
     require('../../../src/images/ic_homeImageTwo.png'),
@@ -38,4 +37,5 @@ const ImageList = ({ route, navigation }) => {
     </View>
   );
 };
+
 export default ImageList;

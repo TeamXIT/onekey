@@ -11,7 +11,8 @@ type AuthState = {
     //In data we add all API response values
     data: {
         Username: string
-        AuthToken: string
+        AuthToken: string,
+        UserType: string
     }
 }
 
@@ -22,7 +23,8 @@ const initialState: AuthState = {
     },
     data: {
         Username: '',
-        AuthToken: ''
+        AuthToken: '',
+        UserType: ''
     }
 }
 
@@ -42,6 +44,9 @@ export const authSlice = createSlice({
         setUsername: (state, { payload }) => {
             state.data.Username = payload;
         },
+        setUserType: (state, { payload }) => {
+            state.data.UserType = payload;
+        }
     },
 })
 
@@ -49,7 +54,8 @@ export const {
     setBusy,
     setError,
     setAuthentication,
-    setUsername
+    setUsername,
+    setUserType
 } = authSlice.actions
 
 export const UserSignin = (_username: string, _password: string) => async (dispatch: any) => {
@@ -66,7 +72,6 @@ export const UserSignin = (_username: string, _password: string) => async (dispa
         })
         .catch((error) => {
             try {
-                console.log("Error Response: ", error);
                 const { data } = error.response;
                 const result = JSON.parse(JSON.stringify(data));
                 if (result?.error == "Complete your registration") {
@@ -106,14 +111,13 @@ export const RoleSelection = (role_id_or_name: any, userName: string) => async (
         username: userName,
         roleIdOrroleName: role_id_or_name
     }
+    
     await axios.post(`${API_BASE_URL}/auth/select-role`, credentials)
         .then((response) => {
             dispatch(setError(''));
-            dispatch(setAuthentication(response.data));
-            console.log(response.data.token);
+            dispatch(setUserType(response.data));
         })
         .catch((error) => {
-            console.log(error);
             const { data } = error.response;
             const result = JSON.parse(JSON.stringify(data));
             dispatch(setError(result.error));

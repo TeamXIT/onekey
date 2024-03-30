@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Image, ScrollView, TouchableOpacity, Text, StyleSheet, Alert } from 'react-native';
+import { View, Image, TouchableOpacity, Text } from 'react-native';
 import { styles } from '../../styles/styles';
 
 const CardDetails = ({ route, navigation }) => {
@@ -7,12 +7,13 @@ const CardDetails = ({ route, navigation }) => {
     require('../../images/ic_home1.png'),
     require('../../images/ic_home2.png'),
     require('../../images/ic_home3.png'),
-    require('../../images/ic_home1.png'),
-    require('../../images/ic_home1.png'),
-    
+    require('../../images/ic_home4.png'),
+    require('../../images/ic_home5.png'),
+    require('../../images/ic_home6.png'),
+    require('../../images/ic_home7.png'),
   ];
 
-  const { cardData, isLiked,updateLikeCount } = route.params;
+  const { cardData, isLiked, updateLikeCount } = route.params;
   const images = [cardData.image, ...thumbnailImages];
   const [mainImageIndex, setMainImageIndex] = useState(0);
   const [selectedThumbnailIndex, setSelectedThumbnailIndex] = useState(0);
@@ -31,7 +32,7 @@ const CardDetails = ({ route, navigation }) => {
 
   const handleLikePress = () => {
     const newLikeState = !isLiked;
-    updateLikeCount(cardData.id, newLikeState ? 1 : 0); 
+    updateLikeCount(cardData.id, newLikeState ? 1 : 0);
     setIsLikedState(!isLikedState);
     setIsLikedState(newLikeState);
   };
@@ -64,7 +65,7 @@ const CardDetails = ({ route, navigation }) => {
       />
 
       {/* Thumbnails */}
-      <View  style={styles.thumbnailsContainer}>
+      <View style={styles.thumbnailsContainer}>
         {thumbnailImages.map((img, index) => (
           <TouchableOpacity key={index} onPress={() => handleThumbnailPress(index)}>
             <View>
@@ -83,8 +84,8 @@ const CardDetails = ({ route, navigation }) => {
             </View>
           </TouchableOpacity>
         ))}
-        </View>
-     
+      </View>
+
       {/* Title and Description */}
       <View style={styles.titleDescriptionContainer}>
         <Text style={styles.carddetailsTitle}>{cardData.title}</Text>

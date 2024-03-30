@@ -98,40 +98,6 @@ const styles = StyleSheet.create({
         fontSize: normalSize,
         alignSelf: 'center',
     },
-    //TODO: Update
-    arrowIcon: {
-        width: 30,
-        height: 18,
-    },
-    //TODO: Update
-    smallbuttonContainer: {
-        flexDirection: 'row',
-        gap: -58
-    },
-    NexttouchableContent: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginLeft: 100,
-        borderRadius: 10,
-        backgroundColor: secondaryColor,
-
-        paddingLeft: 40,
-        paddingRight: 40,
-        paddingTop: 10,
-        paddingBottom: 10
-    },
-    BacktouchableContent: {
-        marginLeft: 0,
-        backgroundColor: secondaryColor,
-
-        borderRadius: 10,
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingLeft: 40,
-        paddingRight: 40,
-        paddingTop: 10,
-        paddingBottom: 10
-    },
     imgTextContainer: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -199,7 +165,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 8,
         marginTop: 20,
-        marginBottom: 25,
+        marginBottom: 10,
     },
     buttonTextStyle: {
         color: secondaryColor,
@@ -536,7 +502,27 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontWeight: 'bold',
         fontSize: normalSize
-    }
+    },
+    modalBackground: {
+        flex: 1,
+        alignItems: 'center',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        backgroundColor: '#00000040',
+      },
+      activityIndicatorWrapper: {
+        backgroundColor: '#FFFFFF',
+        height: 100,
+        width: 100,
+        borderRadius: 10,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+      },
+      activityIndicator: {
+        alignItems: 'center',
+        height: 80,
+      },
 });
 
 

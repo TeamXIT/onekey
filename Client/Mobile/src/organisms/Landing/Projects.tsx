@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity, TouchableHighlight, } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity, } from 'react-native';
 import { styles } from '../../styles/styles';
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import { fetchAllProducts } from '../../reducers/Projects/projectSlice';
-const product = useAppSelector(state => state.product);
-
 
 const Projects = ({ navigation }) => {
   const dispatch = useAppDispatch();
@@ -16,7 +14,7 @@ const Projects = ({ navigation }) => {
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [product.data.products]);
-  
+
   const data = [
     { id: '1', title: 'Card 1', description: 'Description for Card 1.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
     { id: '2', title: 'Card 2', description: 'Description for Card 2.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
@@ -59,7 +57,6 @@ const Projects = ({ navigation }) => {
   };
 
   const renderItem = ({ item }) => {
-
     const descriptionToShow = item.description.length > 40 ?
       item.description.substring(0, 40) + '...' : item.description;
 
@@ -76,7 +73,6 @@ const Projects = ({ navigation }) => {
             <Text style={styles.cardTitle}>{item.title}</Text>
             <Text style={styles.cardDescription}>{descriptionToShow}</Text>
 
-
             <View style={styles.buttonContainer}>
               <Text style={styles.cardLikes}>{likeCounts[item.id] || 0} Likes</Text>
               <TouchableOpacity onPress={() => handleLikePress(item.id)}>
@@ -92,7 +88,6 @@ const Projects = ({ navigation }) => {
                 />
               </TouchableOpacity>
             </View>
-
           </View>
         </View>
       </TouchableOpacity>
