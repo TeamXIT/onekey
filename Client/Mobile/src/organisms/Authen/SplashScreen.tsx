@@ -10,7 +10,7 @@ const SplashScreen = ({ navigation }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      AsyncStorage.removeItem('username');
+      //AsyncStorage.removeItem('username');
       AsyncStorage.getItem('username').then((value) => {
         navigation.replace(value === null ? 'Auth' : 'Landing');
       });

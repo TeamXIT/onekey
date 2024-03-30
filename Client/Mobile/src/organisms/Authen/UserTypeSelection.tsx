@@ -32,6 +32,7 @@ const UserTypeSelection = ({ navigation }) => {
             setSignupSuccess(true);
             setTimeout(() => {
                 navigation.replace('signin');
+                setSignupSuccess(false);
             }, 3000);
         }
         setIsLoading(false);
