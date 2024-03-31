@@ -7,6 +7,7 @@ import TeamxRadioButton from "../../molecules/TeamxRadioButton";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createNewProduct } from "../../reducers/Projects/projectSlice";
+import "core-js/stable/atob";
 import { jwtDecode } from "jwt-decode";
 
 const Upload = () => {
@@ -142,11 +143,10 @@ const Upload = () => {
             AsyncStorage.getItem('AuthToken').then((value) => {
                 if (value) {
                     try {
-                        console.log("Token:", value);
-                        const decodedToken = jwtDecode(value).user_id;
+                        const decodedToken = jwtDecode(value.toString());
                         console.log("Decoded token:", decodedToken);
 
-                        dispatch(createNewProduct(uploadData, value, decodedToken.user_id));
+                        //dispatch(createNewProduct(uploadData, value, decodedToken.user_id));
                     } catch (error) {
                         console.error('Error decoding token:', error);
                     }
@@ -172,7 +172,7 @@ const Upload = () => {
                         value={projectDescription}
                         onChangeText={setProjectDescription}
                     />
-                    <TouchableOpacity style={styles.Uploadbutton} onPrress={handleAddFile}>
+                    <TouchableOpacity style={styles.Uploadbutton} onPress={() => {handleAddFile()}}>
                         <Text style={styles.AddLabelText}>Add More Details</Text>
                     </TouchableOpacity>
                     {showAdditionalTextBox && (

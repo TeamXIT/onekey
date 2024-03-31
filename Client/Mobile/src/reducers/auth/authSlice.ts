@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import API_BASE_URL from '../config/apiConfig';
 import axios from 'axios';
+import { JwtPayload, jwtDecode } from 'jwt-decode';
 
 type AuthState = {
     //This is must for every slice to indicate screen status
@@ -39,7 +40,7 @@ export const authSlice = createSlice({
             state.screen.error = payload;
         },
         setAuthentication: (state, { payload }) => {
-            state.data.AuthToken = payload.data.token;
+            state.data.AuthToken = payload.data.token; 
         },
         setUsername: (state, { payload }) => {
             state.data.Username = payload;
@@ -111,7 +112,7 @@ export const RoleSelection = (role_id_or_name: any, userName: string) => async (
         username: userName,
         roleIdOrroleName: role_id_or_name
     }
-    
+
     await axios.post(`${API_BASE_URL}/auth/select-role`, credentials)
         .then((response) => {
             dispatch(setError(''));
