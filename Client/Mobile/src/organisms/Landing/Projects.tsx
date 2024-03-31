@@ -15,6 +15,21 @@ const Projects = ({ navigation }) => {
     dispatch(fetchAllProducts());
   }, [product.data.products]);
 
+  const projectData = [{
+    id: 1,
+    name: 'Card 1',
+    description: "Description for Card 1. Urban areal apartment located in a developing area, downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities. Walkable distance to all bus stops, grocery stores, Luxary hotels and Malls.",
+    assets: [
+      {name: "ic_home.png", value_type: "image/png", value: "../../images/ic_home.png"},
+      {name: "ic_home1.png", value_type: "image/png", value: "../../images/ic_home1.png"}
+    ],
+    dynamic_properties: [
+      {name: "Lable 1", value_type: "", value: "Label 1 Description"},
+      {name: "Lable 2", value_type: "", value: "Label 2 Description"}
+    ]
+  },
+]
+
   const data = [
     { id: '1', title: 'Card 1', description: 'Description for Card 1.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
     { id: '2', title: 'Card 2', description: 'Description for Card 2.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },

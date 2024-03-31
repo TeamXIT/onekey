@@ -11,7 +11,6 @@ type ProductState = {
     data: {
         products: any[]
         productById: any
-        AuthToken: string
         Success: boolean
     }
 }
@@ -25,7 +24,6 @@ const initialState: ProductState = {
     data: {
         products: [],
         productById: {},
-        AuthToken: '',
         Success: false
     }
 }

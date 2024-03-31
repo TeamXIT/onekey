@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, Alert, SafeAreaView } from "react-native"; // Import Image component
+import { Text, TextInput, View, TouchableOpacity, Image, Alert, SafeAreaView } from "react-native"; // Import Image component
 import { ScrollView } from "react-native-gesture-handler";
-import { RadioButton } from "react-native-paper";
 import TeamxImageComponent from "../../molecules/TeamxImageComponent";
 import { secondaryColor, styles } from "../../styles/styles";
 import TeamxRadioButton from "../../molecules/TeamxRadioButton";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
-import { createNewProduct } from "../../reducers/Projects/projectSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import jwt_decode from 'jwt-decode';
+import { createNewProduct } from "../../reducers/Projects/projectSlice";
 
 const Upload = () => {
     const dispatch = useAppDispatch();
@@ -19,7 +17,7 @@ const Upload = () => {
     const [projectName, setProjectName] = useState("");
     const [projectDescription, setProjectDescription] = useState("");
     const [imagePaths, setImagePaths] = useState([]);
-    const authn = useAppSelector(state => state.auth);
+    
     const product = useAppSelector(state => state.product);
 
     useEffect(() => {
@@ -139,14 +137,14 @@ const Upload = () => {
                 assets: assetsData,
                 dynamic_properties: dynamicData
             };
-            let userId = jwt_decode(authn.data.AuthToken).user_id;
-            dispatch(createNewProduct(uploadData, authn.data.AuthToken, userId));
 
-            // AsyncStorage.getItem('AuthToken').then(async (value) => {
-            //     const userId = await jwt_decode(value).user_id;
-            //     console.log("UserId: ", userId);
-            //     dispatch(createNewProduct(uploadData, userId));
-            // });
+            AsyncStorage.getItem('AuthToken').then(async (value) => {
+                if (value) {
+                    const userId = await jwt_decode(value).user_id;
+                    //console.log("UserId: ", userId);
+                    dispatch(createNewProduct(uploadData, value, userId));
+                }
+            });
         }
     };
 
@@ -248,6 +246,10 @@ const Upload = () => {
 
 
 export default Upload;
+
+function jwt_decode(AuthToken: string) {
+    throw new Error("Function not implemented.");
+}
 // Remove this function definition
 // function jwt_decode(value: string | null) {
 //     throw new Error("Function not implemented.");

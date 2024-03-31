@@ -17,8 +17,8 @@ const Signin = ({ navigation }) => {
     const dispatch = useAppDispatch()
     const authen = useAppSelector(state => state.auth);
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('teamx');
+    const [password, setPassword] = useState('Teamx@123');
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [signinError, setSigninError] = useState('');
@@ -34,6 +34,7 @@ const Signin = ({ navigation }) => {
                 setSigninError(authen.screen.error);
             }
         } else if (authen.data.AuthToken) {
+            //console.log("AuthToken: ", authen.data.AuthToken);
             AsyncStorage.setItem('username', authen.data.Username).then(() => {
                 AsyncStorage.setItem('AuthToken', authen.data.AuthToken).then(() => {
                     navigation.replace('Landing');
