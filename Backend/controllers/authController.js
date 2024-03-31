@@ -96,8 +96,7 @@ const selectRole = async (req, res) => {
         //updating the role_id of user 
         const assignedRole = await User.update({ role_id: userrole_id }, { where: { username: username } });
         let _secret = process.env.JWT_SECRET || 'rajasekhar-secret-key';
-        const token = jwt.sign({ username, user_id, userrole_id }, _secret, { expiresIn: '1h' });
-        return res.status(200).json(baseResponses.constantMessages.ROLE_SELECTED({ token }));
+        return res.status(200).json(baseResponses.constantMessages.ROLE_SELECTED());
     } catch (error) {
         return res.status(500).json(baseResponses.error(error.message));
     }
