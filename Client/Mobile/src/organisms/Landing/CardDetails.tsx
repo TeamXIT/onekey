@@ -21,7 +21,7 @@ const CardDetails = ({ route, navigation }) => {
   const [isLikedState, setIsLikedState] = useState(isLiked);
   const blue = "#0987F0";
   const red = "#FF0000"
-
+console.log("Images: ", images);
   const handleThumbnailPress = (index) => {
     if (index < 4) {
       setMainImageIndex(index + 1);
@@ -85,7 +85,7 @@ const CardDetails = ({ route, navigation }) => {
           <TouchableOpacity key={index} onPress={() => handleThumbnailPress(index)}>
             <View>
               <Image
-                source={imagePath}
+                source={{uri: imagePath}}
                 style={[
                   styles.thumbnailImage,
                   selectedThumbnailIndex === index + 1 && { borderColor: blue }
