@@ -7,6 +7,8 @@ import TeamxRadioButton from "../../molecules/TeamxRadioButton";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createNewProduct } from "../../reducers/Projects/projectSlice";
+import jwt_decode from 'jwt-decode';
+
 
 const Upload = () => {
     const dispatch = useAppDispatch();
@@ -17,7 +19,7 @@ const Upload = () => {
     const [projectName, setProjectName] = useState("");
     const [projectDescription, setProjectDescription] = useState("");
     const [imagePaths, setImagePaths] = useState([]);
-    
+    const authn = useAppSelector(state => state.auth)
     const product = useAppSelector(state => state.product);
 
     useEffect(() => {
@@ -130,19 +132,24 @@ const Upload = () => {
                     });
                 }
             });
-
+    
             let uploadData = {
                 name: projectName,
                 description: projectDescription,
                 assets: assetsData,
                 dynamic_properties: dynamicData
             };
-
-            AsyncStorage.getItem('AuthToken').then(async (value) => {
+    
+            AsyncStorage.getItem('AuthToken').then( async (value) => {
                 if (value) {
-                    const userId = await jwt_decode(value).user_id;
-                    //console.log("UserId: ", userId);
-                    dispatch(createNewProduct(uploadData, value, userId));
+                    try {
+                        const decodedToken = await jwt_decode(value);
+                        console.log("Decoded token:", decodedToken);
+                       
+                        dispatch(createNewProduct(uploadData, value, decodedToken.user_id));
+                    } catch (error) {
+                        console.error('Error decoding token:', error);
+                    }
                 }
             });
         }
@@ -165,7 +172,7 @@ const Upload = () => {
                         value={projectDescription}
                         onChangeText={setProjectDescription}
                     />
-                    <TouchableOpacity style={styles.Uploadbutton} onPress={handleAddFile}>
+                    <TouchableOpacity style={styles.Uploadbutton} onPrress={handleAddFile}>
                         <Text style={styles.AddLabelText}>Add More Details</Text>
                     </TouchableOpacity>
                     {showAdditionalTextBox && (
@@ -247,10 +254,10 @@ const Upload = () => {
 
 export default Upload;
 
-function jwt_decode(AuthToken: string) {
-    throw new Error("Function not implemented.");
-}
-// Remove this function definition
+// function jwt_decode(AuthToken: string) {
+//     throw new Error("Function not implemented.");
+// }
+// // // Remove this function definition
 // function jwt_decode(value: string | null) {
 //     throw new Error("Function not implemented.");
 // }
