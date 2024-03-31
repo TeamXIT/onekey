@@ -430,7 +430,8 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         position: 'relative',
         right: 5,
-        marginLeft: 30
+        marginLeft: 30,
+        margin: 10
 
     },
     uploadBtn: {
@@ -468,7 +469,6 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         position: 'relative',
-        bottom: 50,
         margin: 10
 
     },

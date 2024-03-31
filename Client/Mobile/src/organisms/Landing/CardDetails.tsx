@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Image, TouchableOpacity, Text } from 'react-native';
 import { styles } from '../../styles/styles';
 import { ScrollView } from 'react-native-gesture-handler';
+import RNFS from 'react-native-fs';
 
 const CardDetails = ({ route, navigation }) => {
   // const thumbnailImages = [
@@ -21,15 +22,36 @@ const CardDetails = ({ route, navigation }) => {
   const [isLikedState, setIsLikedState] = useState(isLiked);
   const blue = "#0987F0";
   const red = "#FF0000"
+
 console.log("Images: ", images);
-  const handleThumbnailPress = (index) => {
-    if (index < 4) {
-      setMainImageIndex(index + 1);
-    } else {
-      navigation.navigate("imagelist", images);
-    }
-    setSelectedThumbnailIndex(index);
-  };
+console.log("Assets: ", assets);
+
+useEffect(() => {
+  // Read the main image file as base64 when the component mounts
+  readImageFileAsBase64(images[mainImageIndex]);
+}, [mainImageIndex]);
+
+const readImageFileAsBase64 = (imageUri) => {
+  if (!imageUri || typeof imageUri !== 'string') {
+    console.error('Invalid image URI:', imageUri);
+    return;
+  }
+
+  RNFS.readFile(imageUri, 'base64')
+    .then(base64Data => {
+      console.log('Base64 Image Data:', base64Data);
+      // Use the base64Data as needed
+    })
+    .catch(error => {
+      console.error('Error reading image file:', error);
+    });
+};
+
+
+const handleThumbnailPress = (index) => {
+  setMainImageIndex(index);
+  setSelectedThumbnailIndex(index);
+};
 
   const handleLikePress = () => {
     const newLikeState = !isLiked;
@@ -66,39 +88,34 @@ console.log("Images: ", images);
         style={styles.CardDetailsmainImage}
       />
 
-     {/* Thumbnails */}
-     <View style={styles.thumbnailsContainer}>
-        {/* Render main image */}
-        <TouchableOpacity onPress={() => handleThumbnailPress(0)}>
-          <View>
-            <Image
-              source={images[0]}
-              style={[
-                styles.thumbnailImage,
-                selectedThumbnailIndex === 0 && { borderColor: blue }
-              ]}
-            />
-          </View>
-        </TouchableOpacity>
-        {/* Render asset images */}
-        {images.map((imagePath, index) => (
-          <TouchableOpacity key={index} onPress={() => handleThumbnailPress(index)}>
+       {/* Thumbnails */}
+       <View style={styles.thumbnailsContainer}>
+          {/* Render main image */}
+          <TouchableOpacity onPress={() => handleThumbnailPress(0)}>
             <View>
               <Image
-                source={{uri: imagePath}}
+                source={images[0]}
                 style={[
                   styles.thumbnailImage,
-                  selectedThumbnailIndex === index + 1 && { borderColor: blue }
+                  selectedThumbnailIndex === 0 && { borderColor: blue }
                 ]}
               />
-              {index === 3 && (
-                <View style={styles.plusIconContainer}>
-                  <Text style={styles.plusIcon}>+{assets.length - 4}</Text>
-                </View>
-              )}
             </View>
           </TouchableOpacity>
-        ))}
+          {/* Render asset images */}
+          {assets.map((asset, index) => (
+            <TouchableOpacity key={index} onPress={() => handleThumbnailPress(index + 1)}>
+              <View>
+                <Image
+                   source={{ uri: asset.value }}
+                  style={[
+                    styles.thumbnailImage,
+                    selectedThumbnailIndex === index + 1 && { borderColor: blue }
+                  ]}
+                />
+              </View>
+            </TouchableOpacity>
+          ))}
       </View>
 
 

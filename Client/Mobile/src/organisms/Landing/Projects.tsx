@@ -4,6 +4,7 @@ import { styles } from '../../styles/styles';
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import { fetchAllProducts } from '../../reducers/Projects/projectSlice';
 import Upload from '../Landing/Upload';
+import RNFS from 'react-native-fs';
 
 const Projects = ({ navigation }) => {
   const dispatch = useAppDispatch();
