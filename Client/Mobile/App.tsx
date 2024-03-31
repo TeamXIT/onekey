@@ -23,6 +23,7 @@ import CardDetails from './src/organisms/Landing/CardDetails';
 import Settings from './src/organisms/Landing/Settings';
 import ImageList from './src/organisms/Landing/ImageList';
 import Upload from './src/organisms/Landing/Upload';
+import Feedback from './src/organisms/Landing/Feedback';
 
 const Stack = createStackNavigator();
 
@@ -120,16 +121,22 @@ const Landing = () => {
         component={Comment}
       />
       <Stack.Screen
+        name="Feedback"
+        component={Feedback}
+      />
+      <Stack.Screen
         name="imagelist"
         component={ImageList}
-        options={{headerStyle: {
-          backgroundColor: styles.appSecondary.color, //Set Header color
-        },
-        headerShown:true,
-        headerTintColor:styles.appPrimary.color, //Set Header text color
-        headerTitleStyle: {
-          fontWeight: 'bold', //Set Header text style
-        },}}
+        options={{
+          headerStyle: {
+            backgroundColor: styles.appSecondary.color, //Set Header color
+          },
+          headerShown: true,
+          headerTintColor: styles.appPrimary.color, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
       />
       <Stack.Screen
         name="CardDetails"
@@ -140,7 +147,7 @@ const Landing = () => {
           headerStyle: {
             backgroundColor: styles.appPrimary.color, //Set Header color
           },
-          headerShown:false,
+          headerShown: false,
           headerTintColor: styles.appSecondary.color, //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style
