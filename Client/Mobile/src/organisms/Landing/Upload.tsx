@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createNewProduct } from "../../reducers/Projects/projectSlice";
 
+
 const Upload = () => {
     const dispatch = useAppDispatch();
     const [showAdditionalTextBox, setShowAdditionalTextBox] = useState(false);
@@ -150,7 +151,7 @@ const Upload = () => {
 
     return (
         <SafeAreaView style={styles.UploadContainer}>
-            <ScrollView style={{ padding: 15, flex: 9 }}>
+           <ScrollView contentContainerStyle={{ flexGrow: 1 ,padding:10}}>
                 <View >
                     <Text style={styles.UploadText}>Project Name</Text>
                     <TextInput style={styles.uploadTitleTextInput}
@@ -221,6 +222,7 @@ const Upload = () => {
                                 <View style={styles.fileButton}>
                                     <TeamxImageComponent image={'../../src/images/ic_upload.png'} onFilePathsReceived={handleReceiveFilePaths} />
                                 </View>
+                               
                             )}
                         </View>
                     ))}

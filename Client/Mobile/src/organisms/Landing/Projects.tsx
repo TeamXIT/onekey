@@ -3,6 +3,7 @@ import { View, Text, FlatList, Image, TouchableOpacity, } from 'react-native';
 import { styles } from '../../styles/styles';
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import { fetchAllProducts } from '../../reducers/Projects/projectSlice';
+import Upload from '../Landing/Upload';
 
 const Projects = ({ navigation }) => {
   const dispatch = useAppDispatch();
@@ -15,31 +16,39 @@ const Projects = ({ navigation }) => {
     dispatch(fetchAllProducts());
   }, [product.data.products]);
 
-  const projectData = [{
+  const uploadData = [{
     id: 1,
-    name: 'Card 1',
+    title: 'Card 1',
     description: "Description for Card 1. Urban areal apartment located in a developing area, downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities. Walkable distance to all bus stops, grocery stores, Luxary hotels and Malls.",
+    image: require('../../images/ic_house.png'),
     assets: [
-      {name: "ic_home.png", value_type: "image/png", value: "../../images/ic_home.png"},
-      {name: "ic_home1.png", value_type: "image/png", value: "../../images/ic_home1.png"}
+      {name: "ic_home2.png", value_type: "image/png", value: "../images/ic_home.png"},
+      {name: "ic_home1.png", value_type: "image/png", value: "../images/ic_home1.png"},
+      {name: "ic_home2.png", value_type: "image/png", value: "../images/ic_home2.png"},
+      {name: "ic_home1.png", value_type: "image/png", value: "../images/ic_home3.png"},
+      {name: "ic_home2.png", value_type: "image/png", value: "../images/ic_home4.png"},
+      {name: "ic_home1.png", value_type: "image/png", value: "../images/ic_home5.png"},
+     
     ],
     dynamic_properties: [
       {name: "Lable 1", value_type: "", value: "Label 1 Description"},
-      {name: "Lable 2", value_type: "", value: "Label 2 Description"}
+      {name: "Lable 2", value_type: "", value: "Label 2 Description"},
+      {name: "Lable 3", value_type: "", value: "Label 1 Description"},
+      {name: "Lable 4", value_type: "", value: "Label 2 Description"}
     ]
   },
 ]
 
-  const data = [
-    { id: '1', title: 'Card 1', description: 'Description for Card 1.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
-    { id: '2', title: 'Card 2', description: 'Description for Card 2.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
-    { id: '3', title: 'Card 3', description: 'Description for Card 3.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
-    { id: '4', title: 'Card 4', description: 'Description for Card 4.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
-    { id: '5', title: 'Card 5', description: 'Description for Card 5.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
-    { id: '6', title: 'Card 6', description: 'Description for Card 6.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
-    { id: '7', title: 'Card 7', description: 'Description for Card 7.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
-    { id: '8', title: 'Card 8', description: 'Description for Card 8.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
-  ];
+  // const data = [
+  //   { id: '1', title: 'Card 1', description: 'Description for Card 1.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
+  //   { id: '2', title: 'Card 2', description: 'Description for Card 2.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
+  //   { id: '3', title: 'Card 3', description: 'Description for Card 3.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
+  //   { id: '4', title: 'Card 4', description: 'Description for Card 4.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
+  //   { id: '5', title: 'Card 5', description: 'Description for Card 5.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
+  //   { id: '6', title: 'Card 6', description: 'Description for Card 6.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
+  //   { id: '7', title: 'Card 7', description: 'Description for Card 7.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
+  //   { id: '8', title: 'Card 8', description: 'Description for Card 8.urban apartment located in a bustling downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities.', image: require('../../images/ic_house.png'), like: 0 },
+  // ];
 
   const handleCardPress = (item) => {
     navigation.navigate('CardDetails', {
@@ -48,6 +57,7 @@ const Projects = ({ navigation }) => {
         like: likeCounts[item.id] || 0,
         image: item.image
       },
+      assets: item.assets,
       isLiked: likeCounts[item.id] > 0,
       updateLikeCount: updateLikeCount,
     });
@@ -110,12 +120,15 @@ const Projects = ({ navigation }) => {
   };
 
   return (
+    <View style={ { backgroundColor: "#48525e" ,
+    flex:1, }}>
     <FlatList
-      data={data}
+      data={uploadData}
       renderItem={renderItem}
-      keyExtractor={item => item.id}
+      keyExtractor={item => item.id.toString()}
       numColumns={1}
     />
+    </View>
   );
 };
 

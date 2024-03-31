@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     textStyle: {
         fontSize: normalSize,
         color: secondaryColor,
-        
-        
+
+
     },
     //TODO: Update
     US_cardsContainerStyle: {
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     },
     cardDescription: {
         fontSize: xSmallSize,
-        
+
     },
     cardContent: {
         flex: 2,
@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
     titleDescriptionContainer: {
         flex: 5,
         paddingHorizontal: 5,
-        margin:10
+        margin: 10
     },
     carddetailsTitle: {
         fontSize: normalSize,
@@ -300,8 +300,9 @@ const styles = StyleSheet.create({
         color: secondaryColor,
     },
     carddetailsDescription: {
-        fontSize: xSmallSize,
+        fontSize: normalSize,
         color: secondaryColor,
+        marginBottom: 5,
     },
     Slidercontainer: {
         flexDirection: 'row',
@@ -425,9 +426,12 @@ const styles = StyleSheet.create({
         right: -3,
     },
     fileButton: {
-        bottom: 30,
+        flex: 1,
+        alignItems: 'flex-start',
         position: 'relative',
         right: 5,
+        marginLeft: 30
+
     },
     uploadBtn: {
 
@@ -455,21 +459,24 @@ const styles = StyleSheet.create({
 
     //TeamxImageComponent
     uploadImagecontainer: {
-        alignItems: 'flex-start',
-        marginLeft: 20,
-        marginTop: 20,
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        alignItems: 'center',
+        marginLeft: 10,
+        flexWrap: 'wrap',
+
 
     },
     imageContainer: {
         position: 'relative',
-        margin: 10,
+        bottom: 50,
+        margin: 10
+
     },
     imagePreview: {
         width: 80,
         height: 80,
         borderRadius: 8,
+
     },
     deleteButton: {
         position: 'absolute',
@@ -509,8 +516,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-around',
         backgroundColor: '#00000040',
-      },
-      activityIndicatorWrapper: {
+    },
+    activityIndicatorWrapper: {
         backgroundColor: '#FFFFFF',
         height: 100,
         width: 100,
@@ -518,11 +525,11 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',
-      },
-      activityIndicator: {
+    },
+    activityIndicator: {
         alignItems: 'center',
         height: 80,
-      },
+    },
 });
 
 
