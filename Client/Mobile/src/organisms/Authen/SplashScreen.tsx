@@ -10,9 +10,16 @@ const SplashScreen = ({ navigation }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      AsyncStorage.removeItem('username');
-      AsyncStorage.getItem('username').then((value) => {
-        navigation.replace(value === null ? 'Auth' : 'Landing');
+      //AsyncStorage.removeItem('username');
+      AsyncStorage.getItem('username').then((uName) => {
+        AsyncStorage.getItem('password').then((uPwd) => {
+          if ((uName === null || uPwd === null)) {
+            navigation.replace('Auth');
+          } else {
+            //TODO: Call boimetrics
+            navigation.replace('Landing');
+          }
+        });
       });
     }, 3000);
   }, []);
