@@ -523,6 +523,29 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 80,
       },
+      commentCard: {
+        height: 150,
+        width: 350,
+        backgroundColor: secondaryColor,
+        borderRadius: 10,
+        flexDirection: 'row',
+        margin: 15
+      },
+      commentImage: {
+        height: 100,
+        width: 100,
+        borderRadius: 50,
+        top: 15
+      },
+      commentInformation: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        margin: 3
+      },
+      commitScreenAlignment:{
+        backgroundColor: primaryColor, 
+        alignItems: 'center'
+      }
 });
 
 
