@@ -36,8 +36,10 @@ const Signin = ({ navigation }) => {
         } else if (authen.data.AuthToken) {
             //console.log("AuthToken: ", authen.data.AuthToken);
             AsyncStorage.setItem('username', authen.data.Username).then(() => {
-                AsyncStorage.setItem('AuthToken', authen.data.AuthToken).then(() => {
-                    navigation.replace('Landing');
+                AsyncStorage.setItem('password', password).then(() => {
+                    AsyncStorage.setItem('AuthToken', authen.data.AuthToken).then(() => {
+                        navigation.replace('Landing');
+                    });
                 });
             });
         }
