@@ -162,7 +162,7 @@ function App(): React.JSX.Element {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="splashScreen">
+        <Stack.Navigator initialRouteName="Landing">
           {/* SplashScreen which will come once for 5 Seconds */}
           <Stack.Screen
             name="splashScreen"

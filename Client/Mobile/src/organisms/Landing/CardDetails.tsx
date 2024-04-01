@@ -1,34 +1,57 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Image, TouchableOpacity, Text } from 'react-native';
 import { styles } from '../../styles/styles';
+import { ScrollView } from 'react-native-gesture-handler';
+import RNFS from 'react-native-fs';
 
 const CardDetails = ({ route, navigation }) => {
-  const thumbnailImages = [
-    require('../../images/ic_home1.png'),
-    require('../../images/ic_home2.png'),
-    require('../../images/ic_home3.png'),
-    require('../../images/ic_home4.png'),
-    require('../../images/ic_home5.png'),
-    require('../../images/ic_home6.png'),
-    require('../../images/ic_home7.png'),
-  ];
+  // const thumbnailImages = [
+  //   require('../../images/ic_home1.png'),
+  //   require('../../images/ic_home2.png'),
+  //   require('../../images/ic_home3.png'),
+  //   require('../../images/ic_home4.png'),
+  //   require('../../images/ic_home5.png'),
+  //   require('../../images/ic_home6.png'),
+  //   require('../../images/ic_home7.png'),
+  // ];
 
-  const { cardData, isLiked, updateLikeCount } = route.params;
-  const images = [cardData.image, ...thumbnailImages];
+  const { cardData, assets, isLiked, updateLikeCount } = route.params;
+  const images = [cardData.image, ...assets.map(asset => asset.value)];
   const [mainImageIndex, setMainImageIndex] = useState(0);
   const [selectedThumbnailIndex, setSelectedThumbnailIndex] = useState(0);
   const [isLikedState, setIsLikedState] = useState(isLiked);
   const blue = "#0987F0";
   const red = "#FF0000"
 
-  const handleThumbnailPress = (index) => {
-    if (index < 4) {
-      setMainImageIndex(index + 1);
-    } else {
-      navigation.navigate("imagelist", images);
-    }
-    setSelectedThumbnailIndex(index);
-  };
+console.log("Images: ", images);
+console.log("Assets: ", assets);
+
+useEffect(() => {
+  // Read the main image file as base64 when the component mounts
+  readImageFileAsBase64(images[mainImageIndex]);
+}, [mainImageIndex]);
+
+const readImageFileAsBase64 = (imageUri) => {
+  if (!imageUri || typeof imageUri !== 'string') {
+    console.error('Invalid image URI:', imageUri);
+    return;
+  }
+
+  RNFS.readFile(imageUri, 'base64')
+    .then(base64Data => {
+      console.log('Base64 Image Data:', base64Data);
+      // Use the base64Data as needed
+    })
+    .catch(error => {
+      console.error('Error reading image file:', error);
+    });
+};
+
+
+const handleThumbnailPress = (index) => {
+  setMainImageIndex(index);
+  setSelectedThumbnailIndex(index);
+};
 
   const handleLikePress = () => {
     const newLikeState = !isLiked;
@@ -38,6 +61,7 @@ const CardDetails = ({ route, navigation }) => {
   };
 
   return (
+    <ScrollView contentContainerStyle={{ flexGrow: 5 }}>
     <View style={styles.CardDetailscontainer}>
       {/* Back and Like Icon Container */}
       <View style={styles.iconContainer}>
@@ -64,34 +88,51 @@ const CardDetails = ({ route, navigation }) => {
         style={styles.CardDetailsmainImage}
       />
 
-      {/* Thumbnails */}
-      <View style={styles.thumbnailsContainer}>
-        {thumbnailImages.map((img, index) => (
-          <TouchableOpacity key={index} onPress={() => handleThumbnailPress(index)}>
+       {/* Thumbnails */}
+       <View style={styles.thumbnailsContainer}>
+          {/* Render main image */}
+          <TouchableOpacity onPress={() => handleThumbnailPress(0)}>
             <View>
               <Image
-                source={img}
+                source={images[0]}
                 style={[
                   styles.thumbnailImage,
-                  index === selectedThumbnailIndex && { borderColor: blue }
+                  selectedThumbnailIndex === 0 && { borderColor: blue }
                 ]}
               />
-              {index === 4 && (
-                <View style={styles.plusIconContainer}>
-                  <Text style={styles.plusIcon}>+4</Text>
-                </View>
-              )}
             </View>
           </TouchableOpacity>
-        ))}
+          {/* Render asset images */}
+          {assets.map((asset, index) => (
+            <TouchableOpacity key={index} onPress={() => handleThumbnailPress(index + 1)}>
+              <View>
+                <Image
+                   source={{ uri: asset.value }}
+                  style={[
+                    styles.thumbnailImage,
+                    selectedThumbnailIndex === index + 1 && { borderColor: blue }
+                  ]}
+                />
+              </View>
+            </TouchableOpacity>
+          ))}
       </View>
+
 
       {/* Title and Description */}
       <View style={styles.titleDescriptionContainer}>
         <Text style={styles.carddetailsTitle}>{cardData.title}</Text>
         <Text style={styles.carddetailsDescription}>{cardData.description}</Text>
+        {/* Dynamic Properties */}
+        {cardData.dynamic_properties && cardData.dynamic_properties.map((property, index) => (
+          <View key={index}>
+            <Text style={styles.carddetailsTitle}>{property.name}</Text>
+            <Text style={styles.carddetailsDescription}>{property.value}</Text>
+          </View>
+        ))}
       </View>
     </View>
+    </ScrollView>
   );
 };
 
