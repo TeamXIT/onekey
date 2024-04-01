@@ -7,9 +7,7 @@ import TeamxRadioButton from "../../molecules/TeamxRadioButton";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createNewProduct } from "../../reducers/Projects/projectSlice";
-import "core-js/stable/atob";
 import { jwtDecode } from "jwt-decode";
-
 
 const Upload = () => {
     const dispatch = useAppDispatch();

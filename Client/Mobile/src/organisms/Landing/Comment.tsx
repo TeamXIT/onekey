@@ -1,7 +1,6 @@
 import React from 'react';
-import { Text, Image, StyleSheet, FlatList, View, TouchableOpacity } from 'react-native';
-import Feedback from './Feedback';
-import {styles} from '../../styles/styles'
+import { Text, Image, FlatList, View, TouchableOpacity } from 'react-native';
+import { styles } from '../../styles/styles'
 
 const commentsData = [
   { id: 1, name: 'BPO1', phoneNumber: '9492520484', date: '31-03-2024 15:43', rating: 3.5, image: require('../../images/ic_bpo5.png') },
@@ -14,7 +13,7 @@ const commentsData = [
   // Add more comment objects as needed
 ];
 
-const CommentItem = ({ item,navigation }) => {
+const CommentItem = ({ item, navigation }) => {
   const handleCardPress = () => {
     navigation.navigate('Feedback', {
       image: item.image,

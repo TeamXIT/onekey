@@ -68,7 +68,7 @@ const Signin = ({ navigation }) => {
         if (!hasError) {
             setIsLoading(true);
             setSigninError('');
-            dispatch(UserSignin(username, password))
+            dispatch(UserSignin(username, password));
             setPasswordError('');
         }
     }
