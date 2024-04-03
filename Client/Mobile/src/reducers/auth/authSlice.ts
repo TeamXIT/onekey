@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import API_BASE_URL from '../config/apiConfig';
 import axios from 'axios';
-import { JwtPayload, jwtDecode } from 'jwt-decode';
 
 type AuthState = {
     //This is must for every slice to indicate screen status
@@ -13,7 +12,8 @@ type AuthState = {
     data: {
         Username: string
         AuthToken: string,
-        UserType: string
+        UserType: string,
+        UserId: string
     }
 }
 
@@ -25,7 +25,8 @@ const initialState: AuthState = {
     data: {
         Username: '',
         AuthToken: '',
-        UserType: ''
+        UserType: '',
+        UserId:''
     }
 }
 
@@ -45,6 +46,10 @@ export const authSlice = createSlice({
         setUsername: (state, { payload }) => {
             state.data.Username = payload;
         },
+        setUserId: (state, { payload }) => {
+            state.data.UserId = payload
+            console.log(payload);
+        },  
         setUserType: (state, { payload }) => {
             state.data.UserType = payload;
         }
@@ -56,6 +61,7 @@ export const {
     setError,
     setAuthentication,
     setUsername,
+    setUserId,
     setUserType
 } = authSlice.actions
 
@@ -69,7 +75,8 @@ export const UserSignin = (_username: string, _password: string) => async (dispa
         .then((response) => {
             dispatch(setError(''));
             dispatch(setUsername(_username));
-            dispatch(setAuthentication(response.data));
+            dispatch(setAuthentication(response.data.token));
+            dispatch(setUserId(response.data.user_id))
         })
         .catch((error) => {
             try {
