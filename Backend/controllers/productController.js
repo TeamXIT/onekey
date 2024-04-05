@@ -26,21 +26,21 @@ const createProduct = async (req, res) => {
 
 
         const createdDynamicProperties = [];
-    
+
         for (const asset of assets) {
             try {
-            const valueType = asset.value_type.toLowerCase();
-            if (valueType.includes('image') || valueType.includes('video') || valueType.includes('file'))  {
-                const createAsset = await DynamicProperties.create({
-                    name: asset.name,
-                    value_type: valueType,
-                    value: asset.value,
-                    product_id: product.product_id
-                });
-                createdDynamicProperties.push(createAsset);
-           
-            }
-            }catch(error){
+                const valueType = asset.value_type.toLowerCase();
+                if (valueType.includes('image') || valueType.includes('video') || valueType.includes('file')) {
+                    const createAsset = await DynamicProperties.create({
+                        name: asset.name,
+                        value_type: valueType,
+                        value: asset.value,
+                        product_id: product.product_id
+                    });
+                    createdDynamicProperties.push(createAsset);
+
+                }
+            } catch (error) {
                 console.log(error)
             }
         };
@@ -68,11 +68,18 @@ const getAllProducts = async (req, res) => {
         let productsList = await Product.findAll({
             offset: (pageNumber - 1) * recLimit,
             limit: recLimit,
+            include: [{ model: DynamicProperties, as: 'dynamicProperties' }]
         });
-        const formattedProducts = productsList.map(({ createdAt, updatedAt, ...Product }) => ({
-            ...Product,
-            createdAt: moment(createdAt).format("MMM Do YY"),
-            updatedAt: moment(updatedAt).format("MMM Do YY"),
+
+        const formattedProducts = productsList.map(product => ({
+            ...product.toJSON(),
+            createdAt: moment(product.createdAt).format("MMM Do YY"),
+            updatedAt: moment(product.updatedAt).format("MMM Do YY"),
+            dynamicProperties: product.dynamicProperties.map(({ createdAt, updatedAt, ...property }) => ({
+                ...property,
+                createdAt: moment(createdAt).format("MMM Do YY"),
+                updatedAt: moment(updatedAt).format("MMM Do YY"),
+            })),
         }));
         res.status(200).json(baseResponses.constantMessages.GET_ALL_PRODUCT_SUCCESSFUL({ totalPages: totalPages, totalCount: count, items: formattedProducts }));
     } catch (error) {
