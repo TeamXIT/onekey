@@ -68,19 +68,22 @@ const getAllProducts = async (req, res) => {
         let productsList = await Product.findAll({
             offset: (pageNumber - 1) * recLimit,
             limit: recLimit,
-            include: [{ model: DynamicProperties, as: 'dynamicProperties' }]
         });
 
-        const formattedProducts = productsList.map(product => ({
-            ...product.toJSON(),
-            createdAt: moment(product.createdAt).format("MMM Do YY"),
-            updatedAt: moment(product.updatedAt).format("MMM Do YY"),
-            dynamicProperties: product.dynamicProperties.map(({ createdAt, updatedAt, ...property }) => ({
-                ...property,
-                createdAt: moment(createdAt).format("MMM Do YY"),
-                updatedAt: moment(updatedAt).format("MMM Do YY"),
-            })),
+        const formattedProducts = await Promise.all(productsList.map( async product => {
+            const dynamic_properties = await DynamicProperties.findAll({ where: { product_id: product.product_id } });
+            return {
+                ...product.toJSON(),
+                createdAt: moment(product.createdAt).format("MMM Do YY"),
+                updatedAt: moment(product.updatedAt).format("MMM Do YY"),
+                dynamicProperties: dynamic_properties.map(({ createdAt, updatedAt, ...property }) => ({
+                    ...property,
+                    createdAt: moment(createdAt).format("MMM Do YY"),
+                    updatedAt: moment(updatedAt).format("MMM Do YY"),
+                })),
+            };
         }));
+
         res.status(200).json(baseResponses.constantMessages.GET_ALL_PRODUCT_SUCCESSFUL({ totalPages: totalPages, totalCount: count, items: formattedProducts }));
     } catch (error) {
         res.status(500).json(baseResponses.error(error.message));
