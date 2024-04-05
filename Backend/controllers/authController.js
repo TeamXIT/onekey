@@ -148,7 +148,7 @@ const signIn = async (req, res) => {
         let user_id=user.user_id;
         let _secret = process.env.JWT_SECRET || 'rajasekhar-secret-key';
         const token = jwt.sign({ username, user_id, role: user.role_id }, _secret, { expiresIn: '1h' });
-        return res.status(200).json(baseResponses.constantMessages.LOGIN_SUCCESSFUL({ token }));
+        return res.status(200).json(baseResponses.constantMessages.LOGIN_SUCCESSFUL({ token, user_id }));
 
     } catch (error) {
         res.status(500).json(baseResponses.error(error.message));

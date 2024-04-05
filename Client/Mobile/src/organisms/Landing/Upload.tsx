@@ -140,14 +140,16 @@ const Upload = () => {
 
             AsyncStorage.getItem('AuthToken').then((value) => {
                 if (value) {
+                    AsyncStorage.getItem('userId').then((user_id) => {
                     try {
                         //const decodedToken = jwtDecode(value);
                         //console.log("Decoded token:", decodedToken);
 
-                        //dispatch(createNewProduct(uploadData, value, decodedToken.user_id));
+                        dispatch(createNewProduct(uploadData, value,user_id));
                     } catch (error) {
                         console.error('Error decoding token:', error);
                     }
+                    });
                 }
             });
         }
