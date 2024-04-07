@@ -75,8 +75,8 @@ export const UserSignin = (_username: string, _password: string) => async (dispa
         .then((response) => {
             dispatch(setError(''));
             dispatch(setUsername(_username));
-            dispatch(setAuthentication(response.data.token));
-            dispatch(setUserId(response.data.user_id))
+            dispatch(setAuthentication(response.data.data.token));
+            dispatch(setUserId(response.data.data.user_id))
         })
         .catch((error) => {
             try {

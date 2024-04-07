@@ -14,11 +14,11 @@ import Dashboard from './src/organisms/Landing/Dashboard';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
 import ForgotPassword from './src/organisms/Authen/ForgotPassword';
 import Comment from './src/organisms/Landing/Comment';
-import Projects from './src/organisms/Landing/Projects';
+import Products from './src/organisms/Landing/Products';
 import { Provider } from 'react-redux';
 import { store } from './src/reducers/store';
 import OneKeyIntro from './src/organisms/Authen/OneKeyInto';
-import CardDetails from './src/organisms/Landing/CardDetails';
+import ProductDetails from './src/organisms/Landing/ProductDetails';
 import Settings from './src/organisms/Landing/Settings';
 import ImageList from './src/organisms/Landing/ImageList';
 import Upload from './src/organisms/Landing/Upload';
@@ -29,7 +29,7 @@ import PreviousDealedProduct from './src/organisms/Landing/PreviousDealedProduct
 import ProductRelatedDocuments from './src/organisms/Landing/ProductRelatedDocuments';
 import ShareContacts from './src/organisms/Landing/ShareContacts';
 import UploadDocument from './src/organisms/Landing/UploadDocuments';
-import UploadProductCertified from './src/organisms/Landing/UploadProductCertified';
+import UploadVerifyCertification from './src/organisms/Landing/UploadVerifyCertification';
 
 const Stack = createStackNavigator();
 
@@ -116,7 +116,7 @@ const Landing = () => {
       />
       <Stack.Screen
         name="project"
-        component={Projects}
+        component={Products}
       />
       <Stack.Screen
         name='settings'
@@ -145,10 +145,10 @@ const Landing = () => {
         }}
       />
       <Stack.Screen
-        name="CardDetails"
-        component={CardDetails}
+        name="ProductDetails"
+        component={ProductDetails}
         options={{
-          title: 'CardDetails',
+          title: 'ProductDetails',
           //Set Header Title
           headerStyle: {
             backgroundColor: styles.appPrimary.color, //Set Header color
@@ -185,8 +185,8 @@ const Landing = () => {
         component={UploadDocument}
       />
       <Stack.Screen
-        name="UploadProductCertified"
-        component={UploadProductCertified}
+        name="UploadVerifyCertification"
+        component={UploadVerifyCertification}
       />
     </Stack.Navigator>
   );
@@ -196,7 +196,7 @@ function App(): React.JSX.Element {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="splashScreen">
+        <Stack.Navigator initialRouteName="Landing">
           {/* SplashScreen which will come once for 5 Seconds */}
           <Stack.Screen
             name="splashScreen"

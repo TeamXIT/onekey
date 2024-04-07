@@ -5,7 +5,7 @@ import Animated, { useAnimatedStyle, withTiming, useDerivedValue } from 'react-n
 import Lottie from 'lottie-react-native'
 import Svg, { Path } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Projects from './Projects';
+import Products from './Products';
 import Post from './Post';
 import Settings from './Settings';
 import Upload from './Upload';
@@ -20,13 +20,13 @@ const Dashboard = () => {
             style={{ flex: 1 }}>
             <Tab.Navigator tabBar={(props) => <AnimatedTabBar {...props} />} >
                 <Tab.Screen
-                    name="Projects"
+                    name="Products"
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/home.icon.json')} style={styles.icon} />,
                         headerShown: false,
                     }}
-                    component={Projects} />
+                    component={Products} />
                 <Tab.Screen
                     name="Upload"
                     options={{

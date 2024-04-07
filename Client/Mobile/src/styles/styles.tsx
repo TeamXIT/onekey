@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
         marginRight: 10,
-        borderWidth: 4,
+        borderWidth: 1,
         borderColor: secondaryColor,
         borderRadius: 10,
     },
