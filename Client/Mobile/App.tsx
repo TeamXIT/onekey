@@ -23,6 +23,13 @@ import Settings from './src/organisms/Landing/Settings';
 import ImageList from './src/organisms/Landing/ImageList';
 import Upload from './src/organisms/Landing/Upload';
 import Feedback from './src/organisms/Landing/Feedback';
+import DocumentViewer from './src/organisms/Landing/DocumentViewer';
+import IntrestedClientDetails from './src/organisms/Landing/IntrestedClientDetails';
+import PreviousDealedProduct from './src/organisms/Landing/PreviousDealedProduct';
+import ProductRelatedDocuments from './src/organisms/Landing/ProductRelatedDocuments';
+import ShareContacts from './src/organisms/Landing/ShareContacts';
+import UploadDocument from './src/organisms/Landing/UploadDocuments';
+import UploadProductCertified from './src/organisms/Landing/UploadProductCertified';
 
 const Stack = createStackNavigator();
 
@@ -152,6 +159,34 @@ const Landing = () => {
             fontWeight: 'bold', //Set Header text style
           },
         }}
+      />
+      <Stack.Screen
+        name="DocumentViewer"
+        component={DocumentViewer}
+      />
+      <Stack.Screen
+        name="IntrestedClientDetails"
+        component={IntrestedClientDetails}
+      />
+      <Stack.Screen
+        name="PreviousDealedProduct"
+        component={PreviousDealedProduct}
+      />
+      <Stack.Screen
+        name="ProductRelatedDocuments"
+        component={ProductRelatedDocuments}
+      />
+      <Stack.Screen
+        name="ShareContacts"
+        component={ShareContacts}
+      />
+      <Stack.Screen
+        name="UploadDocument"
+        component={UploadDocument}
+      />
+      <Stack.Screen
+        name="UploadProductCertified"
+        component={UploadProductCertified}
       />
     </Stack.Navigator>
   );
