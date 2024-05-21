@@ -57,7 +57,7 @@ const UserTypeSelection = ({ navigation }) => {
             id={item.id}
             imageSource={item.imageSource}
             labelText={item.labelText}
-            selected={selectedCard === item.labelText} // Pass whether the card is selected
+            selected={selectedCard === item.id} // Pass whether the card is selected
             setSelectedCard={setSelectedCard} // Pass setSelectedCard function
         />
     );

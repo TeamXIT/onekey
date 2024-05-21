@@ -291,7 +291,12 @@ const styles = StyleSheet.create({
     titleDescriptionContainer: {
         flex: 5,
         paddingHorizontal: 5,
-        margin: 10
+        margin: 10,
+        borderColor:'white',
+        height:'auto',
+        width:'auto',
+        borderWidth:0.5,
+        borderRadius:10
     },
     carddetailsTitle: {
         fontSize: normalSize,
@@ -536,7 +541,8 @@ const styles = StyleSheet.create({
         backgroundColor: secondaryColor,
         borderRadius: 10,
         flexDirection: 'row',
-        margin: 15
+        margin: 15,
+        padding:10
       },
       commentImage: {
         height: 100,
