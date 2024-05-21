@@ -6,7 +6,7 @@ import { secondaryColor, styles } from "../../styles/styles";
 import TeamxRadioButton from "../../molecules/TeamxRadioButton";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createNewProduct } from "../../reducers/Products/productSlice";
+import { createNewProduct } from "../../reducers/Product/productSlice";
 
 const Upload = () => {
     const dispatch = useAppDispatch();
