@@ -8,7 +8,7 @@ import TeamXErrorText from "../../molecules/TeamXErrorText";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import { RoleSelection } from "../../reducers/auth/authSlice";
 import TeamXLoader from "../../molecules/TeamXLoader";
-import TeamXButton from "../../atoms/TeamXButton";
+import TeamXButton from "../../atoms/TeamXbutton";
 import TeamXTextedLink from "../../molecules/TeamXTextedLink";
 
 const UserTypeSelection = ({ navigation }) => {

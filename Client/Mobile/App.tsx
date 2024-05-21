@@ -12,7 +12,7 @@ import UserTypeSelection from './src/organisms/Authen/UserTypeSelection';
 import Verification from './src/organisms/Authen/Verification';
 import Dashboard from './src/organisms/Landing/Dashboard';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
-import ForgotPassword from './src/organisms/Authen/ForgotPassword';
+import ForgotPassword from './src/organisms/Authen/forgotPassword';
 import Comment from './src/organisms/Landing/Comment';
 import Products from './src/organisms/Landing/Products';
 import { Provider } from 'react-redux';
@@ -30,6 +30,8 @@ import ProductRelatedDocuments from './src/organisms/Landing/ProductRelatedDocum
 import ShareContacts from './src/organisms/Landing/ShareContacts';
 import UploadDocument from './src/organisms/Landing/UploadDocuments';
 import UploadVerifyCertification from './src/organisms/Landing/UploadVerifyCertification';
+import contacts from './src/organisms/Landing/Contact';
+import AddContactScreen from './src/organisms/Landing/AddContactScreen';
 
 const Stack = createStackNavigator();
 
@@ -188,6 +190,8 @@ const Landing = () => {
         name="UploadVerifyCertification"
         component={UploadVerifyCertification}
       />
+       <Stack.Screen name="Contacts" component={contacts} options={{ headerShown: false }}/>
+        <Stack.Screen name="AddContactScreen" component={AddContactScreen}  options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 };

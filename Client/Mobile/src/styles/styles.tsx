@@ -552,7 +552,180 @@ const styles = StyleSheet.create({
       commitScreenAlignment:{
         backgroundColor: primaryColor, 
         alignItems: 'center'
-      }
+      },
+      //settings
+      SettingmainContainer: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        paddingTop: 30,
+        backgroundColor: primaryColor,
+    },
+    SettingcontactButton: {
+        backgroundColor: primaryColor,
+        borderRadius: 10,
+        borderWidth: 2,
+        borderColor: secondaryColor,
+        width: "90%",
+        height: 45,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    SettingcontactButtonText: {
+        color: secondaryColor,
+        fontSize: ySmallSize,
+    },
+    //contact screen
+    contactContainer: {
+        flex: 1,
+        backgroundColor: primaryColor,
+      },
+      contactHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 10,
+      },
+      contactBackIcon: {
+        width: 24,
+        height: 24,
+        tintColor: secondaryColor,
+      },
+      contactHeaderText: {
+        color: secondaryColor,
+        fontSize: 20,
+        marginLeft: 10,
+      },
+      contactItem: {
+        width: '90%',
+        height: 80,
+        alignSelf: 'center',
+        borderWidth: 0.5,
+        borderColor: secondaryColor,
+        borderRadius: 10,
+        marginTop: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      },
+      contactItemLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+      },
+      contactInitialCircle: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: secondaryColor,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 15,
+      },
+      contactInitialText: {
+        color: primaryColor,
+        fontWeight: 'bold',
+      },
+      contactItemTextContainer: {
+        padding: 10,
+      },
+      contactItemText: {
+        color: secondaryColor,
+      },
+      contactItemSubText: {
+        color: secondaryColor,
+        marginTop: 4,
+      },
+      contactItemRight: {
+        flexDirection: 'row',
+        paddingRight: 15,
+      },
+      contactMessageIcon: {
+        width: 24,
+        height: 24,
+        tintColor: secondaryColor,
+        marginRight: 20,
+      },
+      contactCallIcon: {
+        width: 20,
+        height: 20,
+        tintColor: secondaryColor,
+      },
+      contactRightAction: {
+        backgroundColor: errorColor,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 80,
+        height: 70,
+        marginTop: 15,
+      },
+      contactRightActionText: {
+        color: secondaryColor,
+        paddingHorizontal: 10,
+      },
+      contactAddButton: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        backgroundColor: primaryColor,
+        position: 'absolute',
+        right: 30,
+        bottom: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      contactAddIcon: {
+        width: 50,
+        height: 70,
+      },
+      //AddContactScreen
+      addContactcontainer: {
+        flex: 1,
+        backgroundColor: primaryColor,
+      },
+      addcontactheader: {
+        width: '100%',
+        height: 60,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingLeft: 20,
+      },
+      addcontactBackIcon: {
+        width: 24,
+        height: 24,
+        tintColor: secondaryColor,
+      },
+      addcontactTitle: {
+        marginTop: 50,
+        alignSelf: 'center',
+        fontSize: normalSize,
+        color: secondaryColor,
+      },
+      addcontactInput: {
+        width: '90%',
+        height: 50,
+        borderWidth: 0.5,
+        borderRadius: 10,
+        borderColor: secondaryColor,
+        paddingLeft: 15,
+        alignSelf: 'center',
+        marginTop: 50,
+        color: secondaryColor,
+      },
+      addcontactInputMarginTop: {
+        marginTop: 20,
+      },
+      addcontactSaveButton: {
+        backgroundColor: secondaryColor,
+        borderRadius: 10,
+        height: 50,
+        width: '90%',
+        marginTop: 50,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      addcontactSaveButtonText: {
+        color: primaryColor,
+      },
 });
 
 
