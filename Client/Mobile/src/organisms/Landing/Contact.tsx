@@ -4,7 +4,7 @@ import Contact from 'react-native-contacts';
 import { useIsFocused } from '@react-navigation/native';
 import Communications from 'react-native-communications';
 import { Swipeable } from 'react-native-gesture-handler';
-import {  styles } from "../../styles/styles";
+import { styles } from "../../styles/styles";
 
 const Contacts = ({ navigation }) => {
   const [contactList, setContactList] = useState([]);
@@ -87,8 +87,9 @@ const Contacts = ({ navigation }) => {
               <View style={styles.contactItemLeft}>
                 <View style={styles.contactInitialCircle}>
                   <Text style={styles.contactInitialText}>
-                    {item.displayName.charAt(0).toUpperCase()}
+                    {item.displayName ? item.displayName.charAt(0).toUpperCase() : ''}
                   </Text>
+
                 </View>
                 <View style={styles.contactItemTextContainer}>
                   <Text style={styles.contactItemText}>{item.displayName}</Text>
@@ -129,7 +130,7 @@ const Contacts = ({ navigation }) => {
 };
 
 
- 
+
 
 
 export default Contacts;
