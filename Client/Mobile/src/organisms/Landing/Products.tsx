@@ -16,8 +16,7 @@ const Products = ({ navigation }) => {
   const [isAccepted, setIsAccepted] = useState(false);
 
   const Role = AsyncStorage.getItem('Role');// State to keep track of selected card
-   const RoleId = 3
-  //  parseInt(Role,10);
+   const RoleId =  parseInt(Role,10); //3 or 4
 
 
   useEffect(() => {
