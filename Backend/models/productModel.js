@@ -22,7 +22,20 @@ const Product = sequelize.define("Products", {
             model: User, // Referenced table name
             key: 'user_id',
         }
+    },
+    isAccepted:{
+        type: Datatypes.BOOLEAN,
+        defaultValue:false
+    },
+    isCompleted:{
+        type: Datatypes.BOOLEAN,
+        defaultValue:false
+    },
+    isPending:{
+        type: Datatypes.BOOLEAN,
+        defaultValue:false
     }
+
 }, { tableName: 'Products', versionKey: false, timestamps: false });
 
 module.exports = { Product };
