@@ -3,6 +3,9 @@ import { View, Text, FlatList, Image, TouchableOpacity, } from 'react-native';
 import { styles } from '../../styles/styles';
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import { fetchAllProducts } from '../../reducers/Product/productSlice';
+import { CardOptions } from '../../helpers/Models/CardOptions';
+import TeemxAcceptenceButton  from   '../../molecules/TeamxAcceptenceButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Products = ({ navigation }) => {
   const dispatch = useAppDispatch();
@@ -10,6 +13,12 @@ const Products = ({ navigation }) => {
   const [likeCounts, setLikeCounts] = useState({});
   const likeIconActiveColor = "#FF0000";
   const likeIconInactiveColor = "#777";
+  const [isAccepted, setIsAccepted] = useState(false);
+
+  const Role = AsyncStorage.getItem('Role');// State to keep track of selected card
+   const RoleId = 3
+  //  parseInt(Role,10);
+
 
   useEffect(() => {
     dispatch(fetchAllProducts());
@@ -29,7 +38,8 @@ const Products = ({ navigation }) => {
       { name: "Lable 2", value_type: "", value: "Label 2 Description" },
       { name: "Lable 3", value_type: "", value: "Label 1 Description" },
       { name: "Lable 4", value_type: "", value: "Label 2 Description" }
-    ]
+    ],
+    isAccepted:false
   }]
 
   const handleCardPress = (item) => {
@@ -79,7 +89,10 @@ const Products = ({ navigation }) => {
           <View style={styles.cardContent}>
             <Text style={styles.cardTitle}>{item.title}</Text>
             <Text style={styles.cardDescription}>{descriptionToShow}</Text>
-
+             
+              {(RoleId === CardOptions.BPO) || (RoleId === CardOptions.Lawyer) ? (
+                <TeemxAcceptenceButton/>
+              ) : ( 
             <View style={styles.buttonContainer}>
               <Text style={styles.cardLikes}>{likeCounts[item.id] || 0} Likes</Text>
               <TouchableOpacity onPress={() => handleLikePress(item.id)}>
@@ -95,6 +108,7 @@ const Products = ({ navigation }) => {
                 />
               </TouchableOpacity>
             </View>
+              )}
           </View>
         </View>
       </TouchableOpacity>

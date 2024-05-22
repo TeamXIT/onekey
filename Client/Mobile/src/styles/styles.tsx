@@ -295,8 +295,10 @@ const styles = StyleSheet.create({
         borderColor:'white',
         height:'auto',
         width:'auto',
-        borderWidth:0.5,
-        borderRadius:10
+        borderWidth:0.2,
+        borderRadius:10,
+        paddingLeft:10,
+        paddingRight:10
     },
     carddetailsTitle: {
         fontSize: normalSize,
@@ -558,6 +560,30 @@ const styles = StyleSheet.create({
       commitScreenAlignment:{
         backgroundColor: primaryColor, 
         alignItems: 'center'
+      },
+      acceptContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      acceptText: {
+        fontSize: 20,
+        color: '#48525e',
+        borderColor:'#48525e',
+        borderWidth:1,
+        borderRadius:15,
+        
+        paddingLeft:10,
+        paddingRight:10
+      },
+      acceptButton:{
+         color:'green',
+         borderColor:'green',
+         fontSize:20,
+         borderWidth:1,
+         borderRadius:15,
+         paddingLeft:10,
+         paddingRight:10
       }
 });
 
