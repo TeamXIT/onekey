@@ -8,7 +8,7 @@ import TeamXErrorText from "../../molecules/TeamXErrorText";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import { RoleSelection } from "../../reducers/auth/authSlice";
 import TeamXLoader from "../../molecules/TeamXLoader";
-import TeamXButton from "../../atoms/TeamXbutton";
+import TeamXButton from "../../atoms/TeamXButton";
 import TeamXTextedLink from "../../molecules/TeamXTextedLink";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
