@@ -291,7 +291,14 @@ const styles = StyleSheet.create({
     titleDescriptionContainer: {
         flex: 5,
         paddingHorizontal: 5,
-        margin: 10
+        margin: 10,
+        borderColor:'white',
+        height:'auto',
+        width:'auto',
+        borderWidth:0.2,
+        borderRadius:10,
+        paddingLeft:10,
+        paddingRight:10
     },
     carddetailsTitle: {
         fontSize: normalSize,
@@ -536,7 +543,8 @@ const styles = StyleSheet.create({
         backgroundColor: secondaryColor,
         borderRadius: 10,
         flexDirection: 'row',
-        margin: 15
+        margin: 15,
+        padding:10
       },
       commentImage: {
         height: 100,
@@ -726,6 +734,30 @@ const styles = StyleSheet.create({
       addcontactSaveButtonText: {
         color: primaryColor,
       },
+      acceptContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      acceptText: {
+        fontSize: 20,
+        color: '#48525e',
+        borderColor:'#48525e',
+        borderWidth:1,
+        borderRadius:15,
+        
+        paddingLeft:10,
+        paddingRight:10
+      },
+      acceptButton:{
+         color:'green',
+         borderColor:'green',
+         fontSize:20,
+         borderWidth:1,
+         borderRadius:15,
+         paddingLeft:10,
+         paddingRight:10
+      }
 });
 
 
