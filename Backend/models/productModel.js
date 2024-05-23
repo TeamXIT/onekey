@@ -23,7 +23,11 @@ const Product = sequelize.define("Products", {
             key: 'user_id',
         }
     },
-    isAccepted:{
+    isBpoAccepted:{
+        type: Datatypes.BOOLEAN,
+        defaultValue:false
+    },
+    isLawyerAccepted:{
         type: Datatypes.BOOLEAN,
         defaultValue:false
     },
@@ -33,9 +37,8 @@ const Product = sequelize.define("Products", {
     },
     isPending:{
         type: Datatypes.BOOLEAN,
-        defaultValue:false
+        defaultValue:true
     }
-
 }, { tableName: 'Products', versionKey: false, timestamps: false });
 
 module.exports = { Product };
