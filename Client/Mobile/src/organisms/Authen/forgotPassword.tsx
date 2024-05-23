@@ -1,7 +1,7 @@
 import { View } from "react-native"
 import { styles } from "../../styles/styles";
 import { useState, } from "react";
-import TeamXButton from "../../atoms/TeamXButton";
+import TeamXButton from "../../atoms/TeamXbutton";
 import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
 import TeamXHeaderText from "../../atoms/TeamXHeaderText";

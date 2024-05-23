@@ -1,12 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
-import { styles } from "../../styles/styles";
+import React from 'react';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import {  styles } from "../../styles/styles";
 
-const Settings = () => {
+const Settings = ({ navigation }) => {
     return (
-        <View style={styles.HomeContainer}>
-            <Text style={styles.HomeText}>Settings</Text>
+        <View style={styles.SettingmainContainer}>
+            <TouchableOpacity
+                style={styles.SettingcontactButton}
+                onPress={() => navigation.navigate('Contacts')}
+            >
+                <Text style={styles.SettingcontactButtonText}>Contacts</Text>
+            </TouchableOpacity>
         </View>
     );
 }
-
 export default Settings;
