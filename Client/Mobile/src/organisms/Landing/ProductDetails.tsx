@@ -82,15 +82,17 @@ const ProductDetails = ({ route, navigation }) => {
         <View style={styles.titleDescriptionContainer}>
           <Text style={styles.carddetailsTitle}>{cardData.title}</Text>
           <Text style={styles.carddetailsDescription}>{cardData.description}</Text>
+        </View>
+        
           {/* Dynamic Properties */}
           {cardData.dynamic_properties && cardData.dynamic_properties.map((property, index) => (
-            <View key={index}>
+            <View key={index} style={styles.titleDescriptionContainer}>
               <Text style={styles.carddetailsTitle}>{property.name}</Text>
               <Text style={styles.carddetailsDescription}>{property.value}</Text>
             </View>
           ))}
         </View>
-      </View>
+      
     </ScrollView>
   );
 };

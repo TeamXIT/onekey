@@ -10,6 +10,7 @@ import { RoleSelection } from "../../reducers/auth/authSlice";
 import TeamXLoader from "../../molecules/TeamXLoader";
 import TeamXButton from "../../atoms/TeamXButton";
 import TeamXTextedLink from "../../molecules/TeamXTextedLink";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const UserTypeSelection = ({ navigation }) => {
     const dispatch = useAppDispatch();
@@ -28,13 +29,13 @@ const UserTypeSelection = ({ navigation }) => {
     ];
 
     useEffect(() => {
-        if (authen.data.UserType) {
-            setSignupSuccess(true);
-            setTimeout(() => {
+         if (authen.data.UserType) {
+         setSignupSuccess(true);
+             setTimeout(() => {
                 navigation.replace('signin');
-                setSignupSuccess(false);
-            }, 3000);
-        }
+                 setSignupSuccess(false);
+             }, 3000);
+         }
         setIsLoading(false);
     }, [authen.screen.error, authen.data.UserType]);
 
@@ -42,10 +43,11 @@ const UserTypeSelection = ({ navigation }) => {
         setSelectedCard(option);
     }
 
-    const handleNextpress = () => {
+    const handleNextpress = async() => {
         if (selectedCard > 0) {
             setIsLoading(true);
             dispatch(RoleSelection(selectedCard, authen.data.Username))
+             await AsyncStorage.setItem('role',selectedCard.toString())
         } else {
             setError("Select type of user to complete signup");
         }
@@ -57,7 +59,7 @@ const UserTypeSelection = ({ navigation }) => {
             id={item.id}
             imageSource={item.imageSource}
             labelText={item.labelText}
-            selected={selectedCard === item.labelText} // Pass whether the card is selected
+            selected={selectedCard === item.id} // Pass whether the card is selected
             setSelectedCard={setSelectedCard} // Pass setSelectedCard function
         />
     );
@@ -65,7 +67,7 @@ const UserTypeSelection = ({ navigation }) => {
     if (isSignupSuccess) {
         return (
             <View style={styles.containerStyle}>
-                <Image
+                 <Image 
                     source={require('../../images/ic_success.png')}
                     style={{
                         height: 150,
@@ -74,8 +76,8 @@ const UserTypeSelection = ({ navigation }) => {
                     }}
                 />
 
-                <Text style={[styles.textStyle, { textAlign: "center" }]}>Congratulations ! {'\n'} Your registration has been successful</Text>
-            </View>
+                 <Text style={[styles.textStyle, { textAlign: "center" }]}>Congratulations ! {'\n'} Your registration has been successful</Text> 
+             </View> 
         );
     }
     return (
