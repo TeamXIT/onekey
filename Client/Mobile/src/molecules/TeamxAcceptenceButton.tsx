@@ -16,7 +16,8 @@ const TeamxAcceptenceButton=()=>{
           <Text style={styles.acceptText}>Accepted ✔</Text>
         ) : (
         
-        <TouchableOpacity   onPress={handleAccept}><Text style={styles.acceptButton}>Accept</Text></TouchableOpacity>
+                    <Button title='Accept' color={'green'} onPress={handleAccept}  />
+
           
         )}
       </View>

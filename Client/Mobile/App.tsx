@@ -12,7 +12,7 @@ import UserTypeSelection from './src/organisms/Authen/UserTypeSelection';
 import Verification from './src/organisms/Authen/Verification';
 import Dashboard from './src/organisms/Landing/Dashboard';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
-import ForgotPassword from './src/organisms/Authen/forgotPassword';
+import ForgotPassword from './src/organisms/Authen/ForgotPassword';
 import Comment from './src/organisms/Landing/Comment';
 import Products from './src/organisms/Landing/Products';
 import { Provider } from 'react-redux';
