@@ -16,7 +16,7 @@ const Products = ({ navigation }) => {
   const [isAccepted, setIsAccepted] = useState(false);
 
   const Role = AsyncStorage.getItem('Role');// State to keep track of selected card
-   const RoleId =  parseInt(Role,10); //3 or 4
+   const RoleId = parseInt(Role,10); // Assign a values of 3 for BPO or 4 for Lawyer for acceptence
 
 
   useEffect(() => {
