@@ -4,8 +4,9 @@ import { styles } from '../../styles/styles';
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import { fetchAllProducts } from '../../reducers/Product/productSlice';
 import { CardOptions } from '../../helpers/Models/CardOptions';
-import TeemxAcceptenceButton  from   '../../molecules/TeamxAcceptenceButton';
+import TeemxAcceptenceButton from '../../molecules/TeamxAcceptenceButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Button } from 'react-native-paper';
 
 const Products = ({ navigation }) => {
   const dispatch = useAppDispatch();
@@ -16,7 +17,8 @@ const Products = ({ navigation }) => {
   const [isAccepted, setIsAccepted] = useState(false);
 
   const Role = AsyncStorage.getItem('Role');// State to keep track of selected card
-   const RoleId = parseInt(Role,10); // Assign a values of 3 for BPO or 4 for Lawyer for acceptence
+  const RoleId = 3
+  //  parseInt(Role,10); // Assign a values of 3 for BPO or 4 for Lawyer for acceptence
 
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const Products = ({ navigation }) => {
       { name: "Lable 3", value_type: "", value: "Label 1 Description" },
       { name: "Lable 4", value_type: "", value: "Label 2 Description" }
     ],
-    isAccepted:false
+    isAccepted: false
   }]
 
   const handleCardPress = (item) => {
@@ -86,30 +88,37 @@ const Products = ({ navigation }) => {
             }
           </View>
           <View style={styles.cardContent}>
-            <Text style={styles.cardTitle}>{item.title}</Text>
+            <View style={{flexDirection:'row',gap:50}}>
+               <Text style={styles.cardTitle}>{item.title}</Text>
+               <TouchableOpacity style={{backgroundColor:'#48525e',height:25,width:80,borderRadius:40}}><Text style={{color:'white',textAlign:'center',fontSize:15,paddingTop:2}}>SALE</Text></TouchableOpacity>
+            </View>
+
             <Text style={styles.cardDescription}>{descriptionToShow}</Text>
-             
-              {(RoleId === CardOptions.BPO) || (RoleId === CardOptions.Lawyer) ? (
-                <TeemxAcceptenceButton/>
-              ) : ( 
+
+
+
+
             <View style={styles.buttonContainer}>
               <Text style={styles.cardLikes}>{likeCounts[item.id] || 0} Likes</Text>
-              <TouchableOpacity onPress={() => handleLikePress(item.id)}>
-                <Image
-                  source={require('../../images/ic_like1.png')}
-                  style={{ tintColor: likeCounts[item.id] ? likeIconActiveColor : likeIconInactiveColor }}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => handleCommentPress(item)}>
-                <Image
-                  source={require('../../images/ic_comment.png')}
-                  style={{ tintColor: likeIconInactiveColor }}
-                />
-              </TouchableOpacity>
-            </View>
+              {(RoleId === CardOptions.BPO) || (RoleId === CardOptions.Lawyer) ? (
+                <TeemxAcceptenceButton />
+              ) : (
+                <>
+                  <TouchableOpacity onPress={() => handleLikePress(item.id)}>
+                    <Image source={require('../../images/ic_like1.png')}
+                      style={{ tintColor: likeCounts[item.id] ? likeIconActiveColor : likeIconInactiveColor }} />
+                  </TouchableOpacity><TouchableOpacity onPress={() => handleCommentPress(item)}>
+                    <Image
+                      source={require('../../images/ic_comment.png')}
+                      style={{ tintColor: likeIconInactiveColor }} />
+                  </TouchableOpacity>
+                </>
               )}
+
+                </View>
+
           </View>
-        </View>
+          </View>
       </TouchableOpacity>
     );
   };
