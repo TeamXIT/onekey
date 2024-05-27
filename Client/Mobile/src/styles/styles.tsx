@@ -290,13 +290,12 @@ const styles = StyleSheet.create({
     },
     titleDescriptionContainer: {
         flex: 5,
-        paddingHorizontal: 5,
-        margin: 10,
+        margin: 5,
         borderColor:'white',
         height:'auto',
         width:'auto',
         borderWidth:0.2,
-        borderRadius:10,
+        borderRadius:5,
         paddingLeft:10,
         paddingRight:10
     },
@@ -307,7 +306,7 @@ const styles = StyleSheet.create({
         color: secondaryColor,
     },
     carddetailsDescription: {
-        fontSize: normalSize,
+        fontSize: smallSize,
         color: secondaryColor,
         marginBottom: 5,
     },

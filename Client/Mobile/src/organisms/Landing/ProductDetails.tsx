@@ -83,6 +83,7 @@ const ProductDetails = ({ route, navigation }) => {
           <Text style={styles.carddetailsTitle}>{cardData.title}</Text>
           <Text style={styles.carddetailsDescription}>{cardData.description}</Text>
         </View>
+
         
           {/* Dynamic Properties */}
           {cardData.dynamic_properties && cardData.dynamic_properties.map((property, index) => (
@@ -93,6 +94,37 @@ const ProductDetails = ({ route, navigation }) => {
           ))}
         </View>
       
+
+
+        {/* Dynamic Properties */}
+        {cardData.dynamic_properties && cardData.dynamic_properties.map((property, index) => (
+          <View key={index} style={styles.titleDescriptionContainer}>
+            <Text style={styles.carddetailsTitle}>{property.name}</Text>
+            <Text style={styles.carddetailsDescription}>{property.value}</Text>
+          </View>
+
+
+        ))}
+        <TouchableOpacity>
+          <View style={styles.titleDescriptionContainer}>
+            <Text style={styles.carddetailsTitle}>BPO</Text>
+            <View style={styles.titleDescriptionContainer}>
+              <Text style={styles.carddetailsDescription}>Email: example@bpo.com</Text>
+              <Text style={styles.carddetailsDescription}>Phone: 123-456-7890</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <View style={styles.titleDescriptionContainer}>
+            <Text style={styles.carddetailsTitle}>Lawyer</Text>
+            <View style={styles.titleDescriptionContainer}>
+              <Text style={styles.carddetailsDescription}>Email: example@lawyer.com</Text>
+              <Text style={styles.carddetailsDescription}>Phone: 123-456-7890</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+    
+
     </ScrollView>
   );
 };
