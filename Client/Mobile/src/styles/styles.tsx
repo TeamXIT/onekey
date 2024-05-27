@@ -422,6 +422,7 @@ const styles = StyleSheet.create({
     },
     displayedLabelContainer: {
         borderColor: secondaryColor,
+        flexDirection: 'row',
         borderWidth: 2,
         padding: 10,
         marginTop: 10,
@@ -431,6 +432,20 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: -3,
         right: -3,
+    },
+    uploadedImage: {
+        width: 100,
+        height: 100,
+        resizeMode: 'cover',
+        marginRight: 10,
+    },
+    scrollView: {
+        marginVertical: 20,
+    },
+    imageSelectionContainer: {
+        flexDirection: 'row',
+        padding: 10,
+        marginVertical: 10,
     },
     fileButton: {
         flex: 1,
@@ -757,7 +772,14 @@ const styles = StyleSheet.create({
          borderRadius:15,
          paddingLeft:10,
          paddingRight:10
+      },
+      documentBackground: {
+        backgroundColor:primaryColor,
+        height:'100%',
+        width:'100%',
+       position:'absolute'
       }
+
 });
 
 
