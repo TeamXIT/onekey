@@ -8,6 +8,7 @@ const BASE_RESPONSE_MESSAGES = {
         GET_ALL_PRODUCT_SUCCESSFUL: 'Product retrieved successfully',
         PRODUCT_UPDATE_SUCCESSFUL:'Product updated successfully',
         GET_PRODUCT_BY_ID_SUCCESSFUL: 'Product retrieved successfully',
+        PRODUCT_ACCEPTED_SUCCESSFUL: 'Product accepted successfully'
     },
     ERROR: {
         ALL_FIELDS_REQUIRED: 'All fields are required',

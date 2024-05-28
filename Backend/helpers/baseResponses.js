@@ -25,6 +25,7 @@ const baseResponses = {
         USERNAME_LENGTH_ERROR: (data = null) => baseResponses.error('Username must contain at least 4 characters',data),
         EMAIL_ERROR: (data = null) => baseResponses.error('Invalid email address',data),
         ROLE_NOT_FOUND_ERROR: (data = null) => baseResponses.error('Complete your registration',data),
+        PRODUCT_ACCEPTED_SUCCESSFUL: (data = null) => baseResponses.success('Product Accepted Successfully',data),
     }
 };
 

@@ -22,6 +22,22 @@ const Product = sequelize.define("Products", {
             model: User, // Referenced table name
             key: 'user_id',
         }
+    },
+    isBpoAccepted:{
+        type: Datatypes.BOOLEAN,
+        defaultValue:false
+    },
+    isLawyerAccepted:{
+        type: Datatypes.BOOLEAN,
+        defaultValue:false
+    },
+    isCompleted:{
+        type: Datatypes.BOOLEAN,
+        defaultValue:false
+    },
+    isPending:{
+        type: Datatypes.BOOLEAN,
+        defaultValue:true
     }
 }, { tableName: 'Products', versionKey: false, timestamps: false });
 
