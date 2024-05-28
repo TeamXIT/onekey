@@ -1,29 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { View, Text } from 'react-native';
 import { styles } from '../../styles/styles';
-import TeamXStarRating from '../../molecules/TeamXStarRating'
-import {Text} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { View } from 'react-native-animatable';
-const DetailPage = ({navigation}) => {
-   return(
-        <SafeAreaView style={styles.CardDetailscontainer}>
-          <Text style={styles.deatailHeading}>Detail Page</Text>
-          <View>
-            <Text style={styles.detailText}>Name  : </Text>
-            <Text style={styles.detailText}>Email   : </Text>
-            <Text style={styles.detailText}>Phone  : </Text>
-            <Text style={styles.detailText}>About  : </Text>
-            <View style={{flexDirection:'row'}}>
-                <Text style={{fontSize:25,padding:20,color:'#F2E8C6'}}>Rating  :</Text>
-                <TeamXStarRating totalStars={5} />
-            </View>
-          </View>
-          <View>
-          <Text style={{color:'#F2E8C6',fontSize:25,paddingLeft:20}}>History</Text>
-           
-          </View>
+import Products from './Products';
 
-        </SafeAreaView>
-   )
-}
+const DetailPage = ({ navigation ,route}) => {
+  const [isAccepted, setIsAccepted] = useState(false);
+
+return (
+    <View style={styles.CardDetailscontainer}>
+      <Text style={styles.deatailHeading}>Detail Page</Text>
+      <View>
+        <Text style={styles.detailText}>Name: Teamx </Text>
+        <Text style={styles.detailText}>Email: Teamx@123 </Text>
+        <Text style={styles.detailText}>Phone: 5532334433 </Text>
+        <Text style={styles.detailText}>About: BPO plays a vital role in modern business operations
+         by providing cost-effective solutions, access to specialized expertise, and enhanced operational efficiency. </Text>
+      </View>
+      <Text style={styles.detailText}>History</Text>
+      <Products navigation={navigation} isAccepted={isAccepted} />
+    </View>
+  );
+};
+
 export default DetailPage;

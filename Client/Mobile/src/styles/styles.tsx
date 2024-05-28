@@ -768,8 +768,8 @@ const styles = StyleSheet.create({
         paddingTop:20
       },
       detailText:{
-        fontSize:25,
-        padding:20,
+        fontSize:15,
+        padding:7,
         color:'#F2E8C6'
       },
       starMaincontainer: {
