@@ -54,12 +54,12 @@ const UploadDocument = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: styles.appPrimary.color }}>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <TouchableOpacity onPress={() => navigation.navigate('DocumentViewer')}>
+       
           <Image
             source={selectedImage}
             style={styles.CardDetailsmainImage}
           />
-        </TouchableOpacity>
+       
         {dynamicProps.map((item, index) => (
           <View style={styles.displayedLabelContainer} key={index}>
             <TouchableOpacity
@@ -75,10 +75,12 @@ const UploadDocument = ({ navigation }) => {
         ))}
 
         <View style={[styles.fileButton, { flexDirection: 'row' }]}>
+        <TouchableOpacity onPress={() => navigation.navigate('DocumentViewer')}>
           <TeamxImageComponent
             image={require('../../images/ic_upload.png')}
             onFilePathsReceived={handleReceiveFilePaths}
           />
+        </TouchableOpacity>
         </View>
       </ScrollView>
       <TouchableOpacity
