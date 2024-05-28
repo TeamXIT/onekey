@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, Alert, ScrollView, SafeAreaView } from 'react-native';
 import TeamxImageComponent from '../../molecules/TeamxImageComponent';
 import { styles } from '../../styles/styles';
+import TeamxClickableComponent from '../../molecules/TeamxClickableComponent';
 
 const UploadDocument = ({ navigation }) => {
   const [imagePaths, setImagePaths] = useState([]);
@@ -11,7 +12,7 @@ const UploadDocument = ({ navigation }) => {
 
   const handleReceiveFilePaths = (paths) => {
     if (paths.length > 0) {
-      setSelectedImage({ uri: paths[0] }); // Set to the first image by default
+      // setSelectedImage({ uri: paths[0] }); // Set to the first image by default
     }
     setImagePaths(paths);
     setDynamicProps(paths.map(path => ({ type: 'File', path })));
@@ -76,7 +77,7 @@ const UploadDocument = ({ navigation }) => {
 
         <View style={[styles.fileButton, { flexDirection: 'row' }]}>
         <TouchableOpacity onPress={() => navigation.navigate('DocumentViewer')}>
-          <TeamxImageComponent
+        <TeamxClickableComponent // Updated to use TeamxClickableComponent
             image={require('../../images/ic_upload.png')}
             onFilePathsReceived={handleReceiveFilePaths}
           />
@@ -99,5 +100,4 @@ const UploadDocument = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
-export default UploadDocument;
+export default UploadDocument
