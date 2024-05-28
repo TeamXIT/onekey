@@ -290,13 +290,12 @@ const styles = StyleSheet.create({
     },
     titleDescriptionContainer: {
         flex: 5,
-        paddingHorizontal: 5,
-        margin: 10,
+        margin: 5,
         borderColor:'white',
         height:'auto',
         width:'auto',
         borderWidth:0.2,
-        borderRadius:10,
+        borderRadius:5,
         paddingLeft:10,
         paddingRight:10
     },
@@ -307,7 +306,7 @@ const styles = StyleSheet.create({
         color: secondaryColor,
     },
     carddetailsDescription: {
-        fontSize: normalSize,
+        fontSize: smallSize,
         color: secondaryColor,
         marginBottom: 5,
     },
@@ -755,11 +754,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
       acceptText: {
-        fontSize: 20,
-        color: '#48525e',
-        borderColor:'#48525e',
-        borderWidth:1,
-        borderRadius:15,
+        height:34,
+        fontSize:17,
+        paddingTop:4,
+        color: 'white',
+        backgroundColor:'#48525e',
+        
+        
+        
         
         paddingLeft:10,
         paddingRight:10
@@ -779,7 +781,32 @@ const styles = StyleSheet.create({
         width:'100%',
        position:'absolute'
       }
-
+      deatailHeading:{
+        color:'#F2E8C6',
+        fontSize:35,
+        textAlign:'center',
+        paddingTop:20
+      },
+      detailText:{
+        fontSize:15,
+        padding:7,
+        color:'#F2E8C6'
+      },
+      starMaincontainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      starContainer: {
+        margin: 5,
+      },
+      star: {
+        fontSize: 32,
+        color: 'white', // Set default color to white
+      },
+      selectedStar: {
+        color: 'yellow',
+      },
 });
 
 

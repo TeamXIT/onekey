@@ -13,7 +13,7 @@ const createProduct = async (req, res) => {
             product = await Product.create({
                 name: name,
                 description: description,
-                owner_id: owner_id
+                owner_id: owner_id,
             });
         } else {
             product = await Product.update(
@@ -159,4 +159,34 @@ const deleteProduct = async (req, res) => {
         return res.status(500).json(baseResponses.error(error.message));
     }
 }
-module.exports = { getAllProducts, getById, createProduct, deleteProduct, updateProduct };
+const productBpoAcceptance = async (req, res) => {
+    const {isBpoAccepted,product_id}=req.body;
+    try{
+    const product = await Product.findOne({where:{product_id: product_id}});
+    if(!product){
+        return res.status(404).json(baseResponses.constantMessages.PRODUCT_NOT_FOUND);
+    }
+    else{
+        await Product.update({isBpoAccepted:isBpoAccepted},{where:{product_id: product.product_id}})
+        return res.status(200).json(baseResponses.constantMessages.PRODUCT_ACCEPTED_SUCCESSFUL)
+    }
+    }catch (error){
+          return res.status(500).json(baseResponses.error(error.message));
+    }
+};
+const productLawyerAcceptance = async (req, res) => {
+    const {isLawyerAccepted,product_id}=req.body;
+    try{
+    const product = await Product.findOne({where:{product_id: product_id}});
+    if(!product){
+        return res.status(404).json(baseResponses.constantMessages.PRODUCT_NOT_FOUND);
+    }
+    else{
+        await Product.update({isLawyerAccepted:isLawyerAccepted},{where:{product_id: product.product_id}})
+        return res.status(200).json(baseResponses.constantMessages.PRODUCT_ACCEPTED_SUCCESSFUL)
+    }
+    }catch (error){
+          return res.status(500).json(baseResponses.error(error.message));
+    }
+};
+module.exports = { getAllProducts, getById, createProduct, deleteProduct, updateProduct, productBpoAcceptance, productLawyerAcceptance };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Image, Animated, TouchableOpacity, Text } from 'react-native';
 import { styles } from '../../styles/styles';
 import { ScrollView } from 'react-native-gesture-handler';
+import DetailPage from './DetailPage';
 
 const ProductDetails = ({ route, navigation }) => {
   const { cardData, assets, isLiked, updateLikeCount } = route.params;
@@ -83,16 +84,50 @@ const ProductDetails = ({ route, navigation }) => {
           <Text style={styles.carddetailsTitle}>{cardData.title}</Text>
           <Text style={styles.carddetailsDescription}>{cardData.description}</Text>
         </View>
+
         
           {/* Dynamic Properties */}
           {cardData.dynamic_properties && cardData.dynamic_properties.map((property, index) => (
+            <TouchableOpacity onPress={() =>navigation.navigate('DetailPage')}>
             <View key={index} style={styles.titleDescriptionContainer}>
               <Text style={styles.carddetailsTitle}>{property.name}</Text>
               <Text style={styles.carddetailsDescription}>{property.value}</Text>
             </View>
+            </TouchableOpacity>
           ))}
         </View>
       
+
+
+        {/* Dynamic Properties */}
+        {cardData.dynamic_properties && cardData.dynamic_properties.map((property, index) => (
+          <View key={index} style={styles.titleDescriptionContainer}>
+            <Text style={styles.carddetailsTitle}>{property.name}</Text>
+            <Text style={styles.carddetailsDescription}>{property.value}</Text>
+          </View>
+
+
+        ))}
+        <TouchableOpacity>
+          <View style={styles.titleDescriptionContainer}>
+            <Text style={styles.carddetailsTitle}>BPO</Text>
+            <View style={styles.titleDescriptionContainer}>
+              <Text style={styles.carddetailsDescription}>Email: example@bpo.com</Text>
+              <Text style={styles.carddetailsDescription}>Phone: 123-456-7890</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <View style={styles.titleDescriptionContainer}>
+            <Text style={styles.carddetailsTitle}>Lawyer</Text>
+            <View style={styles.titleDescriptionContainer}>
+              <Text style={styles.carddetailsDescription}>Email: example@lawyer.com</Text>
+              <Text style={styles.carddetailsDescription}>Phone: 123-456-7890</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+    
+
     </ScrollView>
   );
 };
