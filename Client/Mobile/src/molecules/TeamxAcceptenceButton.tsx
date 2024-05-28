@@ -13,10 +13,10 @@ const TeamxAcceptenceButton=()=>{
     return(
         <View style={styles.acceptContainer}>
         {isAccepted ? (
-          <Text style={styles.acceptText}>Accepted ✔</Text>
+          <Text style={styles.acceptText}>Accepted</Text>
         ) : (
         
-                    <Button title='Accept' color={'green'} onPress={handleAccept}  />
+                    <Button title='Accept' color={'#48525e'}  onPress={handleAccept}  />
 
           
         )}

@@ -19,11 +19,16 @@ const Signup = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+
 
     const [usernameError, setUsernameError] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const [phoneNumberError, setPhoneNumberError] = useState('');
+
+    
     const [signupError, setSignupError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
@@ -91,6 +96,17 @@ const Signup = ({ navigation }) => {
             setConfirmPasswordError('');
         }
 
+        //Check phone number
+        if (!phoneNumber.trim()) {
+            setPhoneNumberError('Please provide phone number.');
+            hasError = true;
+        } else if (phoneNumber.trim().length < 11) {
+            setPhoneNumberError('Phone number must be 10 numbers.');
+            hasError = true;
+        } else {
+            setPhoneNumberError('');
+        }
+
         if (!hasError) {
             setIsLoading(true);
             setSignupError('');
@@ -101,6 +117,8 @@ const Signup = ({ navigation }) => {
     const emailRef = useRef(null)
     const passwordRef = useRef(null);
     const confirmPasswordRef = useRef(null)
+    const phoneNumberRef = useRef(null)
+
 
     return (
         <View style={[styles.containerStyle, { padding: 0, gap: 0 }]}>
@@ -155,12 +173,25 @@ const Signup = ({ navigation }) => {
                             value={confirmPassword}
                             onChangeText={setConfirmPassword}
                             image={require('../../images/ic_eye.png')}
-                            placeholder="Confirm  Password"
+                            placeholder="Confirm Password"
                             secureTextEntry={true}
                             returnKeyType="done"
                         />
                         <TeamXErrorText errorText={confirmPasswordError} />
                     </View>
+
+                    <View>
+    <TeamXImageTextInput
+        ref={phoneNumberRef}
+        value={phoneNumber}
+        onChangeText={setPhoneNumber}
+        image={require('../../images/ic_white_phone.png')}
+        placeholder="Phone Number"
+        secureTextEntry={true}
+        returnKeyType="done"
+    />
+    <TeamXErrorText errorText={phoneNumberError} />
+</View>
 
                     <TeamXErrorText errorText={signupError} />
 

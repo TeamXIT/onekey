@@ -740,11 +740,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
       acceptText: {
-        fontSize: 20,
-        color: '#48525e',
-        borderColor:'#48525e',
-        borderWidth:1,
-        borderRadius:15,
+        height:34,
+        fontSize:17,
+        paddingTop:4,
+        color: 'white',
+        backgroundColor:'#48525e',
+        
+        
+        
         
         paddingLeft:10,
         paddingRight:10
@@ -757,7 +760,33 @@ const styles = StyleSheet.create({
          borderRadius:15,
          paddingLeft:10,
          paddingRight:10
-      }
+      },
+      deatailHeading:{
+        color:'#F2E8C6',
+        fontSize:35,
+        textAlign:'center',
+        paddingTop:20
+      },
+      detailText:{
+        fontSize:25,
+        padding:20,
+        color:'#F2E8C6'
+      },
+      starMaincontainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      starContainer: {
+        margin: 5,
+      },
+      star: {
+        fontSize: 32,
+        color: 'white', // Set default color to white
+      },
+      selectedStar: {
+        color: 'yellow',
+      },
 });
 
 
