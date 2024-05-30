@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { View, Image, TouchableOpacity, Alert, Platform } from "react-native";
+import { View, Image, TouchableOpacity, Alert, Platform, Modal, Text } from "react-native";
 import ImagePicker from 'react-native-image-crop-picker';
 import DocumentPicker from 'react-native-document-picker';
-import FileViewer from 'react-native-file-viewer';
 import { WebView } from 'react-native-webview';
 import RNFS from 'react-native-fs';
 import { styles } from "../styles/styles";
@@ -11,6 +10,8 @@ const SavePath = Platform.OS === 'ios' ? RNFS.MainBundlePath : RNFS.DocumentDire
 
 const TeamxClickableComponent = ({ image, onFilePathsReceived }) => {
     const [selectedFile, setSelectedFile] = useState([]);
+    const [isWebViewVisible, setWebViewVisible] = useState(false);
+    const [webViewSource, setWebViewSource] = useState('');
 
     const fileIcons = {
         'pdf': require('../images/ic_pdf.png'),
@@ -139,14 +140,12 @@ const TeamxClickableComponent = ({ image, onFilePathsReceived }) => {
 
     const openDocument = async (file) => {
         try {
-            await FileViewer.open(file.FilePath, { showOpenWithDialog: true });
+            console.log(file);
+            setWebViewSource('https://www.mass.gov/doc/andys-test-for-url-issue-0/download');
+            setWebViewVisible(true);
         } catch (error) {
             console.error("Error opening document:", error);
-            if (error.message.includes("No app associated with this mime type")) {
-                Alert.alert("Error", "No app available to open this file type. Please install an appropriate app.");
-            } else {
-                Alert.alert("Error", "Unable to open the document. Please try again.");
-            }
+            Alert.alert("Error", "Unable to open the document. Please try again.");
         }
     };
 
@@ -169,9 +168,28 @@ const TeamxClickableComponent = ({ image, onFilePathsReceived }) => {
             <TouchableOpacity onPress={openSelectPicker} style={styles.uploadButtonStyle}>
                 <Image source={require('../../src/images/ic_upload.png')} />
             </TouchableOpacity>
+
+            <Modal
+                visible={isWebViewVisible}
+                onRequestClose={() => setWebViewVisible(false)}
+                transparent={false}
+                animationType="slide"
+            >
+                <View style={styles.webViewContainer}>
+                    <TouchableOpacity onPress={() => setWebViewVisible(false)} style={styles.closeButton}>
+                        <Text style={styles.closeButtonText}>Close</Text>
+                    </TouchableOpacity>
+                    <WebView
+                        source={{ uri: webViewSource }}
+                        style={styles.webView}
+                        javaScriptEnabled={true}
+                        domStorageEnabled={true}
+                        startInLoadingState={true}
+                    />
+                </View>
+            </Modal>
         </View>
     );
 };
 
 export default TeamxClickableComponent;
-
