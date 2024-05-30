@@ -778,15 +778,16 @@ const styles = StyleSheet.create({
        position:'absolute'
       },
       deatailHeading:{
-        color:'#F2E8C6',
+        color:secondaryColor,
         fontSize:35,
         textAlign:'center',
         paddingTop:20
       },
       detailText:{
-        fontSize:15,
+        fontSize:20,
         padding:7,
-        color:'#F2E8C6'
+        color:secondaryColor,
+        paddingLeft:10
       },
       starMaincontainer: {
         flexDirection: 'row',
@@ -803,6 +804,10 @@ const styles = StyleSheet.create({
       selectedStar: {
         color: 'yellow',
       },
+
+      goback:{
+        paddingLeft:10,
+        paddingTop:15
       productstar:{
         marginLeft: 130
       },
