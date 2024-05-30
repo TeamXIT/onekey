@@ -759,10 +759,6 @@ const styles = StyleSheet.create({
         paddingTop:4,
         color: 'white',
         backgroundColor:'#48525e',
-        
-        
-        
-        
         paddingLeft:10,
         paddingRight:10
       },
@@ -780,7 +776,7 @@ const styles = StyleSheet.create({
         height:'100%',
         width:'100%',
        position:'absolute'
-      }
+      },
       deatailHeading:{
         color:'#F2E8C6',
         fontSize:35,
@@ -807,6 +803,13 @@ const styles = StyleSheet.create({
       selectedStar: {
         color: 'yellow',
       },
+      productstar:{
+        marginLeft: 130
+      },
+      productbpolawyer:{
+        flexDirection: 'row', 
+        alignItems: 'center'
+      }
 });
 
 
