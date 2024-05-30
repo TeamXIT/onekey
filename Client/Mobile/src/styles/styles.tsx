@@ -759,10 +759,6 @@ const styles = StyleSheet.create({
         paddingTop:4,
         color: 'white',
         backgroundColor:'#48525e',
-        
-        
-        
-        
         paddingLeft:10,
         paddingRight:10
       },
@@ -808,9 +804,16 @@ const styles = StyleSheet.create({
       selectedStar: {
         color: 'yellow',
       },
+
       goback:{
         paddingLeft:10,
         paddingTop:15
+      productstar:{
+        marginLeft: 130
+      },
+      productbpolawyer:{
+        flexDirection: 'row', 
+        alignItems: 'center'
       }
 });
 
