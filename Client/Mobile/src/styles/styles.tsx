@@ -4,8 +4,9 @@ import {StyleSheet, useColorScheme} from 'react-native';
 const transparent = 'transparent';
 const darkText = '#212121';
 const lightText = '#FAFAFA';
-const primaryColor = '#48525e';
-const secondaryColor = '#F2E8C6';
+const primaryColor = '#272239'
+const secondaryColor =  '#F2E8C6';
+const textinputColor='#35314A';
 const tertiaryColor = '#d9d0b2';
 const fieldColor = '#A63120';
 const gray = '#808080';
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     width: 140,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: secondaryColor,
+    backgroundColor: '#888693',
     borderRadius: 10,
     shadowColor: shadowcolor,
     shadowOffset: {
@@ -98,10 +99,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: secondaryColor,
     borderRadius: 8,
     padding: 10,
     gap: 10,
+    backgroundColor:textinputColor
   },
   textimage: {
     width: 30,
@@ -134,6 +135,7 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     borderRadius: 8,
     fontSize: normalSize,
+    
   },
   switchTextStyle: {
     color: secondaryColor,
@@ -152,17 +154,13 @@ const styles = StyleSheet.create({
     marginRight: 30,
   },
   buttonStyle: {
-    borderWidth: 2,
-    color: '#FFFFFF',
-    borderColor: secondaryColor,
-    height: 60,
-    width: '100%',
-    padding: 5,
-    alignItems: 'center',
-    borderRadius: 8,
-    marginTop: 20,
-    marginBottom: 10,
-  },
+    width:220,
+    height:50,
+    borderRadius:50,
+    alignItems:'center',
+    justifyContent:'center',
+    
+},
   buttonTextStyle: {
     color: secondaryColor,
     paddingVertical: 10,
@@ -1110,6 +1108,7 @@ const styles = StyleSheet.create({
       goback:{
         paddingLeft:10,
         paddingTop:15
+      },
       productstar:{
         marginLeft: 130
       },
