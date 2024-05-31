@@ -1,10 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { View, Image, Animated, TouchableOpacity, Text } from 'react-native';
+import { View, Image, Animated, TouchableOpacity, Text, ScrollView } from 'react-native';
 import { styles } from '../../styles/styles';
-import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TeamXStarRating from '../../molecules/TeamXStarRating';
 import { useNavigation } from '@react-navigation/native';
+
+const Card = ({ email, phone, name }) => {
+  const navigation = useNavigation();
+
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate('DetailPage')}>
+      <View style={styles.titleDescriptionContainer}>
+        <View style={styles.productstar}>
+          <TeamXStarRating totalStars={5} />
+        </View>
+        <Text style={styles.carddetailsDescription}>Name: {name}</Text>
+        <Text style={styles.carddetailsDescription}>Email: {email}</Text>
+        <Text style={styles.carddetailsDescription}>Phone: {phone}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
 
 const ProductDetails = ({ route }) => {
   const { cardData, assets, isLiked, updateLikeCount } = route.params;
@@ -31,23 +47,6 @@ const ProductDetails = ({ route }) => {
     updateLikeCount(cardData.id, newLikeState ? 1 : 0);
     setIsLikedState(newLikeState);
   };
-
-  const Card = ({ title, email, phone }) => (
-    <TouchableOpacity onPress={() => navigation.navigate('DetailPage')}>
-      <View style={styles.titleDescriptionContainer}>
-        <View style={styles.productbpolawyer}>
-          <Text style={styles.carddetailsTitle}>{title}</Text>
-          <View style={styles.productstar}>
-            <TeamXStarRating totalStars={5} />
-          </View>
-        </View>
-        <View style={styles.titleDescriptionContainer}>
-          <Text style={styles.carddetailsDescription}>Email: {email}</Text>
-          <Text style={styles.carddetailsDescription}>Phone: {phone}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
-  );
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: styles.appPrimary.color }}>
@@ -109,8 +108,26 @@ const ProductDetails = ({ route }) => {
               <Text style={styles.carddetailsDescription}>{property.value}</Text>
             </View>
           ))}
-          <Card title="BPO    " email="example@bpo.com" phone="123-456-7890" />
-          <Card title="Lawyer" email="example@lawyer.com" phone="123-456-7890" />
+     
+          {/* BPO Section */}
+          <View style={styles.titleDescriptionContainer}>
+            <Text style={styles.carddetailsTitle}>BPOs</Text>
+            <ScrollView>
+              <Card name="BPO1" email="example1@bpo.com" phone="123-456-7890" />
+              <Card name="BPO2" email="example2@bpo.com" phone="123-456-7891" />
+              <Card name="BPO3" email="example3@bpo.com" phone="123-456-7892" />
+            </ScrollView>
+          </View>
+
+          {/* Lawyer Section */}
+          <View style={styles.titleDescriptionContainer}>
+            <Text style={styles.carddetailsTitle}>Lawyers</Text>
+            <ScrollView >
+              <Card name="Lawyer1" email="example1@lawyer.com" phone="123-456-7890" />
+              <Card name="Lawyer2" email="example2@lawyer.com" phone="123-456-7891" />
+              <Card name="Lawyer3" email="example3@lawyer.com" phone="123-456-7892" />
+            </ScrollView>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

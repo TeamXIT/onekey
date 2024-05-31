@@ -309,6 +309,7 @@ const styles = StyleSheet.create({
         fontSize: smallSize,
         color: secondaryColor,
         marginBottom: 5,
+      
     },
     Slidercontainer: {
         flexDirection: 'row',
@@ -804,7 +805,7 @@ const styles = StyleSheet.create({
         color: 'yellow',
       },
       productstar:{
-        marginLeft: 130
+        marginLeft: 150
       },
       productbpolawyer:{
         flexDirection: 'row', 
