@@ -1,32 +1,27 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, Alert, ScrollView, SafeAreaView } from 'react-native';
-import TeamxImageComponent from '../../molecules/TeamxImageComponent';
+import { WebView } from 'react-native-webview';
 import { styles } from '../../styles/styles';
+import TeamxClickableComponent from '../../molecules/TeamxClickableComponent';
+import RNFS from 'react-native-fs';
+import { PermissionsAndroid, Platform } from 'react-native';
 
-const UploadDocument = ({ navigation }) => {
-  const [imagePaths, setImagePaths] = useState([]);
+const UploadDocument = () => {
   const [dynamicProps, setDynamicProps] = useState([]);
   const [selectedImage, setSelectedImage] = useState(require('../../images/ic_house.png'));
-  const [isSelected, setIsSelected] = useState(false); // State to toggle image selection
+  const [viewDocument, setViewDocument] = useState(null); // State to hold the document to be viewed
 
-  const handleReceiveFilePaths = (paths) => {
-    if (paths.length > 0) {
-      setSelectedImage({ uri: paths[0] }); // Set to the first image by default
-    }
-    setImagePaths(paths);
-    setDynamicProps(paths.map(path => ({ type: 'File', path })));
+  const handleReceiveFilePaths = (files) => {
+    setDynamicProps(files.map(file => ({ type: 'File', path: file.FilePath })));
   };
 
   const deleteFile = (index) => {
     const updatedProps = [...dynamicProps];
-    if (updatedProps[index].type === 'File') {
-      setImagePaths(prev => prev.filter((_, i) => i !== index));
-    }
     updatedProps.splice(index, 1);
     setDynamicProps(updatedProps);
 
     // If the deleted file is the currently selected image, reset the selected image
-    if (selectedImage.uri === dynamicProps[index].path) {
+    if (selectedImage.uri === dynamicProps[index]?.path) {
       setSelectedImage(require('../../images/ic_house.png')); // Reset to the default image
     }
   };
@@ -42,47 +37,84 @@ const UploadDocument = ({ navigation }) => {
     );
   };
 
-  const handleSelectImage = (path) => {
-    if (isSelected) {
-      navigation.navigate('DocumentViewer', { imagePath: path });
-    } else {
-      setSelectedImage({ uri: path });
-      setIsSelected(true); // Set the state to true after selecting an image
+  const handleSelectImage = async (path) => {
+    try {
+      const newPath = `${RNFS.DocumentDirectoryPath}/${path.split('/').pop()}`;
+      await RNFS.copyFile(path, newPath);
+      setViewDocument(`file://${newPath}`);
+    } catch (error) {
+      console.error('Error copying file:', error);
     }
   };
 
+  const closeDocumentView = () => {
+    setViewDocument(null);
+  };
+
+  const requestStoragePermission = async () => {
+    if (Platform.OS === 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          {
+            title: 'Storage Permission Needed',
+            message: 'This app needs the Storage permission to access files.',
+          }
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          console.log('Storage permission granted');
+        } else {
+          console.log('Storage permission denied');
+        }
+      } catch (err) {
+        console.warn(err);
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    requestStoragePermission();
+  }, []);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: styles.appPrimary.color }}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-       
+      {viewDocument ? (
+        <View style={{ flex: 1 }}>
+          <TouchableOpacity onPress={closeDocumentView} style={styles.closeButton}>
+            <Text style={styles.closeButtonText}>Close Document</Text>
+          </TouchableOpacity>
+          <WebView
+            source={{ uri: viewDocument }}
+            style={{ flex: 1 }}
+          />
+        </View>
+      ) : (
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <Image
             source={selectedImage}
             style={styles.CardDetailsmainImage}
           />
-       
-        {dynamicProps.map((item, index) => (
-          <View style={styles.displayedLabelContainer} key={index}>
-            <TouchableOpacity
-              onPress={() => handleDeleteFile(index)}
-              style={styles.deleteIcon}>
-              <Image source={require('../../images/ic_delete.png')} />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleSelectImage(item.path)}>
-              <Image source={{ uri: item.path }} style={styles.uploadedImage} />
-            </TouchableOpacity>
-            <Text style={styles.uploadTitleText}>{item.path.split('/').pop()}</Text>
+          {dynamicProps.map((item, index) => (
+            <View style={styles.displayedLabelContainer} key={index}>
+              <TouchableOpacity
+                onPress={() => handleDeleteFile(index)}
+                style={styles.deleteIcon}>
+                <Image source={require('../../images/ic_delete.png')} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => handleSelectImage(item.path)}>
+                <Image source={{ uri: item.path }} style={styles.uploadedImage} />
+              </TouchableOpacity>
+              <Text style={styles.uploadTitleText}>{item.path.split('/').pop()}</Text>
+            </View>
+          ))}
+          <View style={[styles.fileButton, { flexDirection: 'row' }]}>
+            <TeamxClickableComponent
+              image={require('../../images/ic_upload.png')}
+              onFilePathsReceived={handleReceiveFilePaths}
+            />
           </View>
-        ))}
-
-        <View style={[styles.fileButton, { flexDirection: 'row' }]}>
-        <TouchableOpacity onPress={() => navigation.navigate('DocumentViewer')}>
-          <TeamxImageComponent
-            image={require('../../images/ic_upload.png')}
-            onFilePathsReceived={handleReceiveFilePaths}
-          />
-        </TouchableOpacity>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      )}
       <TouchableOpacity
         style={styles.uploadBtn}
         onPress={() => {
