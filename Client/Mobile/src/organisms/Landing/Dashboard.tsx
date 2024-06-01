@@ -182,7 +182,7 @@ const TabBarComponent = ({ active, options, onLayout, onPress }: TabBarComponent
 
 const styles = StyleSheet.create({
     tabBar: {
-        backgroundColor: '#F2E8C6', // Tab Background color
+        backgroundColor: '#35314A', // Tab Background color
     },
     activeBackground: {
         position: 'absolute',

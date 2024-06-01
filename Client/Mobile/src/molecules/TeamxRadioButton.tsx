@@ -8,8 +8,8 @@ const TeamxRadioButton = ({ value, label, selectedOption, secondaryColor, setSel
     <View style={styles.radioButtonRow}>
       <RadioButton
         value={value}
-        color={secondaryColor}
-        uncheckedColor={secondaryColor}
+        color={'#FFFFFF'}
+        uncheckedColor={'#FFFFFF'}
         status={selectedOption === value ? 'checked' : 'unchecked'}
         onPress={() => setSelectedOption(value)}
       />

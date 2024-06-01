@@ -7,6 +7,8 @@ import TeamxRadioButton from "../../molecules/TeamxRadioButton";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createNewProduct } from "../../reducers/Product/productSlice";
+import LinearGradient from 'react-native-linear-gradient';
+
 
 const Upload = () => {
     const dispatch = useAppDispatch();
@@ -141,14 +143,14 @@ const Upload = () => {
             AsyncStorage.getItem('AuthToken').then((value) => {
                 if (value) {
                     AsyncStorage.getItem('userId').then((user_id) => {
-                    try {
-                        //const decodedToken = jwtDecode(value);
-                        //console.log("Decoded token:", decodedToken);
+                        try {
+                            //const decodedToken = jwtDecode(value);
+                            //console.log("Decoded token:", decodedToken);
 
-                        dispatch(createNewProduct(uploadData, value,user_id));
-                    } catch (error) {
-                        console.error('Error decoding token:', error);
-                    }
+                            dispatch(createNewProduct(uploadData, value, user_id));
+                        } catch (error) {
+                            console.error('Error decoding token:', error);
+                        }
                     });
                 }
             });
@@ -157,11 +159,12 @@ const Upload = () => {
 
     return (
         <SafeAreaView style={styles.UploadContainer}>
-           <ScrollView contentContainerStyle={{ flexGrow: 1 ,padding:10}}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 10 }}>
                 <View >
                     <Text style={styles.UploadText}>Project Name</Text>
                     <TextInput style={styles.uploadTitleTextInput}
                         placeholder="Enter project name"
+                        placeholderTextColor={'#FFFFFF'}
                         value={projectName}
                         onChangeText={setProjectName} />
                     <Text style={styles.UploadText}>Project Description</Text>
@@ -169,11 +172,20 @@ const Upload = () => {
                         style={styles.uploadDescriptionTextInput}
                         multiline
                         placeholder="Enter project description"
+                        placeholderTextColor={'#FFFFFF'}
                         value={projectDescription}
                         onChangeText={setProjectDescription}
                     />
-                    <TouchableOpacity style={styles.Uploadbutton} onPress={() => {handleAddFile()}}>
-                        <Text style={styles.AddLabelText}>Add More Details</Text>
+                    <TouchableOpacity style={{ justifyContent: 'center', alignSelf: 'center' }} onPress={() => { handleAddFile() }}>
+                        <LinearGradient
+                            colors={['#888693', '#35314A']}
+                            start={{ x: 0.5, y: 0 }}
+                            end={{ x: 0.5, y: 1 }}
+                            style={styles.buttonStyle}
+                        >
+                            <Text style={styles.AddLabelText}>Add More Details</Text>
+                        </LinearGradient>
+
                     </TouchableOpacity>
                     {showAdditionalTextBox && (
                         <View style={styles.LabelTextBoxContainer}>
@@ -181,6 +193,7 @@ const Upload = () => {
                             <TextInput
                                 style={styles.uploadTitleTextInput}
                                 placeholder="Enter title"
+                                placeholderTextColor={'#FFFFFF'}
                                 onChangeText={(text) => setProjectText(text)}
                                 value={ProjectText}
                             />
@@ -204,8 +217,15 @@ const Upload = () => {
                                     />
                                 </View>
                             </View>
-                            <TouchableOpacity style={styles.AddButton} onPress={handleSaveFile}>
-                                <Text style={styles.AddButtonText}>Add</Text>
+                            <TouchableOpacity onPress={handleSaveFile}>
+                                <LinearGradient
+                                    colors={['#888693', '#35314A']}
+                                    start={{ x: 0.5, y: 0 }}
+                                    end={{ x: 0.5, y: 1 }}
+                                    style={{ height: 25, width: 80, borderRadius: 40, justifyContent: 'center', alignSelf: 'center' }}
+                                >
+                                    <Text style={{ color: 'white', textAlign: 'center', fontSize: 15, paddingTop: 2 }}>Add</Text>
+                                </LinearGradient>
                             </TouchableOpacity>
                         </View>
                     )}
@@ -228,7 +248,7 @@ const Upload = () => {
                                 <View style={styles.fileButton}>
                                     <TeamxImageComponent image={'../../src/images/ic_upload.png'} onFilePathsReceived={handleReceiveFilePaths} />
                                 </View>
-                               
+
                             )}
                         </View>
                     ))}
@@ -236,7 +256,7 @@ const Upload = () => {
             </ScrollView>
 
             <TouchableOpacity
-                style={styles.uploadBtn}
+                
                 onPress={() => {
                     Alert.alert("Upload Alert", "Do you want to upload?", [
                         {
@@ -246,7 +266,14 @@ const Upload = () => {
                         }
                     ]);
                 }}>
-                <Text style={styles.uploadButtonText}>UPLOAD</Text>
+                <LinearGradient
+                    colors={['#888693', '#35314A']}
+                    start={{ x: 0.5, y: 0 }}
+                    end={{ x: 0.5, y: 1 }}
+                    style={styles.uploadBtn}
+                >
+                    <Text style={styles.uploadButtonText}>UPLOAD</Text>
+                </LinearGradient>
             </TouchableOpacity>
         </SafeAreaView>
     );

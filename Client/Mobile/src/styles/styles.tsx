@@ -5,8 +5,9 @@ const transparent = 'transparent';
 const darkText = '#212121';
 const lightText = '#FAFAFA';
 const primaryColor = '#272239'
-const secondaryColor =  '#F2E8C6';
-const textinputColor='#35314A';
+const secondaryColor =  '#35314A';//'#F2E8C6';
+// const textinputColor='#35314A';
+const whiteText = '#FFFFFF';
 const tertiaryColor = '#d9d0b2';
 const fieldColor = '#A63120';
 const gray = '#808080';
@@ -473,7 +474,7 @@ const styles = StyleSheet.create({
     color: secondaryColor,
   },
   appTertiary: {
-    color: tertiaryColor,
+    color: whiteText,
   },
   appTextColor: {
     color: textColor,
@@ -497,7 +498,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontSize: normalSize,
-    color: secondaryColor,
+    color: whiteText,
   },
   //TODO: Update
   US_cardsContainerStyle: {
@@ -514,7 +515,7 @@ const styles = StyleSheet.create({
     width: 140,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#888693',
+    backgroundColor: secondaryColor,
     borderRadius: 10,
     shadowColor: shadowcolor,
     shadowOffset: {
@@ -540,7 +541,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 10,
     gap: 10,
-    backgroundColor:textinputColor
+    backgroundColor:secondaryColor
   },
   textimage: {
     width: 30,
@@ -557,16 +558,16 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderWidth: 1,
-    color: secondaryColor,
+    color: whiteText,
     marginHorizontal: 5,
-    borderColor: secondaryColor,
+    borderColor: whiteText,
     textAlign: 'center',
     fontSize: normalSize,
     borderRadius: 5,
   },
   imageInputStyle: {
     height: 45,
-    color: secondaryColor,
+    color: whiteText,
     fontWeight: '300',
     width: '90%',
     paddingLeft: 20,
@@ -576,13 +577,13 @@ const styles = StyleSheet.create({
     
   },
   switchTextStyle: {
-    color: secondaryColor,
+    color: whiteText,
     fontWeight: '500',
     fontSize: normalSize,
   },
   screenHeader: {
     fontSize: mediumSize,
-    color: secondaryColor,
+    color: whiteText,
   },
   logoImg: {
     width: '90%',
@@ -600,7 +601,7 @@ const styles = StyleSheet.create({
     
 },
   buttonTextStyle: {
-    color: secondaryColor,
+    color:whiteText,
     paddingVertical: 10,
     fontSize: normalSize,
     fontWeight: 'bold',
@@ -642,9 +643,11 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: smallSize,
     fontWeight: 'bold',
+    color:whiteText
   },
   cardDescription: {
     fontSize: xSmallSize,
+    color:whiteText
   },
   cardContent: {
     flex: 2,
@@ -681,7 +684,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   carddeatilsIcon: {
-    tintColor: secondaryColor,
+    tintColor: whiteText,
   },
   CardDetailsmainImage: {
     width: '100%',
@@ -699,7 +702,7 @@ const styles = StyleSheet.create({
     height: 70,
     marginRight: 10,
     borderWidth: 1,
-    borderColor: secondaryColor,
+    borderColor: whiteText,
     borderRadius: 10,
   },
   plusIconContainer: {
@@ -722,7 +725,7 @@ const styles = StyleSheet.create({
   titleDescriptionContainer: {
     flex: 5,
     margin: 5,
-    borderColor: 'white',
+    borderColor: whiteText,
     height: 'auto',
     width: 'auto',
     borderWidth: 0.2,
@@ -734,11 +737,11 @@ const styles = StyleSheet.create({
     fontSize: normalSize,
     fontWeight: 'bold',
     marginBottom: 5,
-    color: secondaryColor,
+    color: whiteText,
   },
   carddetailsDescription: {
     fontSize: smallSize,
-    color: secondaryColor,
+    color: whiteText,
     marginBottom: 5,
   },
   Slidercontainer: {
@@ -783,18 +786,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 20,
     fontSize: smallSize,
+    color:'white'
   },
   uploadDescriptionTextInput: {
-    backgroundColor: secondaryColor,
+    borderStyle:'dashed',
     borderRadius: 10,
     height: 100,
     paddingHorizontal: 10,
     marginBottom: 20,
     textAlignVertical: 'top',
     fontSize: smallSize,
+    borderWidth:1,
+    borderColor: '#9DBCD1',
+    color:'#FFFFFF'                     
+    
   },
   UploadText: {
-    color: secondaryColor,
+    color: 'white',
     fontSize: 20,
     marginBottom: 10,
   },
@@ -808,14 +816,14 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   LabelTextBoxContainer: {
-    borderColor: secondaryColor,
+    borderColor: whiteText,
     borderWidth: 2,
     padding: 10,
     marginTop: 10,
     borderRadius: 10,
   },
   labelText: {
-    color: secondaryColor,
+    color: whiteText,
     fontSize: smallSize,
     marginBottom: 10,
   },
@@ -824,7 +832,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   radioButtonLabel: {
-    color: secondaryColor,
+    color: whiteText,
     fontSize: ySmallSize,
     marginRight: 30,
   },
@@ -848,7 +856,7 @@ const styles = StyleSheet.create({
     fontSize: ySmallSize,
   },
   displayedLabelContainer: {
-    borderColor: secondaryColor,
+    borderColor: whiteText,
     flexDirection: 'row',
     borderWidth: 2,
     padding: 10,
@@ -886,20 +894,21 @@ const styles = StyleSheet.create({
     backgroundColor: secondaryColor,
     padding: 10,
     width: '70%',
-    borderRadius: 10,
+    borderRadius: 40,
     alignItems: 'center',
     elevation: 10,
     borderColor: secondaryColor,
     marginTop: 20,
     marginBottom: 15,
     marginLeft: '15%',
+    
   },
   uploadButtonText: {
     color: primaryColor,
     fontSize: normalSize,
   },
   AddLabelText: {
-    color: secondaryColor,
+    color: whiteText,
     fontSize: normalSize,
   },
 
@@ -1013,7 +1022,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   SettingcontactButtonText: {
-    color: secondaryColor,
+    color: '#FFFFFFF',
     fontSize: ySmallSize,
   },
   //contact screen
@@ -1197,7 +1206,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   deatailHeading: {
-    color: '#F2E8C6',
+    color: whiteText,
     fontSize: 35,
     textAlign: 'center',
     paddingTop: 20,
@@ -1205,7 +1214,7 @@ const styles = StyleSheet.create({
   detailText: {
     fontSize: 15,
     padding: 7,
-    color: '#F2E8C6',
+    color: whiteText,
   },
   starMaincontainer: {
     flexDirection: 'row',
@@ -1516,7 +1525,7 @@ const styles = StyleSheet.create({
        position:'absolute'
       },
       deatailHeading:{
-        color:secondaryColor,
+        color:whiteText,
         fontSize:35,
         textAlign:'center',
         paddingTop:20
@@ -1524,7 +1533,7 @@ const styles = StyleSheet.create({
       detailText:{
         fontSize:20,
         padding:7,
-        color:secondaryColor,
+        color:whiteText,
         paddingLeft:10
       },
       starMaincontainer: {

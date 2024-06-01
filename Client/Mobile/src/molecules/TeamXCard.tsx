@@ -27,7 +27,7 @@ const TeamXCard = ({ onPress, imageSource, labelText, selected, setSelectedCard,
         activeOpacity={0.5}
       >
         <Image source={imageSource} />
-        <Text >{labelText}</Text>
+        <Text style={{color:'#FFFFFF'}}>{labelText}</Text>
       </TouchableOpacity>
     </View>
   );
