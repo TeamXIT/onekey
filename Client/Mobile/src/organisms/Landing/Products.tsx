@@ -7,6 +7,8 @@ import { CardOptions } from '../../helpers/Models/CardOptions';
 import TeemxAcceptenceButton from '../../molecules/TeamxAcceptenceButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button } from 'react-native-paper';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 const Products = ({ navigation }) => {
   const dispatch = useAppDispatch();
@@ -73,6 +75,10 @@ const Products = ({ navigation }) => {
     }));
   };
 
+  const handleAccept = () => {
+    setIsAccepted(true);
+  };
+
   const renderItem = ({ item }) => {
     const descriptionToShow = item.description.length > 40 ?
       item.description.substring(0, 40) + '...' : item.description;
@@ -90,7 +96,16 @@ const Products = ({ navigation }) => {
           <View style={styles.cardContent}>
             <View style={{flexDirection:'row',gap:50}}>
                <Text style={styles.cardTitle}>{item.title}</Text>
-               <TouchableOpacity style={{backgroundColor:'#48525e',height:25,width:80,borderRadius:40}}><Text style={{color:'white',textAlign:'center',fontSize:15,paddingTop:2}}>SALE</Text></TouchableOpacity>
+               <TouchableOpacity style={{height:25,width:80,borderRadius:40}}>
+                 <LinearGradient
+                     colors={['#888693', '#35314A']}
+                     start={{ x: 0.5, y: 0 }}
+                     end={{ x: 0.5, y: 1 }}
+                     style={{height:25,width:80,borderRadius:40}}
+                  >
+                    <Text style={{color:'white',textAlign:'center',fontSize:15,paddingTop:2}}>SALE</Text>
+                  </LinearGradient>
+                </TouchableOpacity>
             </View>
 
             <Text style={styles.cardDescription}>{descriptionToShow}</Text>
@@ -101,7 +116,32 @@ const Products = ({ navigation }) => {
             <View style={styles.buttonContainer}>
               <Text style={styles.cardLikes}>{likeCounts[item.id] || 0} Likes</Text>
               {(RoleId === CardOptions.BPO) || (RoleId === CardOptions.Lawyer) ? (
-                <TeemxAcceptenceButton />
+                  <View style={styles.acceptContainer}>
+                  {isAccepted ? (
+                      <TouchableOpacity onPress={handleAccept} >
+                      <LinearGradient
+                          colors={['#888693', '#35314A']}
+                          start={{ x: 0.5, y: 0 }}
+                          end={{ x: 0.5, y: 1 }}
+                          style={{height:25,width:80,borderRadius:40}}
+                       >
+                         <Text style={{color:'white',textAlign:'center',fontSize:15,paddingTop:2}}>ACCEPTED</Text>
+                       </LinearGradient>
+                     </TouchableOpacity>
+                  ) : (
+                    <TouchableOpacity onPress={handleAccept} >
+                    <LinearGradient
+                        colors={['#888693', '#35314A']}
+                        start={{ x: 0.5, y: 0 }}
+                        end={{ x: 0.5, y: 1 }}
+                        style={{height:25,width:80,borderRadius:40}}
+                     >
+                       <Text style={{color:'white',textAlign:'center',fontSize:15,paddingTop:2}}>ACCEPT</Text>
+                     </LinearGradient>
+                   </TouchableOpacity>
+                    
+                  )}
+                </View>
               ) : (
                 <>
                   <TouchableOpacity onPress={() => handleLikePress(item.id)}>
@@ -124,7 +164,7 @@ const Products = ({ navigation }) => {
   };
 
   return (
-    <View style={{ backgroundColor: "#48525e", flex: 1, }}>
+    <View style={{ backgroundColor:'#272239', flex: 1, }}>
       <FlatList
         data={uploadData}
         renderItem={renderItem}
