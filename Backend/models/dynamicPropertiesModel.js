@@ -17,7 +17,7 @@ const DynamicProperties = sequelize.define("DynamicProperty",{
         allowNull:false
     },
     value:{
-        type:DataTypes.TEXT,
+        type:DataTypes.JSONB,
         allowNull:false
     },
     product_id:{
