@@ -1547,13 +1547,71 @@ const styles = StyleSheet.create({
         paddingLeft:10,
         paddingTop:15
       },
+      star: {
+        fontSize: 20,
+        color: 'white', // Set default color to white
+      },
+      selectedStar: {
+        color: 'yellow',
+      },
       productstar:{
-        marginLeft: 150
+        marginLeft: 230
       },
       productbpolawyer:{
-        flexDirection: 'row', 
-        alignItems: 'center'
-      }
+        color:secondaryColor,
+        fontSize:ySmallSize,
+        bottom:30
+      },
+      cardArrowIcon: {
+        width: 20,
+        height: 20,
+        tintColor:secondaryColor,
+        
+      },
+      row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent:"space-between"
+      },
+      cardbpolawyerTitle:{
+        fontSize: mediumSize,
+        marginBottom: 5,
+        color: secondaryColor,
+      },
+      //Teambottomsheet
+      TeamxBottomSheetcontainer: {
+        position: "absolute",
+        flex: 1,
+        top: 0,
+        left: 0,
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        width: "100%",
+        height: "100%",
+        justifyContent: "flex-end"
+    },
+    TeamxBottomSheetbackdrop: {
+        flex: 1
+    },
+    TeamxBottomSheetbottomsheet: {
+        width: "100%",
+        height: "40%",
+        backgroundColor: primaryColor,
+        borderTopRightRadius: 20,
+        borderTopLeftRadius: 20,
+        paddingHorizontal: 15,
+        paddingVertical: 20,
+    },
+    TeamxBottomSheetheader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 10,
+    },
+    TeamxBottomSheetheaderText: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: secondaryColor
+    },
+
 });
 
 export {styles, secondaryColor, errorColor};
