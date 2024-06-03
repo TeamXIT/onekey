@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Contacts from 'react-native-contacts';
 import { secondaryColor, styles } from "../../styles/styles";
+import LinearGradient from 'react-native-linear-gradient';
 
 const AddContactScreen = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -81,14 +82,14 @@ const AddContactScreen = ({ navigation }) => {
       <Text style={styles.addcontactTitle}>Add Contact</Text>
       <TextInput
         placeholder="Enter Name"
-        placeholderTextColor={secondaryColor}
+        placeholderTextColor={'#FFFFFF'}
         value={name}
         onChangeText={txt => setName(txt)}
         style={styles.addcontactInput}
       />
       <TextInput
         placeholder="Enter Mobile"
-        placeholderTextColor={secondaryColor}
+        placeholderTextColor={'#FFFFFF'}
         value={number}
         onChangeText={txt => setNumber(txt)}
         maxLength={10}
@@ -99,10 +100,16 @@ const AddContactScreen = ({ navigation }) => {
         ]}
       />
       <TouchableOpacity
-        style={styles.addcontactSaveButton}
         onPress={addContact}
       >
-        <Text style={styles.addcontactSaveButtonText}>Save Contact</Text>
+        <LinearGradient
+          colors={['#888693', '#35314A']}
+          start={{ x: 0.5, y: 0 }}
+          end={{ x: 0.5, y: 1 }}
+          style={ styles.addcontactSaveButton }
+        >
+          <Text style={styles.addcontactSaveButtonText}>Save Contact</Text>
+        </LinearGradient>
       </TouchableOpacity>
     </View>
   );

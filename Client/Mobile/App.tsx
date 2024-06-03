@@ -128,10 +128,34 @@ const Landing = () => {
       <Stack.Screen
         name="comment"
         component={Comment}
+        options={{
+          title: 'comment',
+          //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appPrimary.color, //Set Header color
+          },
+          headerShown: true,
+          headerTintColor: styles.appTertiary.color, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          }
+        }}
       />
       <Stack.Screen
         name="Feedback"
         component={Feedback}
+        options={{
+          title: 'Feedback',
+          //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appPrimary.color, //Set Header color
+          },
+          headerShown: true,
+          headerTintColor: styles.appTertiary.color, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          }
+        }}
       />
       <Stack.Screen
         name="imagelist"
