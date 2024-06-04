@@ -239,7 +239,7 @@ const Upload = () => {
                             </Text>
                             {project.type === "Text" && (
                                 <TextInput
-                                    style={styles.uploadDescriptionTextInput}
+                                    style={styles.textDescriptionTextInput}
                                     placeholder="Enter Text"
                                     onChangeText={(text) => project.description = text}
                                     multiline />
