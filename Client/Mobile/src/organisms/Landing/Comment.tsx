@@ -3,7 +3,7 @@ import { Text, Image, FlatList, View, TouchableOpacity } from 'react-native';
 import { styles } from '../../styles/styles'
 
 const commentsData = [
-  { id: 1, name: 'BPO1', phoneNumber: '9492520484', date: '31-03-2024 15:43', rating: 3.5, image: require('../../images/ic_bpo5.png') },
+  { id: 1, name: 'BPO1', phoneNumber: '9432654432', date: '31-03-2024 15:43', rating: 3.5, image: require('../../images/ic_bpo5.png') },
   { id: 2, name: 'BPO2', phoneNumber: '9876543210', date: '02-04-2024 09:33', rating: 4.1, image: require('../../images/ic_bpo5.png') },
   { id: 3, name: 'BPO3', phoneNumber: '9876543210', date: '03-05-2024 10:44', rating: 3.3, image: require('../../images/ic_bpo5.png') },
   { id: 4, name: 'BPO4', phoneNumber: '9876543210', date: '04-06-2024 11:55', rating: 3.5, image: require('../../images/ic_bpo5.png') },
@@ -42,7 +42,7 @@ const Comment = ({ navigation }) => {
       data={commentsData}
       renderItem={({ item }) => <CommentItem item={item} navigation={navigation} />}
       keyExtractor={(item) => item.id.toString()}
-      contentContainerStyle={{ backgroundColor: "#48525e", alignItems: 'center' }}
+      contentContainerStyle={{ backgroundColor: '#272239', alignItems: 'center' }}
     />
   );
 };

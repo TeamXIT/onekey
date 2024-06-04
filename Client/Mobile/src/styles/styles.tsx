@@ -785,15 +785,16 @@ const styles = StyleSheet.create({
   },
   deatailHeading: {
     color: whiteText,
-    fontSize: 35,
-    textAlign: 'center',
+    fontSize: 30,
+    textAlign:'center',
+    paddingLeft:15,
     paddingTop: 20
   },
   detailText: {
-    fontSize: 20,
-    padding: 7,
+    fontSize: 16,
+    padding:7,
     color: whiteText,
-    paddingLeft: 10
+    paddingLeft: 15
   },
   starMaincontainer: {
     flexDirection: 'row',
