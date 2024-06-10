@@ -4,7 +4,7 @@ const router = express.Router();
 router.post('/sign-up/sendOtp', sendOtp);
 router.post('/sign-up/verifyOtp', otpVerification);
 router.put('/sign-up/set-password', setPassword);
-router.post('/select-role', selectRole);
+router.put('/select-role', selectRole);
 // router.post('/sign-in', signIn);
 
 module.exports = router;
