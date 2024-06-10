@@ -871,6 +871,50 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: secondaryColor
   },
+  chatContainer: {
+    flex: 1,
+    backgroundColor: '#272239',
+  },
+  chatInputToolbar: {
+    borderTopWidth: 1,
+    borderTopColor: '#ddd',
+    backgroundColor: '#272239',
+    padding: 5,
+
+  },
+  chatInputPrimary: {
+    alignItems: 'center',
+
+  },
+  chatComposer: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 20,
+    paddingHorizontal: 15,
+    marginRight: 10,
+    color: 'white'
+  },
+  chatSendButton: {
+    backgroundColor: '#ddd',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    marginRight: 20,
+  },
+  chatMessageContainer: {
+    borderRadius: 15,
+    padding: 10,
+    marginBottom: 10,
+  },
+  chatMessageText: {
+    fontSize: 16,
+    color: '#fff',
+
+  }
+
+
 
 });
 
