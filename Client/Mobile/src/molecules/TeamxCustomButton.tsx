@@ -19,7 +19,7 @@ const TeamxCustomButton = () => {
             style: 'cancel'
           },
           {
-            text: 'Accept',
+            text: 'Accepted',
             onPress: () => {
               // Perform any additional logic you want on acceptance
               // For now, we can just log a message
