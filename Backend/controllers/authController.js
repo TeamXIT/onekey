@@ -85,45 +85,45 @@ const setPassword = async (req, res) => {
 // };
 
 
-// const selectRole = async (req, res) => {
-//     try {
-//         const {
-//             username,
-//             roleIdOrroleName
-//         } = req.body;
-//         const user = await User.findOne({
-//             where: { username: username }
-//         });
-//         if (!user) {
-//             return res.status(404).json(baseResponses.constantMessages.USER_NOT_FOUND());
-//         }
-//         let existingRole;
-//         //if user enters role name 
-//         if (isNaN(roleIdOrroleName)) {
-//             existingRole = await Role.findOne({
-//                 where: { role_name: roleIdOrroleName }
-//             });
-//         }
-//         //if user enters role id
-//         else {
-//             existingRole = await Role.findOne({
-//                 where: { role_id: roleIdOrroleName }
-//             });
-//         }
-//         //if user entered role is not a valid role
-//         if (!existingRole) {
-//             return res.status(404).json(baseResponses.constantMessages.INVALID_ROLE());
-//         }
-//         let userrole_id = existingRole.role_id
-//         let user_id=user.user_id
-//         //updating the role_id of user 
-//         const assignedRole = await User.update({ role_id: userrole_id }, { where: { username: username } });
-//         let _secret = process.env.JWT_SECRET || 'rajasekhar-secret-key';
-//         return res.status(200).json(baseResponses.constantMessages.ROLE_SELECTED());
-//     } catch (error) {
-//         return res.status(500).json(baseResponses.error(error.message));
-//     }
-// }
+const selectRole = async (req, res) => {
+    try {
+        const {
+            mobileNumber,
+            roleIdOrroleName
+        } = req.body;
+        const user = await User.findOne({
+            where: { mobileNumber: mobileNumber }
+        });
+        if (!user) {
+            return res.status(404).json(baseResponses.constantMessages.USER_NOT_FOUND());
+        }
+        let existingRole;
+        //if user enters role name 
+        if (isNaN(roleIdOrroleName)) {
+            existingRole = await Role.findOne({
+                where: { role_name: roleIdOrroleName }
+            });
+        }
+        //if user enters role id
+        else {
+            existingRole = await Role.findOne({
+                where: { role_id: roleIdOrroleName }
+            });
+        }
+        //if user entered role is not a valid role
+        if (!existingRole) {
+            return res.status(404).json(baseResponses.constantMessages.INVALID_ROLE());
+        }
+        let userrole_id = existingRole.role_id
+        let user_id=user.user_id
+        //updating the role_id of user 
+        const assignedRole = await User.update({ role_id: userrole_id }, { where: { mobileNumber: mobileNumber } });
+        // let _secret = process.env.JWT_SECRET || 'rajasekhar-secret-key';
+        return res.status(200).json(baseResponses.constantMessages.ROLE_SELECTED());
+    } catch (error) {
+        return res.status(500).json(baseResponses.error(error.message));
+    }
+}
 
 // const signIn = async (req, res) => {
 //     try {
