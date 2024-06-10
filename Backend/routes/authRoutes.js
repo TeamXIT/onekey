@@ -1,8 +1,10 @@
 const express = require('express');
-const { signUp, selectRole, signIn } = require('../controllers/authController');
+const { sendOtp, otpVerification, setPassword, } = require('../controllers/authController');
 const router = express.Router();
-router.post('/sign-up', signUp);
-router.post('/select-role', selectRole);
-router.post('/sign-in', signIn);
+router.post('/sign-up/sendOtp', sendOtp);
+router.post('/sign-up/verifyOtp', otpVerification);
+router.put('/sign-up/set-password', setPassword);
+// router.post('/select-role', selectRole);
+// router.post('/sign-in', signIn);
 
 module.exports = router;

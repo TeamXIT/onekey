@@ -4,7 +4,10 @@ const baseResponses = {
     constantMessages: {
         ALL_FIELDS_REQUIRED: (data = null) => baseResponses.error('All fields are required', data),
         PASSWORD_MISMATCH: (data = null) => baseResponses.error('Password do not match', data),
-        USER_EXISTS: (data = null) => baseResponses.error('Username or email already exists', data),
+        INVALID_MOBILE_NUMBER: (data = null) => baseResponses.error('Invalid mobile number', data),
+        OTP_VERIFIED: (data = null)=> baseResponses.success('otp verified successfully', data),
+        INVALID_OTP: (data = null) => baseResponses.error('Invalid otp', data),
+        USER_EXISTS: (data = null) => baseResponses.error('Mobile-number already exists', data),
         USER_NOT_FOUND: (data = null) => baseResponses.error('User not found', data),
         INVALID_ROLE: (data = null) => baseResponses.error('Invalid role', data),
         WRONG_PASSWORD: (data = null) => baseResponses.error('Wrong password', data),
