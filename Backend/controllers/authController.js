@@ -178,4 +178,4 @@ const selectRole = async (req, res) => {
 //     }
 // }
 
-module.exports = { sendOtp, otpVerification, setPassword};
+module.exports = { sendOtp, otpVerification, setPassword,selectRole};
