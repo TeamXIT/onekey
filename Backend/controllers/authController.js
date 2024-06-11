@@ -19,21 +19,40 @@ const sendOtp = async (req, res) => {
     try {
         const { mobileNumber } = req.body;
         const user = await User.findOne({ where: { mobileNumber: mobileNumber } });
-        if (!user) {
-            const { valid, response, phoneNumber } = validatePhoneNumber(mobileNumber);
-            if (!valid) {
-                return res.status(400).json({ response });
-            }
-            const { otp } = await generateOTP(phoneNumber.number, 6, 600);
-            // await sendMessage(`Your login OTP is ${otp}`, phoneNumber.number);
-            return res.status(200).json({ otp, phoneNumber });
+        const { valid, response, phoneNumber } = validatePhoneNumber(mobileNumber);
+        if (!valid) {
+            return res.status(400).json({ response });
         }
-        return res.status(400).json(baseResponses.constantMessages.USER_EXISTS());
-
+        const { otp } = await generateOTP(phoneNumber.number, 6, 600);
+        // await sendMessage(`Your login OTP is ${otp}`, phoneNumber.number);
+        if (!user) {
+            return res.status(200).json({ otp, phoneNumber, isNewUser: true });
+        }
+        // If user exists, send OTP for login
+        return res.status(200).json({ otp, phoneNumber, isNewUser: false });
     } catch (error) {
         return res.status(500).json(baseResponses.error(error.message));
     }
 };
+// const sendOtp = async (req, res) => {
+//     try {
+//         const { mobileNumber } = req.body;
+//         const user = await User.findOne({ where: { mobileNumber: mobileNumber } });
+//         if (!user) {
+//             const { valid, response, phoneNumber } = validatePhoneNumber(mobileNumber);
+//             if (!valid) {
+//                 return res.status(400).json({ response });
+//             }
+//             const { otp } = await generateOTP(phoneNumber.number, 6, 600);
+//             // await sendMessage(`Your login OTP is ${otp}`, phoneNumber.number);
+//             return res.status(200).json({ otp, phoneNumber });
+//         }
+//         return res.status(400).json(baseResponses.constantMessages.USER_EXISTS());
+
+//     } catch (error) {
+//         return res.status(500).json(baseResponses.error(error.message));
+//     }
+// };
 const otpVerification = async (req, res) => {
     try {
         const { mobileNumber, otp } = req.body;
@@ -163,7 +182,38 @@ const signInWithPassword = async (req, res) => {
 }
 
 const signInWithOtp = async (req, res) => {
-
+    try {
+        const {
+            mobileNumber,
+            otp
+        } = req.body;
+        if (!mobileNumber || !otp) {
+            return res.status(400).json(baseResponses.constantMessages.ALL_FIELDS_REQUIRED());
+        }
+        const { valid, response, phoneNumber } = validatePhoneNumber(mobileNumber);
+        if (!valid) {
+            return res.status(400).json({ response });
+        }
+        const { success, message } = await verifyOTP(phoneNumber.number, otp);
+        if (!success) {
+            return res.status(400).json(baseResponses.constantMessages.INVALID_OTP());
+        }
+        const user = await User.findOne({
+            where: { mobileNumber: mobileNumber },
+        });
+        if (!user) {
+            return res.status(404).json(baseResponses.constantMessages.USER_NOT_FOUND());
+        }
+        if (user.role_id == null) {
+            return res.status(400).json(baseResponses.constantMessages.ROLE_NOT_FOUND_ERROR());
+        }
+        let user_id = user.user_id;
+        let _secret = process.env.JWT_SECRET || 'rajasekhar-secret-key';
+        const token = jwt.sign({ mobileNumber, user_id, role: user.role_id }, _secret, { expiresIn: '1h' });
+        return res.status(200).json(baseResponses.constantMessages.LOGIN_SUCCESSFUL({ token, user_id }));
+    } catch {
+        return res.status(500).json(baseResponses.error(error.message));
+    }
 }
 
-module.exports = { sendOtp, otpVerification, setPassword, selectRole,signInWithPassword };
+module.exports = { sendOtp, otpVerification, setPassword, selectRole, signInWithPassword, signInWithOtp };
