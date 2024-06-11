@@ -17,6 +17,7 @@ const BASE_RESPONSE_MESSAGES = {
         INVALID_MOBILE_NUMBER: 'Invalid mobile number',
         INVALID_OTP: 'Invalid otp',
         USER_EXISTS: 'Mobile-number already exists',
+        PASSWORD_INVALID:"Password must be at least 6 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character.",
         USER_NOT_FOUND: 'User not found',
         INVALID_ROLE: 'Invalid role',
         WRONG_PASSWORD: 'Wrong password',

@@ -65,6 +65,11 @@ const setPassword = async (req, res) => {
         if(!user) {
             return res.status(404).json(baseResponses.constantMessages.USER_NOT_FOUND());
         }
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+        
+        if (!passwordRegex.test(password)) {
+            return res.status(400).json(baseResponses.constantMessages.PASSWORD_INVALID());
+        }
         if(password!=confirmPassword){
             return res.status(400).json(baseResponses.constantMessages.PASSWORD_MISMATCH());
         }
