@@ -24,9 +24,9 @@ app.get('/', (req, res) => {
 app.listen(port, async () => {
     console.log(`server is running on ${port}`);
     // Define associations between models
-    // DynamicProperties.belongsTo(Product, { foreignKey: 'product_id' });
+    DynamicProperties.belongsTo(Product, { foreignKey: 'product_id' });
     // Leads.belongsTo(Product, { foreignKey: 'product_id' });
-    // Product.belongsTo(User, { foreignKey: 'owner_id' });
+    Product.belongsTo(User, { foreignKey: 'owner_id' });
     User.belongsTo(Role, { foreignKey: 'role_id' });
     
     // await sequelize.sync({alter: true,force:true});
