@@ -1,0 +1,104 @@
+ body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin:0px;
+    padding:0px;
+    background-color: #48525e;
+    position: relative;
+    height: 97vh;
+    width: 100%;
+    overflow: hidden;
+  }
+  .logo{
+    position: relative;
+    top: 5px;
+    left: 65%;
+    width: 20%;
+    height: 90px;
+    background-image: url('../../assets/images/onekey.png');
+    background-size: cover;
+  }
+  .imgDiv{
+    position: relative;
+    top: -13%;
+    background-image: url('../../assets/images/home5.png');
+    background-size:cover;
+    height: 100vh;
+    width: 50%;
+    margin-bottom: -110px;
+  }
+  .form {
+    position: absolute;
+    top :0%;
+    left: 55%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 40%;
+    height: 80vh;
+    padding-left:50px;
+  }
+  .card {
+    width: calc(38% - 10px);
+    margin: 2px;
+    margin-top: 25%;
+    padding: 1px;
+    box-sizing: border-box;
+    background-color:  #F2E8C6;
+    display:flex;
+    -ms-flex-item-align: center;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 15px;
+    vertical-align:"center";
+    align-items: center;
+    margin-right: 80px;
+    margin-bottom: -100px; 
+    color: rgb(0, 0, 0);
+   position: relative;
+  }
+  .card:hover {
+    box-shadow: 0 8px 8px 0 #F2E8C6;
+    transform: scale(1.1);
+  }
+  .container
+  {
+    padding: 1px;
+    text-align: center;
+    position:relative;
+    bottom: -15px;
+    width: 100%;
+  }
+  .btn {
+    background-color: #dad4b5;
+    border: none;
+    color:  #000000;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 125px 20px;
+    cursor: pointer;
+  }
+  .btnOne {
+    background-color:  #dad4b5;
+    color:#000000 ;
+    border: 2px solid #000000;
+    padding: 15px;
+  }
+  .btnOne:hover{
+    background-color:  #dad4b5;
+    color:#48525e ;
+    border: 2px solid #000000;
+    padding: 15px;
+  }
+  .btn1{
+    position: relative;
+    left: 33%;
+    border: 2px solid #000000;
+  }
+  .btn1:hover{
+    background-color:  #F2E8C6;
+    color:#48525e ;
+    border: 2px solid #000000;
+  }

@@ -32,7 +32,8 @@ import UploadDocument from './src/organisms/Landing/UploadDocuments';
 import UploadVerifyCertification from './src/organisms/Landing/UploadVerifyCertification';
 import contacts from './src/organisms/Landing/Contact';
 import AddContactScreen from './src/organisms/Landing/AddContactScreen';
-import DetailPage from './src/organisms/Landing/DetailPage'
+import DetailPage from './src/organisms/Landing/DetailPage';
+import History from './src/organisms/Landing/History';
 
 const Stack = createStackNavigator();
 
@@ -215,10 +216,25 @@ const Landing = () => {
         name="UploadVerifyCertification"
         component={UploadVerifyCertification}
       />
-       <Stack.Screen name="Contacts" component={contacts} options={{ headerShown: false }}/>
-        <Stack.Screen name="AddContactScreen" component={AddContactScreen}  options={{ headerShown: false }} />
-        <Stack.Screen name="DetailPage" component={DetailPage}  options={{ headerShown: false }} />
-
+      <Stack.Screen name="Contacts" component={contacts} options={{ headerShown: false }} />
+      <Stack.Screen name="AddContactScreen" component={AddContactScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="DetailPage" component={DetailPage} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="History"
+        component={History}
+        options={{
+          title: 'History',
+          //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appPrimary.color, //Set Header color
+          },
+          headerShown: false,
+          headerTintColor: styles.appSecondary.color, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
 
     </Stack.Navigator>
   );
