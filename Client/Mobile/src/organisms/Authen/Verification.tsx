@@ -1,15 +1,42 @@
-import { View, Text, SafeAreaView, TextInput, StyleSheet, TouchableOpacity, Image } from "react-native";
-import {styles} from "../../styles/styles";
+import { View } from "react-native";
+import { styles } from "../../styles/styles";
+import { useState } from "react";
+import TeamXLogoImage from "../../atoms/TeamXLogoImage";
+import TeamXButton from "../../atoms/TeamXButton";
+import TeamXErrorText from "../../molecules/TeamXErrorText";
+import TeamXOTPInput from "../../molecules/TeamXOTPInput";
+import TeamXHeaderText from "../../atoms/TeamXHeaderText";
 
 const Verification = ({ navigation }) => {
+    const otpChatLength = 4;
+    const [otp, setOtp] = useState('');
+    const [otpError, setOtpError] = useState('');
+
+    const handleSubmitPress = () => {
+        let hasError = false;
+
+        if (!otp.trim()) {
+            setOtpError('Please provide OTP.');
+            hasError = true;
+        } else if (otp.trim().length < otpChatLength) {
+            setOtpError('Invalid OTP');
+            hasError = true;
+        } else {
+            setOtpError('');
+        }
+
+        if (!hasError) {
+            navigation.navigate('typeselection');
+        }
+    }
+
     return (
-        <View style={{backgroundColor:"#DAD4B5",flex:1}}>
-            <Image source={require('../../../assets/images/person.png')} style={styles.V_image} />
-            <Text style={styles.V_verifyTest}>Verify OTP</Text>
-            <TextInput placeholder="Enter OTP" style={styles.V_input} />
-            <TouchableOpacity style={styles.V_button}  onPress={()=>navigation.navigate('typeselection')}>
-                <Text style={styles.V_buttonText}>Verify</Text>
-            </TouchableOpacity>
+        <View style={styles.containerStyle}>
+            <TeamXLogoImage />
+            <TeamXHeaderText value={"VERIFY OTP"} />
+            <TeamXOTPInput numberOfDigits={otpChatLength} onOTPChange={setOtp} />
+            <TeamXErrorText errorText={otpError} />
+            <TeamXButton onPress={handleSubmitPress} text="VERIFY" />
         </View>
     )
 };

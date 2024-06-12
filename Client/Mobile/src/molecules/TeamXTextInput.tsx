@@ -1,27 +1,25 @@
-
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { styles } from '../styles/styles';
 import { View, TextInput, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
 
-const TeamXTextInput = ({ value, onChangeText, placeholder, keyboardType, secureTextEntry, returnKeyType, maxLength }) => {
+const TeamXTextInput = forwardRef(({ value, onChangeText, placeholder, keyboardType, secureTextEntry, returnKeyType, maxLength, onSubmitEditing }, ref) => {
     return (
-        <View style={styles.SectionStyle}>
             <TextInput
-                style={styles.inputStyle}
+                style={styles.imageInputStyle}
                 onChangeText={onChangeText}
                 value={value}
                 placeholder={placeholder}
-                placeholderTextColor={styles.appSwitchTumbFalse.color}
+                placeholderTextColor={styles.appTertiary.color}
                 keyboardType={keyboardType}
-                onSubmitEditing={Keyboard.dismiss}
+                onSubmitEditing={onSubmitEditing || Keyboard.dismiss}
                 secureTextEntry={secureTextEntry}
                 returnKeyType={returnKeyType}
                 maxLength={maxLength}
+                ref={ref}
             />
-        </View>
     );
-};
+});
 
 TeamXTextInput.propTypes = {
     value: PropTypes.string.isRequired,
@@ -30,7 +28,8 @@ TeamXTextInput.propTypes = {
     keyboardType: PropTypes.oneOf(['default', 'email-address', 'numeric', 'phone-pad']),
     secureTextEntry: PropTypes.bool,
     returnKeyType: PropTypes.oneOf(['done', 'go', 'next', 'search', 'send']),
-    maxLength: PropTypes.number
+    maxLength: PropTypes.number,
+    onSubmitEditing: PropTypes.func,
 };
 
 TeamXTextInput.defaultProps = {
@@ -38,7 +37,7 @@ TeamXTextInput.defaultProps = {
     keyboardType: 'default',
     secureTextEntry: false,
     returnKeyType: 'next',
-    MaxLength: 32
+    maxLength: 32,
 };
 
 export default TeamXTextInput;

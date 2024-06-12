@@ -1,82 +1,156 @@
-import { Text, View, Image, Switch, TouchableOpacity, Alert } from "react-native"
+import { Text, View } from "react-native"
 import { styles } from "../../styles/styles";
-import TeamXTextInput from "../../molecules/TeamXTextInput";
-import { useState } from "react";
+import { useEffect, useRef, useState, } from "react";
+import TeamXButton from "../../atoms/TeamXButton";
+import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
+import TeamXLogoImage from "../../atoms/TeamXLogoImage";
+import TeamXHeaderText from "../../atoms/TeamXHeaderText";
+import TeamXTextedLink from "../../molecules/TeamXTextedLink";
+import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
+import TeamXErrorText from "../../molecules/TeamXErrorText";
+import { UserSignin } from "../../reducers/auth/authSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ScrollView } from "react-native-gesture-handler";
+import TeamXLoader from "../../molecules/TeamXLoader";
+import PhoneInput from "react-native-phone-number-input";
+
 
 const Signin = ({ navigation }) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [isRemember, setIsRemember] = useState(false);
+    const dispatch = useAppDispatch()
+    const authen = useAppSelector(state => state.auth);
+
+    const [phoneNumber, setPhoneNumber] = useState('9014393951');
+    const [password, setPassword] = useState('Teamx@123');
+    const [phoneNumberError, setPhoneNumberError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [signinError, setSigninError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const passwordRef = useRef(null);
+    const phoneInput = useRef(null);
+
+
+    useEffect(() => {
+        if (authen.screen.error !== '') {
+            if (authen.screen.error == "Complete your registration") {
+                navigation.navigate('typeselection');
+            }
+            else {
+                setSigninError(authen.screen.error);
+            }
+        } else if (authen.data.AuthToken) {
+            //console.log("AuthToken: ", authen.data.AuthToken);
+            AsyncStorage.setItem('username', authen.data.Username).then(() => {
+                AsyncStorage.setItem('password', password).then(() => {
+                    AsyncStorage.setItem('userId', authen.data.UserId).then(() => {
+                        AsyncStorage.setItem('AuthToken', authen.data.AuthToken).then(() => {
+                            navigation.replace('Landing');
+                        });
+                    });
+                });
+            });
+        }
+        setIsLoading(false);
+    }, [authen.screen.error, authen.data.AuthToken]);
+
     const handleSubmitPress = () => {
-        if (!username) {
-            return Alert.alert('Invalid', 'Enter User Name');
-
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+        let hasError = false;
+        if (!phoneNumber.trim()) {
+            setPhoneNumberError('Please provide phone number.');
+            hasError = true;
+        } else if (phoneNumber.trim().length < 10) {
+            setPhoneNumberError('phone number must be  10 characters.');
+            hasError = true;
+        } else {
+            setPhoneNumberError('');
         }
-        if (!password) {
-            return Alert.alert('Invalid', 'Enter Password')
-
+        if (!password.trim()) {
+            setPasswordError('Please provide password.');
+            hasError = true;
+        } else if (!passwordRegex.test(password.trim())) {
+            setPasswordError('Password must have minimum 8 characters, at least one lowercase letter, one uppercase letter, and one numeric character.');
+            hasError = true;
         }
-        navigation.navigate('Landing');
+        if (!hasError) {
+            setIsLoading(true);
+            setSigninError('');
+            dispatch(UserSignin(phoneNumber, password));
+            setPasswordError('');
+        }
     }
+
+    const handlePhoneNumberChange = (value) => {
+        // Remove non-numeric characters from the input value
+        const numericValue = value.replace(/[^0-9]/g, '');
+        setPhoneNumber(numericValue);
+    };
+
+
     return (
-        <View style={styles.mainContainer}>
-            <View style={{ alignItems: 'center' }}>
-                <Image
-                    source={require('../../../assets/images/ic_user.png')}
-                    style={styles.logoimg}
-                />
-            <View>
-                <Text style={{ fontSize: 20 }}>Signin Here</Text>
-                </View>
-            </View>
-            <View style={{marginLeft:-15}}>
-            <View style={styles.SectionStyle}>
-                <TeamXTextInput
-                    value={username}
-                    onChangeText={setUsername}
-                    placeholder="Enter Username"
-                    keyboardType="email-address"
-                    returnKeyType="next"
-                />
-            </View>
-            <View style={styles.SectionStyle}>
-                <TeamXTextInput
-                    value={password}
-                    onChangeText={setPassword}
-                    placeholder="Enter Password"
-                    secureTextEntry={true}
-                    returnKeyType="done"
-                />
-            </View>
-            </View>
-            <View style={styles.s_r_view}>
-                <View style={styles.s_r_view1}>
-                    <Switch trackColor={{ false: styles.appSwitchFalse.color, true: styles.appColor.color }} thumbColor={isRemember ? styles.appColor.color :styles.appSwitchTumbFalse.color}
-                         onValueChange={setIsRemember} value={isRemember} />
-                    <Text style={styles.headerTextStyle}>Remember</Text>
-                </View>
-                <View style={styles.s_f_view}>
+        <View style={[styles.containerStyle, { padding: 0, gap: 0 }]}>
+            <TeamXLoader loading={isLoading} />
+            <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} >
+                <View style={styles.containerStyle}>
+                    <TeamXLogoImage />
+                    <TeamXHeaderText value="SIGNIN" />
+                    <View>
+
+                        <PhoneInput
+                            ref={phoneInput}
+                            defaultValue={phoneNumber}
+                            defaultCode="IN"
+                            layout="first"
+                            onChangeText={handlePhoneNumberChange} // Use the custom change handler
+                            containerStyle={styles.countryCodeContainer}
+                            textContainerStyle={styles.countryCodeText}
+                            textInputStyle={styles.countryCodeTextinput}
+                            countryPickerButtonStyle={{ paddingVertical: 0 }}
+                            placeholder="Phone Number"
+                            keyboardType="number-pad"
+                        />
+                        <TeamXErrorText errorText={phoneNumberError} />
+                    </View>
+
+
+
+
+
+
+
+
+
+
+
+
+                    <View>
+                        <TeamXImageTextInput
+                            ref={passwordRef}
+                            value={password}
+                            onChangeText={setPassword}
+                            image={require('../../images/ic_eye.png')}
+                            placeholder="Enter Password"
+                            secureTextEntry={true}
+                            returnKeyType="done"
+                        />
+                        <TeamXErrorText errorText={passwordError} />
+                    </View>
+
+                    <TeamXErrorText errorText={signinError} />
+
+                    <TeamXButton onPress={handleSubmitPress} text="SIGNIN" />
+
                     <Text
-                        style={styles.headerTextStyle}
-                        onPress={() => navigation.navigate('forgotPassword')}>
+                        style={styles.switchTextStyle}
+                        onPress={() => navigation.replace('forgotPassword')}>
                         Forgot Password
                     </Text>
-                </View>
-            </View>
-            <View style={{ alignItems: "center" }}>
-                <TouchableOpacity
-                    style={styles.buttonStyle}
-                    activeOpacity={0.5}
-                    onPress={handleSubmitPress}>
-                    <Text style={styles.buttonTextStyle}>SIGNIN</Text>
-                </TouchableOpacity>
-            </View>
 
-            <Text
-                style={styles.pressableTextStyle}
-                onPress={() => navigation.navigate('signup')}>
-                Don't have an account ? SIGNUP HERE
-            </Text>
+                    <TeamXTextedLink
+                        value={"Don't have an account?  "}
+                        linkValue={"SIGNUP"}
+                        handleOnPress={() => navigation.navigate('signup')} />
+                </View>
+            </ScrollView>
         </View>
     );
 }
