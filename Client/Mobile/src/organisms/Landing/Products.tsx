@@ -160,7 +160,7 @@ const Products = ({ navigation }) => {
                 {item.UserType === CardOptions.Lawyer ? (
                   <TeamxCustomButton onAccept={handleAccept} isAccepted={item.isLawyerAccepted} />
                 ) : null}
-                <TouchableOpacity onPress={() => handleLikePress(item.id)}>
+                 <TouchableOpacity onPress={() => handleLikePress(item.id)} style={styles.likeButton}>
                   <Image source={require('../../images/ic_like1.png')} style={{ tintColor: likeCounts[item.id] ? likeIconActiveColor : likeIconInactiveColor }} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => handleCommentPress(item)}>

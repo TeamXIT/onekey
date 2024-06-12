@@ -25,7 +25,7 @@ const UserTypeSelection = ({ navigation }) => {
         { id: '2', onPress: () => handleCardPress(CardOptions.Agent), imageSource: require('../../images/ic_agent.png'), labelText: "Agent" },
         { id: '3', onPress: () => handleCardPress(CardOptions.BPO), imageSource: require('../../images/ic_bpo5.png'), labelText: "BPO" },
         { id: '4', onPress: () => handleCardPress(CardOptions.Lawyer), imageSource: require('../../images/ic_lawyer.png'), labelText: "Lawyer" },
-        { id: '5', onPress: () => handleCardPress(CardOptions.ProductOwner), imageSource: require('../../images/ic_lawyer.png'), labelText: "ProductOwner" },
+        { id: '5', onPress: () => handleCardPress(CardOptions.ProductOwner), imageSource: require('../../images/ic_lawyer.png'), labelText: "Product Owner" },
     ];
 
     useEffect(() => {
