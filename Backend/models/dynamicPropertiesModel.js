@@ -30,5 +30,4 @@ const DynamicProperties = sequelize.define("DynamicProperty",{
     }
 },{sequelize, tableName: 'DynamicProperties',versionKey:false,timestamps:false});
 
-// DynamicProperties.sync(true);
 module.exports = {DynamicProperties};

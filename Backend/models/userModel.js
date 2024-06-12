@@ -30,5 +30,4 @@ const User = sequelize.define("Users", {
         }
     },
 }, { tableName: 'Users', timestamps: false });
-// User.sync(true);
 module.exports = { User };
