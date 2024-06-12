@@ -1,56 +1,83 @@
-import { View } from "react-native"
+import React, { useState } from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../../styles/styles";
-import { useState, } from "react";
-import TeamXButton from "../../atoms/TeamXButton";
 import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
 import TeamXHeaderText from "../../atoms/TeamXHeaderText";
-import TeamXTextedLink from "../../molecules/TeamXTextedLink";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
 
 const ForgotPassword = ({ navigation }) => {
-   const [username, setUsername] = useState('');
-   const [usernameError, setUsernameError] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
-   const handleSubmitPress = () => {
-      let hasError = false;
-      if (!username.trim()) {
-         setUsernameError('Please provide username.');
-         hasError = true;
-      } else if (username.trim().length < 4) {
-         setUsernameError('Username must be at least 4 characters.');
-         hasError = true;
-      } else {
-         setUsernameError('');
-      }
-      if (!hasError) {
-         setUsernameError('');
-         //TODO: Forgot password logic goes here....
-      }
-   }
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
-   return (
-      <View style={styles.containerStyle}>
-         <TeamXLogoImage />
-         <TeamXHeaderText value="FORGOT  PASSWORD" />
-         <View style={{ marginTop: 30 }}>
-            <TeamXImageTextInput
-               value={username}
-               onChangeText={setUsername}
-               image={require('../../images/ic_user.png')}
-               placeholder="Enter Username"
-               keyboardType="email-address"
-               returnKeyType="next"
-            />
-            <TeamXErrorText errorText={usernameError} />
-         </View>
-         <TeamXButton onPress={handleSubmitPress} text="SUBMIT" />
-         <TeamXTextedLink
-            value={"Already  have an account?  "}
-            linkValue={"SIGNIN"}
-            handleOnPress={() => navigation.replace('signin')} />
+  const handleSubmitPress = () => {
+    let hasError = false;
+    if (!newPassword.trim() || !confirmPassword.trim()) {
+      setPasswordError('Please fill in both fields.');
+      hasError = true;
+    } else if (newPassword !== confirmPassword) {
+      setPasswordError('Passwords do not match.');
+      hasError = true;
+    } else {
+      setPasswordError('');
+    }
+
+    if (!hasError) {
+      setPasswordError('');
+      // Navigate to sign-in screen
+      navigation.navigate('signin');
+    }
+  };
+
+  return (
+    <View style={[styles.containerStyle, styles.containerStyle]}>
+      <TeamXLogoImage />
+      <TeamXHeaderText value="CREATE PASSWORD" />
+      <View style={styles.inputContainer}>
+        <Text style={styles.textStyle}> New Password</Text>
+        <TeamXImageTextInput
+          value={newPassword}
+          onChangeText={setNewPassword}
+          image={require('../../images/ic_eye.png')}
+          placeholder="Enter New Password"
+          secureTextEntry={!showPassword}
+          returnKeyType="next"
+          onImagePress={togglePasswordVisibility}
+        />
       </View>
-   );
-}
+      <View>
+        <Text style={styles.textStyle}>Confirm New Password</Text>
+        <TeamXImageTextInput
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+          image={require('../../images/ic_eye.png')}
+          placeholder="Confirm New Password"
+          secureTextEntry={!showPassword}
+          returnKeyType="done"
+          onImagePress={togglePasswordVisibility}
+        />
+        <TeamXErrorText errorText={passwordError} />
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.cancelButton}
+          onPress={() => navigation.goBack()}>
+          <Text style={styles.cancelButtonText}>CANCEL</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.saveButton}
+          onPress={handleSubmitPress}>
+          <Text style={styles.saveButtonText}>SAVE</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
 
 export default ForgotPassword;

@@ -118,8 +118,8 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   otpinput: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     borderWidth: 1,
     color: whiteText,
     marginHorizontal: 5,
@@ -231,8 +231,12 @@ const styles = StyleSheet.create({
   },
   cardLikes: {
     fontSize: xSmallSize,
-    marginRight: 10,
+    marginRight: 5,
     color: blue,
+  },
+  likeButton:{
+    marginRight: 10,
+
   },
   //carddetails
   CardDetailscontainer: {
@@ -868,11 +872,117 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   TeamxBottomSheetheaderText: {
-    fontSize: 18,
+    fontSize: smallSize,
     fontWeight: "bold",
     color: whiteText,
   },
+  //signup
+  forgotbuttonContainer: {
+    flexDirection: 'row',
+    marginTop: 20,
+  },
+  cancelButton: {
+    flex: 1,
+    marginRight: 10,
+    backgroundColor: '#FFFFFF',
+    padding: 10,
+    borderRadius: 5,
+  },
+  cancelButtonText: {
+    textAlign: 'center',
+    color: '#272239',
+  },
+  saveButton: {
+    flex: 1,
+    marginLeft: 10,
+    backgroundColor: 'green',
+    padding: 10,
+    borderRadius: 5,
+  },
+  saveButtonText: {
+    textAlign: 'center',
+    color: 'white',
+  },
+  forgotinputContainer: {
+    marginTop: 10,
+    marginBottom:20
+  },
+  forgotcontainerStyle: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#272239',
+  },
+  forgottextStyle: {
+    color: 'white',
+    fontSize: xSmallSize,
+  },
+//verification
+headerText: {
+  color: "white",
+  fontSize:normalSize,
+},
+subText: {
+  color: "white",
+  fontSize: xSmallSize,
+  marginBottom: 10,
+},
+resendContainer: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+resendText: {
+  color: 'white',
+  fontSize: xSmallSize,
+},
+resendButtonText: {
+  color: 'white',
+  fontSize: xSmallSize,
+  fontWeight: 'bold',
+  marginLeft: 5,
+},
+//signup
+signuptitle: {
+  color: 'white',
+  fontSize:normalSize,
+  
+},
+signupsubtitle: {
+  color: 'white',
+  fontSize: xSmallSize,
+  marginBottom: 10,
+},
+signupinputContainer: {
+  width: '100%',
+  borderWidth: 1,
+  borderColor: 'white',
+  borderRadius: 10,
+  padding: 5,
+},
+signupphoneContainer: {
+  width: '100%',
+},
+signuptextContainer: {
+  paddingVertical: 10,
+  backgroundColor: 'white',
+},
+signuptextInput: {
+  paddingVertical: 0,
+  fontSize: xSmallSize,
+},
+signupcountryPickerButton: {
+  paddingVertical: 0,
+  color:"white"
+},
+countryPickerButton:{
+ backgroundColor:primaryColor,
 
+},
+countryPickerArrow: {
+  color: 'white', 
+},
 });
 
 export { styles, secondaryColor, errorColor };
