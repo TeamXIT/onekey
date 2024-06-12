@@ -1,6 +1,7 @@
 const BASE_RESPONSE_MESSAGES = {
     SUCCESS: {
         USER_REGISTERED: 'User registered successfully',
+        OTP_VERIFIED: 'otp verified successfully',
         ROLE_SELECTED: 'User role selected successfully',
         LOGIN_SUCCESSFUL: 'Login successful',
         PRODUCT_CREATE_SUCCESSFUL: 'Product created successfully',
@@ -13,7 +14,10 @@ const BASE_RESPONSE_MESSAGES = {
     ERROR: {
         ALL_FIELDS_REQUIRED: 'All fields are required',
         PASSWORD_MISMATCH: 'Password do not match',
-        USER_EXISTS: 'Username or email already exists',
+        INVALID_MOBILE_NUMBER: 'Invalid mobile number',
+        INVALID_OTP: 'Invalid otp',
+        USER_EXISTS: 'Mobile-number already exists',
+        PASSWORD_INVALID:"Password must be at least 6 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character.",
         USER_NOT_FOUND: 'User not found',
         INVALID_ROLE: 'Invalid role',
         WRONG_PASSWORD: 'Wrong password',

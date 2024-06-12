@@ -17,7 +17,7 @@ const DynamicProperties = sequelize.define("DynamicProperty",{
         allowNull:false
     },
     value:{
-        type:DataTypes.JSONB,
+        type:DataTypes.JSON,
         allowNull:false
     },
     product_id:{
@@ -25,10 +25,10 @@ const DynamicProperties = sequelize.define("DynamicProperty",{
         allowNull:false,
         references:{
             model:Product,
-            key:'product_id'
+            key:'projectId'
         }
     }
 },{sequelize, tableName: 'DynamicProperties',versionKey:false,timestamps:false});
 
-
+// DynamicProperties.sync(true);
 module.exports = {DynamicProperties};
