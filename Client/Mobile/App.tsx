@@ -8,8 +8,10 @@ import React from 'react';
 import { styles } from './src/styles/styles';
 import Signin from './src/organisms/Authen/Signin';
 import Signup from './src/organisms/Authen/Signup';
+import SignupWithOTP from './src/organisms/Authen/SignupWithOTP';
 import UserTypeSelection from './src/organisms/Authen/UserTypeSelection';
 import Verification from './src/organisms/Authen/Verification';
+import VerificationCode from './src/organisms/Authen/VerificationCode';
 import Dashboard from './src/organisms/Landing/Dashboard';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
 import ForgotPassword from './src/organisms/Authen/ForgotPassword';
@@ -40,7 +42,7 @@ const Stack = createStackNavigator();
 const Auth = () => {
   // Stack Navigator for Login and Sign up Screen
   return (
-    <Stack.Navigator initialRouteName="intro">
+    <Stack.Navigator initialRouteName="signin">
       <Stack.Screen
         name="intro"
         component={OneKeyIntro}
@@ -67,10 +69,41 @@ const Auth = () => {
         }}
       />
       <Stack.Screen
+        name="signupWithOTP"
+        component={SignupWithOTP}
+        options={{
+          title: 'signupWithOTP',
+          //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appTertiary.color, //Set Header color
+          },
+          headerShown: false,
+          headerTintColor: '#fff', //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+      <Stack.Screen
         name="verification"
         component={Verification}
         options={{
           title: 'Verification', //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appTertiary.color, //Set Header color
+          },
+          headerShown: false,
+          headerTintColor: '#fff', //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+      <Stack.Screen
+        name="VerificationCode"
+        component={VerificationCode}
+        options={{
+          title: 'VerificationCode', //Set Header Title
           headerStyle: {
             backgroundColor: styles.appTertiary.color, //Set Header color
           },

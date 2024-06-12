@@ -11,6 +11,7 @@ const TeamXImageTextInput = forwardRef(({ value, onChangeText, placeholder, keyb
                 <Image
                     source={image}
                     style={styles.textimage}
+                    tintColor={'#FFFFFF'}
                 />
             )}
             <TeamXTextInput
