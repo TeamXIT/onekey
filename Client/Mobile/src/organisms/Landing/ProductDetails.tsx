@@ -12,7 +12,7 @@ const Card = ({ email, phone, name, navigation }) => {
   };
  
   return (
-    <TouchableHighlight underlayColor="transparent" onPress={handleCardPress}>
+    <TouchableHighlight  onPress={handleCardPress}>
       <View style={styles.titleDescriptionContainer}>
         <View style={styles.productstar}>
           <TeamXStarRating totalStars={5} />

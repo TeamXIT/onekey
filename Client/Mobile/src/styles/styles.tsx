@@ -1,4 +1,5 @@
 import { StyleSheet, useColorScheme } from 'react-native';
+import { brown100, white } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 
 // Colors
 const transparent = 'transparent';
@@ -214,7 +215,7 @@ const styles = StyleSheet.create({
   cardContent: {
     flex: 2,
     flexDirection: 'column',
-    marginLeft: 20,
+    marginLeft: 10,
   },
   cardimage: {
     padding: 80,
@@ -290,7 +291,7 @@ const styles = StyleSheet.create({
     borderColor: whiteText,
     height: 'auto',
     width: 'auto',
-    borderWidth: 0.2,
+    borderWidth: 0.1,
     borderRadius: 5,
     paddingLeft: 10,
     paddingRight: 10,
@@ -818,14 +819,14 @@ const styles = StyleSheet.create({
     marginLeft: 230
   },
   productbpolawyer: {
-    color: secondaryColor,
+    color: whiteText,
     fontSize: ySmallSize,
     bottom: 30
   },
   cardArrowIcon: {
     width: 20,
     height: 20,
-    tintColor: secondaryColor,
+    tintColor: whiteText,
 
   },
   row: {
@@ -869,7 +870,7 @@ const styles = StyleSheet.create({
   TeamxBottomSheetheaderText: {
     fontSize: 18,
     fontWeight: "bold",
-    color: secondaryColor
+    color: whiteText,
   },
   countryCodeContainer:{
     width: '100%', 
@@ -888,8 +889,58 @@ const styles = StyleSheet.create({
     paddingVertical: 0, 
     fontSize: 15,
     color:whiteText
+  },
+  chatContainer: {
+    flex: 1,
+    backgroundColor: '#272239',
+  },
+  chatInputToolbar: {
+    borderTopWidth: 1,
+    borderTopColor: '#ddd',
+    backgroundColor: '#272239',
+    padding: 5,
+  },
+  chatInputPrimary: {
+    alignItems: 'center',
+  },
+  chatComposer: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 20,
+    paddingHorizontal: 15,
+    marginRight: 10,
+    color: 'white'
+  },
+  chatSendButton: {
+    backgroundColor: '#ddd',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    marginRight: 20,
+  },
+  chatMessageContainer: {
+    borderRadius: 15,
+    padding: 10,
+    marginBottom: 10,
+  },
+  chatMessageText: {
+    fontSize: 16,
+    color: '#fff',
+  },
+  historyView: {
+    backgroundColor: secondaryColor,
+    marginBottom: 5,
+    marginTop: 10,
+    borderRadius: 15,
+    elevation: 3,
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 80,
+    padding: 16,
+    position: 'relative',
   }
-
 });
 
 export { styles, secondaryColor, errorColor };

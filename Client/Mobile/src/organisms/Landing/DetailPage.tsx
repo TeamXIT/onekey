@@ -5,6 +5,7 @@ import Products from './Products';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CardOptions } from '../../helpers/Models/CardOptions';
+import History from './History';
 
 const DetailPage = ({ navigation, route }) => {
   const [isAccepted, setIsAccepted] = useState(false);
@@ -36,7 +37,9 @@ const DetailPage = ({ navigation, route }) => {
           by providing cost-effective solutions, access to specialized expertise, and enhanced operational efficiency. </Text>
       </View>
       <Text style={styles.deatailHeading}>History</Text>
-      <Products navigation={navigation} isAccepted={isAccepted} />
+      {/* <Products navigation={navigation} isAccepted={isAccepted} /> */}
+      <History navigation={navigation}  />
+
     </SafeAreaView>
   );
 };

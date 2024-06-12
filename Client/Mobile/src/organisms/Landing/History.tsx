@@ -1,31 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, } from 'react-native';
-import { styles } from '../../styles/styles';
+import { secondaryColor, styles } from '../../styles/styles';
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import { fetchAllProducts } from '../../reducers/Product/productSlice';
 import { CardOptions } from '../../helpers/Models/CardOptions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
-import TeamxCustomButton from '../../molecules/TeamxCustomButton';
 
-const Products = ({ navigation }) => {
-  const dispatch = useAppDispatch();
-  const product = useAppSelector(state => state.product);
-  const [likeCounts, setLikeCounts] = useState({});
-  const likeIconActiveColor = "#FF0000";
-  const likeIconInactiveColor = "#777";
-  const [isAccepted, setIsAccepted] = useState(false);
-
-  const Role = AsyncStorage.getItem('Role');// State to keep track of selected card
-
-  //  parseInt(Role,10); // Assign a values of 3 for BPO or 4 for Lawyer for acceptence
-
-
-  useEffect(() => {
-    dispatch(fetchAllProducts());
-  }, [product.data.products]);
-
-  const uploadData = [{
+const History = ({ navigation }) => {
+const uploadData = [{
     id: 1,
     title: 'Card 1',
     description: "Description for Card 1. Urban areal apartment located in a developing area, downtown district, offering modern amenities and convenient access to nearby businesses and recreational facilities. Walkable distance to all bus stops, grocery stores, Luxary hotels and Malls.",
@@ -85,104 +68,42 @@ const Products = ({ navigation }) => {
     isLawyerAccepted: false,
     PropertyStatus: 0,
   }]
-
-  const handleCardPress = (item) => {
-    navigation.navigate('ProductDetails', {
-      cardData: {
-        ...item,
-        like: likeCounts[item.id] || 0,
-      },
-      assets: item.assets,
-      isLiked: likeCounts[item.id] > 0,
-      updateLikeCount: updateLikeCount,
-    });
-  };
-
-  const handleLikePress = (id) => {
-    setLikeCounts(prevState => ({
-      ...prevState,
-      [id]: prevState[id] ? prevState[id] - 1 : 1,
-    }));
-  };
-
-  const handleCommentPress = (item) => {
-    navigation.navigate('comment', { commentData: item });
-  };
-
-  const updateLikeCount = (id, likeCount) => {
-    setLikeCounts(prevState => ({
-      ...prevState,
-      [id]: likeCount,
-    }));
-  };
-
-  const handleAccept = () => {
-    setIsAccepted(true);
-    console.log('Accepted!');
-  };
-
-  const renderItem = ({ item }) => {
+const renderItem = ({ item }) => {
     const descriptionToShow = item.description.length > 40 ?
       item.description.substring(0, 40) + '...' : item.description;
-
-      return (
-        <TouchableOpacity onPress={() => handleCardPress(item)} style={styles.cardContainer}>
-          <View style={styles.cardStyle}>
-            <View>
-              {item.assets && item.assets.length > 0 ? (
-                <Image source={{ uri: item.assets[0].value }} style={styles.cardimage} />
-              ) : (
-                <Image source={require('../../images/ic_home.png')} style={styles.cardimage} />
-              )}
-            </View>
-            <View style={styles.cardContent}>
-              <View style={{ flexDirection: 'row', gap: 50 }}>
-                <Text style={styles.cardTitle}>{item.title}</Text>
-                {item.PropertyStatus === 2 && (
-                  <TouchableOpacity style={{ height: 25, width: 80, borderRadius: 40 }}>
-                    <LinearGradient
-                      colors={['#888693', '#35314A']}
-                      start={{ x: 0.5, y: 0 }}
-                      end={{ x: 0.5, y: 1 }}
-                      style={{ height: 25, width: 80, borderRadius: 40 }}
-                    >
-                      <Text style={{ color: 'orange', textAlign: 'center', fontSize: 15, paddingTop: 2 }}>PENDING</Text>
-                    </LinearGradient>
-                  </TouchableOpacity>
-                )}
-              </View>
-              <Text style={styles.cardDescription}>{descriptionToShow}</Text>
-              <View style={styles.buttonContainer}>
-                <Text style={styles.cardLikes}>{likeCounts[item.id] || 0} Likes</Text>
-                {item.UserType === CardOptions.BPO ? (
-                  <TeamxCustomButton onAccept={handleAccept} isAccepted={item.isBPOAccepted} />
-                ) : null}
-                {item.UserType === CardOptions.Lawyer ? (
-                  <TeamxCustomButton onAccept={handleAccept} isAccepted={item.isLawyerAccepted} />
-                ) : null}
-                <TouchableOpacity onPress={() => handleLikePress(item.id)}>
-                  <Image source={require('../../images/ic_like1.png')} style={{ tintColor: likeCounts[item.id] ? likeIconActiveColor : likeIconInactiveColor }} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleCommentPress(item)}>
-                  <Image source={require('../../images/ic_comment.png')} style={{ tintColor: likeIconInactiveColor }} />
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        </TouchableOpacity>
-      );
-    };
-  
     return (
-      <View style={{ backgroundColor: '#272239', flex: 1 }}>
-        <FlatList
-          data={uploadData}
-          renderItem={renderItem}
-          keyExtractor={item => item.id.toString()}
-          numColumns={1}
-        />
-      </View>
+      <TouchableOpacity
+        style={styles.cardContainer}>
+        <View style={styles.historyView}>
+          <View>
+            {item.assets && item.assets.length > 0
+              ? <Image source={{ uri: item.assets[0].value }} height={55} width={55} />
+              : <Image src='../../images/ic_home.png' height={35} width={35} />
+            }
+          </View>
+          <View style={{
+            flexDirection: 'column',
+            marginLeft: 30
+          }}>
+
+            <Text style={styles.cardTitle}>{item.title}</Text>
+            <Text style={styles.cardDescription}>{descriptionToShow}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
     );
   };
-  
-  export default Products;
+
+  return (
+    <View style={{ backgroundColor: '#272239', flex: 1, }}>
+      <FlatList
+        data={uploadData}
+        renderItem={renderItem}
+        keyExtractor={item => item.id.toString()}
+        numColumns={1}
+      />
+    </View>
+  );
+};
+
+export default History;
