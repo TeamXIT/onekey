@@ -32,7 +32,7 @@ const UserTypeSelection = ({ navigation }) => {
          if (authen.data.UserType) {
          setSignupSuccess(true);
              setTimeout(() => {
-                navigation.replace('signin');
+                navigation.replace('dashboard');
                  setSignupSuccess(false);
              }, 3000);
          }

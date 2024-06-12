@@ -31,7 +31,7 @@ const ForgotPassword = ({ navigation }) => {
     if (!hasError) {
       setPasswordError('');
       // Navigate to sign-in screen
-      navigation.navigate('signin');
+      navigation.navigate('typeselection');
     }
   };
 

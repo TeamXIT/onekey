@@ -27,7 +27,7 @@ const Verification = ({ route, navigation }) => {
         }
 
         if (!hasError) {
-            navigation.navigate('typeselection');
+            navigation.navigate('forgotPassword');
         }
     }
 
