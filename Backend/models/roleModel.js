@@ -15,14 +15,12 @@ const Role = sequelize.define("Roles", {
     hooks: {
         afterSync: async () => {
             // Create roles if they do not exist
-            await Role.findOrCreate({ where: { role_name: 'seller' }, defaults: { role_id: 1 } });
-            await Role.findOrCreate({ where: { role_name: 'agent' }, defaults: { role_id: 2 } });
-            await Role.findOrCreate({ where: { role_name: 'bpo' }, defaults: { role_id: 3 } });
-            await Role.findOrCreate({ where: { role_name: 'lawyer'}, defaults: { role_id: 4 } });
-            await Role.findOrCreate({ where: { role_name: 'productowner' }, defaults: { role_id: 5 } });
+            await Role.findOrCreate({ where: { role_name: 'Owner' }, defaults: { role_id: 1 } });
+            await Role.findOrCreate({ where: { role_name: 'Agent' }, defaults: { role_id: 2 } });
+            await Role.findOrCreate({ where: { role_name: 'BPO' }, defaults: { role_id: 3 } });
+            await Role.findOrCreate({ where: { role_name: 'Lawyer'}, defaults: { role_id: 4 } });
             // Add more roles as needed
         }
     }
 });
-// Role.sync(true);
 module.exports = { Role };
