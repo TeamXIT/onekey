@@ -12,18 +12,22 @@ import { UserSignin } from "../../reducers/auth/authSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView } from "react-native-gesture-handler";
 import TeamXLoader from "../../molecules/TeamXLoader";
+import PhoneInput from "react-native-phone-number-input";
+
 
 const Signin = ({ navigation }) => {
     const dispatch = useAppDispatch()
     const authen = useAppSelector(state => state.auth);
 
-    const [username, setUsername] = useState('teamx');
+    const [phoneNumber, setPhoneNumber] = useState('9014393951');
     const [password, setPassword] = useState('Teamx@123');
-    const [usernameError, setUsernameError] = useState('');
+    const [phoneNumberError, setPhoneNumberError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [signinError, setSigninError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const passwordRef = useRef(null);
+    const phoneInput = useRef(null);
+
 
     useEffect(() => {
         if (authen.screen.error !== '') {
@@ -38,8 +42,8 @@ const Signin = ({ navigation }) => {
             AsyncStorage.setItem('username', authen.data.Username).then(() => {
                 AsyncStorage.setItem('password', password).then(() => {
                     AsyncStorage.setItem('userId', authen.data.UserId).then(() => {
-                    AsyncStorage.setItem('AuthToken', authen.data.AuthToken).then(() => {
-                        navigation.replace('Landing');
+                        AsyncStorage.setItem('AuthToken', authen.data.AuthToken).then(() => {
+                            navigation.replace('Landing');
                         });
                     });
                 });
@@ -51,14 +55,14 @@ const Signin = ({ navigation }) => {
     const handleSubmitPress = () => {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
         let hasError = false;
-        if (!username.trim()) {
-            setUsernameError('Please provide username.');
+        if (!phoneNumber.trim()) {
+            setPhoneNumberError('Please provide phone number.');
             hasError = true;
-        } else if (username.trim().length < 4) {
-            setUsernameError('Username must be at least 4 characters.');
+        } else if (phoneNumber.trim().length < 10) {
+            setPhoneNumberError('phone number must be  10 characters.');
             hasError = true;
         } else {
-            setUsernameError('');
+            setPhoneNumberError('');
         }
         if (!password.trim()) {
             setPasswordError('Please provide password.');
@@ -70,10 +74,17 @@ const Signin = ({ navigation }) => {
         if (!hasError) {
             setIsLoading(true);
             setSigninError('');
-            dispatch(UserSignin(username, password));
+            dispatch(UserSignin(phoneNumber, password));
             setPasswordError('');
         }
     }
+
+    const handlePhoneNumberChange = (value) => {
+        // Remove non-numeric characters from the input value
+        const numericValue = value.replace(/[^0-9]/g, '');
+        setPhoneNumber(numericValue);
+    };
+
 
     return (
         <View style={[styles.containerStyle, { padding: 0, gap: 0 }]}>
@@ -83,17 +94,34 @@ const Signin = ({ navigation }) => {
                     <TeamXLogoImage />
                     <TeamXHeaderText value="SIGNIN" />
                     <View>
-                        <TeamXImageTextInput
-                            value={username}
-                            onChangeText={setUsername}
-                            image={require('../../images/ic_user.png')}
-                            placeholder="Enter Username"
-                            keyboardType="email-address"
-                            returnKeyType="next"
-                            onSubmitEditing={() => { passwordRef.current?.focus() }} // Focus on password field when "Enter" is pressed
+
+                        <PhoneInput
+                            ref={phoneInput}
+                            defaultValue={phoneNumber}
+                            defaultCode="IN"
+                            layout="first"
+                            onChangeText={handlePhoneNumberChange} // Use the custom change handler
+                            containerStyle={styles.countryCodeContainer}
+                            textContainerStyle={styles.countryCodeText}
+                            textInputStyle={styles.countryCodeTextinput}
+                            countryPickerButtonStyle={{ paddingVertical: 0 }}
+                            placeholder="Phone Number"
+                            keyboardType="number-pad"
                         />
-                        <TeamXErrorText errorText={usernameError} />
+                        <TeamXErrorText errorText={phoneNumberError} />
                     </View>
+
+
+
+
+
+
+
+
+
+
+
+
                     <View>
                         <TeamXImageTextInput
                             ref={passwordRef}
