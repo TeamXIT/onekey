@@ -871,6 +871,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: secondaryColor
   },
+  historyView: {
+    backgroundColor: secondaryColor,
+    marginBottom: 5,
+    marginTop: 10,
+    borderRadius: 15,
+    elevation: 3,
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 80,
+    padding: 16,
+    position: 'relative',
+  }
 
 });
 
