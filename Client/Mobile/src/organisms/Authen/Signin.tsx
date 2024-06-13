@@ -102,26 +102,16 @@ const Signin = ({ navigation }) => {
                             layout="first"
                             onChangeText={handlePhoneNumberChange} // Use the custom change handler
                             containerStyle={styles.countryCodeContainer}
-                            textContainerStyle={styles.countryCodeText}
-                            textInputStyle={styles.countryCodeTextinput}
+                            textContainerStyle={styles.signuptextContainer}
+                            textInputStyle={styles.signuptextInput}
                             countryPickerButtonStyle={{ paddingVertical: 0 }}
+                            renderDropdownImage={<Text style={styles.countryPickerArrow}>▼</Text>}
+
                             placeholder="Phone Number"
                             keyboardType="number-pad"
                         />
                         <TeamXErrorText errorText={phoneNumberError} />
                     </View>
-
-
-
-
-
-
-
-
-
-
-
-
                     <View>
                         <TeamXImageTextInput
                             ref={passwordRef}
@@ -138,11 +128,11 @@ const Signin = ({ navigation }) => {
                     <TeamXErrorText errorText={signinError} />
 
                     <TeamXButton onPress={handleSubmitPress} text="SIGNIN" />
-
+                    <Text style={styles.switchTextStyle}>OR</Text>
                     <Text
                         style={styles.switchTextStyle}
-                        onPress={() => navigation.replace('forgotPassword')}>
-                        Forgot Password
+                        onPress={() => navigation.replace('signupWithOTP')}>
+                        Sign in with OTP
                     </Text>
 
                     <TeamXTextedLink

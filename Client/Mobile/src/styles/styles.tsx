@@ -990,16 +990,7 @@ countryPickerArrow: {
     borderRadius: 10, 
     padding: 5,
     backgroundColor:secondaryColor,
-    height:70 
-  },
-  countryCodeText:{
-    paddingVertical: 10,  
-    backgroundColor:secondaryColor,
-  },
-  countryCodeTextinput:{
-    paddingVertical: 0, 
-    fontSize: 15,
-    color:whiteText
+    height:65
   },
   chatContainer: {
     flex: 1,
