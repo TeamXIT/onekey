@@ -30,6 +30,9 @@ const baseResponses = {
         EMAIL_ERROR: (data = null) => baseResponses.error('Invalid email address',data),
         ROLE_NOT_FOUND_ERROR: (data = null) => baseResponses.error('Complete your registration',data),
         PRODUCT_ACCEPTED_SUCCESSFUL: (data = null) => baseResponses.success('Product Accepted Successfully',data),
+        BPO_DETAILS_INSERTED: (data = null) => baseResponses.success('Bpo details inserted successfully'),
+        USER_ID_REQUIRED: (data = null) => baseResponses.error('User ID required',data),
+        BPO_DETAILS_UPDATED: (data = null) => baseResponses.success('Bpo details updated successfully',data),
     }
 };
 
