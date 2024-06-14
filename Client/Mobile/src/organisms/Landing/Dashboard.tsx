@@ -1,41 +1,46 @@
 import React, { useEffect, useReducer, useRef } from 'react'
 import { BottomTabBarProps, BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, LayoutChangeEvent, Pressable, StyleSheet } from 'react-native';
+import { View, LayoutChangeEvent, Pressable, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import Animated, { useAnimatedStyle, withTiming, useDerivedValue } from 'react-native-reanimated'
 import Lottie from 'lottie-react-native'
 import Svg, { Path } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Home from './Home';
-import Projects from './Projects';
+import Products from './Products';
 import Post from './Post';
 import Settings from './Settings';
+import Upload from './Upload';
 
 const Tab = createBottomTabNavigator();
 const AnimatedSvg = Animated.createAnimatedComponent(Svg)
 
 const Dashboard = () => {
     return (
-        <>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={{ flex: 1 }}>
             <Tab.Navigator tabBar={(props) => <AnimatedTabBar {...props} />} >
                 <Tab.Screen
-                    name="Home"
+                    name="Products"
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/home.icon.json')} style={styles.icon} />,
+                        headerShown: false,
                     }}
-                    component={Home} />
+                    component={Products} />
                 <Tab.Screen
                     name="Upload"
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/upload.icon.json')} style={styles.icon} />,
+                        headerShown: false,
                     }}
-                    component={Projects} />
+                    component={Upload} />
                 <Tab.Screen
                     name="Chat"
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/chat.icon.json')} style={styles.icon} />,
+                        headerShown: false,
                     }}
                     component={Post} />
                 <Tab.Screen
@@ -43,10 +48,11 @@ const Dashboard = () => {
                     options={{
                         // @ts-ignore
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/settings.icon.json')} style={styles.icon} />,
+                        headerShown: false,
                     }}
                     component={Settings} />
             </Tab.Navigator>
-        </>
+        </KeyboardAvoidingView>
     )
 }
 
@@ -96,7 +102,7 @@ const AnimatedTabBar = ({ state: { index: activeIndex, routes }, navigation, des
                 viewBox="0 0 110 60"
                 style={[styles.activeBackground, animatedStyles]} >
                 <Path
-                    fill="#604AE6"
+                    fill="#48525e" // tab circle color
                     d="M20 0H0c11.046 0 20 8.953 20 20v5c0 19.33 15.67 35 35 35s35-15.67 35-35v-5c0-11.045 8.954-20 20-20H20z"
                 />
             </AnimatedSvg>
@@ -176,7 +182,7 @@ const TabBarComponent = ({ active, options, onLayout, onPress }: TabBarComponent
 
 const styles = StyleSheet.create({
     tabBar: {
-        backgroundColor: 'white',
+        backgroundColor: '#35314A', // Tab Background color
     },
     activeBackground: {
         position: 'absolute',

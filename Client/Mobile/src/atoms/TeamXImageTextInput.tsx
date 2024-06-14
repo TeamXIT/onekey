@@ -1,29 +1,33 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { View, Image } from 'react-native';
 import { styles } from '../styles/styles';
 import PropTypes from 'prop-types';
 import TeamXTextInput from '../molecules/TeamXTextInput';
 
-const TeamXImageTextInput = ({ value, onChangeText, placeholder, keyboardType, secureTextEntry, returnKeyType, maxLength, image }) => {
+const TeamXImageTextInput = forwardRef(({ value, onChangeText, placeholder, keyboardType, secureTextEntry, returnKeyType, maxLength, image, onSubmitEditing }, ref) => {
     return (
         <View style={styles.imgTextContainer}>
             {image && (
                 <Image
                     source={image}
                     style={styles.textimage}
+                    tintColor={'#FFFFFF'}
                 />
             )}
-           <TeamXTextInput
+            <TeamXTextInput
+                ref={ref}
                 onChangeText={onChangeText}
                 value={value}
                 placeholder={placeholder}
                 keyboardType={keyboardType}
                 secureTextEntry={secureTextEntry}
                 returnKeyType={returnKeyType}
-                maxLength={maxLength} />
+                maxLength={maxLength}
+                onSubmitEditing={onSubmitEditing}
+            />
         </View>
     );
-};
+});
 
 TeamXImageTextInput.propTypes = {
     value: PropTypes.string.isRequired,
@@ -39,6 +43,7 @@ TeamXImageTextInput.propTypes = {
             uri: PropTypes.string.isRequired,
         }),
     ]),
+    onSubmitEditing: PropTypes.func,
 };
 
 TeamXImageTextInput.defaultProps = {
@@ -49,6 +54,5 @@ TeamXImageTextInput.defaultProps = {
     maxLength: 32,
     image: null,
 };
-
 
 export default TeamXImageTextInput;

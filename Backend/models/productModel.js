@@ -2,27 +2,37 @@ const sequelize = require('../config/db');
 const Datatypes = require('sequelize');
 const { User } = require('./roleModel');
 
+
 const Product = sequelize.define("Products", {
-    product_id: {
-        type: Datatypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
+    projectId:{
+        type:Datatypes.INTEGER,
+        autoIncrement:true,
+        primaryKey:true,
     },
-    name: {
+    projectName: {
         type: Datatypes.STRING(100),
-        allowNull: false
+        allowNull: false,
+        unique: true,
+        required: true,
     },
-    description: {
-        type: Datatypes.TEXT
+    propertySeller: {
+        type: Datatypes.ENUM('Company', 'Individual'),
+        allowNull: false,
+        required: true,
+    },
+    propertyType: {
+        type: Datatypes.ENUM('Flats', 'OpenPlots', 'Villas'),
+        allowNull: false,
+        required: true,
     },
     owner_id: {
         type: Datatypes.INTEGER,
         allowNull: false,
         references: {
-            model: User, // Referenced table name
+            model: User,
             key: 'user_id',
         }
-    }
+    },
 }, { tableName: 'Products', versionKey: false, timestamps: false });
 
 module.exports = { Product };

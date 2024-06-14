@@ -2,33 +2,47 @@
  * TeamX OneKey Mobile Application
  * https://team-x.in/
  */
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { styles } from './src/styles/styles';
 import Signin from './src/organisms/Authen/Signin';
 import Signup from './src/organisms/Authen/Signup';
+import SignupWithOTP from './src/organisms/Authen/SignupWithOTP';
 import UserTypeSelection from './src/organisms/Authen/UserTypeSelection';
 import Verification from './src/organisms/Authen/Verification';
+import VerificationCode from './src/organisms/Authen/VerificationCode';
 import Dashboard from './src/organisms/Landing/Dashboard';
-import Home from './src/organisms/Landing/Home';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
 import ForgotPassword from './src/organisms/Authen/ForgotPassword';
 import Comment from './src/organisms/Landing/Comment';
-import Projects from './src/organisms/Landing/Projects';
+import Products from './src/organisms/Landing/Products';
 import { Provider } from 'react-redux';
 import { store } from './src/reducers/store';
 import OneKeyIntro from './src/organisms/Authen/OneKeyInto';
-import CardDetails from './src/organisms/Landing/CardDetails';
+import ProductDetails from './src/organisms/Landing/ProductDetails';
 import Settings from './src/organisms/Landing/Settings';
+import ImageList from './src/organisms/Landing/ImageList';
+import Upload from './src/organisms/Landing/Upload';
+import Feedback from './src/organisms/Landing/Feedback';
+import DocumentViewer from './src/organisms/Landing/DocumentViewer';
+import IntrestedClientDetails from './src/organisms/Landing/IntrestedClientDetails';
+import PreviousDealedProduct from './src/organisms/Landing/PreviousDealedProduct';
+import ProductRelatedDocuments from './src/organisms/Landing/ProductRelatedDocuments';
+import ShareContacts from './src/organisms/Landing/ShareContacts';
+import UploadDocument from './src/organisms/Landing/UploadDocuments';
+import UploadVerifyCertification from './src/organisms/Landing/UploadVerifyCertification';
+import contacts from './src/organisms/Landing/Contact';
+import AddContactScreen from './src/organisms/Landing/AddContactScreen';
+import DetailPage from './src/organisms/Landing/DetailPage';
+import History from './src/organisms/Landing/History';
 
 const Stack = createStackNavigator();
 
 const Auth = () => {
   // Stack Navigator for Login and Sign up Screen
   return (
-    <Stack.Navigator initialRouteName="intro">
+    <Stack.Navigator initialRouteName="signin">
       <Stack.Screen
         name="intro"
         component={OneKeyIntro}
@@ -55,10 +69,41 @@ const Auth = () => {
         }}
       />
       <Stack.Screen
+        name="signupWithOTP"
+        component={SignupWithOTP}
+        options={{
+          title: 'signupWithOTP',
+          //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appTertiary.color, //Set Header color
+          },
+          headerShown: false,
+          headerTintColor: '#fff', //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+      <Stack.Screen
         name="verification"
         component={Verification}
         options={{
           title: 'Verification', //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appTertiary.color, //Set Header color
+          },
+          headerShown: false,
+          headerTintColor: '#fff', //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+      <Stack.Screen
+        name="VerificationCode"
+        component={VerificationCode}
+        options={{
+          title: 'VerificationCode', //Set Header Title
           headerStyle: {
             backgroundColor: styles.appTertiary.color, //Set Header color
           },
@@ -103,12 +148,12 @@ const Landing = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="home"
-        component={Home}
+        name="upload"
+        component={Upload}
       />
       <Stack.Screen
         name="project"
-        component={Projects}
+        component={Products}
       />
       <Stack.Screen
         name='settings'
@@ -117,23 +162,113 @@ const Landing = () => {
       <Stack.Screen
         name="comment"
         component={Comment}
-      />
-      <Stack.Screen
-        name="CardDetails"
-        component={CardDetails}
         options={{
-          title: 'CardDetails',
+          title: 'comment',
           //Set Header Title
           headerStyle: {
             backgroundColor: styles.appPrimary.color, //Set Header color
           },
           headerShown: true,
+          headerTintColor: styles.appTertiary.color, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          }
+        }}
+      />
+      <Stack.Screen
+        name="Feedback"
+        component={Feedback}
+        options={{
+          title: 'Feedback',
+          //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appPrimary.color, //Set Header color
+          },
+          headerShown: true,
+          headerTintColor: styles.appTertiary.color, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          }
+        }}
+      />
+      <Stack.Screen
+        name="imagelist"
+        component={ImageList}
+        options={{
+          headerStyle: {
+            backgroundColor: styles.appSecondary.color, //Set Header color
+          },
+          headerShown: true,
+          headerTintColor: styles.appPrimary.color, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+      <Stack.Screen
+        name="ProductDetails"
+        component={ProductDetails}
+        options={{
+          title: 'ProductDetails',
+          //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appPrimary.color, //Set Header color
+          },
+          headerShown: false,
           headerTintColor: styles.appSecondary.color, //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style
           },
         }}
       />
+      <Stack.Screen
+        name="DocumentViewer"
+        component={DocumentViewer}
+      />
+      <Stack.Screen
+        name="IntrestedClientDetails"
+        component={IntrestedClientDetails}
+      />
+      <Stack.Screen
+        name="PreviousDealedProduct"
+        component={PreviousDealedProduct}
+      />
+      <Stack.Screen
+        name="ProductRelatedDocuments"
+        component={ProductRelatedDocuments}
+      />
+      <Stack.Screen
+        name="ShareContacts"
+        component={ShareContacts}
+      />
+      <Stack.Screen
+        name="UploadDocument"
+        component={UploadDocument}
+      />
+      <Stack.Screen
+        name="UploadVerifyCertification"
+        component={UploadVerifyCertification}
+      />
+      <Stack.Screen name="Contacts" component={contacts} options={{ headerShown: false }} />
+      <Stack.Screen name="AddContactScreen" component={AddContactScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="DetailPage" component={DetailPage} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="History"
+        component={History}
+        options={{
+          title: 'History',
+          //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appPrimary.color, //Set Header color
+          },
+          headerShown: false,
+          headerTintColor: styles.appSecondary.color, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+
     </Stack.Navigator>
   );
 };
@@ -142,7 +277,7 @@ function App(): React.JSX.Element {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Landing">
+        <Stack.Navigator initialRouteName="Auth">
           {/* SplashScreen which will come once for 5 Seconds */}
           <Stack.Screen
             name="splashScreen"

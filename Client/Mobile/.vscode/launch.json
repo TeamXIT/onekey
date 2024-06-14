@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Attach to Chrome",
-            "port": 9222,
-            "request": "attach",
-            "type": "chrome",
-            "webRoot": "${workspaceFolder}"
+            "name": "Debug Android Hermes",
+            "request": "launch",
+            "type": "reactnativedirect",
+            "cwd": "${workspaceFolder}",
+            "platform": "android"
         },
         {
             "type": "msedge",
