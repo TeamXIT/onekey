@@ -5,18 +5,21 @@ import TeamXImageTextInput from "../../atoms/TeamXImageTextInput";
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
 import TeamXHeaderText from "../../atoms/TeamXHeaderText";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
+import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
+import { setPassword } from "../../reducers/auth/authSlice";
 
 const ForgotPassword = ({ navigation }) => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
+  const dispatch = useAppDispatch();
+  const { isBusy, error } = useAppSelector(state => state.auth.screen);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmitPress = () => {
+  const handleSubmitPress = async () => {
     let hasError = false;
     if (!newPassword.trim() || !confirmPassword.trim()) {
       setPasswordError('Please fill in both fields.');
@@ -30,7 +33,7 @@ const ForgotPassword = ({ navigation }) => {
 
     if (!hasError) {
       setPasswordError('');
-      // Navigate to sign-in screen
+      await dispatch(setPassword(newPassword, confirmPassword));
       navigation.navigate('typeselection');
     }
   };

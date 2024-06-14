@@ -14,7 +14,7 @@ import Verification from './src/organisms/Authen/Verification';
 import VerificationCode from './src/organisms/Authen/VerificationCode';
 import Dashboard from './src/organisms/Landing/Dashboard';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
-import ForgotPassword from './src/organisms/Authen/ForgotPassword';
+import ForgotPassword from './src/organisms/Authen/SetPassword';
 import Comment from './src/organisms/Landing/Comment';
 import Products from './src/organisms/Landing/Products';
 import { Provider } from 'react-redux';
@@ -130,7 +130,7 @@ const Auth = () => {
         }}
       />
       <Stack.Screen
-        name="forgotPassword"
+        name="setPassword"
         component={ForgotPassword}
         options={{ headerShown: false }}
       />
