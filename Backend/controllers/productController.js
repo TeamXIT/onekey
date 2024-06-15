@@ -2,6 +2,8 @@ const moment = require('moment');
 const { Product } = require('../models/productModel');
 const { DynamicProperties } = require('../models/dynamicPropertiesModel');
 const { baseResponses } = require('../helpers/baseResponses');
+const {flatVillas} = require('../helpers/flats&villas');
+const {openPlot} = require('../helpers/open_plot');
 
 const createProduct = async (req, res) => {
     try {
@@ -177,7 +179,25 @@ const deleteProduct = async (req, res) => {
     } catch (error) {
         return res.status(500).json(baseResponses.error(error.message));
     }
-}
+};
+
+const getPropertyType = async (req, res) => {
+    try {
+        const {  propertyType } = req.body;
+        if ( !propertyType) {
+            return res.status(400).json(baseResponses.constantMessages.ALL_FIELDS_REQUIRED());
+        }
+        const _propertyType = propertyType.toLowerCase();
+        if(_propertyType == 'villas'|| _propertyType == 'flats'){
+            return res.status(200).json(flatVillas);
+        }
+        else if (_propertyType == 'openplots'){
+            return res.status(200).json(openPlot);
+        }
+    } catch (error) {
+        return res.status(500).json(baseResponses.error(error.message));
+    }
+};
 
 
-module.exports = { getAllProducts, getById, createProduct, deleteProduct, updateProduct };
+module.exports = { getAllProducts, getById, createProduct, deleteProduct, updateProduct,getPropertyType };

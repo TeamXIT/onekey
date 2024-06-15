@@ -1,4 +1,4 @@
-{
+const openPlot={
 
     "project_type":"open_plot",
     "active":true,
@@ -489,3 +489,4 @@
     }
 
 }
+module.exports = {openPlot};
