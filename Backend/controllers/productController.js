@@ -183,11 +183,11 @@ const deleteProduct = async (req, res) => {
 
 const getPropertyType = async (req, res) => {
     try {
-        const {  property_type } = req.body;
-        if ( !property_type) {
+        const {  propertyType } = req.body;
+        if ( !propertyType) {
             return res.status(400).json(baseResponses.constantMessages.ALL_FIELDS_REQUIRED());
         }
-        const _propertyType = property_type.toLowerCase();
+        const _propertyType = propertyType.toLowerCase();
         if(_propertyType == 'villas'|| _propertyType == 'flats'){
             return res.status(200).json(flatVillas);
         }
