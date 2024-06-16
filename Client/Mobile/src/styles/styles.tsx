@@ -1042,7 +1042,94 @@ countryPickerArrow: {
     height: 80,
     padding: 16,
     position: 'relative',
-  }
+  },
+ 
+    propertycontainer: {
+        flex: 1,
+        backgroundColor: '#272239',
+        padding: 20,
+    },
+    propertytitle: {
+        fontSize: 24,
+        
+        color: '#fff',
+        marginBottom: 20,
+    },
+    propertyinput: {
+        height: 60,
+        paddingLeft:16,
+        fontSize:20,
+        borderRadius: 10,
+        paddingHorizontal: 10,
+        marginBottom: 16,
+        color: '#fff',
+        backgroundColor: '#35314A'
+    },
+    picker: {
+        height: 60,
+
+        paddingLeft:20,
+        borderRadius: 10,
+        marginBottom: 15,
+        color: '#fff',
+        backgroundColor: '#35314A'
+    },
+    pickerContainer: {
+        width: '100%',
+        borderRadius: 8,
+
+
+        overflow: 'hidden', // Ensure content does not overfl
+        marginBottom: 15,
+        height: 60
+
+
+
+
+
+
+
+
+
+
+
+
+    },
+    pickerIcon: {
+        position: 'absolute',
+        right: 14,
+        top: 19,
+        width: 20,
+        height: 20,
+        tintColor: '#000',
+    },
+    propertybuttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20,
+    },
+    propertybutton: {
+       height: 40, 
+       width: 140, 
+       borderRadius: 40,
+       alignItems:'center'
+       
+       
+       
+       
+       
+       
+    },
+    propertybuttonText: {
+        color: '#FFFFFF', 
+        fontSize: 18,
+        paddingTop:6
+        
+        
+    },
 });
+
+
+
 
 export { styles, secondaryColor, errorColor };
