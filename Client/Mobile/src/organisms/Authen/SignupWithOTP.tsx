@@ -1,23 +1,28 @@
 import { View, ScrollView, StyleSheet, Text } from "react-native";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { styles } from '../../styles/styles';
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
 import TeamXButton from "../../atoms/TeamXButton";
 import TeamXTextedLink from "../../molecules/TeamXTextedLink";
 import TeamXErrorText from "../../molecules/TeamXErrorText"; 
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
-import { UserSignup } from "../../reducers/auth/authSlice";
+import { sendOtp, setError } from "../../reducers/auth/authSlice";
 import TeamXLoader from "../../molecules/TeamXLoader";
 import PhoneInput from "react-native-phone-number-input";
 
 const SignupWithOTP = ({ navigation }) => {
     const dispatch = useAppDispatch();
-    const authen = useAppSelector(state => state.auth);
+    const { isBusy, error } = useAppSelector(state => state.auth.screen);
 
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const [phoneNumberError, setPhoneNumberError] = useState(''); // State for phone number error
+    const [phoneNumber, setPhoneNumber] = useState('9966074430');
+    const [phoneNumberError, setPhoneNumberError] = useState('');
     const phoneInput = useRef(null);
+
+    useEffect(() => {
+        if (error) {
+            setPhoneNumberError(error);
+        }
+    }, [error]);
 
     const handleSubmitPress = () => {
         const phoneNumberValue = phoneNumber.trim();
@@ -34,25 +39,30 @@ const SignupWithOTP = ({ navigation }) => {
             return;
         }
 
-        setIsLoading(true);
-        dispatch(UserSignup(phoneNumberValue));
-        navigation.navigate('VerificationCode', { phoneNumber: phoneNumberValue });
+        const fullPhoneNumber = `+91${phoneNumberValue}`;
+        console.log(fullPhoneNumber);
+
+        dispatch(setError('')); // Clear previous errors
+        dispatch(sendOtp(fullPhoneNumber)).then(() => {
+            navigation.navigate('VerificationCode', { phoneNumber: fullPhoneNumber });
+        });
     };
 
     const handlePhoneNumberChange = (value) => {
         // Remove non-numeric characters from the input value
         const numericValue = value.replace(/[^0-9]/g, '');
         setPhoneNumber(numericValue);
+        setPhoneNumberError(''); // Reset error when phone number changes
     };
 
     return (
         <View style={[styles.containerStyle, { padding: 0, gap: 0 }]}>
-            <TeamXLoader loading={isLoading} />
+            <TeamXLoader loading={isBusy} />
             <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
                 <View style={[styles.containerStyle]}>
                     <TeamXLogoImage />
                     <Text style={styles.signuptitle}>Enter your Phone Number</Text>
-                    <Text style={styles.signupsubtitle}>We will send you the 6 digit verification code</Text>
+                    <Text style={styles.signupsubtitle}>We will send you the 4 digit verification code</Text>
 
                     <View style={styles.signupinputContainer}>
                         <PhoneInput
@@ -75,10 +85,6 @@ const SignupWithOTP = ({ navigation }) => {
 
                     <TeamXButton onPress={handleSubmitPress} text="GENERATE OTP" />
 
-                    
-                    
-                    
-                    
                     
                 </View>
             </ScrollView>
