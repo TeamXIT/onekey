@@ -1,59 +1,107 @@
-import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AppThunk } from '../store';
+import axios, { AxiosError } from 'axios';
 import API_BASE_URL from '../config/apiConfig';
 
-type ProductState = {
-    screen: {
-        isBusy: boolean,
-        error: string
-    },
-    data: {
-        products: any[],
-        productById: any,
-        success: boolean
-    }
+interface ProductState {
+    isBusy: boolean;
+    error: string | null;
+    success: boolean;
 }
 
 const initialState: ProductState = {
-    screen: {
-        isBusy: false,
-        error: '',
-    },
-    data: {
-        products: [],
-        productById: {},
-        success: false
-    }
-}
+    isBusy: false,
+    error: null,
+    success: false,
+};
 
-export const productSlice = createSlice({
+const productSlice = createSlice({
     name: 'product',
     initialState,
     reducers: {
-        setBusy: (state, { payload }) => {
-            state.screen.isBusy = payload;
+        setBusy(state, action: PayloadAction<boolean>) {
+            state.isBusy = action.payload;
         },
-        setError: (state, { payload }) => {
-            state.screen.error = payload;
+        setError(state, action: PayloadAction<string | null>) {
+            state.error = action.payload;
         },
-        setProducts: (state, { payload }) => {
-            state.data.products = payload;
+        setSuccess(state, action: PayloadAction<boolean>) {
+            state.success = action.payload;
         },
-        setProductById: (state, { payload }) => {
-            state.data.productById = payload;
-        },
-        setSuccess: (state, { payload }) => {
-            state.data.success = payload;
-        },
+    },
+});
+
+export const { setBusy, setError, setSuccess } = productSlice.actions;
+
+export const getPropertyType = (propertyType: string): AppThunk => async (dispatch) => {
+    console.log(propertyType)
+    dispatch(setBusy(true));
+    try {
+        const response = await axios.post(`${API_BASE_URL}/product/getPropertyType`, { propertyType });
+        console.log(response.data);
+        dispatch(setSuccess(true));
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            const axiosError = error as AxiosError;
+            if (axiosError.response && axiosError.response.status === 404) {
+                dispatch(setError('Resource not found. Please check your request.'));
+            } else {
+                handleError(error, dispatch);
+            }
+        } else {
+            handleError(error, dispatch);
+        }
+    } finally {
+        dispatch(setBusy(false));
     }
-})
+};
 
-export const {
-    setBusy,
-    setError,
-    setProducts,
-    setProductById,
-    setSuccess
-} = productSlice.actions
+interface CreateProductRequest {
+    projectName: string;
+    propertySeller: string;
+    propertyType: string;
+    dynamic_properties: Array<{
+        name: string;
+        value_type: string;
+        value: string;
+    }>;
+    owner_id: number;
+}
 
-export default productSlice.reducer
+export const createProduct = (productData: CreateProductRequest): AppThunk => async (dispatch) => {
+    
+    dispatch(setBusy(true));
+    try {
+        console.log(productData)
+        // console.log(productData.propertyType);
+        // const propertyTypeResponse = await axios.get(`${API_BASE_URL}/product/get-property-type`, productData.propertyType);
+        // console.log(propertyTypeResponse)
+       
+        const response = await axios.post(`${API_BASE_URL}/product/create`, {
+           productData,
+        });
+        console.log(response.data);
+        dispatch(setSuccess(true));
+    } catch (error) {
+        console.log(error)
+        if (axios.isAxiosError(error)) {
+            const axiosError = error as AxiosError;
+            if (axiosError.response && axiosError.response.status === 404) {
+                dispatch(setError('Resource not found. Please check your request.'));
+            } else {
+                handleError(error, dispatch);
+            }
+        } else {
+            handleError(error, dispatch);
+        }
+    } finally {
+        dispatch(setBusy(false));
+    }
+};
+
+const handleError = (error: any, dispatch: any) => {
+    console.error('An error occurred:', error);
+    dispatch(setError('An error occurred. Please try again later.'));
+};
+
+export default productSlice.reducer;
