@@ -36,6 +36,7 @@ import contacts from './src/organisms/Landing/Contact';
 import AddContactScreen from './src/organisms/Landing/AddContactScreen';
 import DetailPage from './src/organisms/Landing/DetailPage';
 import History from './src/organisms/Landing/History';
+import MyPropertyScreen1 from './src/organisms/Landing/MyPropertyScreen1';
 
 const Stack = createStackNavigator();
 
@@ -252,6 +253,7 @@ const Landing = () => {
       <Stack.Screen name="Contacts" component={contacts} options={{ headerShown: false }} />
       <Stack.Screen name="AddContactScreen" component={AddContactScreen} options={{ headerShown: false }} />
       <Stack.Screen name="DetailPage" component={DetailPage} options={{ headerShown: false }} />
+      <Stack.Screen name="MyPropertyScreen1" component={MyPropertyScreen1} options={{ headerShown: false }} />
       <Stack.Screen
         name="History"
         component={History}
@@ -277,7 +279,7 @@ function App(): React.JSX.Element {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Auth">
+        <Stack.Navigator initialRouteName="Landing">
           {/* SplashScreen which will come once for 5 Seconds */}
           <Stack.Screen
             name="splashScreen"
