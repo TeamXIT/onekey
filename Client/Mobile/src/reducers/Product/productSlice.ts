@@ -1,148 +1,106 @@
-import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AppThunk } from '../store';
+import axios, { AxiosError } from 'axios';
 import API_BASE_URL from '../config/apiConfig';
 
-type ProductState = {
-    screen: {
-        isBusy: boolean,
-        error: string
-
-    }
-    data: {
-        products: any[]
-        productById: any
-        Success: boolean
-    }
+interface ProductState {
+    isBusy: boolean;
+    error: string | null;
+    success: boolean;
 }
 
 const initialState: ProductState = {
-    screen: {
-        isBusy: false,
-        error: '',
+    isBusy: false,
+    error: null,
+    success: false,
+};
 
-    },
-    data: {
-        products: [],
-        productById: {},
-        Success: false
-    }
-}
-
-export const productSlice = createSlice({
+const productSlice = createSlice({
     name: 'product',
     initialState,
     reducers: {
-        setBusy: (state, { payload }) => {
-            state.screen.isBusy = payload;
+        setBusy(state, action: PayloadAction<boolean>) {
+            state.isBusy = action.payload;
         },
-        setError: (state, { payload }) => {
-            state.screen.error = payload;
+        setError(state, action: PayloadAction<string | null>) {
+            state.error = action.payload;
         },
-        setProducts: (state, { payload }) => {
-            state.data.products = payload;
+        setSuccess(state, action: PayloadAction<boolean>) {
+            state.success = action.payload;
         },
-        setProduuctById: (state, { payload }) => {
-            state.data.productById = payload;
-        },
-        setSuccess: (state, { payload }) => {
-            state.data.Success = payload;
-        },
-    }
-})
+    },
+});
 
-export const {
-    setBusy,
-    setError,
-    setProducts,
-    setProduuctById,
-    setSuccess
-} = productSlice.actions
+export const { setBusy, setError, setSuccess } = productSlice.actions;
 
-export const fetchAllProducts = (recLimit = 10, pageNumber = 1) => async (dispatch: any) => {
+export const getPropertyType = (propertyType: string): AppThunk => async (dispatch) => {
+    console.log(propertyType);
     dispatch(setBusy(true));
-    await axios.get(`${API_BASE_URL}/product/get-all?limit=${recLimit}&page=${pageNumber}`)
-        .then((response) => {
-            console.log('FetchAll api:', response)
-            dispatch(setError(''));
-            dispatch(setProducts(response.data));
-        })
-        .catch((error) => {
-            console.log('FetchAll error:', error)
-            const { data } = error.response;
-            const result = JSON.parse(JSON.stringify(data));
-            dispatch(setError(result.error));
-        })
-    dispatch(setBusy(false));
-}
-
-export const fetchProductById = (productId: Number) => async (dispatch: any) => {
-    dispatch(setBusy(true));
-    await axios.get(`${API_BASE_URL}/product/get-by-id${productId}`)
-        .then((response) => {
-            console.log('FetchById api:', response)
-            dispatch(setError(''));
-            dispatch(setProduuctById(response.data));
-        })
-        .catch((error) => {
-            const { data } = error.response;
-            const result = JSON.parse(JSON.stringify(data));
-            dispatch(setError(result.error));
-        })
-    dispatch(setBusy(false));
-}
-
-export const createNewProduct = (productData: any, authToken: string, userId: any) => async (dispatch: any) => {
-    productData.owner_id = userId;
-    console.log("UserId: ", userId);
-    console.log("createNewProduct payload: ", productData);
-    dispatch(setBusy(true));
-    await axios.post(`${API_BASE_URL}/product/create`, productData, {
-        headers: {
-            Authorization: authToken,
-        },
-    }).then((response) => {
-        console.log('Create api:', response.data);
-        dispatch(setError(''));
+    try {
+        const response = await axios.get(`${API_BASE_URL}/product/getPropertyType/${propertyType}`);
+        console.log(response.data);
         dispatch(setSuccess(true));
-    })
-        .catch((error) => {
-            console.log('Error:', error)
-            const { data } = error.response;
-            const result = JSON.parse(JSON.stringify(data));
-            dispatch(setError(result.error));
-        })
-    dispatch(setBusy(false));
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            const axiosError = error as AxiosError;
+            if (axiosError.response && axiosError.response.status === 404) {
+                dispatch(setError('Resource not found. Please check your request.'));
+            } else {
+                handleError(error, dispatch);
+            }
+        } else {
+            handleError(error, dispatch);
+        }
+    } finally {
+        dispatch(setBusy(false));
+    }
+};
+
+
+interface CreateProductRequest {
+    projectName: string;
+    propertySeller: string;
+    propertyType: string;
+    dynamic_properties: Array<{
+        name: string;
+        value_type: string;
+        value: string;
+    }>;
+    owner_id: number;
 }
-export const updateExistingProduct = (updatedProductData: JSON) => async (dispatch: any) => {
+
+export const createProduct = (productData: CreateProductRequest): AppThunk => async (dispatch) => {
     dispatch(setBusy(true));
-    await axios.put(`${API_BASE_URL}/product/update`, updatedProductData)
-        .then((response) => {
-            console.log('Update api:', response)
-            dispatch(setError(''));
+    try {
+        const propertyTypeResponse = await axios.get(`${API_BASE_URL}/product/get-property-type`, { propertyType: productData.propertyType });
+        console.log(propertyTypeResponse)
+        const dynamic_properties = propertyTypeResponse.data;
+        
+        const response = await axios.post(`${API_BASE_URL}/product/create`, {
+            ...productData,
+            dynamic_properties,
+        });
+        
+        dispatch(setSuccess(true));
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            const axiosError = error as AxiosError;
+            if (axiosError.response && axiosError.response.status === 404) {
+                dispatch(setError('Resource not found. Please check your request.'));
+            } else {
+                handleError(error, dispatch);
+            }
+        } else {
+            handleError(error, dispatch);
+        }
+    } finally {
+        dispatch(setBusy(false));
+    }
+};
 
-        })
-        .catch((error) => {
-            const { data } = error.response;
-            const result = JSON.parse(JSON.stringify(data));
-            dispatch(setError(result.error));
-        })
-    dispatch(setBusy(false));
-}
+const handleError = (error: any, dispatch: any) => {
+    console.error('An error occurred:', error);
+    dispatch(setError('An error occurred. Please try again later.'));
+};
 
-export const deleteExistingProduct = (productId: Number) => async (dispatch: any) => {
-    dispatch(setBusy(true));
-    await axios.delete(`${API_BASE_URL}/product/delete?product_id=${productId}`)
-        .then((response) => {
-            console.log('Delete api:', response)
-            dispatch(setError(''));
-
-        })
-        .catch((error) => {
-            const { data } = error.response;
-            const result = JSON.parse(JSON.stringify(data));
-            dispatch(setError(result.error));
-        })
-    dispatch(setBusy(false));
-}
-
-export default productSlice.reducer
+export default productSlice.reducer;
