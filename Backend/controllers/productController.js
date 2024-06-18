@@ -183,7 +183,7 @@ const deleteProduct = async (req, res) => {
 
 const getPropertyType = async (req, res) => {
     try {
-        const {  propertyType } = req.body;
+        const {  propertyType } = req.query.propertyType;;
         if ( !propertyType) {
             return res.status(400).json(baseResponses.constantMessages.ALL_FIELDS_REQUIRED());
         }
