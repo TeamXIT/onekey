@@ -69,21 +69,19 @@ interface CreateProductRequest {
 }
 
 export const createProduct = (productData: CreateProductRequest): AppThunk => async (dispatch) => {
-    
     dispatch(setBusy(true));
     try {
-        console.log(productData)
-        // console.log(productData.propertyType);
-        // const propertyTypeResponse = await axios.get(`${API_BASE_URL}/product/get-property-type`, productData.propertyType);
-        // console.log(propertyTypeResponse)
-       
+        const propertyTypeResponse = await axios.get(`${API_BASE_URL}/product/get-property-type`, { propertyType: productData.propertyType });
+        console.log(propertyTypeResponse)
+        const dynamic_properties = propertyTypeResponse.data;
+        
         const response = await axios.post(`${API_BASE_URL}/product/create`, {
-           productData,
+            ...productData,
+            dynamic_properties,
         });
-        console.log(response.data);
+        
         dispatch(setSuccess(true));
     } catch (error) {
-        console.log(error)
         if (axios.isAxiosError(error)) {
             const axiosError = error as AxiosError;
             if (axiosError.response && axiosError.response.status === 404) {

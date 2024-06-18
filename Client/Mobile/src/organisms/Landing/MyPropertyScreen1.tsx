@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import TeamxRadioButton from '../../molecules/TeamxRadioButton';
 import { secondaryColor, styles } from '../../styles/styles';
@@ -7,7 +7,7 @@ import TeamXButton from '../../atoms/TeamXButton';
 import { useNavigation } from '@react-navigation/native'; 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../reducers/store';  
-import { createProduct , getPropertyType } from '../../reducers/Product/productSlice';
+import { createProduct } from '../../reducers/Product/productSlice';
 
 const MyPropertyScreen1 = () => {
     const navigation = useNavigation(); 
@@ -85,7 +85,7 @@ const MyPropertyScreen1 = () => {
             <View style={{ flexDirection: 'column', left: 50 }}>
                 <View style={{ marginBottom: 15 }}>
                     <TeamxRadioButton
-                        value="Flats"
+                        value="flats"
                         label="Flats"
                         selectedOption={selectedOption}
                         secondaryColor={secondaryColor}
