@@ -34,10 +34,10 @@ const productSlice = createSlice({
 export const { setBusy, setError, setSuccess } = productSlice.actions;
 
 export const getPropertyType = (propertyType: string): AppThunk => async (dispatch) => {
-    console.log(propertyType)
+    console.log(propertyType);
     dispatch(setBusy(true));
     try {
-        const response = await axios.post(`${API_BASE_URL}/product/getPropertyType`, { propertyType });
+        const response = await axios.get(`${API_BASE_URL}/product/getPropertyType/${propertyType}`);
         console.log(response.data);
         dispatch(setSuccess(true));
     } catch (error) {
@@ -55,6 +55,7 @@ export const getPropertyType = (propertyType: string): AppThunk => async (dispat
         dispatch(setBusy(false));
     }
 };
+
 
 interface CreateProductRequest {
     projectName: string;
