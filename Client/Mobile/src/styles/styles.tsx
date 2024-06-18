@@ -415,7 +415,7 @@ const styles = StyleSheet.create({
   },
   radioButtonLabel: {
     color: whiteText,
-    fontSize: ySmallSize,
+    fontSize: smallSize,
     marginRight: 30,
   },
   radioButtonsContainer: {
@@ -1042,7 +1042,82 @@ countryPickerArrow: {
     height: 80,
     padding: 16,
     position: 'relative',
-  }
+  },
+  //MyPropertyScreen1
+  MyPropertyScreen1container: {
+    flex: 1,
+    backgroundColor: '#272239',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+},
+MyPropertyScreen1header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 20,
+},
+backArrow: {
+    width: 20,
+    height: 20,
+    tintColor: 'white',
+    marginRight: 10,
+},
+MyPropertyScreen1heading: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 25,
+    marginTop: 15,
+    left: 20,
+    top: 5
+},
+MyPropertyScreen1line: {
+    width: '100%',
+    height: 0.3,
+    backgroundColor: 'gray',
+    elevation: 5,
+    shadowColor: 'gray',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.5,
+    shadowRadius: 0.8,
+},
+MyPropertyScreen1input: {
+    width: '80%',
+    height: 55,
+    borderColor: 'gray',
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    color: 'white',
+    marginBottom: 30,
+    marginTop: 30,
+    left: 40,
+    fontSize: 18,
+    backgroundColor: "#35314A"
+},
+MyPropertyScreen1dropdown: {
+    width: '80%',
+    backgroundColor: "#35314A",
+    borderRadius: 10,
+    left: 40,
+    height: 60,
+    marginBottom: 20,
+},
+MyPropertyScreen1dropdownContainer: {
+    width: '80%',
+    left: 40,
+    backgroundColor: "#35314A",
+},
+MyPropertyScreen1text: {
+    color: 'white',
+    fontSize: 20,
+    marginBottom: 20,
+    marginTop: 20,
+    left: 45,
+},
+MyPropertyScreen1buttonContainer: {
+    left: 90,
+    top: 60,
+    justifyContent: 'center',
+},
 });
 
 export { styles, secondaryColor, errorColor };
