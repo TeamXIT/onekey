@@ -5,20 +5,28 @@ const Leads = sequelize.define("Leads", {
     lead_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
     },
     lead_info: {
-        type: DataTypes.JSON
+        type: DataTypes.JSON,
     },
     product_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: Product,
-            key: 'product_id'
-        }
-    }
-}, { tableName: 'Leads', versionKey: false, timestamps: true });
+            key: 'productId',
+        },
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
+},{ tableName: 'Leads', versionKey: false, timestamps: true });
 
 
 module.exports = { Leads };

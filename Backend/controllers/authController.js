@@ -27,9 +27,11 @@ const sendOtp = async (req, res) => {
         // await sendMessage(`Your login OTP is ${otp}`, phoneNumber.number);
         if (!user) {
             return res.status(200).json({ otp, phoneNumber, isNewUser: true });
+            console.log(otp, phoneNumber)
         }
         // If user exists, send OTP for login
         return res.status(200).json({ otp, phoneNumber, isNewUser: false });
+        console.log(otp, phoneNumber)
     } catch (error) {
         return res.status(500).json(baseResponses.error(error.message));
     }
@@ -45,7 +47,7 @@ const sendOtp = async (req, res) => {
 //             }
 //             const { otp } = await generateOTP(phoneNumber.number, 6, 600);
 //             // await sendMessage(`Your login OTP is ${otp}`, phoneNumber.number);
-//             return res.status(200).json({ otp, phoneNumber });
+//             return res.status(200).json({ otp, phoneNumber.number });
 //         }
 //         return res.status(400).json(baseResponses.constantMessages.USER_EXISTS());
 
