@@ -31,7 +31,7 @@ const MyPropertyScreen1 = () => {
             return;
         }
 
-        const productData = {
+         const productData = {
             projectName: propertyName,
             propertySeller: selectedSellerType,
             propertyType: selectedOption,
@@ -40,7 +40,7 @@ const MyPropertyScreen1 = () => {
         };
 
         await dispatch(getPropertyType(productData.propertyType));
-        navigation.navigate('dynamicform');
+        navigation.navigate('dynamicform', {propertyType: selectedOption});
         setErrorMessage('');
     };
 

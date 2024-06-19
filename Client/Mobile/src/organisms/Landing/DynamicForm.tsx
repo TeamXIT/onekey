@@ -6,7 +6,8 @@ import { getPropertyType } from '../../reducers/Product/productSlice';
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const DynamicForm = () => {
+const DynamicForm = ({ route }) => {
+    const { propertyType } = route.params;
     const dispatch = useDispatch();
     const formData = useSelector((state: RootState) => state.product.formdata);
     const [formState, setFormState] = useState({});
@@ -14,34 +15,33 @@ const DynamicForm = () => {
     const [currentDateField, setCurrentDateField] = useState('');
 
     useEffect(() => {
-        dispatch(getPropertyType('flat_villas'));
-    }, [dispatch]);
-
+        dispatch(getPropertyType(propertyType)); // Use propertyType received from params
+    }, [dispatch, propertyType]);
     useEffect(() => {
         const initialState = {};
-
+    
         const parseData = (data) => {
-            data.forEach(item => {
-                if (item.input_type === 'checkbox') {
-                    initialState[item.name] = item.value || false;
-                } else if (['text_box', 'dropdown', 'radio_button', 'date'].includes(item.input_type)) {
-                    initialState[item.name] = '';
-                } else if (item.input_type === 'file') {
-                    initialState[item.name] = null;
-                }
-            });
+            if (data) {
+                data.forEach(item => {
+                    if (item.input_type === 'checkbox') {
+                        initialState[item.name] = item.value || false;
+                    } else if (['text_box', 'dropdown', 'radio_button', 'date'].includes(item.input_type)) {
+                        initialState[item.name] = '';
+                    } else if (item.input_type === 'file') {
+                        initialState[item.name] = null;
+                    }
+                });
+            }
         };
-
-        if (formData) {
-            parseData(formData.amenities);
-            parseData(formData.location);
-            parseData(formData.possession);
-            parseData(formData.properties);
-        }
-
+    
+        parseData(formData?.amenities);
+        parseData(formData?.location);
+        parseData(formData?.possession);
+        parseData(formData?.properties);
+    
         setFormState(initialState);
     }, [formData]);
-
+    
     const handleChange = (name, value, inputType) => {
         setFormState(prevState => ({
             ...prevState,
@@ -53,8 +53,11 @@ const DynamicForm = () => {
         console.log(formState);
         // Implement form submission logic here
     };
-
     const renderInputField = (item) => {
+        if (!formData) {
+            return null; // Handle case where formData is not defined yet
+        }
+    
         switch (item.input_type) {
             case 'checkbox':
                 return (
@@ -134,7 +137,7 @@ const DynamicForm = () => {
                 return null;
         }
     };
-
+    
     return (
         <ScrollView contentContainerStyle={{ padding: 20 }}>
             <Text>Amenities</Text>
