@@ -6,7 +6,7 @@ import { CardOptions } from "../../helpers/Models/CardOptions";
 import TeamXLogoImage from "../../atoms/TeamXLogoImage";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
-import { RoleSelection } from "../../reducers/auth/authSlice";
+import { selectUserRole } from "../../reducers/auth/authSlice";
 import TeamXLoader from "../../molecules/TeamXLoader";
 import TeamXButton from "../../atoms/TeamXButton";
 import TeamXTextedLink from "../../molecules/TeamXTextedLink";
@@ -19,6 +19,7 @@ const UserTypeSelection = ({ navigation }) => {
     const authen = useAppSelector(state => state.auth);
     const [isSignupSuccess, setSignupSuccess] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    
     // Define your data array
     const cardData = [
         { id: '1', onPress: () => handleCardPress(CardOptions.Seller), imageSource: require('../../images/ic_seller.png'), labelText: "Seller" },
@@ -29,13 +30,13 @@ const UserTypeSelection = ({ navigation }) => {
     ];
 
     useEffect(() => {
-         if (authen.data.UserType) {
-         setSignupSuccess(true);
-             setTimeout(() => {
+        if (authen.data.UserType) {
+            setSignupSuccess(true);
+            setTimeout(() => {
                 navigation.replace('dashboard');
-                 setSignupSuccess(false);
-             }, 3000);
-         }
+                setSignupSuccess(false);
+            }, 3000);
+        }
         setIsLoading(false);
     }, [authen.screen.error, authen.data.UserType]);
 
@@ -46,8 +47,10 @@ const UserTypeSelection = ({ navigation }) => {
     const handleNextpress = async() => {
         if (selectedCard > 0) {
             setIsLoading(true);
-            dispatch(RoleSelection(selectedCard, authen.data.Username))
-             await AsyncStorage.setItem('role',selectedCard.toString())
+            const mobileNumber = authen.data.MobileNumber; // Assuming authen.data.Username holds the mobile number
+            dispatch(selectUserRole(selectedCard));
+            await AsyncStorage.setItem('role', selectedCard.toString());
+            navigation.navigate('Landing')
         } else {
             setError("Select type of user to complete signup");
         }
@@ -67,7 +70,7 @@ const UserTypeSelection = ({ navigation }) => {
     if (isSignupSuccess) {
         return (
             <View style={styles.containerStyle}>
-                 <Image 
+                <Image 
                     source={require('../../images/ic_success.png')}
                     style={{
                         height: 150,
@@ -75,26 +78,26 @@ const UserTypeSelection = ({ navigation }) => {
                         alignSelf: 'center'
                     }}
                 />
-
-                 <Text style={[styles.textStyle, { textAlign: "center" }]}>Congratulations ! {'\n'} Your registration has been successful</Text> 
-             </View> 
+                <Text style={[styles.textStyle, { textAlign: "center" }]}>
+                    Congratulations! {'\n'} Your registration has been successful
+                </Text> 
+            </View> 
         );
     }
+
     return (
         <View style={styles.containerStyle}>
             <TeamXLoader loading={isLoading} />
-
             <TeamXLogoImage />
-
             <FlatList
                 data={cardData}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
-                numColumns={2} />
+                numColumns={2}
+            />
             <View style={{ marginBottom: 10 }}>
                 <TeamXErrorText errorText={error} />
             </View>
-
             <TeamXButton onPress={handleNextpress} text="COMPLETE" />
         </View>
     );

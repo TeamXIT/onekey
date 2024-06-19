@@ -17,6 +17,20 @@ const Settings = ({ navigation }) => {
                     style={{ height: 45, width: 280, borderRadius: 40, justifyContent: 'center',alignItems:'center' }}
                 >
                     <Text style={{color:'#FFFFFF',fontSize:16}}>Contacts</Text>
+                    
+                </LinearGradient>
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('MyPropertyScreen1')}
+            >
+                <LinearGradient
+                    colors={['#888693', '#35314A']}
+                    start={{ x: 0.5, y: 0 }}
+                    end={{ x: 0.5, y: 1 }}
+                    style={{ height: 45, width: 280, borderRadius: 40, justifyContent: 'center',alignItems:'center',marginTop:10 }}
+                >
+                    <Text style={{color:'#FFFFFF',fontSize:16}}>MyPropertyScreen1</Text>
+                    
                 </LinearGradient>
             </TouchableOpacity>
         </View>

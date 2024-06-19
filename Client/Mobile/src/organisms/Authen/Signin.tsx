@@ -8,7 +8,7 @@ import TeamXHeaderText from "../../atoms/TeamXHeaderText";
 import TeamXTextedLink from "../../molecules/TeamXTextedLink";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import TeamXErrorText from "../../molecules/TeamXErrorText";
-import { UserSignin } from "../../reducers/auth/authSlice";
+import { signInWithPassword } from "../../reducers/auth/authSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView } from "react-native-gesture-handler";
 import TeamXLoader from "../../molecules/TeamXLoader";
@@ -19,7 +19,7 @@ const Signin = ({ navigation }) => {
     const dispatch = useAppDispatch()
     const authen = useAppSelector(state => state.auth);
 
-    const [phoneNumber, setPhoneNumber] = useState('9014393951');
+    const [phoneNumber, setPhoneNumber] = useState('9876543210');
     const [password, setPassword] = useState('Teamx@123');
     const [phoneNumberError, setPhoneNumberError] = useState('');
     const [passwordError, setPasswordError] = useState('');
@@ -39,7 +39,7 @@ const Signin = ({ navigation }) => {
             }
         } else if (authen.data.AuthToken) {
             //console.log("AuthToken: ", authen.data.AuthToken);
-            AsyncStorage.setItem('username', authen.data.Username).then(() => {
+            AsyncStorage.setItem('mobileNumber', authen.data.MobileNumber).then(() => {
                 AsyncStorage.setItem('password', password).then(() => {
                     AsyncStorage.setItem('userId', authen.data.UserId).then(() => {
                         AsyncStorage.setItem('AuthToken', authen.data.AuthToken).then(() => {
@@ -52,7 +52,7 @@ const Signin = ({ navigation }) => {
         setIsLoading(false);
     }, [authen.screen.error, authen.data.AuthToken]);
 
-    const handleSubmitPress = () => {
+    const handleSubmitPress = async () => {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
         let hasError = false;
         if (!phoneNumber.trim()) {
@@ -74,7 +74,9 @@ const Signin = ({ navigation }) => {
         if (!hasError) {
             setIsLoading(true);
             setSigninError('');
-            dispatch(UserSignin(phoneNumber, password));
+            const fullPhoneNumber = `+91${phoneNumber}`;
+           await  dispatch(signInWithPassword(fullPhoneNumber, password));
+            navigation.navigate('Landing')
             setPasswordError('');
         }
     }

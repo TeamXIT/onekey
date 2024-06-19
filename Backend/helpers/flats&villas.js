@@ -1,4 +1,4 @@
-{
+const flatVillas ={
 
     "project_type":"flat_villas",
     "active":true,
@@ -472,14 +472,14 @@
             "id":4,
             "name":"town/village",
             "type":"string",
-            "input_type":"text_box",
+            "input_type":"text_box"
 
         },
         {
             "id":5,
             "name":"pincode",
             "type":"number",
-            "input_type":"text_box",
+            "input_type":"text_box"
             
         },
         {
@@ -521,4 +521,6 @@
         "type":"jsonb",
         "input_type":"file"
     }  
-}
+};
+
+module.exports = {flatVillas} ;
