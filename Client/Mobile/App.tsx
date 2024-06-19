@@ -37,6 +37,7 @@ import AddContactScreen from './src/organisms/Landing/AddContactScreen';
 import DetailPage from './src/organisms/Landing/DetailPage';
 import History from './src/organisms/Landing/History';
 import MyPropertyScreen1 from './src/organisms/Landing/MyPropertyScreen1';
+import DynamicForm from './src/organisms/Landing/DynamicForm';
 
 const Stack = createStackNavigator();
 
@@ -211,6 +212,22 @@ const Landing = () => {
         component={ProductDetails}
         options={{
           title: 'ProductDetails',
+          //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appPrimary.color, //Set Header color
+          },
+          headerShown: false,
+          headerTintColor: styles.appSecondary.color, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
+       <Stack.Screen
+        name="dynamicform"
+        component={DynamicForm}
+        options={{
+          title: 'My Property',
           //Set Header Title
           headerStyle: {
             backgroundColor: styles.appPrimary.color, //Set Header color

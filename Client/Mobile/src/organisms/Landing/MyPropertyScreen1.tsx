@@ -7,7 +7,7 @@ import TeamXButton from '../../atoms/TeamXButton';
 import { useNavigation } from '@react-navigation/native'; 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../reducers/store';  
-import { createProduct } from '../../reducers/Product/productSlice';
+import { createProduct, getPropertyType } from '../../reducers/Product/productSlice';
 
 const MyPropertyScreen1 = () => {
     const navigation = useNavigation(); 
@@ -25,7 +25,7 @@ const MyPropertyScreen1 = () => {
 
     const { isBusy, error, success } = useSelector((state: RootState) => state.product);
 
-    const handleNextPress = () => {
+    const handleNextPress = async () => {
         if (!propertyName || !selectedSellerType || !selectedOption) {
             setErrorMessage('Please fill out all fields');
             return;
@@ -39,7 +39,8 @@ const MyPropertyScreen1 = () => {
             owner_id: 3, // Replace with actual owner ID
         };
 
-        dispatch(createProduct(productData));
+        await dispatch(getPropertyType(productData.propertyType));
+        navigation.navigate('dynamicform');
         setErrorMessage('');
     };
 

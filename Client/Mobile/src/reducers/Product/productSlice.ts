@@ -1,18 +1,49 @@
+// productSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
 import axios, { AxiosError } from 'axios';
 import API_BASE_URL from '../config/apiConfig';
 
+interface DynamicProperty {
+    id: number;
+    input_type: string;
+    name: string;
+    type: string;
+    value?: boolean | string | number | Array<string>;
+    options?: Array<string>;
+    parent_id?: number;
+    hasParent_selection?: boolean;
+}
+
+interface FormData {
+    active: boolean;
+    amenities: Array<DynamicProperty>;
+    brochure: DynamicProperty;
+    images: DynamicProperty;
+    layout: DynamicProperty;
+    location: Array<DynamicProperty>;
+    possession: Array<DynamicProperty>;
+    project_type: string;
+    properties: Array<DynamicProperty>;
+    property_description: DynamicProperty;
+    property_highlights: DynamicProperty;
+    social_media: DynamicProperty;
+    website_link: DynamicProperty;
+    youtube_video: DynamicProperty;
+}
+
 interface ProductState {
     isBusy: boolean;
     error: string | null;
     success: boolean;
+    formdata: FormData | null;
 }
 
 const initialState: ProductState = {
     isBusy: false,
     error: null,
     success: false,
+    formdata: null
 };
 
 const productSlice = createSlice({
@@ -28,17 +59,19 @@ const productSlice = createSlice({
         setSuccess(state, action: PayloadAction<boolean>) {
             state.success = action.payload;
         },
-    },
+        setFormData(state, action: PayloadAction<FormData>) {
+            state.formdata = action.payload;
+        }
+    }
 });
 
-export const { setBusy, setError, setSuccess } = productSlice.actions;
+export const { setBusy, setError, setSuccess, setFormData } = productSlice.actions;
 
 export const getPropertyType = (propertyType: string): AppThunk => async (dispatch) => {
-    console.log(propertyType);
     dispatch(setBusy(true));
     try {
-        const response = await axios.get(`${API_BASE_URL}/product/getPropertyType/${propertyType}`);
-        console.log(response.data);
+        const response = await axios.get(`${API_BASE_URL}/product/get-property-type`, { params: { propertyType } });
+        dispatch(setFormData(response.data));
         dispatch(setSuccess(true));
     } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -56,7 +89,6 @@ export const getPropertyType = (propertyType: string): AppThunk => async (dispat
     }
 };
 
-
 interface CreateProductRequest {
     projectName: string;
     propertySeller: string;
@@ -72,15 +104,7 @@ interface CreateProductRequest {
 export const createProduct = (productData: CreateProductRequest): AppThunk => async (dispatch) => {
     dispatch(setBusy(true));
     try {
-        const propertyTypeResponse = await axios.get(`${API_BASE_URL}/product/get-property-type`, { propertyType: productData.propertyType });
-        console.log(propertyTypeResponse)
-        const dynamic_properties = propertyTypeResponse.data;
-        
-        const response = await axios.post(`${API_BASE_URL}/product/create`, {
-            ...productData,
-            dynamic_properties,
-        });
-        
+        await axios.post(`${API_BASE_URL}/product/create`, productData);
         dispatch(setSuccess(true));
     } catch (error) {
         if (axios.isAxiosError(error)) {
