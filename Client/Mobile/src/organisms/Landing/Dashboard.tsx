@@ -9,6 +9,7 @@ import Products from './Products';
 import Post from './Post';
 import Settings from './Settings';
 import Upload from './Upload';
+import MyPropertyScreen1 from './MyPropertyScreen1';
 
 const Tab = createBottomTabNavigator();
 const AnimatedSvg = Animated.createAnimatedComponent(Svg)
@@ -34,7 +35,7 @@ const Dashboard = () => {
                         tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false} source={require('../../images/lottie_assets/upload.icon.json')} style={styles.icon} />,
                         headerShown: false,
                     }}
-                    component={Upload} />
+                    component={MyPropertyScreen1} />
                 <Tab.Screen
                     name="Chat"
                     options={{

@@ -14,7 +14,7 @@ import Verification from './src/organisms/Authen/Verification';
 import VerificationCode from './src/organisms/Authen/VerificationCode';
 import Dashboard from './src/organisms/Landing/Dashboard';
 import SplashScreen from './src/organisms/Authen/SplashScreen';
-import ForgotPassword from './src/organisms/Authen/ForgotPassword';
+import ForgotPassword from './src/organisms/Authen/SetPassword';
 import Comment from './src/organisms/Landing/Comment';
 import Products from './src/organisms/Landing/Products';
 import { Provider } from 'react-redux';
@@ -38,6 +38,7 @@ import DetailPage from './src/organisms/Landing/DetailPage';
 import History from './src/organisms/Landing/History';
 import MyPropertyScreen2 from './src/organisms/Landing/MyPropertyScreen2';
 import TeamxPropertyHeader from './src/molecules/TeamxPropertyHeader'
+import MyPropertyScreen1 from './src/organisms/Landing/MyPropertyScreen1';
 
 const Stack = createStackNavigator();
 
@@ -132,7 +133,7 @@ const Auth = () => {
         }}
       />
       <Stack.Screen
-        name="forgotPassword"
+        name="setPassword"
         component={ForgotPassword}
         options={{ headerShown: false }}
       />
@@ -254,6 +255,7 @@ const Landing = () => {
       <Stack.Screen name="Contacts" component={contacts} options={{ headerShown: false }} />
       <Stack.Screen name="AddContactScreen" component={AddContactScreen} options={{ headerShown: false }} />
       <Stack.Screen name="DetailPage" component={DetailPage} options={{ headerShown: false }} />
+      <Stack.Screen name="MyPropertyScreen1" component={MyPropertyScreen1} options={{ headerShown: false }} />
       <Stack.Screen
         name="History"
         component={History}

@@ -7,13 +7,18 @@ import TeamXErrorText from "../../molecules/TeamXErrorText";
 import TeamXOTPInput from "../../molecules/TeamXOTPInput";
 import TeamXHeaderText from "../../atoms/TeamXHeaderText";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
+import {  setError, signInWithOtp, verifyOtp } from "../../reducers/auth/authSlice";
 
 const VerificationCode = ({ route, navigation }) => {
-    const otpChatLength = 4;
+    const otpChatLength = 6;
+    const dispatch = useAppDispatch();
+    const { isBusy, error } = useAppSelector(state => state.auth.screen);
+    const phoneNumberObject = useAppSelector(state => state.auth.data.responsePhoneNumber);
     const [otp, setOtp] = useState('');
     const [otpError, setOtpError] = useState('');
 
-    const handleSubmitPress = () => {
+    const handleSubmitPress = async () => {
         let hasError = false;
 
         if (!otp.trim()) {
@@ -27,7 +32,13 @@ const VerificationCode = ({ route, navigation }) => {
         }
 
         if (!hasError) {
-            navigation.navigate('Landing');
+            dispatch(setError('')); // Clear previous errors
+            try {
+                await dispatch(signInWithOtp(otp)); // Assuming verifyOtp is correctly implemented
+                navigation.navigate('Landing'); // Navigate on successful verification
+            } catch (err) {
+                setOtpError('Verification failed. Please try again.');
+            }
         }
     }
 

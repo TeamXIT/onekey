@@ -415,7 +415,7 @@ const styles = StyleSheet.create({
   },
   radioButtonLabel: {
     color: whiteText,
-    fontSize: ySmallSize,
+    fontSize: smallSize,
     marginRight: 30,
   },
   radioButtonsContainer: {
@@ -1043,7 +1043,6 @@ countryPickerArrow: {
     padding: 16,
     position: 'relative',
   },
- 
     propertycontainer: {
         flex: 1,
         backgroundColor: '#272239',
@@ -1077,23 +1076,9 @@ countryPickerArrow: {
     pickerContainer: {
         width: '100%',
         borderRadius: 8,
-
-
         overflow: 'hidden', // Ensure content does not overfl
         marginBottom: 15,
         height: 60
-
-
-
-
-
-
-
-
-
-
-
-
     },
     pickerIcon: {
         position: 'absolute',
@@ -1113,12 +1098,6 @@ countryPickerArrow: {
        width: 140, 
        borderRadius: 40,
        alignItems:'center'
-       
-       
-       
-       
-       
-       
     },
     propertybuttonText: {
         color: '#FFFFFF', 

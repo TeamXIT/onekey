@@ -9,7 +9,7 @@ const checkRoleAccess = async (req,res,next)=>{
         if(!role){
             return res.status(404).json({error:'Role not found'});
         }
-        if(role.role_id !==4){
+        if(role.role_id !==2 && role.role_id !==1){
             return res.status(403).json({error:'Unauthorized access'});
         }
         next();

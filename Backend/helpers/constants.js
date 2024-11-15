@@ -9,7 +9,9 @@ const BASE_RESPONSE_MESSAGES = {
         GET_ALL_PRODUCT_SUCCESSFUL: 'Product retrieved successfully',
         PRODUCT_UPDATE_SUCCESSFUL:'Product updated successfully',
         GET_PRODUCT_BY_ID_SUCCESSFUL: 'Product retrieved successfully',
-        PRODUCT_ACCEPTED_SUCCESSFUL: 'Product accepted successfully'
+        PRODUCT_ACCEPTED_SUCCESSFUL: 'Product accepted successfully',
+        BPO_DETAILS_INSERTED: 'Bpo details inserted successfully',
+        BPO_DETAILS_UPDATED: 'Bpo details updated successfully'
     },
     ERROR: {
         ALL_FIELDS_REQUIRED: 'All fields are required',
@@ -29,7 +31,8 @@ const BASE_RESPONSE_MESSAGES = {
         PASSWORD_SYMBOL_ERROR:'Password must contain at least one special character',
         USERNAME_LENGTH_ERROR:'Username must contain at least 4 characters',
         EMAIL_ERROR:'Invalid email address',
-        ROLE_NOT_FOUND_ERROR:'Complete your registration'
+        ROLE_NOT_FOUND_ERROR:'Complete your registration',
+        USER_ID_REQUIRED:'User ID required'
     }
 };
 

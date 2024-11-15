@@ -22,7 +22,7 @@ const Products = ({ navigation }) => {
 
 
   useEffect(() => {
-    dispatch(fetchAllProducts());
+    // dispatch(fetchAllProducts());
   }, [product.data.products]);
 
   const uploadData = [{
