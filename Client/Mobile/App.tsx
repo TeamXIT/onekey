@@ -39,6 +39,7 @@ import History from './src/organisms/Landing/History';
 import MyPropertyScreen2 from './src/organisms/Landing/MyPropertyScreen2';
 import TeamxPropertyHeader from './src/molecules/TeamxPropertyHeader'
 import MyPropertyScreen1 from './src/organisms/Landing/MyPropertyScreen1';
+import DynamicForm from './src/organisms/Landing/DynamicForm';
 
 const Stack = createStackNavigator();
 
@@ -224,6 +225,22 @@ const Landing = () => {
           },
         }}
       />
+       <Stack.Screen
+        name="dynamicform"
+        component={DynamicForm}
+        options={{
+          title: 'My Property',
+          //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appPrimary.color, //Set Header color
+          },
+          headerShown: false,
+          headerTintColor: styles.appSecondary.color, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+          },
+        }}
+      />
       <Stack.Screen
         name="DocumentViewer"
         component={DocumentViewer}
@@ -297,7 +314,7 @@ function App(): React.JSX.Element {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Landing">
+        <Stack.Navigator initialRouteName="Auth">
           {/* SplashScreen which will come once for 5 Seconds */}
           <Stack.Screen
             name="splashScreen"

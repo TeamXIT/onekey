@@ -21,9 +21,9 @@ const Products = ({ navigation }) => {
   //  parseInt(Role,10); // Assign a values of 3 for BPO or 4 for Lawyer for acceptence
 
 
-  useEffect(() => {
-    // dispatch(fetchAllProducts());
-  }, [product.data.products]);
+  // useEffect(() => {
+  //   // dispatch(fetchAllProducts());
+  // }, [product.data.products]);
 
   const uploadData = [{
     id: 1,
