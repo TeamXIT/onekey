@@ -36,6 +36,8 @@ import contacts from './src/organisms/Landing/Contact';
 import AddContactScreen from './src/organisms/Landing/AddContactScreen';
 import DetailPage from './src/organisms/Landing/DetailPage';
 import History from './src/organisms/Landing/History';
+import MyPropertyScreen2 from './src/organisms/Landing/MyPropertyScreen2';
+import TeamxPropertyHeader from './src/molecules/TeamxPropertyHeader'
 import MyPropertyScreen1 from './src/organisms/Landing/MyPropertyScreen1';
 import DynamicForm from './src/organisms/Landing/DynamicForm';
 
@@ -287,6 +289,22 @@ const Landing = () => {
           },
         }}
       />
+      <Stack.Screen
+        name="MyPropertyScreen2"
+        component={MyPropertyScreen2}
+        options={{
+          headerTitle: () => <TeamxPropertyHeader />,          //Set Header Title
+          headerStyle: {
+            backgroundColor: styles.appPrimary.color, //Set Header color
+            
+          },
+          headerShown: true,
+          headerTintColor: styles.appTertiary.color, //Set Header text color
+          headerTitleStyle: {
+            fontWeight: 'bold', //Set Header text style
+           },
+           headerLeft: null, // Hide the back button
+        }} />
 
     </Stack.Navigator>
   );

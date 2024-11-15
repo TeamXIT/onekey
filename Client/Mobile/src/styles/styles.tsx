@@ -1043,81 +1043,72 @@ countryPickerArrow: {
     padding: 16,
     position: 'relative',
   },
-  //MyPropertyScreen1
-  MyPropertyScreen1container: {
-    flex: 1,
-    backgroundColor: '#272239',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-},
-MyPropertyScreen1header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: 20,
-},
-backArrow: {
-    width: 20,
-    height: 20,
-    tintColor: 'white',
-    marginRight: 10,
-},
-MyPropertyScreen1heading: {
-    color: 'white',
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 25,
-    marginTop: 15,
-    left: 20,
-    top: 5
-},
-MyPropertyScreen1line: {
-    width: '100%',
-    height: 0.3,
-    backgroundColor: 'gray',
-    elevation: 5,
-    shadowColor: 'gray',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.5,
-    shadowRadius: 0.8,
-},
-MyPropertyScreen1input: {
-    width: '80%',
-    height: 55,
-    borderColor: 'gray',
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    color: 'white',
-    marginBottom: 30,
-    marginTop: 30,
-    left: 40,
-    fontSize: 18,
-    backgroundColor: "#35314A"
-},
-MyPropertyScreen1dropdown: {
-    width: '80%',
-    backgroundColor: "#35314A",
-    borderRadius: 10,
-    left: 40,
-    height: 60,
-    marginBottom: 20,
-},
-MyPropertyScreen1dropdownContainer: {
-    width: '80%',
-    left: 40,
-    backgroundColor: "#35314A",
-},
-MyPropertyScreen1text: {
-    color: 'white',
-    fontSize: 20,
-    marginBottom: 20,
-    marginTop: 20,
-    left: 45,
-},
-MyPropertyScreen1buttonContainer: {
-    left: 90,
-    top: 60,
-    justifyContent: 'center',
-},
+    propertycontainer: {
+        flex: 1,
+        backgroundColor: '#272239',
+        padding: 20,
+    },
+    propertytitle: {
+        fontSize: 24,
+        
+        color: '#fff',
+        marginBottom: 20,
+    },
+    propertyinput: {
+        height: 60,
+        paddingLeft:16,
+        fontSize:20,
+        borderRadius: 10,
+        paddingHorizontal: 10,
+        marginBottom: 16,
+        color: '#fff',
+        backgroundColor: '#35314A'
+    },
+    picker: {
+        height: 60,
+
+        paddingLeft:20,
+        borderRadius: 10,
+        marginBottom: 15,
+        color: '#fff',
+        backgroundColor: '#35314A'
+    },
+    pickerContainer: {
+        width: '100%',
+        borderRadius: 8,
+        overflow: 'hidden', // Ensure content does not overfl
+        marginBottom: 15,
+        height: 60
+    },
+    pickerIcon: {
+        position: 'absolute',
+        right: 14,
+        top: 19,
+        width: 20,
+        height: 20,
+        tintColor: '#000',
+    },
+    propertybuttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20,
+    },
+    propertybutton: {
+       height: 40, 
+       width: 140, 
+       borderRadius: 40,
+       alignItems:'center'
+    },
+    propertybuttonText: {
+        color: '#FFFFFF', 
+        fontSize: 18,
+        paddingTop:6
+        
+        
+    },
 });
+
+
+
 
 export { styles, secondaryColor, errorColor };
